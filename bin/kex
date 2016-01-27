@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# this will terminate all instances of an exe on windows
+# Made to deal with hanging node instances.
+
+# used by kex {exeName}
+#kex node.exe
+PID=$(ps -Wef | grep $1 | awk '{print $2}')
+
+if [ -z "${PID}" ] ; then
+    echo -e "  Nothing to terminate."
+else
+    echo "  Terminating ${PID}."
+fi
+
+for P in $PID
+do
+    RET=$(taskkill /F /PID $P)
+    if [ $? ] ; then
+        echo -e "    ${1} with PID ${P} was terminated."
+    fi
+done
