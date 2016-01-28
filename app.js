@@ -37,6 +37,7 @@ app.use('/', routes);
 app.use('/dep/angular', express.static(ini.path.angular));
 app.use('/dep/bootstrap', express.static(ini.path.bootstrap));
 app.use('/dep/jquery', express.static(ini.path.jquery));
+app.use('/dep/jquery-ui', express.static(ini.path.jqueryui));
 
 //  Status Response
 app.use(eHandler.notFound);

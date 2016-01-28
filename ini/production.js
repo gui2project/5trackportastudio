@@ -1,7 +1,7 @@
 /**
- *  @file   production.js
+ *  @file   developement.js
  *
- *  The configuration file to use during production.
+ *  The configuration file to use during developement.
  *
  *  It holds absolute paths, and other settings.
  */
@@ -21,6 +21,7 @@ var ini = {
         error:       path.join(global.app.root, 'private', 'handlers', 'error.js'),
         images:      path.join(global.app.root, 'public', 'app', 'img'),
         jquery:      path.join(global.app.root, 'node_modules', 'jquery', 'dist'),
+        jqueryui:    path.join(global.app.root, 'node_modules', 'jquery-ui'),
         favicon:     path.join(global.app.root, 'public', 'app', 'img', 'favicon.ico' ),
         nodeModules: path.join(global.app.root, 'node_modules'),
         partial:     path.join(global.app.root, 'private', 'views', 'partial'),
