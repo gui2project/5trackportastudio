@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # this will terminate all instances of an exe on windows
-# Made to deal with hanging node instances.
+# Made to deal with hanging node instances on cygwin.
 
 # used by kex {exeName}
 #kex node.exe
@@ -20,3 +20,5 @@ do
         echo -e "    ${1} with PID ${P} was terminated."
     fi
 done
+
+read -n1 -r -p "Press space to continue..." key

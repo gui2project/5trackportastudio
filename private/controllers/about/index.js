@@ -12,4 +12,3 @@ module.exports.index = function(req, res) {
     res.render(path.join(ini.path.partial, 'index'), { title: 'GUI II Project - About' });
 
 } ;
-
