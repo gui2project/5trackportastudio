@@ -18,7 +18,7 @@ var ini = {
         angular:     path.join(global.app.root, 'node_modules', 'angular'),
         bootstrap:   path.join(global.app.root, 'node_modules', 'bootstrap', 'dist'),
         ctrl:        path.join(global.app.root, 'server', 'controllers'),
-        error:       path.join(global.app.root, 'server', 'handlers', 'error.js'),
+        error:       path.join(global.app.root, 'server', 'controllers', 'error', 'index.js'),
         images:      path.join(global.app.root, 'www', 'app', 'img'),
         jquery:      path.join(global.app.root, 'node_modules', 'jquery', 'dist'),
         jqueryui:    path.join(global.app.root, 'node_modules', 'jquery-ui'),

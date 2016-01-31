@@ -4,6 +4,9 @@
  *  This holds the error handlers for the server.
  */
 
+var path    = require('path');
+var ini     = require(global.app.ini());
+
 var error = function(){
     /**
      *  @name   notFound
@@ -20,12 +23,12 @@ var error = function(){
      *
      *  Processes a 500 server error
      *
-     *  dev  - will print stacktrace
-     *  prod - no stacktraces leaked to user
+     *  dev  - will print stack trace
+     *  prod - no stack traces leaked to user
      */
     this.server = function(err, req, res, next) {
         res.status(err.status || 500);
-        app.get('env') === 'dev' ?
+        ini.mode === 'dev' ?
             res.render(path.join(ini.path.partial, 'error'),
                 {message: err.message, error: err}) :
             res.render(path.join(ini.path.partial, 'error'),

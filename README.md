@@ -11,24 +11,24 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 ### File structure
 ```
 5trackportastudio
-├───bin/                 Executable files
-├───doc/                 Documents
-├───ini/                 Configurations
-├───node_modules/        npm dependencies
-├───server/              Private server
-│   ├───controllers/     Output controllers
-│   ├───routes/          Url routing
-│   └───views/           Jade layouts
-│       ├───layout/      Full page layouts
-│       └───partial/     Block layouts
-├───www/                 Public static content
-│   ├───api/             Api directory
+├───bin/                 Executable files.
+├───doc/                 Documents.
+├───ini/                 Configurations.
+├───node_modules/        npm dependencies.
+├───server/              Private server.
+│   ├───controllers/     Output controllers.
+│   ├───routes/          URL routing.
+│   └───views/           Jade layouts.
+│       ├───layout/      Full page layouts.
+│       └───partial/     Block layouts.
+├───www/                 Public static content.
+│   ├───api/             API directory.
 │   ├───app/             Application files
 │   │   ├───css/         Cascading style sheets
-│   │   ├───img/         Images
-│   │   └───js/          JavaScript
-│   └───dep/             Dependency files
-├───app.js               Application controler
+│   │   ├───img/         Image files
+│   │   └───js/          JavaScript files.
+│   └───dep/             Dependency files.
+├───app.js               Application controller.
 ├───global.js            Global object file. Determines root path and configuration file to use.
 ├───package.json         npm package files.
 ├───Procfile             Heroku instructions for deployment.
@@ -45,57 +45,57 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 ## Install
 ### Dependencies
-1. Install the appropriate version of Git for your system.  
+1. Install the appropriate version of Git for your system.
     https://git-scm.com/downloads
 
-2. Install the appropriate version of Node.js for your system. This installs npm as well.  
+2. Install the appropriate version of Node.js for your system. This installs npm as well.
     https://nodejs.org/en/download/
 
-3. Install the appropriate version of MongoDB for your system.  
+3. Install the appropriate version of MongoDB for your system.
     https://www.mongodb.org/downloads#production
 
 ### Source
 1. Open a bash capable Terminal or Powershell.
 
-2. Clone the repository. 
+2. Clone the repository.
     ```
     git clone https://github.com/gui2project/5trackportastudio.git
     ```
 
-3. Run the install script. 
+3. Run the install script.
     ```
     ./5trackportastudio/bin/install.sh
     ```
 
 ## Deployment
 ### Local
-- To start run:  
+- To start run:
     ```
     nodemon
     ```
 
-- To restart type:  
+- To restart type:
     ```
     rs
     ```
 
-- To stop type:  
+- To stop type:
     ```
     ctrl-c
     ```
 
-- To kill all instance of the server on cygwin run:  
+- To kill all instance of the server on cygwin run:
     ```
     ./bin/kex node.exe
     ```
 
 ### Heroku
-- To push to https://portastudio.heroku.com run:  
+- To push to https://portastudio.heroku.com run:
     ```
     git push origin heroku
     ```
 
-- To push the master branch to https://portastudio.heroku.com run:  
+- To push the master branch to https://portastudio.heroku.com run:
     ```
     git push origin master:heroku
     ```
