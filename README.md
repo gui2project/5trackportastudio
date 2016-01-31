@@ -11,7 +11,7 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 ### File structure
 ```
 5trackportastudio
-├───bin/                 ExecutableS
+├───bin/                 Executable files
 ├───doc/                 Documents
 ├───ini/                 Configurations
 ├───node_modules/        npm dependencies
