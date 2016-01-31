@@ -29,44 +29,46 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 ### Source
 1. Open a bash capable Terminal or Powershell.
-2. Clone the repository.  
-```
-git clone https://github.com/gui2project/5trackportastudio.git
-```
-3. Run the install script.  
-```
-./5trackportastudio/bin/install.sh
-```
+
+2. Clone the repository. 
+    ```
+    git clone https://github.com/gui2project/5trackportastudio.git
+    ```
+
+3. Run the install script. 
+    ```
+    ./5trackportastudio/bin/install.sh
+    ```
 
 ## Deployment
 ### Local
 - To start run:  
-```
-nodemon
-```
+    ```
+    nodemon
+    ```
 
 - To restart type:  
-```
-rs
-```
+    ```
+    rs
+    ```
 
 - To stop type:  
-```
-ctrl-c
-```
+    ```
+    ctrl-c
+    ```
 
 - To kill all instance of the server on cygwin run:  
-```
-./bin/kex node.exe
-```
+    ```
+    ./bin/kex node.exe
+    ```
 
 ### Heroku
 - To push to https://portastudio.heroku.com run:  
-```
-git push origin heroku
-```
+    ```
+    git push origin heroku
+    ```
 
 - To push the master branch to https://portastudio.heroku.com run:  
-```
-git push origin master:heroku
-```
+    ```
+    git push origin master:heroku
+    ```
