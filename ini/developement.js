@@ -1,7 +1,7 @@
 /**
  *  @file   developement.js
  *
- *  The configuration file to use during developement.
+ *  The configuration file to use during development.
  *
  *  It holds absolute paths, and other settings.
  */
@@ -17,20 +17,20 @@ var ini = {
     path: {
         angular:     path.join(global.app.root, 'node_modules', 'angular'),
         bootstrap:   path.join(global.app.root, 'node_modules', 'bootstrap', 'dist'),
-        ctrl:        path.join(global.app.root, 'private', 'controllers'),
-        error:       path.join(global.app.root, 'private', 'handlers', 'error.js'),
-        images:      path.join(global.app.root, 'public', 'app', 'img'),
+        ctrl:        path.join(global.app.root, 'server', 'controllers'),
+        error:       path.join(global.app.root, 'server', 'handlers', 'error.js'),
+        images:      path.join(global.app.root, 'www', 'app', 'img'),
         jquery:      path.join(global.app.root, 'node_modules', 'jquery', 'dist'),
         jqueryui:    path.join(global.app.root, 'node_modules', 'jquery-ui'),
-        favicon:     path.join(global.app.root, 'public', 'app', 'img', 'favicon.ico' ),
+        favicon:     path.join(global.app.root, 'www', 'app', 'img', 'favicon.ico' ),
         nodeModules: path.join(global.app.root, 'node_modules'),
-        partial:     path.join(global.app.root, 'private', 'views', 'partial'),
-        private:     path.join(global.app.root, 'private'),
-        public:      path.join(global.app.root, 'public'),
+        partial:     path.join(global.app.root, 'server', 'views', 'partial'),
+        private:     path.join(global.app.root, 'server'),
+        public:      path.join(global.app.root, 'www'),
         root:        global.app.root,
-        routes:      path.join(global.app.root, 'private', 'routes', 'index'),
-        users:       path.join(global.app.root, 'private', 'routes', 'users'),
-        views:       path.join(global.app.root, 'private', 'views')
+        routes:      path.join(global.app.root, 'server', 'routes', 'index'),
+        users:       path.join(global.app.root, 'server', 'routes', 'users'),
+        views:       path.join(global.app.root, 'server', 'views')
     }
 };
 
