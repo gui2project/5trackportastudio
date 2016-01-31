@@ -73,7 +73,7 @@ ctrl-c
 git push origin heroku
 ```
 
--To push the master branch to https://portastudio.heroku.com run: 
+- To push the master branch to https://portastudio.heroku.com run: 
 ```
 git push origin master:heroku
 ```
