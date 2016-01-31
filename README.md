@@ -8,6 +8,33 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 - Jose Flores
 - Ramon Meza
 
+### File structure
+```
+5trackportastudio
+├───bin/                 ExecutableS
+├───doc/                 Documents
+├───ini/                 Configurations
+├───node_modules/        npm dependencies
+├───server/              Private server
+│   ├───controllers/     Output controllers
+│   ├───routes/          Url routing
+│   └───views/           Jade layouts
+│       ├───layout/      Full page layouts
+│       └───partial/     Block layouts
+├───www/                 Public static content
+│   ├───api/             Api directory
+│   ├───app/             Application files
+│   │   ├───css/         Cascading style sheets
+│   │   ├───img/         Images
+│   │   └───js/          JavaScript
+│   └───dep/             Dependency files
+├───app.js               Application controler
+├───global.js            Global object file. Determines root path and configuration file to use.
+├───package.json         npm package files.
+├───Procfile             Heroku instructions for deployment.
+└───README.md            Installation instructions.
+```
+
 ## Requirements
 ### Dependencies
 - Git
