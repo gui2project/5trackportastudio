@@ -18,57 +18,57 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 ## Install
 ### Dependencies
-1. Install the appropriate version of Git for your system.
+1. Install the appropriate version of Git for your system.  
     https://git-scm.com/downloads
 
-2. Install the appropriate version of Node.js for your system. This installs npm as well.
+2. Install the appropriate version of Node.js for your system. This installs npm as well.  
     https://nodejs.org/en/download/
 
-3. Install the appropriate version of MongoDB for your system.
+3. Install the appropriate version of MongoDB for your system.  
     https://www.mongodb.org/downloads#production
 
 ### Source
 1. Open a bash capable Terminal or Powershell.
 
-2. Clone the repository.
+2. Clone the repository.  
 ```
 git clone https://github.com/gui2project/5trackportastudio.git
 ```
 
-3. Change into the project directory.
+3. Change into the project directory.  
 ```
 cd 5trackportastudio
 ```
 
-4. Run the install script.
+4. Run the install script.  
 ```
 ./bin/install.sh
 ```
 
 ## Deployment
 ### Local
-To start run:
+To start run:  
 ```
 nodemon
 ```
 
-- To restart type:
+- To restart type:  
 ```
 rs
 ```
 
-- To stop type:
+- To stop type:  
 ```
 ctrl-c
 ```
 
-- To kill all instance of the server on cygwin run:
+- To kill all instance of the server on cygwin run:  
 ```
 ./bin/kex node.exe
 ```
 
 ### Heroku
-- To push to https://portastudio.heroku.com run:
+- To push to https://portastudio.heroku.com run: 
 ```
 git push origin heroku
 ```
