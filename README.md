@@ -29,25 +29,18 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 ### Source
 1. Open a bash capable Terminal or Powershell.
-
 2. Clone the repository.  
 ```
 git clone https://github.com/gui2project/5trackportastudio.git
 ```
-
-3. Change into the project directory.  
+3. Run the install script.  
 ```
-cd 5trackportastudio
-```
-
-4. Run the install script.  
-```
-./bin/install.sh
+./5trackportastudio/bin/install.sh
 ```
 
 ## Deployment
 ### Local
-To start run:  
+- To start run:  
 ```
 nodemon
 ```
@@ -68,14 +61,12 @@ ctrl-c
 ```
 
 ### Heroku
-- To push to https://portastudio.heroku.com run: 
+- To push to https://portastudio.heroku.com run:  
 ```
 git push origin heroku
 ```
 
-- To push the master branch to https://portastudio.heroku.com run: 
+- To push the master branch to https://portastudio.heroku.com run:  
 ```
 git push origin master:heroku
 ```
-
-
