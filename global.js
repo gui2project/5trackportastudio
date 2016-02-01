@@ -14,7 +14,18 @@ var pjson           = require('./package.json');
 var chalk           = require('chalk');         //  coloring for console label
 
 //  The information object
-var info = function( pJson ) {
+var info = function( pJson, mode) {
+
+    /**
+     *  Use this scope in children
+     */
+    var _this = this;
+
+    /**
+     *  The label to use for the application
+     */
+    this.about = pJson.name + ' ' + pJson.version ;
+
     /**
      *  Modifies the console logs when used through the object to prepend
      *  '[appName appVersion'].
@@ -24,45 +35,38 @@ var info = function( pJson ) {
          *  consol.log replacement
          */
         log: function(){
+            //  prepend to arguments
             Array.prototype.unshift.call(arguments,
-                                chalk.blue('[' + pJson.name + ' ' + pJson.version + ']'));
-            console.log.apply(this, arguments, 'color: #bada55');
+                                chalk.blue( '[' + _this.about + ']' ));
+            //  modify local console behavior
+            console.log.apply(this, arguments);
         }
     };
+
     /**
      *  The path to the configuration file
      */
-    this.ini = function(){return path.join( this.root,
-                                            'ini',
-                                            this.mode + '.js');};
-    /**
-     *  The name of the application
-     */
-    this.name = pJson.name;
+    this.ini = function(){
+        return path.join(this.root, 'ini', this.mode + '.js');
+    }
+
     /**
      *  The mode to run the application in
      */
-    this.mode = null;
+    this.mode = mode;
+
     /**
      *  The root directory
      */
     this.root = path.resolve(__dirname);
-    /**
-     *  Application version
-     */
-    this.version =  pJson.version;
 
     //  Output creation status and info
     this.console.log('Created global.app\n',this);
 };
 
 /* Application paths export*/
-module.exports = function( mode ){
+module.exports = function(mode){
     //  Generate an instance of the information object
-    var obj = new info( pjson );
-
-    obj.mode = mode;
-
-    return obj;
+    return new info(pjson, mode);
 }
 
