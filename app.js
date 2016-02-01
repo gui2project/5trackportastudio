@@ -4,6 +4,9 @@
  *  This file is the controller for the application.
  */
 
+// Set application mode to: development | production
+global.app          = require('./global.js')('development');
+
 //  Requires
 var express         = require('express');
 var bodyParser      = require('body-parser');
@@ -11,10 +14,6 @@ var cookieParser    = require('cookie-parser');
 var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var path            = require('path');
-
-// development | production
-global.app          = require('./global.js')('development');
-
 var ini             = require(global.app.ini());
 var routes          = require(ini.path.routes);
 var users           = require(ini.path.users);
@@ -32,9 +31,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(logger(ini.app.mode));
 app.use(favicon(ini.path.favicon));
-
-app.use(express.static(ini.path.public));
 app.use('/', routes);
+
+//  Static paths
+app.use(express.static(ini.path.public));
 app.use('/dep/angular', express.static(ini.path.angular));
 app.use('/dep/bootstrap', express.static(ini.path.bootstrap));
 app.use('/dep/jquery', express.static(ini.path.jquery));

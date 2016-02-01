@@ -11,12 +11,13 @@
 //  Requires
 var path            = require('path');
 var pjson           = require('./package.json');
+var chalk           = require('chalk');         //  coloring for console label
 
 //  The information object
 var info = function( pJson ) {
     /**
      *  Modifies the console logs when used through the object to prepend
-     *  '[appName'].
+     *  '[appName appVersion'].
      */
     this.console = {
         /**
@@ -24,8 +25,8 @@ var info = function( pJson ) {
          */
         log: function(){
             Array.prototype.unshift.call(arguments,
-                                '[' + pJson.name + ' ' + pJson.version + ']');
-            console.log.apply(this, arguments);
+                                chalk.blue('[' + pJson.name + ' ' + pJson.version + ']'));
+            console.log.apply(this, arguments, 'color: #bada55');
         }
     };
     /**
@@ -52,8 +53,7 @@ var info = function( pJson ) {
     this.version =  pJson.version;
 
     //  Output creation status and info
-    this.console.log('Created global.app');
-    this.console.log(this);
+    this.console.log('Created global.app\n',this);
 };
 
 /* Application paths export*/
