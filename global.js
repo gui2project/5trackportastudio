@@ -41,7 +41,7 @@ var info = function( pJson ) {
     /**
      *  The mode to run the application in
      */
-    this.mode = 'developement';
+    this.mode = null;
     /**
      *  The root directory
      */
@@ -56,8 +56,13 @@ var info = function( pJson ) {
     this.console.log(this);
 };
 
-//  Generate an instance of the information object
-var obj = new info( pjson );
-
 /* Application paths export*/
-module.exports = obj;
+module.exports = function( mode ){
+    //  Generate an instance of the information object
+    var obj = new info( pjson );
+
+    obj.mode = mode;
+
+    return obj;
+}
+

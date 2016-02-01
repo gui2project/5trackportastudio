@@ -12,7 +12,8 @@ var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var path            = require('path');
 
-global.app          = require('./global.js');
+// development | production
+global.app          = require('./global.js')('development');
 
 var ini             = require(global.app.ini());
 var routes          = require(ini.path.routes);

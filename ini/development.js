@@ -1,7 +1,7 @@
 /**
- *  @file   developement.js
+ *  @file   development.js
  *
- *  The configuration file to use during developement.
+ *  The configuration file to use during development.
  *
  *  It holds settings and links to the paths for the application.
  */
