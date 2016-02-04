@@ -35,6 +35,7 @@ app.use('/', routes);
 
 //  Static paths
 app.use(express.static(ini.path.public));
+app.use('/app/doc', express.static(ini.path.documents));
 app.use('/dep/angular', express.static(ini.path.angular));
 app.use('/dep/bootstrap', express.static(ini.path.bootstrap));
 app.use('/dep/jquery', express.static(ini.path.jquery));

@@ -11,6 +11,7 @@ var paths = {
     angular:     path.join(global.app.root, 'node_modules', 'angular'),
     bootstrap:   path.join(global.app.root, 'node_modules', 'bootstrap', 'dist'),
     ctrl:        path.join(global.app.root, 'server', 'controllers'),
+    documents:   path.join(global.app.root, 'doc'),
     error:       path.join(global.app.root, 'server', 'controllers', 'error', 'index.js'),
     images:      path.join(global.app.root, 'www', 'app', 'img'),
     jquery:      path.join(global.app.root, 'node_modules', 'jquery', 'dist'),
