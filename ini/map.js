@@ -13,7 +13,7 @@ var map = [
         sys: paths.public
     },
     {
-        web: '/dep/doc',
+        web: '/app/doc',
         sys: paths.documents
     },
     {
