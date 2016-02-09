@@ -64,9 +64,15 @@ var info = function( pJson, mode) {
     this.console.log('Created global.app\n',this);
 };
 
-/* Application paths export*/
-module.exports = function(mode){
+/**
+ *  @name exp
+ *    Export content
+ */
+var exp = function(mode){
     //  Generate an instance of the information object
     return new info(pjson, mode);
-}
+};
+
+//Export content
+module.exports = exp;
 

@@ -39,7 +39,7 @@ var error = function(){
 //  Generate an instance of the error object
 var errHandler = new error();
 
-/* Application paths export*/
+// Export Content
 module.exports = errHandler;
 
 

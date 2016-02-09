@@ -31,19 +31,18 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(logger(ini.app.mode));
 app.use(favicon(ini.path.favicon));
+
+//  Dynamic mapping
 app.use('/', routes);
 
-//  Static paths
-app.use(express.static(ini.path.public));
-app.use('/app/doc', express.static(ini.path.documents));
-app.use('/dep/angular', express.static(ini.path.angular));
-app.use('/dep/bootstrap', express.static(ini.path.bootstrap));
-app.use('/dep/jquery', express.static(ini.path.jquery));
-app.use('/dep/jquery-ui', express.static(ini.path.jqueryui));
+//  Static mapping
+ini.map.forEach(function(map){
+    app.use(map.web, express.static(map.sys));
+});
 
-//  Status Response
+//  Error Response
 app.use(eHandler.notFound);
 app.use(eHandler.server);
 
-/* Application paths export*/
+/* Application export*/
 module.exports = app;
