@@ -64,7 +64,8 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 3. Run the install script.
     ```
-    ./5trackportastudio/bin/install.sh
+    cd 5trackportastudio
+    ./bin/install.sh
     ```
 
 ## Deployment
@@ -95,7 +96,7 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
     git push origin heroku
     ```
 
-- To push the master branch to https://portastudio.heroku.com run:
+- To push the master branch to https://trackstudio.heroku.com run:
     ```
     git push origin master:heroku
     ```
