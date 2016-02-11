@@ -53,28 +53,29 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 - Capability of running `.sh` files from Terminal or Powershell
 
 #### Runtime
-- Web audio compatible browser, for a full list see https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
+- Web audio compatible browser, for a full list see  
+    https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
 
 ## Install
 ### Dependencies
-1. Install the appropriate version of Git for your system.
+1. Install the appropriate version of Git for your system.  
     https://git-scm.com/downloads
 
-2. Install the appropriate version of Node.js for your system. This installs npm as well.
+2. Install the appropriate version of Node.js for your system. This installs npm as well.  
     https://nodejs.org/en/download/
 
-3. Install the appropriate version of MongoDB for your system.
+3. Install the appropriate version of MongoDB for your system.  
     https://www.mongodb.org/downloads#production
 
 ### Source
 1. Open a bash capable Terminal or Powershell.
 
-2. Clone the repository.
+2. Clone the repository.  
     ```
     git clone https://github.com/gui2project/5trackportastudio.git
     ```
 
-3. Run the install script.
+3. Run the install script.  
     ```
     cd 5trackportastudio
     ./bin/install.sh
@@ -82,33 +83,33 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 ## Deployment
 ### Local
-- To start run:
+- To start run:  
     ```
     nodemon
     ```
 
-- To restart type:
+- To restart type:  
     ```
     rs
     ```
 
-- To stop type:
+- To stop type:  
     ```
     ctrl-c
     ```
 
-- To kill all instance of the server on cygwin run:
+- To kill all instance of the server on cygwin run:  
     ```
     ./bin/kex node.exe
     ```
 
 ### Heroku
-- To push to https://portastudio.heroku.com run:
+- To push to https://trackstudio.heroku.com run:  
     ```
     git push origin heroku
     ```
 
-- To push the master branch to https://trackstudio.heroku.com run:
+- To push the master branch to https://trackstudio.heroku.com run:  
     ```
     git push origin master:heroku
     ```
