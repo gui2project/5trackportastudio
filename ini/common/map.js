@@ -1,7 +1,7 @@
 /**
  *  @file   map.js
  *
- *  The configuration file for web mapping static paths.
+ *  The configuration file for web mapping paths.
  */
 
 //  Requires

@@ -14,20 +14,28 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 ├───bin/                 Executable files.
 ├───doc/                 Documents.
 ├───ini/                 Configurations.
+│   ├───common/          Common configurations to all application modes.
+│   ├───development.js   Default application configuration for development.
+│   └───production.js    Default application configuration for production.
+│
 ├───node_modules/        npm dependencies.
+│
 ├───server/              Private server.
 │   ├───controllers/     Output controllers.
 │   ├───routes/          URL routing.
 │   └───views/           Jade layouts.
 │       ├───layout/      Full page layouts.
 │       └───partial/     Block layouts.
+│
 ├───www/                 Public static content.
 │   ├───api/             API directory.
-│   ├───app/             Application files
-│   │   ├───css/         Cascading style sheets
-│   │   ├───img/         Image files
+│   ├───app/             Application files.
+│   │   ├───css/         Cascading style sheets.
+│   │   ├───doc/         Document files.
+│   │   ├───img/         Image files.
 │   │   └───js/          JavaScript files.
 │   └───dep/             Dependency files.
+│
 ├───app.js               Application controller.
 ├───global.js            Global object file. Determines root path and configuration file to use.
 ├───package.json         npm package files.
@@ -37,11 +45,14 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 ## Requirements
 ### Dependencies
+#### Installation
 - Git
 - Node.js
 - npm
 - MongoDB
 - Capability of running `.sh` files from Terminal or Powershell
+#### Runtime
+- Web audio compatible browser, for a full list see https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
 
 ## Install
 ### Dependencies

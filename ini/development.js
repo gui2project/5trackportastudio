@@ -11,8 +11,8 @@ var ini = {
     app:{
         mode: 'dev'
     },
-    map:  require('./map.js'),
-    path: require('./paths.js')
+    map:  require('./common/map.js'),
+    path: require('./common/paths.js')
 };
 
 // Reporting that the configuration was used
