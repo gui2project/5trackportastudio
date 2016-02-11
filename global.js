@@ -66,13 +66,18 @@ var info = function( pJson, mode) {
 
 /**
  *  @name exp
- *    Export content
+ *
+ *  Middle ware to intercept the configuration mode
+ *
+ *  @param      mode    "developement" | "production"
+ *
+ *  @return     An instantiated configuration object.
  */
 var exp = function(mode){
     //  Generate an instance of the information object
     return new info(pjson, mode);
 };
 
-//Export content
+//  Export content
 module.exports = exp;
 

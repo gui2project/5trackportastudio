@@ -36,11 +36,8 @@ var error = function(){
     };
 };
 
-//  Generate an instance of the error object
-var errHandler = new error();
-
-// Export Content
-module.exports = errHandler;
+//  Export content
+module.exports = new error();
 
 
 

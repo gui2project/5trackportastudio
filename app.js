@@ -15,7 +15,6 @@ var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var path            = require('path');
 var ini             = require(global.app.ini());
-var routes          = require(ini.path.routes);
 var users           = require(ini.path.users);
 var eHandler        = require(ini.path.error);
 
@@ -32,17 +31,12 @@ app.use(cookieParser());
 app.use(logger(ini.app.mode));
 app.use(favicon(ini.path.favicon));
 
-//  Dynamic mapping
-app.use('/', routes);
+//  URL routing
+require(ini.path.routes)(app);
 
-//  Static mapping
-ini.map.static.forEach(function(map){
-    app.use(map.web, express.static(map.sys));
-});
-
-//  Error Response
+//  Error responses
 app.use(eHandler.notFound);
 app.use(eHandler.server);
 
-/* Application export*/
+//  Export content
 module.exports = app;

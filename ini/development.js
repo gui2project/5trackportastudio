@@ -3,7 +3,7 @@
  *
  *  The configuration file to use during development.
  *
- *  It holds settings and links to the paths for the application.
+ *  It holds settings for the application.
  */
 
 // Configuration settings

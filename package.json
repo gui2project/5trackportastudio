@@ -21,7 +21,7 @@
     "jquery": "^2.2.0",
     "jquery-ui": "^1.10.5",
     "kerberos": "0.0.18",
-    "mongodb": "^2.1.4",
+    "mongodb": "^2.1.7",
     "morgan": "^1.6.1",
     "pandoc-bin": "^0.1.2",
     "restful-api": "^0.1.8",

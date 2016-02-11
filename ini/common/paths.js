@@ -28,5 +28,5 @@ var paths = {
     views:       path.join(root, 'server', 'views')
 }
 
-/* Application paths export*/
+//  Export content
 module.exports = paths;

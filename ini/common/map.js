@@ -64,5 +64,5 @@ var map = {
     ]
 };
 
-/* Application paths export*/
+//  Export content
 module.exports = map;
