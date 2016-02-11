@@ -38,7 +38,7 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 │
 ├───app.js               Application controller.
 ├───global.js            Global object file. Determines root path and configuration file to use.
-├───package.json         npm package files.
+├───package.json         npm package file.
 ├───Procfile             Heroku instructions for deployment.
 └───README.md            Installation instructions.
 ```
