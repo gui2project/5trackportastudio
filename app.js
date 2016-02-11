@@ -36,7 +36,7 @@ app.use(favicon(ini.path.favicon));
 app.use('/', routes);
 
 //  Static mapping
-ini.map.forEach(function(map){
+ini.map.static.forEach(function(map){
     app.use(map.web, express.static(map.sys));
 });
 

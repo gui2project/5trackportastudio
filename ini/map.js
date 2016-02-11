@@ -5,34 +5,64 @@
  */
 
 //  Requires
+var path             = require('path');
 var paths            = require('./paths.js');
 
-var map = [
-    {
-        web: '/',
-        sys: paths.public
-    },
-    {
-        web: '/app/doc',
-        sys: paths.documents
-    },
-    {
-        web: '/dep/angular',
-        sys: paths.angular
-    },
-    {
-        web: '/dep/bootstrap',
-        sys: paths.bootstrap
-    },
-    {
-        web: '/dep/jquery',
-        sys: paths.jquery
-    },
-    {
-        web: '/dep/jquery-ui',
-        sys: paths.jqueryui
-    }
-];
+var map = {
+    static: [
+        {
+            web: '/',
+            sys: paths.public
+        },
+        {
+            web: '/app/doc',
+            sys: paths.documents
+        },
+        {
+            web: '/dep/angular',
+            sys: paths.angular
+        },
+        {
+            web: '/dep/bootstrap',
+            sys: paths.bootstrap
+        },
+        {
+            web: '/dep/jquery',
+            sys: paths.jquery
+        },
+        {
+            web: '/dep/jquery-ui',
+            sys: paths.jqueryui
+        }
+    ],
+    dynamic: [
+        {
+            web: '/',
+            sys: path.join(paths.ctrl, 'home'),
+            call: 'index'
+        },
+        {
+            web: '/home',
+            sys: path.join(paths.ctrl, 'home'),
+            call: 'home'
+        },
+        {
+            web: '/about',
+            sys: path.join(paths.ctrl, 'about'),
+            call: 'index'
+        },
+        {
+            web: '/contact',
+            sys: path.join(paths.ctrl, 'contact'),
+            call: 'index'
+        },
+        {
+            web: '/faq',
+            sys: path.join(paths.ctrl, 'faq'),
+            call: 'index'
+        }
+    ]
+};
 
 /* Application paths export*/
 module.exports = map;

@@ -6,25 +6,26 @@
 
 //  Requires
 var path            = require('path');
+var root            = global.app.root
 
 var paths = {
-    angular:     path.join(global.app.root, 'node_modules', 'angular'),
-    bootstrap:   path.join(global.app.root, 'node_modules', 'bootstrap', 'dist'),
-    ctrl:        path.join(global.app.root, 'server', 'controllers'),
-    documents:   path.join(global.app.root, 'doc'),
-    error:       path.join(global.app.root, 'server', 'controllers', 'error', 'index.js'),
-    images:      path.join(global.app.root, 'www', 'app', 'img'),
-    jquery:      path.join(global.app.root, 'node_modules', 'jquery', 'dist'),
-    jqueryui:    path.join(global.app.root, 'node_modules', 'jquery-ui'),
-    favicon:     path.join(global.app.root, 'www', 'app', 'img', 'favicon.ico' ),
-    nodeModules: path.join(global.app.root, 'node_modules'),
-    partial:     path.join(global.app.root, 'server', 'views', 'partial'),
-    private:     path.join(global.app.root, 'server'),
-    public:      path.join(global.app.root, 'www'),
-    root:        global.app.root,
-    routes:      path.join(global.app.root, 'server', 'routes', 'index'),
-    users:       path.join(global.app.root, 'server', 'routes', 'users'),
-    views:       path.join(global.app.root, 'server', 'views')
+    angular:     path.join(root, 'node_modules', 'angular'),
+    bootstrap:   path.join(root, 'node_modules', 'bootstrap', 'dist'),
+    ctrl:        path.join(root, 'server', 'controllers'),
+    documents:   path.join(root, 'doc'),
+    error:       path.join(root, 'server', 'controllers', 'error'),
+    images:      path.join(root, 'www', 'app', 'img'),
+    jquery:      path.join(root, 'node_modules', 'jquery', 'dist'),
+    jqueryui:    path.join(root, 'node_modules', 'jquery-ui'),
+    favicon:     path.join(root, 'www', 'app', 'img', 'favicon.ico' ),
+    nodeModules: path.join(root, 'node_modules'),
+    partial:     path.join(root, 'server', 'views', 'partial'),
+    private:     path.join(root, 'server'),
+    public:      path.join(root, 'www'),
+    root:        root,
+    routes:      path.join(root, 'server', 'routes', 'paths'),
+    users:       path.join(root, 'server', 'routes', 'users'),
+    views:       path.join(root, 'server', 'views')
 }
 
 /* Application paths export*/
