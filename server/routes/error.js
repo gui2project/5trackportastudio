@@ -36,8 +36,23 @@ var error = function(){
     };
 };
 
+/**
+ *  @name   middleware
+ *
+ *  error handler middleware function
+ *
+ *  @param  app     the express application
+ */
+var middleware = function(app){
+
+    err = new error();
+
+    app.use(err.notFound);
+    app.use(err.server);
+};
+
 //  Export content
-module.exports = new error();
+module.exports = middleware;
 
 
 

@@ -1,20 +1,24 @@
 /**
- *  @file   index.js
+ *  @file   users.js
  *
- *  This is the url routing file it determines the controller that will be used
- *  by the node server.
- *
- *  01/21/2015  Reorganized and added comments
+ *  This is the user routing file.
  *
  */
 
-//  Variables
-
-/* application*/
-var router  = require('express').Router();
+var path    = require('path');
 var ini     = require(global.app.ini());
 
-// Code
+/**
+ *  @name   middleware
+ *
+ *  user handler middleware function
+ *
+ *  @param  app     the express application
+ */
+var middleware = function(app){
 
-/* Exports */
-module.exports = router;
+};
+
+//  Export content
+module.exports = middleware;
+

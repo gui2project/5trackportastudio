@@ -13,7 +13,7 @@ var paths = {
     bootstrap:   path.join(root, 'node_modules', 'bootstrap', 'dist'),
     ctrl:        path.join(root, 'server', 'controllers'),
     documents:   path.join(root, 'doc'),
-    error:       path.join(root, 'server', 'controllers', 'error'),
+    error:       path.join(root, 'server', 'routes', 'error'),
     images:      path.join(root, 'www', 'app', 'img'),
     jquery:      path.join(root, 'node_modules', 'jquery', 'dist'),
     jqueryui:    path.join(root, 'node_modules', 'jquery-ui'),

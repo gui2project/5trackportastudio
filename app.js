@@ -15,8 +15,6 @@ var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var path            = require('path');
 var ini             = require(global.app.ini());
-var users           = require(ini.path.users);
-var eHandler        = require(ini.path.error);
 
 //  Setup
 var app             = express();
@@ -34,9 +32,11 @@ app.use(favicon(ini.path.favicon));
 //  URL routing
 require(ini.path.routes)(app);
 
+//  User responses
+require(ini.path.users)(app);
+
 //  Error responses
-app.use(eHandler.notFound);
-app.use(eHandler.server);
+require(ini.path.error)(app);
 
 //  Export content
 module.exports = app;

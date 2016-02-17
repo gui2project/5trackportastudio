@@ -8,8 +8,14 @@
 var express = require('express');
 var ini     = require(global.app.ini());
 
-
-var routes = function(app){
+/**
+ * @name    middleware
+ *
+ * Sets up static and dynamic routing from a configuration file.
+ *
+ * @param   app     the express application reference
+ */
+var middleware = function(app){
 
     var router  = express.Router();
 
@@ -28,5 +34,5 @@ var routes = function(app){
 
 };
 
-/* Exports */
-module.exports = routes;
+//  Export content
+module.exports = middleware;
