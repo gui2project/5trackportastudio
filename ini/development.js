@@ -11,12 +11,13 @@ var ini = {
     app:{
         mode: 'dev'
     },
+    db:   require('./common/db.js'),
     map:  require('./common/map.js'),
     path: require('./common/paths.js')
 };
 
 // Reporting that the configuration was used
-global.app.console.log('\n  Using:', global.app.ini());
+global.app.console.log('Using:\n', global.app.ini());
 
 // Export Content
 module.exports = ini;

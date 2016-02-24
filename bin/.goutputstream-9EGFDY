@@ -1,0 +1,61 @@
+#!/bin/bash
+CONFIG="../ini/mongodb.conf"
+
+INSTALL=0
+START=0
+END=0
+RESTART=0
+
+for i in "$@"
+do
+case $i in
+    --install|-i)
+    INSTALL=1
+    shift # past argument with no value
+    ;;
+    --start|-s)
+    START=1
+    shift # past argument with no value
+    ;;
+    --stop|-t)
+    END=1
+    shift # past argument with no value
+    ;;
+    --restart|-r)
+    END=1
+    START=1
+    shift # past argument with no value
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+done
+
+MY_PATH="`dirname \"$0\"`"              # relative
+MY_PATH="`( cd \"$MY_PATH\" && pwd )`"  # absolutized and normalized
+if [ -z "$MY_PATH" ] ; then
+  # error; for some reason, the path is not accessible
+  # to the script (e.g. permissions re-evaled after suid)
+  exit 1  # fail
+fi
+echo "$MY_PATH"
+
+source ${MY_PATH}${CONFIG}
+NAME=$serviceName
+
+
+if [ "${INSTALL}" = 1 ]; then
+    mongod -f ${CONFIG} --install
+fi
+
+if (( ( "${RESTART}" == 1 ) || ( "${START}" == 1 && "${END}" == 1 ) )); then
+    net stop ${NAME}
+    net start ${NAME}
+elif [ "${START}" = 1 ]; then
+    net start ${NAME}
+elif [ "${END}" = 1 ]; then
+    net stop ${NAME}
+fi
+
+read -n1 -r -p "Press space to continue..." tmp

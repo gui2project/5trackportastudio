@@ -19,6 +19,7 @@ var paths = {
     jqueryui:    path.join(root, 'node_modules', 'jquery-ui'),
     favicon:     path.join(root, 'www', 'app', 'img', 'favicon.ico' ),
     nodeModules: path.join(root, 'node_modules'),
+    mongodb:     path.join(root, 'server', 'routes', 'mongodb'),
     partial:     path.join(root, 'server', 'views', 'partial'),
     private:     path.join(root, 'server'),
     public:      path.join(root, 'www'),

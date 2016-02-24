@@ -1,5 +1,5 @@
 /**
- *  @file   index.js
+ *  @file   paths.js
  *
  *  This is the url routing file it determines the controller or file that will
  *  be served by the node server.
@@ -7,6 +7,13 @@
 
 var express = require('express');
 var ini     = require(global.app.ini());
+
+var db      = function(req,res,next){
+    req.db = db;
+    next();
+};
+
+
 
 /**
  * @name    middleware
@@ -18,6 +25,8 @@ var ini     = require(global.app.ini());
 var middleware = function(app){
 
     var router  = express.Router();
+
+    app.use(db);
 
     /* Routing - GET */
     ini.map.dynamic.forEach(function(map){

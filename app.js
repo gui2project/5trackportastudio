@@ -29,6 +29,9 @@ app.use(cookieParser());
 app.use(logger(ini.app.mode));
 app.use(favicon(ini.path.favicon));
 
+// Database Connection
+require(ini.path.mongodb);
+
 //  URL routing
 require(ini.path.routes)(app);
 

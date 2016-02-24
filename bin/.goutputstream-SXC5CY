@@ -1,0 +1,66 @@
+#!/bin/bash
+CONFIG="../ini/mongodb.conf"
+
+INSTALL=0
+START=0
+END=0
+RESTART=0
+
+for i in "$@"
+do
+case $i in
+    --install|-i)
+    INSTALL=1
+    shift # past argument with no value
+    ;;
+    --start|-s)
+    START=1
+    shift # past argument with no value
+    ;;
+    --stop|-t)
+    END=1
+    shift # past argument with no value
+    ;;
+    --restart|-r)
+    END=1
+    START=1
+    shift # past argument with no value
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+done
+
+# FIND CONFIG FILE
+# http://stackoverflow.com/questions/630372/determine-the-path-of-the-executing-bash-script
+MY_PATH="`dirname \"$0\"`"              # relative
+MY_PATH="`( cd \"$MY_PATH\" && pwd )`"  # absolutized and normalized
+if [ -z "$MY_PATH" ] ; then
+  exit 1  # fail
+fi
+
+declare -A config
+IFS="="
+while read -r key value; do
+    cols[$key]=$value
+done < ${MY_PATH}"/"${CONFIG}
+
+echo ${config[serviceName]}
+
+
+
+if [ "${INSTALL}" = 1 ]; then
+    mongod -f ${CONFIG} --install
+fi
+
+if (( ( "${RESTART}" == 1 ) || ( "${START}" == 1 && "${END}" == 1 ) )); then
+    net stop ${NAME}
+    net start ${NAME}
+elif [ "${START}" = 1 ]; then
+    net start ${NAME}
+elif [ "${END}" = 1 ]; then
+    net stop ${NAME}
+fi
+
+read -n1 -r -p "Press space to continue..." tmp

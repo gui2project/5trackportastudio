@@ -1,0 +1,48 @@
+#!/bin/bash
+
+PROCESSNAME="mdb27017"
+CONFIG="..\ini\mongodb.conf"
+
+
+#!/bin/bash
+# Use > 1 to consume two arguments per pass in the loop (e.g. each
+# argument has a corresponding value to go with it).
+# Use > 0 to consume one or more arguments per pass in the loop (e.g.
+# some arguments don't have a corresponding value to go with it such
+# as in the --default example).
+# note: if this is set to > 0 the /etc/hosts part is not recognized ( may be a bug )
+while [[ $# > 1 ]]
+do
+key="$1"
+
+case $key in
+    -s|--start)
+    EXTENSION=1
+    ;;
+    -e|--end)
+    SEARCHPATH=1
+    ;;
+    -l|--lib)
+    LIBPATH=1
+    ;;
+    --default)
+    DEFAULT=1
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+shift # past argument or value
+done
+echo FILE EXTENSION  = "${EXTENSION}"
+echo SEARCH PATH     = "${SEARCHPATH}"
+echo LIBRARY PATH    = "${LIBPATH}"
+
+if [[ -n $1 ]]; then
+    echo "Last line of file specified as non-opt/last argument:"
+    tail -1 $1
+fi
+
+read -n1 -r -p "Press space to continue..." key
+# mongod -f "..\ini\mongodb.conf" --install
+# net start mdb27017
