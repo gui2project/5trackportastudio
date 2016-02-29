@@ -8,22 +8,34 @@
 var root            = global.app.root
 
 var db = {
-    host: 'localhost',
-    name: 'test',
-    port: 27017,
+    host: 'www.josefflores.com',
+    models:[
+        {
+            collection: 'users',
+            schema: { name: String }
+        }
+    ],
+    name: 'trackstudio',
     options: {
-        db: { native_parser: true },
-        server: { poolSize: 5 }//,
-        //user: process.env.MONGO_DB_USER,
-        //pass: process.env.MONGO_DB_PASS
-        //replset: '', // passed to the connection ReplSet instance
-        //auth: '',    // options for authentication
-        //mongos: ''   // passed to the [underlying driver's mongos options](http://mongodb.github.io/node-mongodb-native/2.0/api/Mongos.html)
-    }
-
+        server: {
+            socketOptions:  {
+                keepAlive: 1,
+                connectTimeoutMS: 30000
+            }
+        },
+        replset: {
+            socketOptions: {
+                keepAlive: 1,
+                connectTimeoutMS: 30000
+            }
+        }
+    },
+    pass: process.env.MONGO_DB_PASS,
+    port: 27017,
+    user: process.env.MONGO_DB_USER,
 }
 
-db.url = 'mongodb://' + db.host + ':' + db.port + '/' + db.name ;
+db.url = 'mongodb://' + db.user + ':' + db.pass + '@' + db.host + ':' + db.port + '/' + db.name ;
 
 //  Export content
 module.exports = db;

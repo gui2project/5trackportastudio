@@ -10,9 +10,11 @@ var root            = global.app.root
 
 var paths = {
     angular:     path.join(root, 'node_modules', 'angular'),
+    api:         path.join(root, 'server', 'routes', 'api'),
     bootstrap:   path.join(root, 'node_modules', 'bootstrap', 'dist'),
     ctrl:        path.join(root, 'server', 'controllers'),
     documents:   path.join(root, 'doc'),
+    data:        path.join(root, 'dat', 'MongoDB', 'data'),
     error:       path.join(root, 'server', 'routes', 'error'),
     images:      path.join(root, 'www', 'app', 'img'),
     jquery:      path.join(root, 'node_modules', 'jquery', 'dist'),
@@ -25,6 +27,7 @@ var paths = {
     public:      path.join(root, 'www'),
     root:        root,
     routes:      path.join(root, 'server', 'routes', 'paths'),
+    schema:      path.join(root, 'dat', 'MongoDB', 'schema'),
     users:       path.join(root, 'server', 'routes', 'users'),
     views:       path.join(root, 'server', 'views')
 }

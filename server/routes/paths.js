@@ -8,13 +8,6 @@
 var express = require('express');
 var ini     = require(global.app.ini());
 
-var db      = function(req,res,next){
-    req.db = db;
-    next();
-};
-
-
-
 /**
  * @name    middleware
  *
@@ -25,8 +18,6 @@ var db      = function(req,res,next){
 var middleware = function(app){
 
     var router  = express.Router();
-
-    app.use(db);
 
     /* Routing - GET */
     ini.map.dynamic.forEach(function(map){

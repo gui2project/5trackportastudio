@@ -13,14 +13,13 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 5trackportastudio
 ├───bin/                 Executable files.
 ├───doc/                 Documents.
-├───dat/                 Data.
 ├───ini/                 Configurations.
 │   ├───common/          Common configurations to all application modes.
 │   ├───development.js   Default application configuration for development.
+│   ├───mongodb.cfg      Windows MongoDB service configuration.
 │   └───production.js    Default application configuration for production.
 │
-├───node_modules/        npm dependencies.
-│
+├───node_modules/        NPM dependencies.
 ├───server/              Private server.
 │   ├───controllers/     Output controllers.
 │   ├───routes/          URL routing.

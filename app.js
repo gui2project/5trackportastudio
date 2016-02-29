@@ -15,6 +15,7 @@ var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var path            = require('path');
 var ini             = require(global.app.ini());
+var mdb             = require(ini.path.mongodb);
 
 //  Setup
 var app             = express();
@@ -29,8 +30,8 @@ app.use(cookieParser());
 app.use(logger(ini.app.mode));
 app.use(favicon(ini.path.favicon));
 
-// Database Connection
-require(ini.path.mongodb);
+//  API routing
+require(ini.path.api)(app, mdb);
 
 //  URL routing
 require(ini.path.routes)(app);

@@ -5,31 +5,36 @@
 
 #   VARIABLES
 MSG="[ KEX.SH ]"                        # output header
-EXE=""
-VAL=""
-
 I=0                                     # parameter position
+SKIP=0                                  # multi value parameter skip
 
 #   PARAMETER DEFAULTS
 CONFIRM=0                               # prompt for confirmation
+EXE=""                                  # whether an executable was given
+VAL=""                                  # the value of the executable
 
 #   PARSE PARAMETERS
 for I in "$@"
 do
-    case $I in
-        --exe|-e)
-        EXE=1
-        VAL=$2
-        shift
-        ;;
-        --confirm|-c)
-        CONFIRM=1
-        shift
-        ;;
-        *)
-        echo "${MSG} Unknown option given"     # unknown option do nothing
-        ;;
-    esac
+    if (( $SKIP == 1 )); then
+        SKIP=0
+    else
+        case $I in
+            --exe|-e)
+            EXE=1
+            VAL="$2"
+            SKIP=1
+            shift 2
+            ;;
+            --confirm|-c)
+            CONFIRM=1
+            shift
+            ;;
+            *)
+            echo "${MSG} Unknown option given ${1}"     # unknown option do nothing
+            ;;
+        esac
+    fi
 done
 
 #   EXECUTE OPTIONS
@@ -46,7 +51,7 @@ if [ ! -z "$EXE" ]; then
     do
         RET=$(taskkill /F /PID $P)
         if [ $? ] ; then
-            echo -e "${MSG} ${1} with PID ${P} was terminated."
+            echo -e "${MSG} ${VAL} with PID ${P} was terminated."
         fi
     done
 fi

@@ -5,6 +5,7 @@
 #   VARIABLES
 MSG="[ INSTALL.SH ]"                    # output header
 I=0                                     # parameter position
+SKIP=0                                  # multi value parameter skip
 
 #   PARAMETER DEFAULTS
 CONFIRM=0                               # prompt for confirmation
@@ -12,18 +13,24 @@ CONFIRM=0                               # prompt for confirmation
 #   PARSE PARAMETERS
 for I in "$@"
 do
-    case $I in
-        --confirm|-c)
-        CONFIRM=1
-        shift
-        ;;
-        *)
-        echo "unknown option given"     # unknown option do nothing
-        ;;
-    esac
+    if (( $SKIP == 1 )); then
+        SKIP=0
+    else
+        case $I in
+            --confirm|-c)
+            CONFIRM=1
+            shift
+            ;;
+            *)
+            echo -e "${MSG} Unknown option given"     # unknown option do nothing
+            ;;
+        esac
+    fi
 done
 
+echo -e "${MSG} Installing"
 # Commands for environment setup
+npm install -g npm
 npm install -g express-generator
 npm install -g nodemon
 
