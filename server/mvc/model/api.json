@@ -1,0 +1,10 @@
+[{
+    "method": "post",
+    "param": {
+        "first": "First name",
+        "last": "Last name"
+    },
+    "url": "/api/post/user/:first/:last",
+    "desc": "Adds a user to the database."
+}]
+

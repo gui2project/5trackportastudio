@@ -4,9 +4,6 @@
  *  This file is the controller for the application.
  */
 
-// Set application mode to: development | production
-global.app          = require('./global.js')('development');
-
 //  Requires
 var express         = require('express');
 var bodyParser      = require('body-parser');
@@ -14,6 +11,10 @@ var cookieParser    = require('cookie-parser');
 var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var path            = require('path');
+
+// Set application mode to: development | production
+global.app          = require('./server/lib/global.js')('development',
+                                                        path.resolve(__dirname));
 
 var ini             = require(global.app.ini());    //  configuration object
 var mdb             = require(ini.path.mongodb);    //  mongoose wrapper

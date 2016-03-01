@@ -5,18 +5,23 @@
  *  back
  */
 
-var express = require('express');
+var path    = require('path');
 var ini     = require(global.app.ini());
-
 
 /**
  * @name    middleware
  *
- * Sets up static and dynamic routing from a configuration file.
+ * Sets up API routing.
  *
  * @param   app     the express application reference
+ * @param   mdb     the mongoose database wrapper
  */
 var middleware = function(app, mdb){
+
+    app.get( '/api', function(req,res){
+        var help = require(path.join(ini.path.data, 'api.json'))
+        res.json(help);
+    });
 
     app.get( '/api/post/user/:first/:last', function(req,res){
         var myuser =  new mdb.models.users({name: req.params.first + ' ' + req.params.last})

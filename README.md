@@ -11,36 +11,39 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 ### File structure
 ```
 5trackportastudio
-├───bin/                 Executable files.
-├───doc/                 Documents.
-├───ini/                 Configurations.
-│   ├───common/          Common configurations to all application modes.
-│   ├───development.js   Default application configuration for development.
-│   ├───mongodb.cfg      MongoDB service configuration.
-│   └───production.js    Default application configuration for production.
+├───bin/                    Executable files.
+├───doc/                    Documents.
+├───ini/                    Configurations.
+│   ├───common/             Common configurations to all application modes.
+│   ├───development.js      Default application configuration for development.
+│   ├───mongodb.cfg         MongoDB service configuration.
+│   └───production.js       Default application configuration for production.
 │
-├───node_modules/        NPM dependencies.
-├───server/              Private server.
-│   ├───controllers/     Output controllers.
-│   ├───routes/          URL routing.
-│   └───views/           Jade layouts.
-│       ├───layout/      Full page layouts.
-│       └───partial/     Block layouts.
+├───node_modules/           NPM dependencies.
+├───server/                 Private server.
+│   ├───lib/                Application library.
+│   ├───mvc/                Model View Controller directory.
+│   │   ├───controllers/    Output controllers.
+│   │   ├───model/          Data files
+│   │   └───views/          Jade layouts.
+│   │       ├───layout/     Full page layouts.
+│   │       └───partial/    Block layouts.
+│   │
+│   └───routes/             URL routing.
 │
-├───www/                 Public static content.
-│   ├───api/             API directory.
-│   ├───app/             Application files.
-│   │   ├───css/         Cascading style sheets.
-│   │   ├───doc/         Document files. Linked back to /doc
-│   │   ├───img/         Image files.
-│   │   └───js/          JavaScript files.
-│   └───dep/             Dependency files.
+├───www/                    Public static content.
+│   ├───api/                API directory.
+│   ├───app/                Application files.
+│   │   ├───css/            Cascading style sheets.
+│   │   ├───doc/            Document files. Linked back to /doc
+│   │   ├───img/            Image files.
+│   │   └───js/             JavaScript files.
+│   └───dep/                Dependency files.
 │
-├───app.js               Application controller.
-├───global.js            Global object file. Determines root path and configuration file to use.
-├───package.json         npm package file.
-├───Procfile             Heroku instructions for deployment.
-└───README.md            Installation instructions.
+├───app.js                  Application controller.
+├───package.json            npm package file.
+├───Procfile                Heroku instructions for deployment.
+└───README.md               Installation instructions.
 ```
 
 ## Requirements
@@ -71,6 +74,9 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 3. Install the appropriate version of MongoDB for your system.
     https://www.mongodb.org/downloads#production
+
+4. Install version 2.7 of Python.
+    https://www.python.org/download/releases/2.7/
 
 ### Source
 1. Open a bash capable Terminal or Powershell.

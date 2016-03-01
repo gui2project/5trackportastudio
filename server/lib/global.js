@@ -10,11 +10,11 @@
 
 //  Requires
 var path            = require('path');
-var pjson           = require('./package.json');
+var pjson           = require('../../package.json');
 var chalk           = require('chalk');         //  coloring for console label
 
 //  The information object
-var info = function( pJson, mode) {
+var info = function(pJson, mode, root) {
 
     /**
      *  Use this scope in children
@@ -65,7 +65,7 @@ var info = function( pJson, mode) {
     /**
      *  The root directory
      */
-    this.root = path.resolve(__dirname);
+    this.root = root;
 
     //  Output creation status and info
     this.console.log('Created global.app\n',this);
@@ -80,9 +80,9 @@ var info = function( pJson, mode) {
  *
  *  @return     An instantiated configuration object.
  */
-var exp = function(mode){
+var exp = function(mode, root){
     //  Generate an instance of the information object
-    return new info(pjson, mode);
+    return new info(pjson, mode, root);
 };
 
 //  Export content
