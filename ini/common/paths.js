@@ -14,7 +14,7 @@ var paths = {
     bootstrap:   path.join(root, 'node_modules', 'bootstrap', 'dist'),
     ctrl:        path.join(root, 'server', 'mvc', 'controllers'),
     documents:   path.join(root, 'doc'),
-    data:        path.join(root, 'server', 'mvc', 'model'),
+    models:      path.join(root, 'server', 'mvc', 'models'),
     error:       path.join(root, 'server', 'lib', 'error'),
     images:      path.join(root, 'www', 'app', 'img'),
     jquery:      path.join(root, 'node_modules', 'jquery', 'dist'),

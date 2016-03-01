@@ -19,7 +19,7 @@ var ini     = require(global.app.ini());
 var middleware = function(app, mdb){
 
     app.get( '/api', function(req,res){
-        var help = require(path.join(ini.path.data, 'api.json'))
+        var help = require(path.join(ini.path.models, 'api.json'))
         res.json(help);
     });
 

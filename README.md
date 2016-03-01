@@ -24,7 +24,7 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 │   ├───lib/                Application library.
 │   ├───mvc/                Model View Controller directory.
 │   │   ├───controllers/    Output controllers.
-│   │   ├───model/          Data files
+│   │   ├───models/         Data files
 │   │   └───views/          Jade layouts.
 │   │       ├───layout/     Full page layouts.
 │   │       └───partial/    Block layouts.
