@@ -1,4 +1,4 @@
-# 5 Track Portastudio
+# trackstudio
 ## About
 A University of Massachusetts: Lowell class project for Graphical User
 Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
