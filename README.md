@@ -16,7 +16,7 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 ├───ini/                 Configurations.
 │   ├───common/          Common configurations to all application modes.
 │   ├───development.js   Default application configuration for development.
-│   ├───mongodb.cfg      Windows MongoDB service configuration.
+│   ├───mongodb.cfg      MongoDB service configuration.
 │   └───production.js    Default application configuration for production.
 │
 ├───node_modules/        NPM dependencies.
@@ -31,7 +31,7 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 │   ├───api/             API directory.
 │   ├───app/             Application files.
 │   │   ├───css/         Cascading style sheets.
-│   │   ├───doc/         Document files.
+│   │   ├───doc/         Document files. Linked back to /doc
 │   │   ├───img/         Image files.
 │   │   └───js/          JavaScript files.
 │   └───dep/             Dependency files.
@@ -56,8 +56,6 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 #### Environment Variables
 - MONGO_DB_USER - Holds an admin username to the MongoDB
 - MONGO_DB_PASS - Holds the password to the MongoDB for the admin MONGO_DB_USER
-- PYTHONPATH
-- PYTHONHOME
 
 #### Runtime
 - Web audio compatible browser, for a full list see
@@ -89,6 +87,35 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
     ```
 
 ## Deployment
+### Databse (Windows System)
+- To install
+-- verify the data and log directory exist on your system as given in the configuration file in `ini\mongodb.cfg`
+-- verify the contents of `ini\common\db.js` match your installation
+-- run:
+    ```
+    ./bin/mongodb.sh --install
+    ```
+
+- To Remove
+    ```
+    ./bin/mongodb.sh --remove
+    ```
+
+- To start the service run:
+    ```
+    ./bin/mongodb.sh --start
+    ```
+
+- To restart the service run:
+    ```
+    ./bin/mongodb.sh --restart
+    ```
+
+- To stop the service run:
+    ```
+    ./bin/mongodb.sh --stop
+    ```
+
 ### Local
 - To start run:
     ```
@@ -107,7 +134,7 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 - To kill all instance of the server on cygwin run:
     ```
-    ./bin/kex node.exe
+    ./bin/kex.sh -e node.exe
     ```
 
 ### Heroku

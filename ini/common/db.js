@@ -7,6 +7,7 @@
 //  Requires
 var root            = global.app.root
 
+//  Database configurations
 var db = {
     host: 'www.josefflores.com',
     models:[
@@ -35,6 +36,7 @@ var db = {
     user: process.env.MONGO_DB_USER,
 }
 
+//  Mongo DB URL
 db.url = 'mongodb://' + db.user + ':' + db.pass + '@' + db.host + ':' + db.port + '/' + db.name ;
 
 //  Export content

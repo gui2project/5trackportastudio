@@ -14,8 +14,9 @@ var cookieParser    = require('cookie-parser');
 var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var path            = require('path');
-var ini             = require(global.app.ini());
-var mdb             = require(ini.path.mongodb);
+
+var ini             = require(global.app.ini());    //  configuration object
+var mdb             = require(ini.path.mongodb);    //  mongoose wrapper
 
 //  Setup
 var app             = express();

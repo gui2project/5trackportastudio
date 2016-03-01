@@ -18,8 +18,8 @@ var ini     = require(global.app.ini());
  */
 var middleware = function(app, mdb){
 
-    app.get( '/app/api/test', function(req,res){
-        var myuser =  new mdb.models.users({name:'Jen'})
+    app.get( '/api/post/user/:first/:last', function(req,res){
+        var myuser =  new mdb.models.users({name: req.params.first + ' ' + req.params.last})
         myuser.save(function(err,doc){ err ? res.json(err) : res.json(myuser) ; });
     });
 

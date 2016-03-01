@@ -37,14 +37,14 @@ var info = function( pJson, mode) {
         log: function(){
             //  prepend to arguments
             Array.prototype.unshift.call(arguments,
-                                chalk.blue( '[' + _this.about + ']' ));
+                                chalk.cyan( '[' + _this.about + ']' ));
             //  modify local console behavior
             console.log.apply(this, arguments);
         },
         err: function(){
             //  prepend to arguments
             Array.prototype.unshift.call(arguments,
-                                chalk.red( '[' + _this.about + ':ERROR]' ));
+                                chalk.bgRed( '[' + _this.about + ':ERROR]' ));
             //  modify local console behavior
             console.log.apply(this, arguments);
         }
