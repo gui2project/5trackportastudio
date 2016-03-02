@@ -42,12 +42,7 @@ var Api = function(app) {
     this.app = app;     //  The express application
 
     //  Crud types
-    this.methods = {
-        GET: [],
-        PUT: [],
-        POST: [],
-        DELETE: []
-    };
+    this.methods = [];
 
     /**
      *  @name   add
@@ -58,7 +53,7 @@ var Api = function(app) {
      *  @param  func    The api function
      */
     this.add = function( obj, func){
-        this.methods[obj["return"]].push(obj);
+        this.methods.push(obj);
         this.app.get(obj.url,
                 function(req, res){
                     func(req, res, httpRes.crud[obj["return"]]);
@@ -110,12 +105,22 @@ var Api = function(app) {
             _this.response(res, null, _this.methods, obj);
         });
 
+        // Sort methods by url
+        this.methods.sort(function(a, b){
+            if(a.url < b.url) return -1;
+            if(a.url > b.url) return 1;
+            return 0;
+        });
+
         // Bad Request the API url does not  exist
         this.app.get( '/api/*', function(req,res){
             _this.response(res, true, "400", httpRes.crud.MISSING);
         });
+
+        global.app.console.log(msg, "Waiting for method call ...");
     };
 
+    global.app.console.log(msg, "Initializing.");
 };
 
 /**

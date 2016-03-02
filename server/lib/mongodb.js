@@ -33,17 +33,17 @@ mdb.mongoose.connect(ini.db.url, ini.db.options);
 
 //  Setting up connection handlers
 mdb.mongoose.connection.on('connected',
-    function(){ global.app.console.log(msg, 'Connection success'); });
+    function(){ global.app.console.log(msg, 'Connection success.'); });
 
 mdb.mongoose.connection.on('error',
     function(){ global.app.console.err.bind(console, msg, 'connection error:'); });
 
 mdb.mongoose.connection.on('disconnected',
-    function(){ global.app.console.err( msg, 'Connection broken'); });
+    function(){ global.app.console.err( msg, 'Connection broken.'); });
 
 mdb.mongoose.connection.on('SIGINT',
     function(){
-        global.app.console.err( msg, 'Connection terminated by an application crash');
+        global.app.console.err( msg, 'Connection terminated by an application crash.');
         process.exit(0);
     });
 

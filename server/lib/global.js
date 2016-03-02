@@ -12,6 +12,7 @@
 var path            = require('path');
 var pjson           = require('../../package.json');
 var chalk           = require('chalk');         //  coloring for console label
+var msg             = '[ GLOBAL ]';
 
 //  The information object
 var info = function(pJson, mode, root) {
@@ -68,9 +69,11 @@ var info = function(pJson, mode, root) {
     this.root = root;
 
     //  Output creation status and info
-    this.console.log('Created global.app');
+    this.console.log(msg, 'Initializing.');
     // Reporting that the configuration was used
-    this.console.log('Using:', this.ini());
+    this.console.log(msg, 'Using:', this.ini());
+
+    this.console.log(msg, 'Done.');
 };
 
 /**

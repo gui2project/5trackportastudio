@@ -6,6 +6,7 @@
 
 var path    = require('path');
 var ini     = require(global.app.ini());
+var msg     = '[ ERROR ]';
 
 var error = function(){
     /**
@@ -45,10 +46,16 @@ var error = function(){
  */
 var middleware = function(app){
 
+    global.app.console.log(msg, "Initializing.");
     err = new error();
 
     app.use(err.notFound);
+    global.app.console.log(msg, "Added:", "404 - Not Found.");
+
     app.use(err.server);
+    global.app.console.log(msg, "Added:", "500 - Server.");
+
+    global.app.console.log(msg, "Done.");
 };
 
 //  Export content
