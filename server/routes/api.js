@@ -5,7 +5,8 @@
  *  back
  */
 
-var path    = require('path');
+var urlJoin = require('url-join');
+
 var ini     = require(global.app.ini());
 
 /**
@@ -13,21 +14,30 @@ var ini     = require(global.app.ini());
  *
  * Sets up API routing.
  *
- * @param   app     the express application reference
- * @param   mdb     the mongoose database wrapper
+ * @param   app     The express application reference
+ * @param   mdb     The mongoose database wrapper
  */
 var middleware = function(app, mdb){
 
-    app.get( '/api', function(req,res){
-        var help = require(path.join(ini.path.models, 'api.json'))
-        res.json(help);
+    //  Holds the API entry point and documentation generating object
+    var api = require(ini.path.apiHandler)(app);
+
+    api.add({
+        "url": urlJoin("/api", "post", "user", ":first", ":last"),
+        "param": {
+            "first": "First name",
+            "last": "Last name"
+        },
+        "desc": "Adds a user to the database.",
+        "return": "POST"
+    },
+    function(req, res, obj){
+        var myuser = new mdb.models.users({name: req.params.first + ' ' + req.params.last});
+        myuser.save(function(err, doc){api.response(res, err, doc, obj);});
     });
 
-    app.get( '/api/post/user/:first/:last', function(req,res){
-        var myuser =  new mdb.models.users({name: req.params.first + ' ' + req.params.last})
-        myuser.save(function(err,doc){ err ? res.json(err) : res.json(myuser) ; });
-    });
-
+    //  Adding error handling and help
+    api.end();
 };
 
 //  Export content

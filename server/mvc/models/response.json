@@ -1,0 +1,64 @@
+{
+    "crud": {
+        "GET": {
+            "success": "200",
+            "failure": "400",
+            "data": "true",
+            "use": "Query data."
+        },
+        "PUT": {
+            "success": "200",
+            "failure": "400",
+            "data": "false",
+            "use": "Update data."
+        },
+        "POST": {
+            "success": "201",
+            "failure": "400",
+            "data": "true",
+            "use":  "Create data."
+        },
+        "DELETE": {
+            "success": "204",
+            "failure": "404",
+            "data": "true",
+            "use":  "Delete data."
+        },
+        "MISSING": {
+            "success": "400",
+            "failure": "400",
+            "data": "false",
+            "use": "Return 400"
+        }
+    },
+    "resp": {
+        "201": {
+            "response": "201",
+            "message": "CREATED"
+        },
+        "204": {
+            "response": "204",
+            "message": "NO CONTENT"
+        },
+        "400": {
+            "response": "400",
+            "message": "BAD REQUEST"
+        },
+        "401": {
+            "response": "401",
+            "message": "UNAUTHORIZED"
+        },
+        "403": {
+            "response": "403",
+            "message": "FORBIDDEN"
+        },
+        "404": {
+            "response": "404",
+            "message": "NOT FOUND"
+        },
+        "405": {
+            "response": "405",
+            "message": "NOT ALLOWED"
+        }
+    }
+}

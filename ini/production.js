@@ -16,8 +16,5 @@ var ini = {
     path: require('./common/paths.js')
 };
 
-// Reporting that the configuration was used
-global.app.console.log('Using:\n', global.app.ini());
-
 // Export Content
 module.exports = ini;

@@ -16,7 +16,7 @@ var mdb = {
     };
 
 //  Declaring URI
-global.app.console.log(msg, 'Using URI', '\n', ini.db.url);
+global.app.console.log(msg, 'Using URI:', ini.db.url);
 
 //  Process Schema and saving as a model
 global.app.console.log(msg, 'Defining models.');

@@ -68,7 +68,9 @@ var info = function(pJson, mode, root) {
     this.root = root;
 
     //  Output creation status and info
-    this.console.log('Created global.app\n',this);
+    this.console.log('Created global.app');
+    // Reporting that the configuration was used
+    this.console.log('Using:', this.ini());
 };
 
 /**

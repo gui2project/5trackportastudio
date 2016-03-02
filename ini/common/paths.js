@@ -11,6 +11,7 @@ var root            = global.app.root
 var paths = {
     angular:     path.join(root, 'node_modules', 'angular'),
     api:         path.join(root, 'server', 'routes', 'api'),
+    apiHandler:  path.join(root, 'server', 'lib', 'Api'),
     bootstrap:   path.join(root, 'node_modules', 'bootstrap', 'dist'),
     ctrl:        path.join(root, 'server', 'mvc', 'controllers'),
     documents:   path.join(root, 'doc'),
