@@ -33,6 +33,7 @@ echo -e "${MSG} Installing"
 npm install -g npm
 npm install -g express-generator
 npm install -g nodemon
+npm install
 
 #   EXECUTE OPTIONS
 
