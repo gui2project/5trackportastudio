@@ -157,4 +157,4 @@ trackstudio
 - Or Use `update.sh` to do both
     ```
     .\bin\update.sh -ac -M "Commit Message"
-    ``
+    ```
