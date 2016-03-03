@@ -8,6 +8,7 @@
 var ini             = require(global.app.ini());
 var msg             = '[ MongoDB ]' ;
 
+global.app.console.log(msg, 'Initializing.');
 //  The mongoose db connection object, models hold the processed schema, while
 //  mongoose holds the mongoose middle ware
 var mdb = {
@@ -21,14 +22,14 @@ global.app.console.log(msg, 'Using URI:', ini.db.url);
 //  Process Schema and saving as a model
 global.app.console.log(msg, 'Defining models.');
 ini.db.models.forEach(function(model){
-    global.app.console.log(msg, 'Adding model:', model.collection);
+    global.app.console.log(msg, ' - ', model.collection);
     mdb.models[model.collection] = mdb.mongoose.model(model.collection,
                                                 new mdb.mongoose.Schema(model.schema,
                                                     { collection: model.collection }));
 });
 
 //  Setting up reusable connection
-global.app.console.log(msg, 'Initializing connection.');
+global.app.console.log(msg, 'Configuring connection.');
 mdb.mongoose.connect(ini.db.url, ini.db.options);
 
 //  Setting up connection handlers
@@ -48,7 +49,7 @@ mdb.mongoose.connection.on('SIGINT',
     });
 
 //  Attempting connection
-global.app.console.log(msg, 'Attempting connection.');
+global.app.console.log(msg, 'Attempting connection ...');
 mdb.mongoose.connection.once('open', function() { /* Waiting for connection*/ });
 
 //  Export content

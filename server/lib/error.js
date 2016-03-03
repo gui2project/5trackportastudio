@@ -49,11 +49,12 @@ var middleware = function(app){
     global.app.console.log(msg, "Initializing.");
     err = new error();
 
+    global.app.console.log(msg, "Adding error responses..");
     app.use(err.notFound);
-    global.app.console.log(msg, "Added:", "404 - Not Found.");
+    global.app.console.log(msg, " - ", "404 - Not Found.");
 
     app.use(err.server);
-    global.app.console.log(msg, "Added:", "500 - Server.");
+    global.app.console.log(msg, " - ", "500 - Server.");
 
     global.app.console.log(msg, "Done.");
 };

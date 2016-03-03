@@ -10,7 +10,7 @@ Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
 
 ### File structure
 ```
-5trackportastudio
+trackstudio
 ├───bin/                    Executable files.
 ├───doc/                    Documents.
 ├───ini/                    Configurations.

@@ -40,6 +40,7 @@ var msg     = '[ API ]';
 var Api = function(app) {
     //  Properties
     this.app = app;     //  The express application
+    this.first = true;  //  First method flag
 
     //  Crud types
     this.methods = [];
@@ -58,7 +59,13 @@ var Api = function(app) {
                 function(req, res){
                     func(req, res, httpRes.crud[obj["return"]]);
                 });
-        global.app.console.log(msg, "Added:", obj.url);
+
+        if (this.first){
+            global.app.console.log(msg, 'Defining API methods.') ;
+            this.first = false;
+        }
+
+        global.app.console.log(msg, ' - ', obj.url);
     };
 
     /**
@@ -102,7 +109,7 @@ var Api = function(app) {
             "return": "GET"
         },
         function(req, res, obj){
-            _this.response(res, null, _this.methods, obj);
+             _this.response(res, null, _this.methods, obj);
         });
 
         // Sort methods by url
