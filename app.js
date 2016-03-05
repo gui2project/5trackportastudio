@@ -12,9 +12,11 @@ var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var path            = require('path');
 
+//  Get application root directory
+var root            = path.resolve(__dirname);
+
 // Set application mode to: development | production
-global.app          = require('./server/lib/global.js')('development',
-                                                        path.resolve(__dirname));
+global.app          = require('./server/lib/global.js')('development', root);
 
 var ini             = require(global.app.ini());    //  configuration object
 var mdb             = require(ini.path.mongodb);    //  mongoose wrapper

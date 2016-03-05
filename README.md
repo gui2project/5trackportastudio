@@ -88,8 +88,7 @@ trackstudio
 
 3. Run the install script.
     ```
-    cd 5trackportastudio
-    ./bin/install.sh
+    cd 5trackportastudio && npm install
     ```
 
 ## Deployment

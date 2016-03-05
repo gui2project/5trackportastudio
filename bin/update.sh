@@ -57,6 +57,10 @@ do
     fi
 done
 
+#   CLEANING DIRS
+echo "${MSG} Cleaning directories."
+find . -name ".goutputstream*" -type f -delete -print
+
 #   EXECUTE OPTIONS
 if (( ${M} == 1 )); then
     echo "${MSG} Commiting changes"
@@ -75,6 +79,7 @@ if (( ${M} == 1 )); then
     echo "${MSG} Updating heroku"
         git push origin master:heroku
     fi
+
 fi
 
 #   TERMINATE

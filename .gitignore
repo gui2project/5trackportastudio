@@ -1,3 +1,4 @@
 #IDE Files
 *.geany
 node_modules/*
+.goutputstream*
