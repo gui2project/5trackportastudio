@@ -94,14 +94,12 @@ trackstudio
 ## Deployment
 ### Databse (Windows System)
 - To install
--- verify the data and log directory exist on your system as given in the configuration file in `ini\mongodb.cfg`
--- verify the contents of `ini\common\db.js` match your installation
--- run:
+-- verify the contents of `ini\mongodb.cfg` and `ini\common\db.js` match your installation and then run:
     ```
     ./bin/mongodb.sh --install
     ```
 
-- To Remove
+- To Remove (leaves data and logs intact)
     ```
     ./bin/mongodb.sh --remove
     ```
@@ -135,11 +133,6 @@ trackstudio
 - To stop type:
     ```
     ctrl-c
-    ```
-
-- To kill all instance of the server on cygwin run:
-    ```
-    ./bin/kex.sh -e node.exe
     ```
 
 ### Heroku

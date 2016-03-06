@@ -53,6 +53,10 @@ function restart {
 function create {
     echo "${MSG} Installing service ${2}"
     echo ${1}
+
+    mkdir -p $(dirname "${3}")
+    mkdir -p "${4}"
+
     sc.exe create "${2}" binPath="${MONGO} --service --config=\"${1}\"" DisplayName= "${2}" start= "auto"
     mongod.exe --config ${1} --install
     start $2
@@ -133,7 +137,7 @@ rm "$tmpfile"
 
 #   EXECUTE OPTIONS
 if (( "${INSTALL}" == 1 )); then
-    create ${CONFIG} ${CONFIG_ARR[processManagement_windowsService_serviceName]}
+    create ${CONFIG} ${CONFIG_ARR[processManagement_windowsService_serviceName]} ${CONFIG_ARR[systemLog_path]} ${CONFIG_ARR[storage_dbPath]}
 elif (( "${REMOVE}" )); then
     remove ${CONFIG_ARR[processManagement_windowsService_serviceName]}
 elif (( ( "${RESTART}" == 1 ) || ( "${START}" == 1 && "${STOP}" == 1 ) )); then
