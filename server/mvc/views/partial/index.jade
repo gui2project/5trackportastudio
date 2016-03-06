@@ -1,5 +1,175 @@
 extends ../layout/index
 
 block content
-  h1= title
-  p Welcome to #{title}
+    // Navigation bar
+    header
+        nav.navbar navbar-default.navbar-static-top
+            div.container
+                div.navbar-header
+                    button.navbar-toggle.collapsed(data-toggle='collapse' data-target='#bs-navbar-collapse' aria-expanded='false')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    span.navbar-brand TRACK STUDIO
+                div.collapse.navbar-collapse#bs-navbar-collapse
+                    ul.nav.navbar.nav
+                        li.active
+                            a(href='#') Mixer
+                                span.sr-only (current)
+                        li
+                            a(href='#') About
+                        li
+                            a(href='#') Contact
+    // Mixer
+    main
+        div.container
+            div.row
+                // Tracks section
+                div.col-md-8
+                    // Track name
+                    div.row
+                        div.col-md-3
+                            div.name Track 1
+                        div.col-md-3
+                            div.name Track 2
+                        div.col-md-3
+                            div.name Track 3
+                        div.col-md-3
+                            div.name Track 4
+                    // EQ High
+                    div.row
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                    // EQ Mid
+                    div.row
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                    // EQ Low
+                    div.row
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                        div.col-md-3
+                            div.eq
+                                span -
+                                input(type='text')
+                                span +
+                    // Pan
+                    div.row
+                        div.col-md-3
+                            div.pan
+                                span L
+                                input.pan(type='text')
+                                span R
+                        div.col-md-3
+                            div.pan
+                                span L
+                                input.pan(type='text')
+                                span R
+                        div.col-md-3
+                            div.pan
+                                span L
+                                input.pan(type='text')
+                                span R
+                        div.col-md-3
+                            div.pan
+                                span L
+                                input.pan(type='text')
+                                span R
+                    // Fader & buttons
+                    div.row
+                        div.col-md-3
+                            div.mute
+                                button M
+                            div.record
+                                button R 
+                            div.fader
+                                input.slider(type='text')
+                        div.col-md-3
+                            div.mute
+                                button M
+                            div.record
+                                button R 
+                            div.fader
+                                input.slider(type='text')
+                        div.col-md-3
+                            div.mute
+                                button M
+                            div.record
+                                button R 
+                            div.fader
+                                input.slider(type='text')
+                        div.col-md-3
+                            div.mute
+                                button M
+                            div.record
+                                button R 
+                            div.fader
+                                input.slider(type='text')
+                    // FX Box
+                    div.row
+                        div.col-md-3
+                            div.fx-box FX
+                        div.col-md-3
+                            div.fx-box FX
+                        div.col-md-3
+                            div.fx-box FX
+                        div.col-md-3
+                            div.fx-box FX
+                // Master section
+                div.col.md.4
+    // Mixer
+    footer
+        div.container.centered
+            div.row
+                div.col-md-12
+                    p.copyright Except when otherwise noted, content on this site is licensed under a Creative Commons Attribution 4.0 International license.

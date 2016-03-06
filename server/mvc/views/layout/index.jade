@@ -2,10 +2,10 @@ doctype html
 html
   head
     meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     meta(name="description", content="5 Track Portastudio")
     meta(name="keywords", content="5,track,portastudio,recording")
-    meta(name="author", content="Jose Flores")
 
     title=title
 
@@ -17,12 +17,18 @@ html
     script(src="/dep/bootstrap/js/bootstrap.min.js")
 
     script(src="/dep/jquery/jquery.binarytransport.js")
-    script(src="/app/js/audio.js")
+    //script(src="/app/js/audio.js")
+    //script(src="/app/js/onLoad.js")
+    script(src="/app/js/knob.js")
+    script(src="/app/js/bootstrap-slider.js")
+    script(src="track-label.js")
+    script(src="/app/js/mixer.js")
 
-    script(src="/app/js/onLoad.js")
-
-    link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap-theme.min.css')
-    link(rel='stylesheet', href='/app/css/style.css')
-
+    //link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,300')
+    link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/app/css/bootstrap-slider.css')
+    link(rel='stylesheet', href='/app/css/styles.css')
+     
   body
     block content
