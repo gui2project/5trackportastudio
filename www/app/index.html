@@ -1,0 +1,278 @@
+<!--
+    index.html
+    Ramon Meza
+    Updated: March 6, 2016
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Meta data -->
+    <meta charset="utf=8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Title for website -->
+    <title>Template Project</title>
+
+    <!-- CSS files -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+    <!-- Javascript files -->
+    <script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    
+    <script type="text/javascript" src="js/knob.js"></script>
+    <script type="text/javascript" src="js/bootstrap-slider.js"></script>
+    
+    <script type="text/javascript" src="js/mixer.js"></script>
+    <script type="text/javascript" src="js/track-label.js"></script>
+</head>
+
+    <body>
+        <!-- Navigation bar -->
+        <header>
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <span class="navbar-brand">TRACK STUDIO</span>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Mixer<span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Mixer -->
+        <main>
+            <div class="container">
+                <div class="row">
+                    <!-- Tracks section -->
+                    <div class="col-md-8">
+                        <!-- Track Name -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="name">Track 1</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="name">Track 2</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="name">Track 3</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="name">Track 4</div>
+                            </div>
+                        </div>
+                        
+                        <!-- EQ High -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- EQ Mid -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- EQ Low -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="eq">
+                                    <span>-</span>
+                                    <input type="text" />
+                                    <span>+</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pan -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="pan">
+                                    <span>L</span>
+                                    <input type="text" class="pan" />
+                                    <span>R</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pan">
+                                    <span>L</span>
+                                    <input type="text" class="pan" />
+                                    <span>R</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pan">
+                                    <span>L</span>
+                                    <input type="text" class="pan" />
+                                    <span>R</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pan">
+                                    <span>L</span>
+                                    <input type="text" class="pan" />
+                                    <span>R</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fader & Buttons -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mute"><button>M</button></div>
+                                <div class="record"><button>R</button></div>
+                                <div class="fader">
+                                    <input class="slider" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mute"><button>M</button></div>
+                                <div class="record"><button>R</button></div>
+                                <div class="fader">
+                                    <input class="slider" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mute"><button>M</button></div>
+                                <div class="record"><button>R</button></div>
+                                <div class="fader">
+                                    <input class="slider" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mute"><button>M</button></div>
+                                <div class="record"><button>R</button></div>
+                                <div class="fader">
+                                    <input class="slider" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FX Box -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="fx-box">FX</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="fx-box">FX</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="fx-box">FX</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="fx-box">FX</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Master section -->
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container centered">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="copyright">Except when otherwise noted, content on this site is licensed 
+                        under a Creative Commons Attribution 4.0 International license.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>
