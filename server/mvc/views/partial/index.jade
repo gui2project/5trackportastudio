@@ -1,5 +1,10 @@
 extends ../layout/index
 
+include faders.jade
+include fxbox.jade
+include knob.jade
+include trackname.jade
+
 block content
     // Navigation bar
     header
@@ -29,142 +34,32 @@ block content
                 div.col-md-8
                     // Track name
                     div.row
-                        div.col-md-3
-                            div.name Track 1
-                        div.col-md-3
-                            div.name Track 2
-                        div.col-md-3
-                            div.name Track 3
-                        div.col-md-3
-                            div.name Track 4
+                        each i in [1,2,3,4]
+                            +trackname('Track ' + i)
                     // EQ High
                     div.row
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
+                        each i in [1,2,3,4]
+                            +knob('eq','-','+')
                     // EQ Mid
                     div.row
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
+                        each i in [1,2,3,4]
+                            +knob('eq','-','+')
                     // EQ Low
                     div.row
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
-                        div.col-md-3
-                            div.eq
-                                span -
-                                input(type='text')
-                                span +
+                        each i in [1,2,3,4]
+                            +knob('eq','-','+')
                     // Pan
                     div.row
-                        div.col-md-3
-                            div.pan
-                                span L
-                                input.pan(type='text')
-                                span R
-                        div.col-md-3
-                            div.pan
-                                span L
-                                input.pan(type='text')
-                                span R
-                        div.col-md-3
-                            div.pan
-                                span L
-                                input.pan(type='text')
-                                span R
-                        div.col-md-3
-                            div.pan
-                                span L
-                                input.pan(type='text')
-                                span R
+                        each i in [1,2,3,4]
+                            +knob('pan','L','R')
                     // Fader & buttons
                     div.row
-                        div.col-md-3
-                            div.mute
-                                button M
-                            div.record
-                                button R 
-                            div.fader
-                                input.slider(type='text')
-                        div.col-md-3
-                            div.mute
-                                button M
-                            div.record
-                                button R 
-                            div.fader
-                                input.slider(type='text')
-                        div.col-md-3
-                            div.mute
-                                button M
-                            div.record
-                                button R 
-                            div.fader
-                                input.slider(type='text')
-                        div.col-md-3
-                            div.mute
-                                button M
-                            div.record
-                                button R 
-                            div.fader
-                                input.slider(type='text')
+                        each i in [1,2,3,4]
+                            +fader
                     // FX Box
                     div.row
-                        div.col-md-3
-                            div.fx-box FX
-                        div.col-md-3
-                            div.fx-box FX
-                        div.col-md-3
-                            div.fx-box FX
-                        div.col-md-3
-                            div.fx-box FX
+                        each i in [1,2,3,4]
+                            +fxbox
                 // Master section
                 div.col.md.4
     // Mixer
