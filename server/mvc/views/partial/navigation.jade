@@ -1,0 +1,21 @@
+mixin navigation()
+    // Navigation bar
+    header
+        nav.navbar.navbar-default.navbar-static-top
+            div.container
+                div.navbar-header
+                    button.navbar-toggle.collapsed(data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    span.navbar-brand TRACK STUDIO
+                div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+                    ul.nav.navbar-nav
+                        li.active
+                            a(href='#') Mixer
+                                span.sr-only (current)
+                        li
+                            a(href='#') About
+                        li
+                            a(href='#') Contact

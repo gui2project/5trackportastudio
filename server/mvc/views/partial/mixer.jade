@@ -1,0 +1,15 @@
+extends ../layout/index
+
+include track.jade
+include master.jade
+
+mixin mixer()
+    // Mixer section
+    main
+        div.container
+            div.row
+                // Tracks section
+                each i in [1,2,3,4]
+                     +track(i)
+                // Master section
+                +master(1)

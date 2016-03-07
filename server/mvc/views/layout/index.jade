@@ -1,3 +1,6 @@
+include ../partial/navigation.jade
+include ../partial/footer.jade
+
 doctype html
 html
   head
@@ -8,32 +11,48 @@ html
     meta(name='keywords', content='4,track,studio,recording')
 
     title=title
-    
+
+    //- Initialization script
     script(src='/app/js/init.js')
 
+    //-  External files
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,300')
+
+    //- Dependencies
     script(src='/dep/angular/angular.min.js')
     script(src='/dep/jquery/jquery.min.js')
+
     script(src='/dep/bootstrap/js/bootstrap.min.js')
+    link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.min.css')
+
+    //- App Styles
+    link(rel='stylesheet', href='/app/css/fonts.css')
+    link(rel='stylesheet', href='/app/css/bootstrap-slider.css')
+    link(rel='stylesheet', href='/app/css/styles.css')
+
+    //- Mixins
+
+    script(src='/app/js/StopWatch.js')
+    link(rel='stylesheet', href='/app/css/StopWatch.css')
+
+    link(rel='stylesheet', href='/app/css/track.css')
 
     script(src='/app/js/recorderWorker.js')
-    script(src="app/js/recorder.js")
-    script(src="app/js/volume-meter.js")
-    script(src='app/js/webAudioApi.js')
-    script(src='app/js/webAudioInterface.js')
-    
-    script(src='/app/js/init.js')
+    script(src="/app/js/recorder.js")
+    script(src="/app/js/volume-meter.js")
+    script(src='/app/js/webAudioApi.js')
+    script(src='/app/js/webAudioInterface.js')
+
     script(src='/app/js/knob.js')
     script(src='/app/js/bootstrap-slider.js')
     script(src='/app/js/track-label.js')
     script(src='/app/js/mixer.js')
 
+
+    //- Onload script
     script(src='/app/js/onLoad.js')
 
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,300')
-    link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/app/css/bootstrap-slider.css')
-    link(rel='stylesheet', href='/app/css/styles.css')
-    
-     
   body
+    +navigation()
     block content
+    +footer()

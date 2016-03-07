@@ -1,0 +1,23 @@
+extends ../layout/index
+
+include fader.jade
+include fxbox.jade
+include knob.jade
+include trackname.jade
+
+mixin track(trknum)
+    // Track
+    div.col-md-2(id='track-'+trknum, class='track')
+        +trackname(trknum, 'Track ' + trknum)
+        // EQ High
+        +knob(trknum, 'EQ High', 'eq','-','+')
+        // EQ Mid
+        +knob(trknum, 'EQ Mid', 'eq','-','+')
+        // EQ Low
+        +knob(trknum, 'EQ Low', 'eq','-','+')
+        // Pan
+        +knob(trknum, 'Pan','pan','L','R')
+        // Fader & buttons
+        +fader(trknum)
+        // FX Box
+        +fxbox(trknum)

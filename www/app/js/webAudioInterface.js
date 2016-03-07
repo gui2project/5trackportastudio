@@ -3,25 +3,37 @@ var track1 = null,
     track3 = null,
     track4 = null;
 
+    /**
+     * var track = [null,null,null,null]
+     */
+
 $(function() {
     captureAudio();
-    
+
     track1 = new TrackTemplate();
     track2 = new TrackTemplate();
     track3 = new TrackTemplate();
     track4 = new TrackTemplate();
-    
+
+
     track1.InitTrack()
     track2.InitTrack()
     track3.InitTrack()
     track4.InitTrack()
-    
+
+    /**
+     * captureAudio();
+     * track.forEach(function(index, track){
+     *      track[index] = new TrackTemplate();
+     *      track[index].InitTrack()
+     * });
+     */
 });
 
 function armTrackToggle(trackNumber)
 {
     console.log("armTrackToggle track:"+trackNumber);
-    
+
     switch(trackNumber) {
     case 1:
         track1.armTrackToggle()
@@ -36,12 +48,16 @@ function armTrackToggle(trackNumber)
         track4.armTrackToggle()
         break;
     }
+    /**
+     * console.log("armTrackToggle track:"+trackNumber);
+     * track[trackNumber].armTrackToggle();
+     */
 }
 
 function recordToggle(trackNumber)
 {
     console.log("recordToggle track:"+trackNumber);
-    
+
     switch(trackNumber) {
     case 1:
         track1.recordToggle()
@@ -80,6 +96,18 @@ function recordToggle(trackNumber)
         }
         break;
     }
+    /**
+     *  console.log("recordToggle track:"+trackNumber);
+     *  thisTrack[tracknumber].recordToggle();
+     *  if(thisTrack[tracknumber].isRecording) {
+     *      track.forEach(function(index, thisTrack){
+     *          if (index != tracknumber)
+     *              track[index].playTrack();
+     *       });
+     *   }
+     *
+     */
+
 }
 
 function play(trackNumber){
@@ -87,6 +115,11 @@ function play(trackNumber){
     track2.playTrack()
     track3.playTrack()
     track4.playTrack()
+    /**
+     * track.forEach(function(index, track){
+     *      track[index].playTrack();
+     * });
+     */
 }
 
 function pan(trackNumber, amount)
@@ -105,6 +138,9 @@ function pan(trackNumber, amount)
         track4.pan.pan.value = amount;
         break;
     }
+    /**
+     *  track[index].pan.pan.value = amount;
+     */
 }
 
 function gain(trackNumber, amount)
@@ -124,4 +160,8 @@ function gain(trackNumber, amount)
         track4.gain.gain.value = amount;
         break;
     }
+    /**
+     *      console.log("Changed Gain of track:" + trackNumber);
+     *      track[trackNumber].gain.gain.value = amount;
+     */
 }

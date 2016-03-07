@@ -109,7 +109,7 @@ var	StopWatch = function() {
         s = Math.floor( time / 1000 );
         ms = time % 1000;
 
-        newTime = _this.pad(h, 2) + ':' + _this.pad(m, 2) + ':' + _this.pad(s, 2) + ':' + _this.pad(ms, 3);
+        newTime = _this.pad(h, 2) + ':' + _this.pad(m, 2) + ':' + _this.pad(s, 2) + '.' + _this.pad(ms, 3);
         return newTime;
     };
 
@@ -159,7 +159,7 @@ var	StopWatch = function() {
      *  interval function, writes the time of the clock into the element.
      */
     this.update = function(){
-    	(_this.getId()).innerHTML = _this.formatTime(_this.getTime());
+        $(_this.getId() ).html(_this.formatTime(_this.getTime()));
     };
 
     /**
@@ -172,17 +172,15 @@ var	StopWatch = function() {
      *                      'RESET' -   Restarts the stopwatch
      *                      'INIT'  -   Initializes the stopwatch
      * @param   option      Any options that an action requires.
+     *          null        no options
      *          idString    Required by 'INIT', the idstring of the element that will display the clock
      *
      * @return              The lapTime or RunTime on the stopwatch
      */
-    this.run = function(action){
-        return this.run(action, null);
-    };
     this.run = function(action, option){
         switch(action){
             case 'INIT': // requires option IdString
-                   _this.setId(document.getElementById(option));
+                   _this.setId(option);
 	               _this.update();
                 return _this.laptime;
 

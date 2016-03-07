@@ -1,3 +1,7 @@
+extends ../layout/index
+
 mixin trackname(trknum, name)
-	div.col-md-3(class='track-' + trknum)
-		div.name=name
+    // Track name
+    div.row
+        div.tracknames(class='track-name')
+            div.name=name

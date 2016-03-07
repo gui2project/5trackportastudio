@@ -1,8 +1,11 @@
+extends ../layout/index
+
 mixin fader(trknum)
-    div.col-md-3(class='track-' + trknum)
-        div.mute
-            button='M'
-        div.record
-            button='R' 
-        div.fader
-            input.slider(type='text')
+    div.row
+        div(class="track-fader")
+            div.mute(class='track-fader-mute')
+                button='M'
+            div.record(class='track-fader-record')
+                button='R'
+            div.fader(class='track-fader-slider')
+                input.slider(type='text')

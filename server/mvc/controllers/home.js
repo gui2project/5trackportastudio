@@ -9,13 +9,13 @@ var ini     = require(global.app.ini());
 
 var index = function(req, res) {
 
-    res.render(path.join(ini.path.partial, 'index'), { title: 'GUI II Project - Index' });
+    res.render(path.join(ini.path.partial, 'page.mixer.jade'), { title: 'GUI II Project - Index' });
 
 } ;
 
 var home = function(req, res) {
 
-    res.render(path.join(ini.path.partial, 'index'), { title: 'GUI II Project - Home' });
+    res.render(path.join(ini.path.partial, 'page.mixer.jade'), { title: 'GUI II Project - Home' });
 
 } ;
 

@@ -1,0 +1,25 @@
+extends ../layout/index
+
+include trackname.jade
+include stopWatch.jade
+
+mixin master(masterNum)
+    // Master Track
+    div.col-md-4.master(id="master-" + masterNum)
+        // Track name
+        +trackname(i, 'Master')
+        // Time display
+        div.row
+            div.col-md-12
+                +stopWatch(1)
+
+        // Playback buttons
+        div.row.playback
+            div.col-md-3
+                button(onClick="sw.run('STOP');") Stop
+            div.col-md-3
+                button(onClick="sw.run('START');") Play
+            div.col-md-3
+                button Rewind
+            div.col-md-3
+                button Fast Forward
