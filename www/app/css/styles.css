@@ -13,6 +13,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
 }
+button {
+    background-color: #fafafa;
+}
 
 /* Navbar */
 header { box-shadow: 0px 10px 40px #aaaaaa; }

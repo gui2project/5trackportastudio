@@ -98,11 +98,19 @@ $(function() {
             $(this).attr('data-muted', 0);
             
             muteToggle(trackNumber);
+
+            // Change color
+            $(this).css('background-color', '#fafafa');
+            $(this).css('color', 'red');
         } else {
             // Turn on armed
             $(this).attr('data-muted', 1);
             
             muteToggle(trackNumber);
+            
+            // Change color
+            $(this).css('background-color', '#149bdf');
+            $(this).css('color', '#fafafa');
         }
     });
     
@@ -122,12 +130,19 @@ $(function() {
             recordToggle(trackNumber);
             armTrackToggle(trackNumber);
 
+            // Change color
+            $(this).css('background-color', '#fafafa');
+            $(this).css('color', 'red');
         } else {
             // Turn on armed
             $(this).attr('data-armed', 1);
             
             armTrackToggle(trackNumber);
             recordToggle(trackNumber);
+            
+            // Change color
+            $(this).css('background-color', 'red');
+            $(this).css('color', '#fafafa');
         }
     });
     
