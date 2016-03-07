@@ -90,8 +90,8 @@ $(function() {
         // Check variables
         var isMuted = $(this).attr('data-muted');
         
-        // Toggle armed
-        if(isMuted) {
+        // Toggle muted
+        if(parseInt(isMuted)) {
             // Turn off armed
             $(this).attr('data-muted', 0);
             
@@ -113,7 +113,7 @@ $(function() {
         var isArmed = $(this).attr('data-armed');
         
         // Toggle armed
-        if(isArmed) {
+        if(parseInt(isArmed)) {
             // Turn off armed
             $(this).attr('data-armed', 0);
             

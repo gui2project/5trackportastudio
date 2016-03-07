@@ -50,23 +50,30 @@ main .name input {
     text-align: center;
 }
 
-main .eq {
-    width: 95px;
-    height: 80px;
-    margin: auto;
-}
+main .eq,
 main .pan {
     width: 98px;
     height: 80px;
     margin: auto;
+    position: relative;
 }
-main .eq span {
-    width: 20px;
-    margin: auto;
-}
+main .eq span,
 main .pan span {
     width: 20px;
     margin: auto;
+}
+main .eq label,
+main .pan label {
+    text-align: center;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 32px;
+    bottom: 35px;
+}
+main .pan label {
+    bottom: 25px;
 }
 
 main button {
