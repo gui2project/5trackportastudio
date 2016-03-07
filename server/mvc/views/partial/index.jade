@@ -39,19 +39,19 @@ block content
                     // EQ High
                     div.row.high
                         each i in [1,2,3,4]
-                            +knob(i, 'eq','-','+')
+                            +knob(i, 'EQ High', 'eq','-','+')
                     // EQ Mid
                     div.row.mid
                         each i in [1,2,3,4]
-                            +knob(i, 'eq','-','+')
+                            +knob(i, 'EQ Mid', 'eq','-','+')
                     // EQ Low
                     div.row.low
                         each i in [1,2,3,4]
-                            +knob(i, 'eq','-','+')
+                            +knob(i, 'EQ Low', 'eq','-','+')
                     // Pan
                     div.row
                         each i in [1,2,3,4]
-                            +knob(i, 'pan','L','R')
+                            +knob(i, 'Pan','pan','L','R')
                     // Fader & buttons
                     div.row
                         each i in [1,2,3,4]
@@ -61,7 +61,22 @@ block content
                         each i in [1,2,3,4]
                             +fxbox(i)
                 // Master section
-                div.col.md.4
+                div.col-md-4
+                    // Time display
+                    div.row
+                        div.col-md-12
+                            div.timedisplay
+                                span mm:ss.ms
+                    // Playback buttons
+                    div.row.playback
+                        div.col-md-3
+                            button Stop
+                        div.col-md-3
+                            button Play
+                        div.col-md-3
+                            button Rewind
+                        div.col-md-3
+                            button Fast Forward
     // Mixer
     footer
         div.container.centered
