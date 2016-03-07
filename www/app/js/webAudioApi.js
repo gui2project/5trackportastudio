@@ -61,6 +61,7 @@ function TrackTemplate()//constructor for a blank track
     
     this.InitTrack = function()//initializes a blank track ready for recording
     {
+        this.gain.value = .7;
         this.eqHigh.type = "peaking",
         this.eqHigh.frequency.value = 2000;
         this.eqHigh.gain.value = 0;
