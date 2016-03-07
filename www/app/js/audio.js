@@ -68,6 +68,8 @@ var Audio = function(){
     this.Rgain = [];
     this.panner = [];
     this.urls = [];
+    this.analyser = [];
+    this.javascriptNode = [];
 
     this.init = function() {
         console.log(msg, "Determining context.");
@@ -94,6 +96,15 @@ var Audio = function(){
     this.loaded = function(){
         _this.buff.bufferList.forEach(function(sound, index){
             var channels;
+
+            // setup a javascript node for the analyser
+        _this.javascriptNode[index] = _this.ac.createScriptProcessor(2048, 1, 1);
+        _this.javascriptNode[index].connect(_this.ac.destination);
+        _this.analyser[index] = _this.ac.createAnalyser();
+        _this.analyser[index].smoothingTimeConstant = 0.3;
+        _this.analyser[index].fftSize = 1024;
+
+
 
             console.log(msg, "Loading src", index);
             _this.src[index] = _this.ac.createBufferSource(); //s
@@ -128,7 +139,11 @@ var Audio = function(){
             _this.Lgain[index].connect(_this.merger[index], 0, 0);
             _this.Rgain[index].connect(_this.merger[index], 0, 1);
 
-            _this.merger[index].connect(_this.ac.destination);
+            _this.merger[index].connect(_this.analyser);
+
+            // and connect to destination, if you want audio for the peak analyser
+            _this.analyser.connect(_this.javascriptNode[index]);
+            _this.sourceNode.connect(_this.ac.destination);
 
         });
 
