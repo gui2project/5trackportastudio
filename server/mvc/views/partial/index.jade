@@ -33,19 +33,19 @@ block content
                 // Tracks section
                 div.col-md-8
                     // Track name
-                    div.row
+                    div.row.tracknames
                         each i in [1,2,3,4]
                             +trackname(i, 'Track ' + i)
                     // EQ High
-                    div.row
+                    div.row.high
                         each i in [1,2,3,4]
                             +knob(i, 'eq','-','+')
                     // EQ Mid
-                    div.row
+                    div.row.mid
                         each i in [1,2,3,4]
                             +knob(i, 'eq','-','+')
                     // EQ Low
-                    div.row
+                    div.row.low
                         each i in [1,2,3,4]
                             +knob(i, 'eq','-','+')
                     // Pan
