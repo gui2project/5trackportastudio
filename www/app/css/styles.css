@@ -36,6 +36,7 @@ header { box-shadow: 0px 10px 40px #aaaaaa; }
 main > .container {
     background-color: #212121;
     color: #fafafa;
+    border-radius: 10px;
 }
 
 main .container .row {
