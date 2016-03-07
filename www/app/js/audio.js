@@ -139,9 +139,8 @@ var Audio = function(){
             _this.Lgain[index].connect(_this.merger[index], 0, 0);
             _this.Rgain[index].connect(_this.merger[index], 0, 1);
 
-            _this.merger[index].connect(_this.analyser);
-
             // and connect to destination, if you want audio for the peak analyser
+            _this.merger[index].connect(_this.analyser);
             _this.analyser.connect(_this.javascriptNode[index]);
             _this.sourceNode.connect(_this.ac.destination);
 
