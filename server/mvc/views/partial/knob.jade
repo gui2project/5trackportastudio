@@ -1,5 +1,5 @@
-mixin knob(myclass, low, high)
-	div.col-md-3
+mixin knob(trknum, myclass, low, high)
+	div.col-md-3(class='track-' + trknum)
 		div(class=myclass)
 			span=low
 			input(type='text')
