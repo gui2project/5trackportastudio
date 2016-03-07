@@ -52,12 +52,16 @@ function TrackTemplate()//constructor for a blank track
     this.pan = audioContext.createStereoPanner();
     this.analyser = audioContext.createAnalyser();
     this.meter = createAudioMeter(audioContext);
+    this.timer = new StopWatch();
     this.isRecording = false;
+    var bufferSource = null;
     var isArmed = false;
     var pausedLocation = null;
+    var isMuted = false;
     
     this.InitTrack = function()//initializes a blank track ready for recording
     {
+        this.gain.value = .7;
         this.eqHigh.type = "peaking",
         this.eqHigh.frequency.value = 2000;
         this.eqHigh.gain.value = 0;
@@ -82,10 +86,18 @@ function TrackTemplate()//constructor for a blank track
     this.playTrack = function(){
         if(this.buffer!=null)
         {
-            var bufferSource = audioContext.createBufferSource(2,this.buffer, audioContext.sampleRate);
+            bufferSource = audioContext.createBufferSource(2,this.buffer, audioContext.sampleRate);
             bufferSource.buffer = this.buffer;
             bufferSource.connect(this.eqHigh);
             bufferSource.start(0);
+            
+        }
+    }
+    
+    this.stopTrack = function(){
+        if(this.buffer!=null)
+        {
+            bufferSource.stop();
         }
     }
     
@@ -103,6 +115,17 @@ function TrackTemplate()//constructor for a blank track
         {
             audioInput.disconnect(this.eqHigh);
             isArmed = false;
+        }
+    }
+    
+    this.muteTrackToggle = function(){
+        if(!isMuted){
+            this.pan.disconnect();
+            isMuted = true;
+        }
+        else{
+            this.pan.connect(audioContext.destination);
+            isMuted = false;
         }
     }
     

@@ -56,14 +56,15 @@ $(function() {
         
         // Get track number and value of the knob
         var trackNumber = parseInt($(this).parent().parent().parent().attr('class').split('track-')[1]);
-        var knobValue = parseInt($(this).parent().find('input').val());
+        var knobValue = parseFloat($(this).parent().find('input').val());
         
         // Check which knob you are (EQ or pan)
         if($(this).parent().parent().hasClass('eq')) {
             // Get EQ type (high, mid, low)
             var eqType = $(this).parent().parent().parent().parent().attr('class').split(' ')[1];
+                     
+            eq(trackNumber,eqType,knobValue);
             
-            // Do eq changing here
         } else if($(this).parent().parent().hasClass('pan')) {
 
             pan(trackNumber, knobValue);
@@ -79,7 +80,7 @@ $(function() {
         // Get track number and value of the slider
         var trackNumber = parseInt($(this).parent().parent().attr('class').split('track-')[1]);
         var sliderVal = parseFloat($(this).val());
-        
+        if(!isNaN(sliderVal))
         gain(trackNumber,sliderVal);
     });
     
@@ -96,12 +97,20 @@ $(function() {
             // Turn off armed
             $(this).attr('data-muted', 0);
             
-            // Add code for un-muting a track
+            muteToggle(trackNumber);
+
+            // Change color
+            $(this).css('background-color', '#fafafa');
+            $(this).css('color', 'red');
         } else {
             // Turn on armed
             $(this).attr('data-muted', 1);
             
-            // Add code for muting a track
+            muteToggle(trackNumber);
+            
+            // Change color
+            $(this).css('background-color', '#149bdf');
+            $(this).css('color', '#fafafa');
         }
     });
     
@@ -121,12 +130,19 @@ $(function() {
             recordToggle(trackNumber);
             armTrackToggle(trackNumber);
 
+            // Change color
+            $(this).css('background-color', '#fafafa');
+            $(this).css('color', 'red');
         } else {
             // Turn on armed
             $(this).attr('data-armed', 1);
             
             armTrackToggle(trackNumber);
             recordToggle(trackNumber);
+            
+            // Change color
+            $(this).css('background-color', 'red');
+            $(this).css('color', '#fafafa');
         }
     });
     
@@ -138,10 +154,10 @@ $(function() {
         // Switch for button functions
         switch(buttonVal) {
             case 'Stop':
-                // Stop function go here
+                stop();
                 break;
             case 'Play':
-                // Play function go here
+                play();
                 break;
             case 'Rewind':
                 // Rewind function go here

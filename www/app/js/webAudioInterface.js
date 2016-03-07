@@ -110,7 +110,7 @@ function recordToggle(trackNumber)
 
 }
 
-function play(trackNumber){
+function play(){
     track1.playTrack()
     track2.playTrack()
     track3.playTrack()
@@ -120,6 +120,29 @@ function play(trackNumber){
      *      track[index].playTrack();
      * });
      */
+}
+
+function stop(){
+    track1.stopTrack()
+    track2.stopTrack()
+    track3.stopTrack()
+    track4.stopTrack()
+}
+function muteToggle(trackNumber){
+    switch(trackNumber) {
+    case 1:
+        track1.muteTrackToggle();
+        break;
+    case 2:
+        track2.muteTrackToggle();
+        break;
+    case 3:
+        track3.muteTrackToggle();
+        break;
+    case 4:
+        track4.muteTrackToggle();
+        break;
+    }
 }
 
 function pan(trackNumber, amount)
@@ -160,8 +183,62 @@ function gain(trackNumber, amount)
         track4.gain.gain.value = amount;
         break;
     }
-    /**
-     *      console.log("Changed Gain of track:" + trackNumber);
-     *      track[trackNumber].gain.gain.value = amount;
-     */
+
+}
+
+function eq(trackNumber, type, amount)
+{
+    console.log("Changing Eq"+type+" of Track:"+trackNumber+" amount:"+amount);
+
+    if(type == "high")
+        {
+                switch(trackNumber) {
+            case 1:
+                track1.eqHigh.gain.value = amount;
+                break;
+            case 2:
+                track2.eqHigh.gain.value = amount;
+                break;
+            case 3:
+                track3.eqHigh.gain.value = amount;
+                break;
+            case 4:
+                track4.eqHigh.gain.value = amount;
+                break;
+            }
+        }
+    if(type == "mid")
+        {
+                switch(trackNumber) {
+            case 1:
+                track1.eqMid.gain.value = amount;
+                break;
+            case 2:
+                track2.eqMid.gain.value = amount;
+                break;
+            case 3:
+                track3.eqMid.gain.value = amount;
+                break;
+            case 4:
+                track4.eqMid.gain.value = amount;
+                break;
+            }
+        }
+    if(type == "low")
+        {
+                switch(trackNumber) {
+            case 1:
+                track1.eqLow.gain.value = amount;
+                break;
+            case 2:
+                track2.eqLow.gain.value = amount;
+                break;
+            case 3:
+                track3.eqLow.gain.value = amount;
+                break;
+            case 4:
+                track4.eqLow.gain.value = amount;
+                break;
+            }
+        }
 }
