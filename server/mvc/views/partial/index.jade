@@ -33,33 +33,33 @@ block content
                 // Tracks section
                 div.col-md-8
                     // Track name
-                    div.row
+                    div.row.tracknames
                         each i in [1,2,3,4]
-                            +trackname('Track ' + i)
+                            +trackname(i, 'Track ' + i)
                     // EQ High
-                    div.row
+                    div.row.high
                         each i in [1,2,3,4]
-                            +knob('eq','-','+')
+                            +knob(i, 'EQ High', 'eq','-','+')
                     // EQ Mid
-                    div.row
+                    div.row.mid
                         each i in [1,2,3,4]
-                            +knob('eq','-','+')
+                            +knob(i, 'EQ Mid', 'eq','-','+')
                     // EQ Low
-                    div.row
+                    div.row.low
                         each i in [1,2,3,4]
-                            +knob('eq','-','+')
+                            +knob(i, 'EQ Low', 'eq','-','+')
                     // Pan
                     div.row
                         each i in [1,2,3,4]
-                            +knob('pan','L','R')
+                            +knob(i, 'Pan','pan','L','R')
                     // Fader & buttons
                     div.row
                         each i in [1,2,3,4]
-                            +fader
+                            +fader(i)
                     // FX Box
                     div.row
                         each i in [1,2,3,4]
-                            +fxbox
+                            +fxbox(i)
                 // Master section
                 div.col.md.4
     // Mixer
