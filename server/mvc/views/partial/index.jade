@@ -61,7 +61,22 @@ block content
                         each i in [1,2,3,4]
                             +fxbox(i)
                 // Master section
-                div.col.md.4
+                div.col-md-4
+                    // Time display
+                    div.row
+                        div.col-md-12
+                            div.timedisplay
+                                span mm:ss.ms
+                    // Playback buttons
+                    div.row.playback
+                        div.col-md-3
+                            button Stop
+                        div.col-md-3
+                            button Play
+                        div.col-md-3
+                            button Rewind
+                        div.col-md-3
+                            button Fast Forward
     // Mixer
     footer
         div.container.centered

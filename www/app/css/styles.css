@@ -76,7 +76,8 @@ main .pan label {
     bottom: 25px;
 }
 
-main button {
+main .mute button,
+main .record button {
     width: 32px;
     height: 32px;
     margin: 0 20px;
@@ -95,6 +96,12 @@ main .fader {
     width: 20px;
     margin: auto;
 }
+
+main .playback button {
+    color: #ff0000;
+    padding: 10px;
+}
+
 /* Footer */
 footer {
     width: 100%;
