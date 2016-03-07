@@ -55,8 +55,8 @@ $(function() {
         }
         
         // Get track number and value of the knob
-        var trackNumber = $(this).parent().parent().parent().attr('class').split('track-')[1];
-        var knobValue = $(this).parent().find('input').val();
+        var trackNumber = parseInt($(this).parent().parent().parent().attr('class').split('track-')[1]);
+        var knobValue = parseInt($(this).parent().find('input').val());
         
         // Check which knob you are (EQ or pan)
         if($(this).parent().parent().hasClass('eq')) {
@@ -65,7 +65,8 @@ $(function() {
             
             // Do eq changing here
         } else if($(this).parent().parent().hasClass('pan')) {
-            // Do pan changing here
+
+            pan(trackNumber, knobValue);
         }
     });
     $(document).on('mouseup', function() {
@@ -76,22 +77,22 @@ $(function() {
     /* Slider function */
     $('.slider').on('change', function() {
         // Get track number and value of the slider
-        var trackNumber = $(this).parent().parent().attr('class').split('track-')[1];
-        var sliderVal = $(this).val();
+        var trackNumber = parseInt($(this).parent().parent().attr('class').split('track-')[1]);
+        var sliderVal = parseFloat($(this).val());
         
-        // Do what you will here (changing volume)
+        gain(trackNumber,sliderVal);
     });
     
     /* Mute buttons */
     $('.mute button').on('click', function() {
         // Get track number and value of the knob
-        var trackNumber = $(this).parent().parent().attr('class').split('track-')[1];
+        var trackNumber = parseInt($(this).parent().parent().attr('class').split('track-')[1]);
 
         // Check variables
-        var isMuted = $(this).attr('data-muted');
+        var isMuted = parseInt($(this).attr('data-muted'));
         
         // Toggle armed
-        if(isMuted) {
+        if(parseInt(isMuted)) {
             // Turn off armed
             $(this).attr('data-muted', 0);
             
@@ -107,22 +108,25 @@ $(function() {
     /* Recording buttons */
     $('.record button').on('click', function() {
         // Get track number and value of the knob
-        var trackNumber = $(this).parent().parent().attr('class').split('track-')[1];
+        var trackNumber = parseInt($(this).parent().parent().attr('class').split('track-')[1]);
 
         // Check variables
-        var isArmed = $(this).attr('data-armed');
+        var isArmed = parseInt($(this).attr('data-armed'));
         
         // Toggle armed
         if(isArmed) {
             // Turn off armed
             $(this).attr('data-armed', 0);
             
-            // Add code for un-arming a track
+            recordToggle(trackNumber);
+            armTrackToggle(trackNumber);
+
         } else {
             // Turn on armed
             $(this).attr('data-armed', 1);
             
-            // Add code for arming a track
+            armTrackToggle(trackNumber);
+            recordToggle(trackNumber);
         }
     });
 });

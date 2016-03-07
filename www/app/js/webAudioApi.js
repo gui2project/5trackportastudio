@@ -46,6 +46,7 @@ function TrackTemplate()//constructor for a blank track
     var _this;
     this.buffer = null;
     this.eqHigh = audioContext.createBiquadFilter();
+    this.eqMid = audioContext.createBiquadFilter();
     this.eqLow = audioContext.createBiquadFilter();
     this.gain = audioContext.createGain();
     this.pan = audioContext.createStereoPanner();
@@ -53,20 +54,25 @@ function TrackTemplate()//constructor for a blank track
     this.meter = createAudioMeter(audioContext);
     this.isRecording = false;
     var isArmed = false;
+    var pausedLocation = null;
     
-    this.InitTrack = function()
+    this.InitTrack = function()//initializes a blank track ready for recording
     {
         this.eqHigh.type = "peaking",
         this.eqHigh.frequency.value = 2000;
         this.eqHigh.gain.value = 0;
         this.eqHigh.Q.value = .75;
+        this.eqMid.type = "peaking",
+        this.eqMid.frequency.value = 800;
+        this.eqMid.gain.value = 0;
+        this.eqMid.Q.value = .75;
         this.eqLow.type = "peaking",
         this.eqLow.frequency.value = 250;
         this.eqLow.gain.value = 0;
         this.eqLow.Q.value = .75;
         
-
-        this.eqHigh.connect(this.eqLow);
+        this.eqHigh.connect(this.eqMid);
+        this.eqMid.connect(this.eqLow);
         this.eqLow.connect(this.gain);
         this.gain.connect(this.pan);
         this.pan.connect(audioContext.destination);
@@ -74,10 +80,17 @@ function TrackTemplate()//constructor for a blank track
     }
     
     this.playTrack = function(){
-        var bufferSource = audioContext.createBufferSource(2,this.buffer, audioContext.sampleRate);
-        bufferSource.buffer = this.buffer;
-        bufferSource.connect(this.eqHigh);
-        bufferSource.start(0);
+        if(this.buffer!=null)
+        {
+            var bufferSource = audioContext.createBufferSource(2,this.buffer, audioContext.sampleRate);
+            bufferSource.buffer = this.buffer;
+            bufferSource.connect(this.eqHigh);
+            bufferSource.start(0);
+        }
+    }
+    
+    this.pauseTrack = function(){
+        //needs Jose's clock
     }
     
     this.armTrackToggle = function(){

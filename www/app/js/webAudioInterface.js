@@ -20,6 +20,8 @@ $(function() {
 
 function armTrackToggle(trackNumber)
 {
+    console.log("armTrackToggle track:"+trackNumber);
+    
     switch(trackNumber) {
     case 1:
         track1.armTrackToggle()
@@ -38,72 +40,88 @@ function armTrackToggle(trackNumber)
 
 function recordToggle(trackNumber)
 {
+    console.log("recordToggle track:"+trackNumber);
+    
     switch(trackNumber) {
     case 1:
         track1.recordToggle()
+        if(track1.isRecording)
+        {
+            track2.playTrack()
+            track3.playTrack()
+            track4.playTrack()
+        }
         break;
     case 2:
         track2.recordToggle()
+        if(track2.isRecording)
+        {
+            track1.playTrack()
+            track3.playTrack()
+            track4.playTrack()
+        }
         break;
     case 3:
         track3.recordToggle()
+        if(track3.isRecording)
+        {
+            track1.playTrack()
+            track2.playTrack()
+            track4.playTrack()
+        }
         break;
     case 4:
         track4.recordToggle()
+        if(track4.isRecording)
+        {
+        track1.playTrack()
+        track2.playTrack()
+        track3.playTrack()
+        }
         break;
     }
 }
 
-function play(trackNumber)
-{
-    switch(trackNumber) {
-    case 1:
-        track1.playTrack()
-        break;
-    case 2:
-        track2.playTrack()
-        break;
-    case 3:
-        track3.playTrack()
-        break;
-    case 4:
-        track4.playTrack1()
-        break;
-    }
+function play(trackNumber){
+    track1.playTrack()
+    track2.playTrack()
+    track3.playTrack()
+    track4.playTrack()
 }
 
 function pan(trackNumber, amount)
 {
     switch(trackNumber) {
     case 1:
-        track1.pan.pan.value(amount);
+        track1.pan.pan.value = amount;
         break;
     case 2:
-        track2.pan.pan.value(amount);
+        track2.pan.pan.value = amount;
         break;
     case 3:
-        track3.pan.pan.value(amount);
+        track3.pan.pan.value = amount;
         break;
     case 4:
-        track4.pan.pan.value(amount);
+        track4.pan.pan.value = amount;
         break;
     }
 }
 
 function gain(trackNumber, amount)
 {
+    console.log("Changed Gain of track:" + trackNumber);
     switch(trackNumber) {
     case 1:
-        track1.gain.gain.value(amount);
+        track1.gain.gain.value = amount;
         break;
     case 2:
-        track2.gain.gain.value(amount);
+        track2.gain.gain.value = amount;
         break;
     case 3:
-        track3.gain.gain.value(amount);
+        track3.gain.gain.value = amount;
         break;
     case 4:
-        track4.gain.gain.value(amount);
+        track4.gain.gain.value = amount;
         break;
     }
 }
