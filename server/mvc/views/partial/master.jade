@@ -16,10 +16,14 @@ mixin master(masterNum)
         // Playback buttons
         div.row.playback
             div.col-md-3
-                button(onClick="sw.run('STOP');") Stop
+                button.stop.data-not-active.data-active(onClick="sw.run('STOP');")
+                    i(class="fa fa-stop")
             div.col-md-3
-                button(onClick="sw.run('START');") Play
+                button.play.data-not-active(onClick="sw.run('START');")
+                    i(class="fa fa-play")
             div.col-md-3
-                button Rewind
+                button.rewind.data-not-active
+                    i(class="fa fa-backward")
             div.col-md-3
-                button Fast Forward
+                button.forward.data-not-active
+                    i(class="fa fa-forward")

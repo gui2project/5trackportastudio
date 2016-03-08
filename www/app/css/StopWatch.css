@@ -1,8 +1,10 @@
 div.stopWatch{
     border:1px inset #333;
+    background:rgb(20,155,223);
 }
 div.stopWatch > div.timedisplay {
     font-family: "digital7";
     font-size: 50px;
-    text-align: right;
+    text-align: center;
+    color:#333;
 }
