@@ -4,7 +4,7 @@
  *  The Document on load function, kicks off after a page is rendered.
  */
 var music = new Audio();
-var sw = new StopWatch();
+sw = new StopWatch();
 $( document ).ready(function() {
 
    // music.load(["/app/audio/2-16 Sublime - Jailhouse.mp3"], function(){
