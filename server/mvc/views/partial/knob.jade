@@ -2,7 +2,7 @@ extends ../layout/index
 
 mixin knob(trknum, label, myclass, low, high)
     div.row
-        div(class=myclass + " track-knob-eq")
+        div(class=myclass + " track-knob-eq", value=trknum)
             label(class="col-md-12")=label
             span=low
             input(type='text')

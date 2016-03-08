@@ -6,8 +6,8 @@ mixin fader(trknum)
             div.mute(class='track-fader-mute' value=trkNum)
                 button
                     i(class="fa fa-volume-off")
-            div.record(class='track-fader-record')
+            div.record(class='track-fader-record', value=trknum)
                 button
                     i(class="fa fa-circle")
-            div.fader(class='track-fader-slider')
+            div.fader(class='track-fader-slider', value=trknum)
                 input.slider(type='text')

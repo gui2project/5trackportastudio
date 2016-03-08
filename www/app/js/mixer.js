@@ -55,9 +55,9 @@ $(function() {
         }
         
         // Get track number and value of the knob
-        var trackNumber = parseInt($(this).parent().parent().parent().attr('class').split('track-')[1]);
+        var trackNumber = parseInt($(this).parent().parent().attr("value"));
         var knobValue = parseFloat($(this).parent().find('input').val());
-        
+        console.log(this);
         // Check which knob you are (EQ or pan)
         if($(this).parent().parent().hasClass('eq')) {
             // Get EQ type (high, mid, low)
@@ -78,7 +78,7 @@ $(function() {
     /* Slider function */
     $('.slider').on('change', function() {
         // Get track number and value of the slider
-        var trackNumber = parseInt($(this).parent().parent().attr('class').split('track-')[1]);
+        var trackNumber = parseInt($(this).parent().attr("value"));
         var sliderVal = parseFloat($(this).val());
         if(!isNaN(sliderVal))
         gain(trackNumber,sliderVal);
@@ -87,7 +87,7 @@ $(function() {
     /* Mute buttons */
     $('.mute button').on('click', function() {
         // Get track number and value of the knob
-        var trackNumber = parseInt($(this).parent().parent().attr('class').split('track-')[1]);
+        var trackNumber = parseInt($(this).parent().attr("value"));
 
         // Check variables
         var isMuted = parseInt($(this).attr('data-muted'));
@@ -117,7 +117,7 @@ $(function() {
     /* Recording buttons */
     $('.record button').on('click', function() {
         // Get track number and value of the knob
-        var trackNumber = parseInt($(this).parent().parent().attr('class').split('track-')[1]);
+        var trackNumber = parseInt($(this).parent().attr("value"));
 
         // Check variables
         var isArmed = parseInt($(this).attr('data-armed'));
@@ -158,6 +158,7 @@ $(function() {
                 break;
             case 'Play':
                 play();
+                
                 break;
             case 'Rewind':
                 // Rewind function go here

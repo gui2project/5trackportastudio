@@ -25,3 +25,5 @@ var require = function(src){
             return undefined;
     }
 };
+
+var sw = null;

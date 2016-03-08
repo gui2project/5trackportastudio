@@ -67,6 +67,7 @@ function recordToggle(trackNumber)
             track3.playTrack()
             track4.playTrack()
         }
+        sw.run('START');
         break;
     case 2:
         track2.recordToggle()
@@ -76,6 +77,7 @@ function recordToggle(trackNumber)
             track3.playTrack()
             track4.playTrack()
         }
+        sw.run('START');
         break;
     case 3:
         track3.recordToggle()
@@ -85,6 +87,7 @@ function recordToggle(trackNumber)
             track2.playTrack()
             track4.playTrack()
         }
+        sw.run('START');
         break;
     case 4:
         track4.recordToggle()
@@ -94,6 +97,7 @@ function recordToggle(trackNumber)
         track2.playTrack()
         track3.playTrack()
         }
+        sw.run('START');
         break;
     }
     /**
@@ -111,6 +115,7 @@ function recordToggle(trackNumber)
 }
 
 function play(){
+    console.log("play")
     track1.playTrack()
     track2.playTrack()
     track3.playTrack()
@@ -120,15 +125,23 @@ function play(){
      *      track[index].playTrack();
      * });
      */
+    sw.run('START');
+
 }
 
 function stop(){
+    console.log("stop")
+    sw.run('STOP');
+    sw.run('RESET');
     track1.stopTrack()
     track2.stopTrack()
     track3.stopTrack()
     track4.stopTrack()
 }
 function muteToggle(trackNumber){
+    
+    console.log("MuteToggle track:"+trackNumber);
+    
     switch(trackNumber) {
     case 1:
         track1.muteTrackToggle();
@@ -147,6 +160,7 @@ function muteToggle(trackNumber){
 
 function pan(trackNumber, amount)
 {
+    console.log("pan:"+amount+" track:"+trackNumber)
     switch(trackNumber) {
     case 1:
         track1.pan.pan.value = amount;
@@ -168,7 +182,7 @@ function pan(trackNumber, amount)
 
 function gain(trackNumber, amount)
 {
-    console.log("Changed Gain of track:" + trackNumber);
+    console.log("Changed Gain of track:" + trackNumber + " to "+amount);
     switch(trackNumber) {
     case 1:
         track1.gain.gain.value = amount;
