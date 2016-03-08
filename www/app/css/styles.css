@@ -115,7 +115,7 @@ main .fader {
 }
 main .fader .slider-handle.custom {
     width: 20px;
-    height: 20px;
+    height: 50px;
     background: transparent none;
     background-image: url('../img/Fader.png');
     background-size: cover;
