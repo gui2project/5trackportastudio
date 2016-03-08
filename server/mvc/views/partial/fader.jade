@@ -9,5 +9,5 @@ mixin fader(trknum)
             div.record(class='track-fader-record', value=trknum)
                 button
                     i(class="fa fa-circle")
-            div.fader(class='track-fader-slider', value=trknum)
+            div.fader(class='track-fader-slider', value=trknum, data-slider-handle='custom')
                 input.slider(type='text')

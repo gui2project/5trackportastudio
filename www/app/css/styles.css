@@ -113,6 +113,10 @@ main .fader {
     width: 20px;
     margin: auto;
 }
+main .fader .slider-handle .custom {
+    background: transparent none;
+    background-image: url('../img/Fader.png');
+}
 
 main .playback button {
     color: #ff0000;
