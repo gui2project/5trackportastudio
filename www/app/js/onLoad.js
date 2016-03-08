@@ -17,24 +17,6 @@ $( document ).ready(function() {
    //     music.pause(0, 11);
    //});
 
-
-   var mixerbutton = function(element) {
-       console.log(element);
-       $('button.stop').removeClass('data-active');
-       $('button.rewind').removeClass('data-active');
-       $('button.forward').removeClass('data-active');
-       $('button.play').removeClass('data-active');
-       element.addClass('data-active');
-    }
-
-
-
-   /* Mute buttons */
-    $('button.play').on('click', function(){mixerbutton($( this ))} );
-    $('button.stop').on('click', function(){mixerbutton($( this ))} );
-    $('button.rewind').on('click', function(){mixerbutton($( this ))} );
-    $('button.forward').on('click', function(){mixerbutton($( this ))} );
-
    sw.run('INIT', '#stopWatch-1 div.timedisplay');
 
 });

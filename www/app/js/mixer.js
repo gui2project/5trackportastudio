@@ -2,10 +2,10 @@ $(function() {
     /* Add data to the mute & record buttons */
     $('.mute button').attr('data-muted', 0);
     $('.record button').attr('data-armed', 0);
-    
+
     /* Set up track names */
     $('.name').tracklabel();
-    
+
     /* Set up EQ knobs */
     $('.eq input').knob({
         width: 75,
@@ -18,7 +18,7 @@ $(function() {
         displayInput: false
     });
     $('.eq input').val(0).trigger('change');
-    
+
     /* Set up pan knobs */
     $('.pan input').knob({
         width: 75,
@@ -32,7 +32,7 @@ $(function() {
         displayInput: false
     });
     $('.pan input').val(0).trigger('change');
-    
+
     /* Set up volume sliders */
     $('.slider').slider({
         reversed : true,
@@ -44,7 +44,7 @@ $(function() {
         orientation: 'vertical',
         tooltip_position:'left'
     });
-    
+
     /* Knob function */
     $('canvas').on('mousedown', function() {
         $(this).addClass('changing');
@@ -53,7 +53,7 @@ $(function() {
         if(!$(this).hasClass('changing')) {
             return;
         }
-        
+
         // Get track number and value of the knob
         var trackNumber = parseInt($(this).parent().parent().attr("value"));
         var knobValue = parseFloat($(this).parent().find('input').val());
@@ -62,9 +62,9 @@ $(function() {
         if($(this).parent().parent().hasClass('eq')) {
             // Get EQ type (high, mid, low)
             var eqType = $(this).parent().parent().parent().parent().attr('class').split(' ')[1];
-                     
+
             eq(trackNumber,eqType,knobValue);
-            
+
         } else if($(this).parent().parent().hasClass('pan')) {
 
             pan(trackNumber, knobValue);
@@ -74,7 +74,7 @@ $(function() {
         // Remove changing
         $('.changing').removeClass('changing');
     });
-    
+
     /* Slider function */
     $('.slider').on('change', function() {
         // Get track number and value of the slider
@@ -83,20 +83,20 @@ $(function() {
         if(!isNaN(sliderVal))
         gain(trackNumber,sliderVal);
     });
-    
+
     /* Mute buttons */
     $('.mute button').on('click', function() {
         // Get track number and value of the knob
         var trackNumber = parseInt($(this).parent().attr("value"));
-
+        console.log(this);
         // Check variables
         var isMuted = parseInt($(this).attr('data-muted'));
-        
+
         // Toggle armed
         if(parseInt(isMuted)) {
             // Turn off armed
             $(this).attr('data-muted', 0);
-            
+
             muteToggle(trackNumber);
 
             // Change color
@@ -105,15 +105,15 @@ $(function() {
         } else {
             // Turn on armed
             $(this).attr('data-muted', 1);
-            
+
             muteToggle(trackNumber);
-            
+
             // Change color
             $(this).css('background-color', '#149bdf');
             $(this).css('color', '#fafafa');
         }
     });
-    
+
     /* Recording buttons */
     $('.record button').on('click', function() {
         // Get track number and value of the knob
@@ -121,12 +121,12 @@ $(function() {
 
         // Check variables
         var isArmed = parseInt($(this).attr('data-armed'));
-        
+
         // Toggle armed
         if(isArmed) {
             // Turn off armed
             $(this).attr('data-armed', 0);
-            
+
             recordToggle(trackNumber);
             armTrackToggle(trackNumber);
 
@@ -136,35 +136,44 @@ $(function() {
         } else {
             // Turn on armed
             $(this).attr('data-armed', 1);
-            
+
             armTrackToggle(trackNumber);
             recordToggle(trackNumber);
-            
+
             // Change color
             $(this).css('background-color', 'red');
             $(this).css('color', '#fafafa');
         }
     });
-    
+
+    var mixerbutton = function(element) {
+       $('button.stop').removeClass('data-active');
+       $('button.rewind').removeClass('data-active');
+       $('button.forward').removeClass('data-active');
+       $('button.play').removeClass('data-active');
+       element.addClass('data-active');
+    }
+
     /* Playback buttons */
     $('.playback button').on('click', function() {
         // Get the button type
-        var buttonVal = $(this).text();
-        
+        var buttonVal = $(this).attr("value");
+
         // Switch for button functions
         switch(buttonVal) {
             case 'Stop':
                 stop();
+                mixerbutton($('button.stop'));
                 break;
             case 'Play':
                 play();
-                
+                mixerbutton($('button.play'));
                 break;
             case 'Rewind':
-                // Rewind function go here
+                mixerbutton($('button.rewind'));
                 break;
             case 'Fast Forward':
-                // Fast Forward function go here
+                mixerbutton($('button.forward'));
                 break;
         }
     });
