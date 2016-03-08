@@ -170,3 +170,9 @@ footer .copyright {
     background:#149bdf;
     color:#fafafa !important;
 }
+
+img.logo {
+    float: left;
+    width: 16px;
+    margin: 3px 5px 0 0;
+}
