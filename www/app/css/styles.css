@@ -114,11 +114,12 @@ main .fader {
     margin: auto;
 }
 main .fader .slider-handle.custom {
+    width: 25px;
     height: 60px;
     background: transparent none;
     background-image: url('../img/Fader.png');
-    background-size: contain;
-    background-repeat: none;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 main .playback button {
