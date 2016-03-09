@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(logger(ini.app.mode));
-app.use(favicon(path.join(ini.path.images,'favicon-black.ico' )));
+app.use(favicon(path.join(ini.file.favicon)));
 
 //  API routing
 require(ini.path.api)(app, mdb);
