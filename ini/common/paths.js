@@ -20,7 +20,6 @@ var paths = {
     images:      path.join(root, 'www', 'app', 'img'),
     jquery:      path.join(root, 'node_modules', 'jquery', 'dist'),
     jqueryui:    path.join(root, 'node_modules', 'jquery-ui'),
-    favicon:     path.join(root, 'www', 'app', 'img', 'favicon-black.ico' ),
     nodeModules: path.join(root, 'node_modules'),
     mongodb:     path.join(root, 'server', 'lib', 'mongodb'),
     partial:     path.join(root, 'server', 'mvc', 'views', 'partial'),

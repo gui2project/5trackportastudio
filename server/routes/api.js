@@ -49,7 +49,7 @@ var middleware = function(app, mdb){
     // Document serving
     var fileOptions = function(){
         var arr = [];
-        ini.file.forEach(function(obj){
+        ini.file.docs.forEach(function(obj){
             arr.push(obj.alias);
         });
         return arr;
@@ -69,7 +69,7 @@ var middleware = function(app, mdb){
     function(req, res, obj){
         var myerr = true;
 
-        ini.file.forEach(function(obj){
+        ini.file.docs.forEach(function(obj){
             if (req.params.alias.toLowerCase() == obj.alias.toLowerCase()){
                 myerr = false;
                 fs.readFile(obj.sys, function (err,data){
