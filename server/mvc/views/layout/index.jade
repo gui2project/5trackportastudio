@@ -7,32 +7,30 @@ html
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1')
-    meta(name='description', content='Track Studio')
-    meta(name='keywords', content='4,track,studio,recording')
+    meta(name='description', content='trackstudio')
+    meta(name='keywords', content='4,track,studio,recording,tracstudio')
 
     title=title
 
     //- Initialization script
     script(src='/app/js/init.js')
 
-    //-  External files
+    //- Fonts
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,300')
 
     //- Dependencies
     script(src='/dep/angular/angular.min.js')
     script(src='/dep/jquery/jquery.min.js')
-
     script(src='/dep/bootstrap/js/bootstrap.min.js')
-    link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.min.css')
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
 
     //- App Styles
+    link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/app/css/fonts.css')
     link(rel='stylesheet', href='/app/css/bootstrap-slider.css')
     link(rel='stylesheet', href='/app/css/styles.css')
 
     //- Mixins
-
     script(src='/app/js/StopWatch.js')
     link(rel='stylesheet', href='/app/css/StopWatch.css')
 
@@ -41,15 +39,20 @@ html
     script(src='/app/js/recorderWorker.js')
 
     script(src="/app/js/recorder.js")
+
     script(src="/app/js/volume-meter.js")
+
     script(src='/app/js/webAudioApi.js')
+
     script(src='/app/js/webAudioInterface.js')
 
     script(src='/app/js/knob.js')
-    script(src='/app/js/bootstrap-slider.js')
-    script(src='/app/js/track-label.js')
-    script(src='/app/js/mixer.js')
 
+    script(src='/app/js/bootstrap-slider.js')
+
+    script(src='/app/js/track-label.js')
+
+    script(src='/app/js/mixer.js')
 
     //- Onload script
     script(src='/app/js/onLoad.js')

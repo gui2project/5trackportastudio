@@ -41,6 +41,12 @@ main > .container {
 
 main .container .row {
     padding: 8px 0;
+    /*border-top: 1px inset rgba(101, 99, 99, 0.8);*/
+}
+
+main .container .row:first-child {
+    padding: 8px 0;
+    border-top: none;
 }
 
 main .row-container {
@@ -93,19 +99,29 @@ main .pan label {
     bottom: 25px;
 }
 
+main .solo button,
 main .mute button,
 main .record button {
     width: 32px;
     height: 32px;
-    margin: 0 20px;
     color: #ff0000;
     font-weight: bold;
 }
+main .solo,
 main .mute {
     float: left;
 }
+
+main .solo{
+    margin: 0 10px 0 20px;
+}
+
+main .mute {
+    margin: 0 10px 0 20px;
+}
 main .record {
     float: right;
+    margin: 0 20px 0 10px;
 }
 
 main .fader {
@@ -148,6 +164,7 @@ footer .copyright {
 .track, .master {
     border:1px outset #333;
     margin:0px;
+    height: 750px;
 }
 .track:first-child {
     border-top-left-radius: 10px;
@@ -175,4 +192,23 @@ img.logo {
     float: left;
     width: 16px;
     margin: 3px 5px 0 0;
+}
+
+input.editable-text{
+    margin: auto;
+    color: #212121;
+    text-align: center;
+    float: none;
+}
+
+div.mixer-editable{
+    margin:auto;
+    text-align: center;
+}
+
+div.track-label{
+    cursor: text;
+}
+div.master-label{
+    cursor: default;
 }

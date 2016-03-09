@@ -1,19 +1,22 @@
 {
+  "bugs": {
+      "url": "https://github.com/gui2project/5trackportastudio/issues"
+  },
   "contributers": [
     {
       "email": "jose.flores.152@gmail.com",
       "name": "Jose Flores"
     },
     {
-      "email": "",
+      "email": "glen_anderson@student.uml.edu",
       "name": "Glenn Anderson"
     },
     {
-      "email": "",
+      "email": "dominic_cabral@student.uml.edu",
       "name": "Dominic Cabrall"
     },
     {
-      "email": "",
+      "email": "ramon_meza@student.uml.edu",
       "name": "Ramon Meza"
     }
   ],
@@ -47,7 +50,9 @@
     "node": "~5.4.1",
     "npm": "~3.3.12"
   },
-  "license": "UNLICENSED",
+  "homepage": "https://trackstudio.herokuapp.com/",
+  "license": "CC-BY-4.0",
+  "main":"app.js",
   "name": "trackstudio",
   "private": true,
   "repository": {

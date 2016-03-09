@@ -9,13 +9,13 @@ var ini     = require(global.app.ini());
 
 var index = function(req, res) {
 
-    res.render(path.join(ini.path.partial, 'dominic'), { title: 'GUI II Project - Index' });
+    res.render(path.join(ini.path.partial, 'dominic'), { title: 'trackstudio' });
 
 } ;
 
 var home = function(req, res) {
 
-    res.render(path.join(ini.path.partial, 'dominic'), { title: 'GUI II Project - Home' });
+    res.render(path.join(ini.path.partial, 'dominic'), { title: 'trackstudio' });
 
 } ;
 
