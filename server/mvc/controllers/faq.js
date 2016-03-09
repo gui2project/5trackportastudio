@@ -9,7 +9,7 @@ var ini     = require(global.app.ini());
 
 var index = function(req, res) {
 
-    res.render(path.join(ini.path.partial, 'index'), { title: 'trackstudio' });
+    res.render(path.join(ini.path.partial, 'page.mixer.jade'), { title: 'trackstudio' });
 
 } ;
 

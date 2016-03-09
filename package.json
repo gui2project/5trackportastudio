@@ -52,7 +52,6 @@
   },
   "homepage": "https://trackstudio.herokuapp.com/",
   "license": "CC-BY-4.0",
-  "main":"app.js",
   "name": "trackstudio",
   "private": true,
   "repository": {

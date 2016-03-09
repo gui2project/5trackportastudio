@@ -23,9 +23,9 @@ var msg     = '[ API ]';
  *
  *  api.add({
  *      "url": urlJoin( "/api/", "Comma", "separated", "path", "components"),
- *      "param": null | {"paramName": "description", ... },
+ *      "param": null | {"paramName": { "desc": "description of param", "opt": null | [ "array of options" ] }, ...
  *      "desc": "Description of the api method.",
- *      "return": "POST|PUT|GET|DELETE "
+ *      "return": "POST|PUT|GET|DELETE"
  *  },
  *  function(req, res, obj){
  *      // Api method action with final responses using
@@ -45,6 +45,19 @@ var Api = function(app) {
     //  Crud types
     this.methods = [];
 
+    this.validMethod = function(method){
+        switch (method.toLowerCase()) {
+            case "get":
+            case "post":
+            case "put":
+            case "delete":
+                return true;
+
+            default:
+                return false;
+        }
+    };
+
     /**
      *  @name   add
      *
@@ -54,6 +67,12 @@ var Api = function(app) {
      *  @param  func    The api function
      */
     this.add = function( obj, func){
+        global.app.console.log(msg, 'Adding API method.', obj.url) ;
+        if (!this.validMethod(obj.return)){
+            global.app.console.err(msg, 'Invalid API return methods for', obj.url);
+            return false;
+        }
+        global.app.console.log(msg, 'Valid method.', obj.url) ;
         this.methods.push(obj);
         this.app.get(obj.url,
                 function(req, res){
@@ -88,7 +107,7 @@ var Api = function(app) {
             if (obj.data){
                 res.status(obj.success).json(doc);
             } else {
-                res.status(obj.success).send(httpResresp[obj.success].msg);
+                res.status(obj.success).send(httpRes.resp[obj.success].msg);
             }
         }
     };

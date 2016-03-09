@@ -12,6 +12,7 @@ var ini = {
         mode: 'prod'
     },
     db:   require('./common/db.js'),
+    file: require('./common/file.js'),
     map:  require('./common/map.js'),
     path: require('./common/paths.js')
 };

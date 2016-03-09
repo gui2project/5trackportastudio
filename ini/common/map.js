@@ -60,11 +60,6 @@ var map = {
             web: '/faq',
             sys: path.join(paths.ctrl, 'faq'),
             call: 'index'
-        },
-        {
-            web: '/dominic',
-            sys: path.join(paths.ctrl, 'dominic'),
-            call: 'index'
         }
     ]
 };
