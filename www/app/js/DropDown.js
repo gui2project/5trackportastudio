@@ -16,6 +16,7 @@ var DropDown = function(){
     var _this = this;
 
     this.id = null;     //  The id of the dropdown element
+    this.state = false;  //  true for open, false for closed
 
     /**
      *  @name   init
@@ -27,6 +28,7 @@ var DropDown = function(){
      */
     this.init = function(id){
         this.setId(id);
+        this.show('INIT');
     };
 
     /**
@@ -53,6 +55,7 @@ var DropDown = function(){
          */
         open: function(){
             $(_this.id).slideDown( 600 );
+            _this.state = true;
         },
 
         /**
@@ -62,6 +65,16 @@ var DropDown = function(){
          */
         close: function(){
             $(_this.id).slideUp( 600 );
+            _this.state = false;
+        },
+
+        /**
+         *  @name   toggle
+         *
+         *  Toggles the dropdown
+         */
+         toggle: function(){
+             _this.state ? _this.dropdown.close() : _this.dropdown.open() ;
         }
     };
 
@@ -189,7 +202,14 @@ var DropDown = function(){
      */
     this.show = function( view ){
 
-        var state = false;
+        var state;
+
+        if (view == 'TOGGLE'){
+            this.dropdown.toggle();
+            return;
+        }
+
+        state = false;
 
         this.panel.display(state, '.fx-catalog-panel' );
         this.panel.display(state, '.account-panel-name' );
@@ -203,6 +223,12 @@ var DropDown = function(){
         state = true;
 
         switch (view){
+            case 'INIT':
+                this.panel.display(state, '.login-panel' );
+                this.panel.display(state, '.register-panel' );
+                this.panel.display(state, '.about-panel' );
+                return;
+
             case 'FX':
                 this.panel.display(state, '.fx-catalog-panel' );
                 this.panel.display(state, '.account-panel-name' );
@@ -226,7 +252,6 @@ var DropDown = function(){
                 this.panel.display(state, '.about-panel' );
                 this.dropdown.open();
                 return;
-
         }
     };
 };
