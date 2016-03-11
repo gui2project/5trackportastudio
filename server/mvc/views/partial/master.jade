@@ -5,25 +5,25 @@ include StopWatch.jade
 
 mixin master(masterNum)
     // Master Track
-    div.col-md-4.master(id="master-" + masterNum)
+    div.col-md-4.col-sm-12.col-xs-12.master(id="master-" + masterNum)
         // Track name
         +trackname(i, 'Master')
         // Time display
         div.row
-            div.col-md-12
-                +stopWatch(1)
+            div.col-md-12.col-sm-12.col-xs-12
+                +StopWatch(1)
 
         // Playback buttons
         div.row.playback
-            div.col-md-3
+            div.col-md-3.col-sm-3.col-xs-3
                 button.stop.data-not-active.data-active(value="Stop")
                     i(class="fa fa-stop")
-            div.col-md-3
+            div.col-md-3.col-sm-3.col-xs-3
                 button.play.data-not-active(value="Play")
                     i(class="fa fa-play")
-            div.col-md-3
+            div.col-md-3.col-sm-3.col-xs-3
                 button.rewind.data-not-active(value="Rewind")
                     i(class="fa fa-backward")
-            div.col-md-3
+            div.col-md-3.col-sm-3.col-xs-3
                 button.forward.data-not-active(value="Fast Forward")
                     i(class="fa fa-forward")

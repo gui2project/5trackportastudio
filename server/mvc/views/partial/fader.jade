@@ -3,13 +3,13 @@ extends ../layout/index
 mixin fader(trknum)
     div.row
         div(class="track-fader")
-            div.mute(class='track-fader-mute', value=trknum)
+            div.mute.col-md-4.col-sm-4.col-xs-4(class='track-fader-mute', value=trknum)
                 button
                     i(class="fa fa-volume-off")
-            div.solo(class='track-fader-solo', value=trknum)
+            div.solo.col-md-4.col-sm-4.col-xs-4(class='track-fader-solo', value=trknum)
                 button
                     i(class="fa fa-toggle-on")
-            div.record(class='track-fader-record', value=trknum)
+            div.record.col-md-4.col-sm-4.col-xs-4(class='track-fader-record', value=trknum)
                 button
                     i(class="fa fa-circle")
      div.row

@@ -13,6 +13,7 @@ global.app.console.log(msg, 'Initializing.');
 //  mongoose holds the mongoose middle ware
 var mdb = {
         models: {},
+        schema: {},
         mongoose: require('mongoose')
     };
 
@@ -20,12 +21,13 @@ var mdb = {
 global.app.console.log(msg, 'Using URI:', ini.db.url);
 
 //  Process Schema and saving as a model
-global.app.console.log(msg, 'Defining models.');
+global.app.console.log(msg, 'Defining models and schemas.');
 ini.db.models.forEach(function(model){
-    global.app.console.log(msg, ' - ', model.collection);
+    global.app.console.log(msg, ' - ', model.collection, "\nschema :", model.schema );
     mdb.models[model.collection] = mdb.mongoose.model(model.collection,
                                                 new mdb.mongoose.Schema(model.schema,
                                                     { collection: model.collection }));
+    mdb.schema[model.collection] = model.schema;
 });
 
 //  Setting up reusable connection

@@ -2,22 +2,19 @@ mixin navigation()
     // Navigation bar
     header
         nav.navbar.navbar-default.navbar-static-top
-            div.container
-                div.navbar-header
-                    button.navbar-toggle.collapsed(data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
-                        span.sr-only Toggle navigation
-                        span.icon-bar
-                        span.icon-bar
-                        span.icon-bar
-                    span.navbar-brand
-                        img.logo(src='/app/img/favicon-white.png')
-                        span trackstudio
-                div.collapse.navbar-collapse#bs-example-navbar-collapse-1
-                    ul.nav.navbar-nav
-                        li.active
-                            a(href='#') Mixer
-                                span.sr-only (current)
-                        li
-                            a(href='#') About
-                        li
-                            a(href='#') Contact
+            div.container.col-md-12.col-sm-12.col-xs-12
+                div.navbar-header.col-md-2.col-sm-3.col-xs-6
+                     span.navbar-brand.col-md-12.col-sm-12.col-xs-12
+                        span.navbar-brand-label trackstudio
+
+                div.navbar-right-links.col-md-3.col-sm-3.col-xs-6
+                     a(onClick="dd.show('LOGIN');")
+                        span.link-sign-in sign in
+                     a(onClick="dd.show('REGISTER');")
+                        span.link-register register
+                     a
+                        span.link-sign-out sign out
+
+                div.navbar-info-display.col-md-4.col-sm-6.col-xs-12
+                     span.project-name.col-md-12.col-sm-12.col-xs-12 project name
+

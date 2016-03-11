@@ -27,3 +27,4 @@ var require = function(src){
 };
 
 var sw = null;
+var dd = null;

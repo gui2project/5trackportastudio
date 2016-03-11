@@ -1,0 +1,54 @@
+mixin dropdown(id)
+    .dropdown.col-md-12.col-sm-12.col-xs-12(id=id)
+        .dropdown-left.col-md-3.col-sm-12.col-xs-12
+
+            .panel.login-panel.col-md-12.col-sm-12.col-xs.12
+                .row.form-group.col-md-12.col-sm-12.col-xs.12
+                    label(for="login-email") email
+                    input.col-md-11.col-sm-11.col-xs.11(type="text" class="form-control" id="login-email")
+                .row.form-group.col-md-12.col-sm-12.col-xs.12
+                    label(for="login-password") password
+                    input.col-md-11.col-sm-11.col-xs.11(type="password" class="form-control" id="login-password")
+                .row.col-md-12.col-sm-12.col-xs.12
+                    button.col-md-12.col-sm-12.col-xs.12(id="dropdown-button-login") sign in
+
+
+             .panel.register-panel.col-md-12.col-sm-12.col-xs.12
+                .row.form-group.col-md-12.col-sm-12.col-xs.12
+                    label(for="register-name") name
+                    input.col-md-11.col-sm-11.col-xs.11(type="text" class="form-control" id="register-name")
+                .row.form-group.col-md-12.col-sm-12.col-xs.12
+                    label(for="register-email") email
+                    input.col-md-11.col-sm-11.col-xs.11(type="text" class="form-control" id="register-email")
+                .row.form-group.col-md-12.col-sm-12.col-xs.12
+                    label(for="register-password-1") paswword
+                    input.col-md-11.col-sm-11.col-xs.11(type="password" class="form-control" id="register-password-1")
+                .row.form-group.col-md-12.col-sm-12.col-xs.12
+                    label(for="register-password-2") validate password
+                    input.col-md-11.col-sm-11.col-xs.11(type="password" class="form-control" id="register-password-2")
+                .row.col-md-12.col-sm-12.col-xs.12
+                    button.col-md-12.col-sm-12.col-xs.12(id="dropdown-button-register") register
+
+            .panel.account-panel
+                .row.col-md-12.col-sm-12.col-xs.12
+                    .account-title  account
+                .row.col-md-12.col-sm-12.col-xs.12
+                    .account-user-name name goes here
+                .row.col-md-12.col-sm-12.col-xs.12
+                    .account-user-email email goes here
+
+            .panel.information-panel
+                .row.col-md-12.col-sm-12.col-xs.12
+                    .information-title Information title display
+                .row.col-md-12.col-sm-12.col-xs.12
+                    .information-image Information image display
+                .row.col-md-12.col-sm-12.col-xs.12
+                    .information-description Information desc display
+                .row.col-md-12.col-sm-12.col-xs.12
+                    .information-actions Information action buttons display
+
+        .dropdown-right.col-md-9.col-sm-12.col-xs-12
+            .panel.fx-catalog-panel Fx go here
+            .panel.mix-catalog-panel Mixes go here
+            .panel.about-panel About Page
+            .panel.contact-panel Contact Page

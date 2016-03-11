@@ -5,6 +5,7 @@
  */
 
 //  Requires
+var schema          = require('mongoose').Schema;
 var root            = global.app.root
 
 //  Database configurations
@@ -13,7 +14,12 @@ var db = {
     models:[
         {
             collection: 'users',
-            schema: { name: String }
+            schema: {
+                name: {type: String, required: true},
+                email: {type: String, required: true},
+                pass: {type: String, required: true},
+                projects: {type: String, required: true}
+            }
         }
     ],
     name: 'trackstudio',

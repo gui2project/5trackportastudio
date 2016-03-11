@@ -1,3 +1,8 @@
+/**
+ *  @file   mixer.js
+ *
+ *  description
+ */
 $(function() {
     /* Add data to the mute & record buttons */
     $('.mute button').attr('data-muted', 0);

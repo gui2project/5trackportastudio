@@ -2,7 +2,6 @@
  *  @file   production.js
  *
  *  The configuration file to use during production.
- *
  *  It holds settings for the application.
  */
 

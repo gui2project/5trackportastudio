@@ -4,7 +4,8 @@
  *  The Document on load function, kicks off after a page is rendered.
  */
 
-var music = new Audio();
+
+dd = new DropDown();
 sw = new StopWatch();
 $( document ).ready(function() {
 
@@ -18,5 +19,5 @@ $( document ).ready(function() {
    //});
 
    sw.run('INIT', '#stopWatch-1 div.timedisplay');
-
+   dd.init('#partial');
 });

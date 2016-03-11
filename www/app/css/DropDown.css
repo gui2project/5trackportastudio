@@ -1,0 +1,61 @@
+/**
+ *  @file   DropDown.css
+ *
+ *  Contains dropdown related styles.
+ */
+ .dropdown {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    right:0;
+    bottom:40px;
+    background: #181818;
+    z-index: 1000;
+    padding: 0 10px;
+    color:#fafafa;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: outset 1px #333;
+}
+
+.dropdown-left, .dropdown-right {
+    height:100%;
+    padding: 10px;
+
+}
+
+.dropdown-left {
+    border-right: outset 1px #333;
+}
+.dropdown-right {
+    border-left: outset 1px #333;
+}
+.dropdown button{
+    background: #D8D8D8;
+    color:#181818;
+    line-height:30px;
+    height:30px;
+}
+.panel {
+    background:none;
+    border:none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin-top:10px;
+}
+
+.fx-catalog-panel,
+.account-panel,
+.mix-catalog-panel,
+.login-panel,
+.register-panel,
+.information-panel,
+.about-panel,
+.contact-panel,
+.dropdown {
+    display: none;
+}
+
+.display {
+    display:block;
+}

@@ -1,0 +1,92 @@
+/**
+ *  @file   navigation.css
+ *
+ *  Contains navigation menu related styles.
+ */
+
+header {
+    z-index: 1001;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 0px;
+    height:20px;
+}
+
+.navbar-default {
+    background-color: #181818;
+    border:0px;
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-brand-label {
+    height:40px;
+    background-image: url('/app/img/favicon-white.png');
+    background-repeat: no-repeat;
+    background-position: left 0px;
+    padding-left: 26px;
+    background-size: 22px 22px;
+    margin-left:5px;
+    color: #FAFAFA;
+}
+
+div.navbar-right-links a {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    height: 50px;
+    line-height: 50px;
+}
+
+div.navbar-right-links a span.link-sign-in,
+div.navbar-right-links a span.link-register,
+div.navbar-right-links a span.link-sign-out,
+.navbar-info-display,
+.navbar-header > a > span {
+    height:35px;
+    line-height:55px;
+    color: #FAFAFA;
+    float: right;
+}
+
+
+.navbar-brand-label:hover,
+span.navbar-brand-label:hover,
+div.navbar-right-links > a > span:hover {
+    color: #fAFAFA;
+    text-decoration: none;
+    border-bottom: 1px solid #fafafa;
+}
+
+.catalog-label{
+    height: 50px;
+    line-height: 50px;
+    margin-left: 10px;
+    text-align: center;
+    float: left;
+    padding: 0 10px;
+}
+
+.fx-catalog-label {
+    background: #FAFAFA;
+}
+
+.mix-catalog-label {
+    background: #FAFAFA;
+}
+
+.navbar-right-links {
+    float: right;
+    text-align: right;
+}
+
+.navbar-info-display {
+    height:35px;
+    line-height:55px;
+    color: #FAFAFA;
+    float:left;
+
+}

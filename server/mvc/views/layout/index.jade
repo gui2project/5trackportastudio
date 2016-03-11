@@ -1,5 +1,6 @@
 include ../partial/navigation.jade
 include ../partial/footer.jade
+include ../partial/dropdown.jade
 
 doctype html
 html
@@ -24,17 +25,25 @@ html
     script(src='/dep/jquery/jquery.min.js')
     script(src='/dep/bootstrap/js/bootstrap.min.js')
 
+    link(rel='stylesheet', href='/dep/css/bootstrap-slider.css')
+    script(src='/dep/js/bootstrap-slider.js')
+
     //- App Styles
     link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/app/css/fonts.css')
-    link(rel='stylesheet', href='/app/css/bootstrap-slider.css')
+
     link(rel='stylesheet', href='/app/css/styles.css')
 
     //- Mixins
-    script(src='/app/js/StopWatch.js')
     link(rel='stylesheet', href='/app/css/StopWatch.css')
+    script(src='/app/js/StopWatch.js')
+
+    link(rel='stylesheet', href='/app/css/DropDown.css')
+    script(src='/app/js/DropDown.js')
 
     link(rel='stylesheet', href='/app/css/track.css')
+
+    link(rel='stylesheet', href='/app/css/navigation.css')
 
     script(src='/app/js/recorderWorker.js')
 
@@ -48,8 +57,6 @@ html
 
     script(src='/app/js/knob.js')
 
-    script(src='/app/js/bootstrap-slider.js')
-
     script(src='/app/js/track-label.js')
 
     script(src='/app/js/mixer.js')
@@ -61,3 +68,4 @@ html
     +navigation()
     block content
     +footer()
+    +dropdown('partial')

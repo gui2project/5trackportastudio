@@ -1,3 +1,9 @@
+/**
+ *  @file   audio.js
+ *
+ *  This is a research file for web audio api it is not used in the project.
+ */
+
 var msg = '[ MUSIC ]';
 
 function BufferLoader(context, urlList, callback) {

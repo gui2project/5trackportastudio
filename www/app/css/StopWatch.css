@@ -1,4 +1,9 @@
-div.stopWatch{
+/**
+ *  @file   StopWatch.css
+ *
+ *  Contains stopwatch related styles.
+ */
+ div.stopWatch{
     border:1px inset #333;
     background:rgb(20,155,223);
 }

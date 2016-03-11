@@ -1,47 +1,43 @@
-/*********************************/
-/*           styles.css          */
-/*           Ramon Meza          */
-/*     Updated: March 6, 2016    */
-/*********************************/
+/**
+ *  @file   style.css
+ *
+ *  Contains application wide styles.
+ */
+
 @charset "UTF-8";
 
-* { margin:0; padding: 0; border: 0; }
-html, body { width: 100%; height: 100%; }
+* {
+    margin:0;
+    padding: 0;
+    border: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
 
 body {
-  background-color: #fafafa;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
+    background-color: #fafafa;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    float: left;
 }
+
 button {
     background-color: #fafafa;
 }
-
-/* Navbar */
-header { box-shadow: 0px 10px 40px #aaaaaa; }
-.navbar-default { background-color: #212121; }
-.navbar-default .navbar-brand { color: #ffffff; }
-.navbar-default .navbar-brand:hover { color: #9E9E9E; }
-.navbar-default .navbar-nav > li > a { color: #ffffff; }
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus { color: #9E9E9E; }
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus { color: #555; background-color: #fafafa; }
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus { color: #555; background-color: #fafafa; }
 
 /* Main mixer styling */
 main > .container {
     background-color: #212121;
     color: #fafafa;
     border-radius: 10px;
+    margin-top: 60px;
 }
 
 main .container .row {
     padding: 8px 0;
-    /*border-top: 1px inset rgba(101, 99, 99, 0.8);*/
 }
 
 main .container .row:first-child {
@@ -108,21 +104,14 @@ main .record button {
     font-weight: bold;
 }
 main .solo,
-main .mute {
-    float: left;
-}
-
-main .solo{
-    margin: 0 10px 0 20px;
-}
-
-main .mute {
-    margin: 0 10px 0 20px;
-}
+main .mute,
 main .record {
-    float: right;
-    margin: 0 20px 0 10px;
+    float: left;
+    margin: 0px;
+    padding: 0px;
 }
+
+
 
 main .fader {
     clear: both;
@@ -149,7 +138,7 @@ footer {
     height: 40px;
     position: fixed;
     bottom: 0;
-    background-color: #212121;
+    background-color: #181818;
     /* remove because on short screens it obscures content box-shadow: 0px -10px 40px #888;*/
     border-top: 1px solid #333;
 }

@@ -1,9 +1,10 @@
-/*******************************/
-/*  Name:       tracklabel.js  */
-/*  Author:     Ramon Meza     */
-/*  Created on: 2/11/2016      */
-/*  Updated on: 3/6/2016       */
-/*******************************/
+/**
+ *  @file   track-label.js
+ *
+ *  Holds the track label code, a track label is editable by the user unless
+ *  it is for the master track
+ *
+ */
 // Function for creating editable text
 $.fn.tracklabel = function() {
 
@@ -39,7 +40,7 @@ $.fn.tracklabel = function() {
 
                 // Add input field
                 $(this).html('');
-                $(this).append('<input class="editable-text col-md-11" type="text" placeholder="' + text + '"></input>');
+                $(this).append('<input class="editable-text col-md-11 col-sm-11 col-xs-11" type="text" placeholder="' + text + '"></input>');
 
                 // Focus onto the field
                 $(this).find('input').focus();

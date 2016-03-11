@@ -163,6 +163,20 @@ var	StopWatch = function() {
     };
 
     /**
+     *  @name   adjust
+     *
+     * adjusts the clock to a given time
+     *
+     *  @param  mod     the value to adjust the time by
+     *
+     *  @return         the current laptime
+     */
+    this.adjust = function(mod) {
+        _this.run('STOP');
+        _this.laptime + mod <= 0 ? _this.run('RESET') : _this.laptime += mod;
+        return _this.laptime;
+    }
+    /**
      *  @name   run
      *
      *  This is the command function to the clock, it accepts
@@ -200,6 +214,10 @@ var	StopWatch = function() {
                     _this.reset();
                     _this.update();
                 return _this.laptime;
+
+            case 'ADJUST': //needs a value from option
+                _this.adjust(option);
+                return _this.laptime;
         }
     };
 };
@@ -209,4 +227,5 @@ var	StopWatch = function() {
 // sw.run('INIT', 'time');
 //  STARTTIME = sw.run('START');
 //  STOPTIME = sw.run('STOP');
+//  NEW POSITION = SW.RUN('ADJUST', 1000)
 //  0 = sw.run('RESET');

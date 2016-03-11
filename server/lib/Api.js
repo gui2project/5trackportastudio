@@ -124,7 +124,7 @@ var Api = function(app) {
         this.add({
             "url": urlJoin("/api", "get", "help"),
             "param": null,
-            "desc": "Returns a help menu.",
+            "desc": "Returns an api description object.",
             "return": "GET"
         },
         function(req, res, obj){
