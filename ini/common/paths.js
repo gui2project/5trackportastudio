@@ -20,6 +20,7 @@ var paths = {
     images:      path.join(root, 'www', 'app', 'img'),
     jquery:      path.join(root, 'node_modules', 'jquery', 'dist'),
     jqueryui:    path.join(root, 'node_modules', 'jquery-ui'),
+    jqueryvalidation: path.join(root, 'node_modules', 'jquery-validation', 'dist'),
     nodeModules: path.join(root, 'node_modules'),
     mongodb:     path.join(root, 'server', 'lib', 'mongodb'),
     partial:     path.join(root, 'server', 'mvc', 'views', 'partial'),
@@ -27,9 +28,10 @@ var paths = {
     public:      path.join(root, 'www'),
     root:        root,
     routes:      path.join(root, 'server', 'routes', 'paths'),
+    security:    path.join(root, 'server', 'lib', 'Security'),
     users:       path.join(root, 'server', 'routes', 'users'),
     views:       path.join(root, 'server', 'mvc', 'views')
-}
+};
 
 //  Export content
 module.exports = paths;

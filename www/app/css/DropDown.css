@@ -5,10 +5,9 @@
  */
  .dropdown {
     position: absolute;
-    top: 35px;
+    top: 55px;
     left: 0;
     right:0;
-    bottom:40px;
     background: #181818;
     z-index: 1000;
     padding: 0 10px;
@@ -21,7 +20,6 @@
 .dropdown-left, .dropdown-right {
     height:100%;
     padding: 10px;
-
 }
 
 .dropdown-left {
@@ -44,6 +42,12 @@
     margin-top:10px;
 }
 
+.panel .title .fa{
+    line-height: 20px;
+    font-size: 15px;
+    margin-right: 5px
+}
+
 .fx-catalog-panel,
 .account-panel,
 .mix-catalog-panel,
@@ -56,6 +60,16 @@
     display: none;
 }
 
-.display {
-    display:block;
+.wait-left-panel {
+
+}
+.wait-right-panel {
+
+}
+.wait {
+    background-image: url('/app/img/wait.gif');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height:100%;
+    display: none;
 }

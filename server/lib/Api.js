@@ -74,7 +74,7 @@ var Api = function(app) {
         }
         global.app.console.log(msg, 'Valid method.', obj.url) ;
         this.methods.push(obj);
-        this.app.get(obj.url,
+        this.app[obj["return"].toLowerCase()](obj.url,
                 function(req, res){
                     func(req, res, httpRes.crud[obj["return"]]);
                 });
@@ -101,7 +101,7 @@ var Api = function(app) {
      */
     this.response = function(res, err, doc, obj){
         if (err) {
-            global.app.console.err(msg, doc)
+            global.app.console.err(msg, 'Error case', err, doc)
             res.status(obj.failure).send(httpRes.resp[obj.failure].msg);
         } else {
             if (obj.data){

@@ -46,7 +46,7 @@ div.navbar-right-links a span.link-register,
 div.navbar-right-links a span.link-sign-out,
 .navbar-info-display,
 .navbar-header > a > span {
-    height:35px;
+    height:38px;
     line-height:55px;
     color: #FAFAFA;
     float: right;
@@ -56,9 +56,9 @@ div.navbar-right-links a span.link-sign-out,
 .navbar-brand-label:hover,
 span.navbar-brand-label:hover,
 div.navbar-right-links > a > span:hover {
-    color: #fAFAFA;
+    color: #149BDF;;
     text-decoration: none;
-    border-bottom: 1px solid #fafafa;
+    border-bottom: 1px solid #149BDF;
 }
 
 .catalog-label{

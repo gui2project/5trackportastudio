@@ -33,6 +33,10 @@ var map = {
         {
             web: '/dep/jquery-ui',
             sys: paths.jqueryui
+        },
+        {
+            web: '/dep/jquery-validation/',
+            sys: paths.jqueryvalidation
         }
     ],
     dynamic: [

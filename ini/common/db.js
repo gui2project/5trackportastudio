@@ -17,8 +17,18 @@ var db = {
             schema: {
                 name: {type: String, required: true},
                 email: {type: String, required: true},
-                pass: {type: String, required: true},
-                projects: {type: String, required: true}
+                hash: {type: String, required: true},
+                salt: {type: String, required: true},
+                projects: [{type: String}]
+            }
+        },
+        {
+            collection: 'session',
+            schema: {
+                user: {type: String, required: true},
+                hash: {type: String, required: true},
+                time: {type: Number, required: true},
+                live: {type: Boolean, required: true}
             }
         }
     ],
@@ -40,7 +50,7 @@ var db = {
     pass: process.env.MONGO_DB_PASS,
     port: 27017,
     user: process.env.MONGO_DB_USER,
-}
+};
 
 //  Mongo DB URL
 db.url = 'mongodb://' + db.user + ':' + db.pass + '@' + db.host + ':' + db.port + '/' + db.name ;

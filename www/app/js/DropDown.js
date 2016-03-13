@@ -94,6 +94,9 @@ var DropDown = function(){
              *  @param  json    The json object that holds the effects information
              */
             fxCatalog: function(json){
+
+                var container = _this.id + ' .fx-catalog-panel .content';
+
                 //sort FX catalog by name
                 json.sort(function(a, b){
                     if(a.title < b.title) return -1;
@@ -102,9 +105,16 @@ var DropDown = function(){
                 });
 
                 // add items to catalog
+                $(container).html("");
                 json.forEach(function(item){
-                    var htmlObj = item;
-                    $(_this.id + ' .fx-catalog-panel').append(htmlObj);
+                    console.log(item);
+                    var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span';
+                    var desc = '<span class="fx-catalog-panel-item-desc">' + item.desc + '</span';
+                    var image = '<span class="fx-catalog-panel-item-image">' + item.image + '</span';
+
+                    var htmlObj = '<div class="fx-catalog-panel-item">' +image+title+desc+ '</div>';
+
+                    $(container).append(htmlObj);
                 });
             },
 
@@ -153,33 +163,17 @@ var DropDown = function(){
                 $(_this.id + ' .information-panel-title').html(obj.title);
                 $(_this.id + ' .information-panel-image').html(obj.image);
                 $(_this.id + ' .information-panel-desc').html(obj.desc);
-                $(_this.id + ' .information-panel-actions').html(obj.actions);
+                //$(_this.id + ' .information-panel-actions').html(obj.actions);
             }
         },
+
         // api loaders
-        load: {
+        load: function(url, pre, success, fail){
+            pre();
 
-            /**
-             *  @name mixCatalog
-             *
-             *  retrieves mixCatalog information for display
-             *
-             *  @return     data    the information retrieved
-             */
-            mixCatalog: function(){
-                // /api/get/projects/user/:id
-            },
-
-            /**
-             *  @name account
-             *
-             *  retrieves account information for display
-             *
-             *  @return     data    the information retrieved
-             */
-            account: function(){
-                // /api/get/user/:id
-            }
+            $.ajax({
+                url: url
+            }).done(success).fail(fail);
         },
 
         /**
@@ -187,10 +181,63 @@ var DropDown = function(){
          *
          *  displays or hides a panel
          */
-        display: function(bool, toggleclass){
-            bool ? $(_this.id + ' ' + toggleclass).addClass("display") :
-                   $(_this.id + ' ' + toggleclass).removeClass("display");
+        display:{
+            toggle: function(bool, toggleclass){
+                bool ? $(_this.id + ' ' + toggleclass).addClass("display") :
+                        $(_this.id + ' ' + toggleclass).removeClass("display");
+            },
+            all: function(state){
+                _this.panel.display.left(state);
+                _this.panel.display.right(state);
+            },
+            left: function(state){
+                _this.panel.display.toggle(state, '.account-panel' );
+                _this.panel.display.toggle(state, '.login-panel' );
+                _this.panel.display.toggle(state, '.register-panel' );
+                _this.panel.display.toggle(state, '.information-panel' );
+            },
+            right: function(state){
+                _this.panel.display.toggle(state, '.fx-catalog-panel' );
+                _this.panel.display.toggle(state, '.mix-catalog-panel' );
+                _this.panel.display.toggle(state, '.about-panel' );
+                _this.panel.display.toggle(state, '.contact-panel' );
+            }
+        },
+
+        wait: {
+            start: function (position) {
+                switch(position){
+                    case 'LEFT':
+                        _this.panel.display.left(false);
+                        _this.panel.display.toggle(true, '.wait-left-panel' );
+                        return;
+                    case 'RIGHT':
+                        _this.panel.display.right(false);
+                        _this.panel.display.toggle(true, '.wait-right-panel' );
+                        return;
+                    case 'ALL':
+                        _this.panel.display.all(false);
+                        _this.panel.display.toggle(true, '.wait-right-panel' );
+                        _this.panel.display.toggle(true, '.wait-left-panel' );
+                        return;
+                }
+            },
+            stop: function (position) {
+                switch(position){
+                    case 'LEFT':
+                        _this.panel.display.toggle(false, '.wait-left-panel' );
+                        return;
+                    case 'RIGHT':
+                        _this.panel.display.toggle(false, '.wait-right-panel' );
+                        return;
+                    case 'ALL':
+                        _this.panel.display.toggle(false, '.wait-right-panel' );
+                        _this.panel.display.toggle(false, '.wait-left-panel' );
+                        return;
+                }
+            }
         }
+
     };
 
     /**
@@ -202,54 +249,77 @@ var DropDown = function(){
      */
     this.show = function( view ){
 
-        var state;
+        var url, success, pre, fail, state;
+        var url1 = "/api/get/projects/user/56e154d5cc33fe584c3756a8";
+            //var url = "/api/get/projects/user/:id";
 
+            var url2 = "/api/get/user/56e154d5cc33fe584c3756a8";
         if (view == 'TOGGLE'){
             this.dropdown.toggle();
             return;
         }
 
-        state = false;
-
-        this.panel.display(state, '.fx-catalog-panel' );
-        this.panel.display(state, '.account-panel-name' );
-        this.panel.display(state, '.mix-catalog-panel' );
-        this.panel.display(state, '.login-panel' );
-        this.panel.display(state, '.register-panel' );
-        this.panel.display(state, '.information-panel' );
-        this.panel.display(state, '.about-panel' );
-        this.panel.display(state, '.contact-panel' );
+        this.panel.display.all(false);
 
         state = true;
 
         switch (view){
-            case 'INIT':
-                this.panel.display(state, '.login-panel' );
-                this.panel.display(state, '.register-panel' );
-                this.panel.display(state, '.about-panel' );
-                return;
-
-            case 'FX':
-                this.panel.display(state, '.fx-catalog-panel' );
-                this.panel.display(state, '.account-panel-name' );
+            case 'ALL':
+                this.panel.display.all(true);
                 this.dropdown.open();
                 return;
 
+            case 'INIT':
+                this.panel.display.toggle(state, '.login-panel' );
+                this.panel.display.toggle(state, '.register-panel' );
+                this.panel.display.toggle(state, '.about-panel' );
+                return;
+
+            case 'FX':
+                url = "/api/get/effects";
+                pre = function(){
+                    _this.panel.wait.start('RIGHT');
+                };
+                success = function(data){
+                    console.log(data);
+                    _this.panel.set.fxCatalog(data);
+                    _this.panel.wait.stop('RIGHT');
+
+                    _this.panel.display.toggle(true, '.fx-catalog-panel' );
+                    _this.panel.display.toggle(true, '.account-panel-name' );
+
+                    _this.dropdown.open();
+                };
+                fail = function(data) {
+                    console.log(data);
+                    alert('ERROR');
+                    _this.panel.wait.stop('RIGHT');
+
+                    _this.panel.display.toggle(true, '.fx-catalog-panel' );
+                    _this.panel.display.toggle(true, '.account-panel-name' );
+
+                    _this.dropdown.open();
+                }
+
+                this.panel.load(url, pre, success, fail);
+
+                return;
+
             case 'MIX':
-                this.panel.display(state, '.mix-catalog-panel' );
-                this.panel.display(state, '.account-panel-name' );
+                this.panel.display.toggle(state, '.mix-catalog-panel' );
+                this.panel.display.toggle(state, '.account-panel-name' );
                 this.dropdown.open();
                 return;
 
             case 'LOGIN':
-                this.panel.display(state, '.login-panel' );
-                this.panel.display(state, '.about-panel' );
+                this.panel.display.toggle(state, '.login-panel' );
+                this.panel.display.toggle(state, '.about-panel' );
                 this.dropdown.open();
                 return;
 
             case 'REGISTER':
-                this.panel.display(state, '.register-panel' );
-                this.panel.display(state, '.about-panel' );
+                this.panel.display.toggle(state, '.register-panel' );
+                this.panel.display.toggle(state, '.about-panel' );
                 this.dropdown.open();
                 return;
         }

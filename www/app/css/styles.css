@@ -5,53 +5,93 @@
  */
 
 @charset "UTF-8";
-
 * {
-    margin:0;
+    margin: 0;
     padding: 0;
     border: 0;
 }
 
-html, body {
+/*Background colors*/
+body,
+button,
+.data-not-active {
+    background-color: #fafafa;
+}
+main > .container {
+    background-color: #212121;
+}
+footer {
+    background-color: #181818;
+}
+.panel button,
+.data-active {
+    background-color: #149BDF;
+}
+
+/*font colors*/
+main > .container,
+footer .copyright,
+.panel button {
+    color: #fafafa;
+}
+button {
+    color: #181818;
+}
+main .name input,
+input.editable-text {
+    color: #212121;
+}
+main .solo button,
+main .mute button,
+main .record button,
+main .playback button {
+    color: #FF007D;
+}
+.panel .title .fa {
+    color: #149BDF;
+}
+.data-not-active {
+    color: #333 !important;
+}
+.data-active {
+    color: #fafafa !important;
+}
+
+/*Positioning*/
+html,
+body {
     width: 100%;
     height: 100%;
 }
-
-body {
-    background-color: #fafafa;
+body,
+.sys-font {
     font-family: 'Open Sans', sans-serif;
+    /*Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
+
     font-weight: 300;
+}
+body {
     float: left;
 }
-
-button {
-    background-color: #fafafa;
-}
-
 /* Main mixer styling */
+
 main > .container {
-    background-color: #212121;
-    color: #fafafa;
     border-radius: 10px;
     margin-top: 60px;
 }
-
 main .container .row {
     padding: 8px 0;
 }
-
 main .container .row:first-child {
     padding: 8px 0;
     border-top: none;
 }
-
 main .row-container {
     padding: 0px;
     margin: 0px;
     margin-right: -15px;
     margin-left: -15px;
 }
-
 main .name {
     margin: auto;
     font-size: 20px;
@@ -59,10 +99,8 @@ main .name {
 }
 main .name input {
     margin: auto;
-    color: #212121;
     text-align: center;
 }
-
 main .eq,
 main .pan {
     width: 98px;
@@ -83,24 +121,21 @@ main .pan label {
     height: 20px;
     position: absolute;
     left: 27px;
-
     bottom: 35px;
     padding: 0px;
     margin: 0px;
 }
-main .eq label{
-      top: 19px;
+main .eq label {
+    top: 19px;
 }
 main .pan label {
     bottom: 25px;
 }
-
 main .solo button,
 main .mute button,
 main .record button {
     width: 32px;
     height: 32px;
-    color: #ff0000;
     font-weight: bold;
 }
 main .solo,
@@ -110,9 +145,6 @@ main .record {
     margin: 0px;
     padding: 0px;
 }
-
-
-
 main .fader {
     clear: both;
     width: 20px;
@@ -126,33 +158,27 @@ main .fader .slider-handle.custom {
     background-size: cover;
     background-repeat: no-repeat;
 }
-
 main .playback button {
-    color: #ff0000;
     padding: 10px;
 }
-
 /* Footer */
+
 footer {
     width: 100%;
     height: 40px;
     position: fixed;
     bottom: 0;
-    background-color: #181818;
-    /* remove because on short screens it obscures content box-shadow: 0px -10px 40px #888;*/
     border-top: 1px solid #333;
 }
-
 footer .copyright {
-    color: #9E9E9E;
     font-size: 12px;
     text-align: center;
     margin-top: 10px;
 }
-
-.track, .master {
-    border:1px outset #333;
-    margin:0px;
+.track,
+.master {
+    border: 1px outset #333;
+    margin: 0px;
     height: 750px;
 }
 .track:first-child {
@@ -163,41 +189,50 @@ footer .copyright {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-
 .fa {
-    font-size:20px;
+    font-size: 20px;
 }
-
-.data-not-active {
-    background:#fafafa;
-    color:#333 !important;
-}
-.data-active {
-    background:#149bdf;
-    color:#fafafa !important;
-}
-
 img.logo {
     float: left;
     width: 16px;
     margin: 3px 5px 0 0;
 }
-
-input.editable-text{
+input.editable-text {
     margin: auto;
-    color: #212121;
     text-align: center;
     float: none;
 }
-
-div.mixer-editable{
-    margin:auto;
+div.mixer-editable {
+    margin: auto;
     text-align: center;
 }
-
-div.track-label{
+div.track-label {
     cursor: text;
 }
-div.master-label{
+div.master-label {
     cursor: default;
+}
+.pointer {
+    cursor: pointer;
+}
+.display {
+    display: block;
+}
+
+.error + .error{
+    position: absolute;
+    bottom: -20px;
+    right: 13px;
+    background: #333;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 100;
+    border: 1px solid #181818;
+    font-weight: normal;
+    font-size: 10px;
+    color: #FF007D;
+}
+
+.form-control{
+    margin-bottom: 12px;
 }

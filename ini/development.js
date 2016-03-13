@@ -10,10 +10,12 @@ var ini = {
     app:{
         mode: 'dev'
     },
-    db:   require('./common/db.js'),
-    file: require('./common/file.js'),
-    map:  require('./common/map.js'),
-    path: require('./common/paths.js')
+    cookie:     require('./common/cookie.js'),
+    db:         require('./common/db.js'),
+    file:       require('./common/file.js'),
+    map:        require('./common/map.js'),
+    path:       require('./common/paths.js'),
+    security:   require('./common/security.js')
 };
 
 // Export Content

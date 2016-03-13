@@ -30,7 +30,8 @@ app.set('view engine', 'jade');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
+//global.app.console.log(ini.cookie.secret);
+app.use(cookieParser(ini.cookie.secret, ini.cookie.options));
 app.use(logger(ini.app.mode));
 app.use(favicon(path.join(ini.file.favicon)));
 

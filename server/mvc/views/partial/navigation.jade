@@ -5,14 +5,14 @@ mixin navigation()
             div.container.col-md-12.col-sm-12.col-xs-12
                 div.navbar-header.col-md-2.col-sm-3.col-xs-6
                      span.navbar-brand.col-md-12.col-sm-12.col-xs-12
-                        span.navbar-brand-label(onClick="dd.show('TOGGLE');") trackstudio
+                        span.pointer.navbar-brand-label(onClick="dd.show('TOGGLE');") trackstudio
 
                 div.navbar-right-links.col-md-3.col-sm-3.col-xs-6
-                     a(onClick="dd.show('LOGIN');")
+                     a.pointer(onClick="dd.show('LOGIN');")
                         span.link-sign-in sign in
-                     a(onClick="dd.show('REGISTER');")
+                     a.pointer(onClick="dd.show('REGISTER');")
                         span.link-register register
-                     a
+                     a.pointer
                         span.link-sign-out sign out
 
                 div.navbar-info-display.col-md-4.col-sm-6.col-xs-12
