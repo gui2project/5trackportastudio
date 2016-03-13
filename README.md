@@ -59,6 +59,7 @@ trackstudio
 #### Environment Variables
 - MONGO_DB_USER - Holds an admin username to the MongoDB
 - MONGO_DB_PASS - Holds the password to the MongoDB for the admin MONGO_DB_USER
+- TS_COOKIE_SECRET - Holds the cookie secret value (Security).
 
 #### Runtime
 - Web audio compatible browser, for a full list see
