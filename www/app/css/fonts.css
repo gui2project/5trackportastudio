@@ -10,3 +10,9 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Segment7Standard';
+    src: url('/dep/fonts/segment-7/Segment7Standard.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+      }

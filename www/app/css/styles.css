@@ -160,6 +160,7 @@ main .fader .slider-handle.custom {
 }
 main .playback button {
     padding: 10px;
+    width: 100%;
 }
 /* Footer */
 
@@ -223,14 +224,20 @@ div.master-label {
     position: absolute;
     bottom: -20px;
     right: 13px;
-    background: #333;
-    padding: 5px;
-    border-radius: 5px;
     z-index: 100;
-    border: 1px solid #181818;
     font-weight: normal;
     font-size: 11px;
     color: #FF007D;
+}
+
+.error + .error,
+.panel-entry,
+span.hover
+ {
+    background: #202020;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #181818;
 }
 
 .form-control{
@@ -260,3 +267,19 @@ label {
     overflow: auto;
 }
 
+
+span.hover{
+    display:none;
+    color:#FF007D;
+}
+
+a.menu:hover span.hover{
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    top:-40px;
+    left: 0px;
+}
+a.menu {
+    margin: 0 5px 0 0;
+}

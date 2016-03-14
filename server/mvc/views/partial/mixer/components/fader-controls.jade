@@ -1,6 +1,5 @@
-extends ../layout/index
-
-mixin fader(trknum)
+mixin fader-controls(trknum)
+    //  Fader controls
     div.row
         div(class="track-fader")
             div.mute.col-md-4.col-sm-4.col-xs-4(class='track-fader-mute', value=trknum)
@@ -12,6 +11,3 @@ mixin fader(trknum)
             div.record.col-md-4.col-sm-4.col-xs-4(class='track-fader-record', value=trknum)
                 button
                     i(class="fa fa-circle")
-     div.row
-        div.fader(class='track-fader-slider', value=trknum)
-            input.slider(type='text')

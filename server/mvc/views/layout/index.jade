@@ -1,75 +1,56 @@
-include ../partial/navigation.jade
+include ../partial/nav/header.jade
 include ../partial/footer.jade
 
 doctype html
 html
   head
+    //  Meta Information
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     meta(name='description', content='trackstudio')
     meta(name='keywords', content='4,track,studio,recording,tracstudio')
-
+    //  Page Title
     title=title
-
-    //- Initialization script
-    script(src='/app/js/init.js')
-
-    //- Fonts
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+    // Fonts
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", media="screen" )
+    link(rel="stylesheet", href="https://fontlibrary.org/face/segment7")
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,300')
     link(rel='stylesheet', href='/app/css/fonts.css')
-
-    //- Dependencies
+    // Stylesheets
+    link(rel='stylesheet', href='/dep/css/bootstrap-slider.css')
+    link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/app/css/StopWatch.css')
+    link(rel='stylesheet', href='/app/css/DropDown.css')
+    link(rel='stylesheet', href='/app/css/track.css')
+    link(rel='stylesheet', href='/app/css/navigation.css')
+    link(rel='stylesheet', href='/app/css/styles.css')
+    // Initialization script
+    script(src='/app/js/init.js')
+    // Dependencies
     script(src='/dep/angular/angular.min.js')
     script(src='/dep/jquery/jquery.min.js')
     script(src='/dep/jquery-validation/jquery.validate.js')
-    script(src='/dep/js-cookie/js.cookie.js')
     script(src='/dep/bootstrap/js/bootstrap.min.js')
-
-    link(rel='stylesheet', href='/dep/css/bootstrap-slider.css')
-    link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.min.css')
     script(src='/dep/js/bootstrap-slider.js')
-
-    //- link(rel="stylesheet", href="/dep/css/jquery.jscrollpane.css")
-    //- script(src="/dep/js/jquery.mousewheel.js")
-    //- script(src="/dep/js/jquery.jscrollpane.min.js")
-
-    //-  Application function library
+    script(src='/dep/js-cookie/js.cookie.js')
+    //  Application function library
     script(src='/app/js/lib.js')
-
-    //- Mixins
-    link(rel='stylesheet', href='/app/css/StopWatch.css')
+    // Mixins
     script(src='/app/js/StopWatch.js')
-
-    link(rel='stylesheet', href='/app/css/DropDown.css')
     script(src='/app/js/DropDown.js')
-
-    link(rel='stylesheet', href='/app/css/track.css')
-
-    link(rel='stylesheet', href='/app/css/navigation.css')
-
     script(src='/app/js/recorderWorker.js')
-
     script(src="/app/js/recorder.js")
-
     script(src="/app/js/volume-meter.js")
-
     script(src='/app/js/webAudioApi.js')
-
     script(src='/app/js/webAudioInterface.js')
-
     script(src='/app/js/knob.js')
-
     script(src='/app/js/track-label.js')
-
     script(src='/app/js/mixer.js')
-
-    link(rel='stylesheet', href='/app/css/styles.css')
-    //- Onload script
+    // Onload script
     script(src='/app/js/onLoad.js')
 
   body
-    +navigation()
+    +header()
     block content
     +footer()

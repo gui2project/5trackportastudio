@@ -298,7 +298,7 @@ var DropDown = function(){
         }
 
         this.panel.display.all(false);
-        this.navigation.display.lock(opt);
+        this.navigation.display.lock(ts.session);
 
         switch (view){
             case 'ALL':
@@ -342,16 +342,16 @@ var DropDown = function(){
             case 'MIX':
                 this.panel.display.toggle(state, '.mix-catalog-panel' );
 
-                var url = '/api/get/user/' + ts.user_id;
-                var pre = function(){
+                url = '/api/get/user/' + ts.user_id;
+                pre = function(){
                     _this.panel.wait.start('LEFT');
                 };
-                var success = function(data){
+                success = function(data){
                     _this.panel.set.account(data);
                     _this.panel.wait.stop('LEFT');
                     _this.panel.display.toggle(state, '.account-panel' )
                 };
-                var fail = function(data){
+                fail = function(data){
                     _this.panel.set.account({name: 'Unknown user name', email: 'Unknown user email'});
                     _this.panel.wait.stop('LEFT');
                     _this.panel.display.toggle(state, '.account-panel' )
@@ -372,6 +372,7 @@ var DropDown = function(){
                 this.dropdown.open(open);
                 return;
             case 'API':
+                this.panel.display.toggle(state, '.api-panel' );
 
                 url = '/api/get/help/';
                 pre = function(){
@@ -391,23 +392,22 @@ var DropDown = function(){
                                 po = '';
                                 po = param[key].opt.join(' | ');
 
+                                item.url = item.url.replace(key, '<span class="api-url-param">' +key+'</span>');
+
                                 params += '<div class="api-row-tabbed"><span class="api-item-param">' + pn +'</span><span class="api-item-param-description">' + pd + '</span></div>';
                                 if (po) params += '<div class="api-row-options"><span class="api-item-param-options">'+ po + '</span></div>';
                             }
                         });
 
                         url = '<div class="api-row"><span class="api-item-url">' + item.url + '</span></div>'
-
                         desc = '<div class="api-row-tabbed"><span class="api-item">' + item.desc + '</span></div>';
-                        html = '<div class="api-entry row form-group col-md-12 col-sm-12 col-xs-12">' + url + params + desc + '</div>'
+                        html = '<div class="panel-entry row form-group col-md-12 col-sm-12 col-xs-12">' + url + params + desc + '</div>'
 
                         $("#api").append(html);
                     });
-                    //_this.panel.wait.stop('RIGHT');
-                    _this.panel.display.toggle(state, '.api-panel' );
                 };
-
                 fail = function(){ console.log('api-failed'); _this.panel.wait.stop('RIGHT');};
+
                 _this.panel.load(url, pre, success, fail);
                 this.dropdown.open(open);
                 return;

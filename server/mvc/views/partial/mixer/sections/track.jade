@@ -1,9 +1,8 @@
-extends ../layout/index
-
-include fader.jade
-include fxbox.jade
-include knob.jade
-include trackname.jade
+include ../components/fader-slider.jade
+include ../components/fader-controls.jade
+include ../components/fxbox.jade
+include ../components/knob.jade
+include ../components/trackname.jade
 
 mixin track(trknum)
     // Track
@@ -17,7 +16,9 @@ mixin track(trknum)
         +knob(trknum, 'EQ Low', 'eq','-','+')
         // Pan
         +knob(trknum, 'Pan','pan','L','R')
-        // Fader & buttons
-        +fader(trknum)
+        // Fader Controls
+        +fader-controls(trknum)
+        // Fader Slider
+        +fader-slider(trknum)
         // FX Box
         +fxbox(trknum)

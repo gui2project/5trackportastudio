@@ -109,7 +109,9 @@ var	StopWatch = function() {
         s = Math.floor( time / 1000 );
         ms = time % 1000;
 
-        newTime = _this.pad(h, 2) + ':' + _this.pad(m, 2) + ':' + _this.pad(s, 2) + '.' + _this.pad(ms, 3);
+        var colon = '<span class="sys-font">:</span>';
+        var period = '<span class="sys-font"> </span>';
+        newTime = _this.pad(h, 2) + period + _this.pad(m, 2) + period + _this.pad(s, 2) + period + _this.pad(ms, 3);
         return newTime;
     };
 

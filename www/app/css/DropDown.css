@@ -84,7 +84,8 @@
 }
 
 .api-item-url {font-size:16px;color:#18A5D6;}
-.api-item-param {font-style: italic;
+.api-item-param {
+    font-style: italic;
     margin-right: 25px;
     width: 40px;
     display: inline-block;
@@ -95,5 +96,17 @@
 }
 .api-row-options{
     margin-left: 90px;
+}
+.api-url-param {
     color: #FF007D;
+}
+.api-row-options {
+    color:#666;
+}
+.api-url-param {
+    font-style: italic;
+}
+.api-item-param,
+.api-item-param-description {
+    font-size: 14px;
 }

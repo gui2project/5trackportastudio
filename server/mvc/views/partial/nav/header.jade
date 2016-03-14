@@ -1,6 +1,6 @@
-include ../partial/dropdown.jade
+include dropdown.jade
 
-mixin navigation()
+mixin header()
     // Navigation bar
     header
         nav.navbar.navbar-default.navbar-static-top(id="navigation")
@@ -16,5 +16,4 @@ mixin navigation()
                         span register
                      a.pointer.link-sign-out
                         span sign out
-
         +dropdown('partial')

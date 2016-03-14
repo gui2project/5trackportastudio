@@ -1,0 +1,28 @@
+mixin icon-header(title, label, displayName, hoverEnabled)
+    //  Icon
+    if (title == 'account-settings')
+        i.fa.fa-cog
+    else if (title == 'sign-in')
+        i.fa.fa-sign-in
+    else if (title == 'menu')
+        i.fa.fa-bars
+    else if (title == 'fx-catalog')
+        i.fa.fa-tags
+    else if (title == 'contact')
+        i.fa.fa-envelope-o
+    else if (title == 'about')
+        i.fa.fa-info-circle
+    else if (title == 'mix-catalog')
+        i.fa.fa-file-audio-o
+    else if (title == 'api')
+        i.fa.fa-terminal
+    else if (title == 'tutorial')
+        i.fa.fa-graduation-cap
+    //-Determine name
+    if (displayName)
+        //  Icon label
+        span.sys-font=label
+    //-Determine tooltop
+    if (false && hoverEnabled)
+        //  Tooltip
+        span.hover=label

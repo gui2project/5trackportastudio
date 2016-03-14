@@ -8,8 +8,8 @@
     background:rgb(20,155,223);
 }
 div.stopWatch > div.timedisplay {
-    font-family: "digital7";
-    font-size: 50px;
+    font-family: 'Segment7Standard';
+    font-size: 40px;
     text-align: center;
     border:1px inset #333;
     color:#333;
