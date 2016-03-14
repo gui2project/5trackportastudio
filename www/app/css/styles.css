@@ -134,8 +134,8 @@ main .pan label {
 main .solo button,
 main .mute button,
 main .record button {
-    width: 32px;
-    height: 32px;
+    width: 90%;
+    height: 40px;
     font-weight: bold;
 }
 main .solo,
@@ -144,6 +144,7 @@ main .record {
     float: left;
     margin: 0px;
     padding: 0px;
+
 }
 main .fader {
     clear: both;
@@ -208,8 +209,10 @@ div.mixer-editable {
     text-align: center;
 }
 div.track-label {
-    cursor: text;
+        cursor: text;
 }
+
+
 div.master-label {
     cursor: default;
 }
