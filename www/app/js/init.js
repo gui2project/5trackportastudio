@@ -26,5 +26,11 @@ var require = function(src){
     }
 };
 
+//  VARIABLE DECLARATIONS
 var sw = null;
 var dd = null;
+var ts = {
+    user_id: null,
+    user_session: null,
+    session: false
+};

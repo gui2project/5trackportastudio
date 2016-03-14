@@ -6,7 +6,7 @@
 
 header {
     z-index: 1001;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -35,15 +35,15 @@ header {
 }
 
 div.navbar-right-links a {
-    display: inline-block;
     padding: 0 0 0 10px;
     height: 50px;
     line-height: 50px;
+    float: right;
 }
 
-div.navbar-right-links a span.link-sign-in,
-div.navbar-right-links a span.link-register,
-div.navbar-right-links a span.link-sign-out,
+div.navbar-right-links a.link-sign-in span,
+div.navbar-right-links a.link-register span,
+div.navbar-right-links a.link-sign-out span,
 .navbar-info-display,
 .navbar-header > a > span {
     height:38px;
@@ -89,4 +89,9 @@ div.navbar-right-links > a > span:hover {
     color: #FAFAFA;
     float:left;
 
+}
+a.link-register,
+a.link-sign-in,
+a.link-sign-out{
+    display: none;
 }

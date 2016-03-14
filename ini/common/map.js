@@ -37,6 +37,10 @@ var map = {
         {
             web: '/dep/jquery-validation/',
             sys: paths.jqueryvalidation
+        },
+        {
+            web: '/dep/js-cookie/',
+            sys: paths.jscookie
         }
     ],
     dynamic: [

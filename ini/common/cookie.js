@@ -11,11 +11,15 @@ var root            = global.app.root
 //  Database configurations
 var cookie = {
     options: {
-        path:"/",
+        path:"/"//,
         //domain: "",
-        secure: false,
+        //secure: false,
         //httpOnly: "",
-        firstPartyOnly: true
+        //firstPartyOnly: true
+    },
+    ts: {
+        user: 'ts_user_id',
+        session: 'ts_user_session'
     },
     secret: process.env.TS_COOKIE_SECRET
 };

@@ -37,10 +37,10 @@ var middleware = function(app, mdb){
     var api = require(ini.path.apiHandler)(app);
 
     //  Get user from the database
-    api.add({   "url": urlJoin("/api", "get", "user", ":email"),
-                "param": {
-                    ":email": { "desc": "email to search for", "opt": null }
-                },
+    api.add({   "url": urlJoin("/api", "get", "user", ":id"),
+                "param": [
+                    {":id": { "desc": "id to search for", "opt": [null] }}
+                ],
                 "desc": "Gets a user from the database.",
                 "return": "GET"
             },
@@ -53,7 +53,7 @@ var middleware = function(app, mdb){
 
     //  Get list of effects
     api.add({   "url": urlJoin("/api", "get", "effects"),
-                "param": null,
+                "param": [null],
                 "desc": "Gets a list of effects.",
                 "return": "GET"
             },
@@ -62,13 +62,33 @@ var middleware = function(app, mdb){
                     api.response(res, false, data, obj)
             });
 
+    //  Checks if a session is valid
+    api.add({   "url": urlJoin("/api", "get", "session", "valid"),
+                "param": [null],
+                "desc": "Checks if a session is valid.",
+                "return": "GET"
+            },
+            function(req, res, obj){
+                mdb.models.session.findOne({ 'hash': req.cookies[ini.cookie.ts.user] }, 'user live', function (err, session) {
+                    console.log(session);
+                    if (session == null) {
+                        api.response(res, false, false, obj);
+                    } else if (req.cookies[ini.cookie.ts.user] == session.user) {
+                        api.response(res, false, true, obj);
+                    } else {
+                        api.response(res, false, false, obj);
+                    }
+                });
+            });
+
     //  Add a user to the database
     api.add({   "url": urlJoin("/api", "post", "user"),
-                "param": {
-                    ":name": { "desc": "Name", "opt": null },
-                    ":email": { "desc": "email", "opt": null },
-                    ":pass": { "desc": "password", "opt": null }
-                },
+                "param": [
+                    {":name": { "desc": "Name", "opt": [null] }},
+                    {":email": { "desc": "email", "opt": [null] }},
+                    {":pass": { "desc": "password", "opt": [null] }},
+                    {":login": { "desc": "Wether to perform a login", "opt": ["true","false"] }}
+                ],
                 "desc": "Adds a user to the database.",
                 "return": "POST"
             },
@@ -83,7 +103,26 @@ var middleware = function(app, mdb){
                         var hash = security.hash(req.body.pass, salt);
 
                         var myuser = new mdb.models.users({name: req.body.name, email: req.body.email, hash: hash, salt: salt, projects: null});
-                        myuser.save(function(err, doc){api.response(res, err, doc, obj);});
+                        myuser.save(function(err, user){
+                            if (req.body.login) {
+                                var salt1 = security.salt();
+                                var salt2 = security.salt();
+                                var sessionhash = security.hash(salt1, salt2);
+
+                                var mysession = new mdb.models.session({hash: sessionhash, user: user['_id'], time: new Date().getTime(), live: true});
+                                mysession.save(function(err, session){
+                                    global.app.console.log(msg, "Unique session made.")
+
+                                    res.cookie(ini.cookie.ts.user, user['_id'], ini.cookie.options);
+                                    res.cookie(ini.cookie.ts.session, sessionhash, ini.cookie.options);
+
+                                    api.response(res, err, true, obj);//api.response(res, null, true, obj);
+                                });
+
+                            } else {
+                                api.response(res, err, doc, obj);
+                            }
+                        });
                     } else {
                         global.app.console.log(msg, "Duplicate user found - User is not being added.")
                         api.response(res, true, true, obj);
@@ -94,10 +133,10 @@ var middleware = function(app, mdb){
 
     //  Login a user
     api.add({   "url": urlJoin("/api", "post", "login"),
-                "param": {
-                    ":email": { "desc": "email", "opt": null },
-                    ":pass": { "desc": "password", "opt": null }
-                },
+                "param": [
+                    {":email": { "desc": "email", "opt": [null] }},
+                    {":pass": { "desc": "password", "opt": [null] }}
+                ],
                 "desc": "Authenticates a user.",
                 "return": "POST"
             },
@@ -127,8 +166,8 @@ var middleware = function(app, mdb){
                                     mysession.save(function(err, doc){
                                         global.app.console.log(msg, "Unique session made.")
 
-                                        res.cookie('ts.user.id', person['_id'], ini.cookie.options);
-                                        res.cookie('ts.user.session', sessionhash, ini.cookie.options);
+                                        res.cookie(ini.cookie.ts.user, person['_id'], ini.cookie.options);
+                                        res.cookie(ini.cookie.ts.user, sessionhash, ini.cookie.options);
 
                                         api.response(res, err, doc, obj);//api.response(res, null, true, obj);
                                     });
@@ -155,18 +194,18 @@ var middleware = function(app, mdb){
 
     //  Logout a user
     api.add({   "url": urlJoin("/api", "get", "logout"),
-                "param": null,
+                "param": [null],
                 "desc": "Deauthenticates a user.",
                 "return": "GET"
             },
             function(req, res, obj){
 
-                mdb.models.session.update( {'user': req.cookies['ts.user.id'], 'hash': req.cookies['ts.user.session']},
+                mdb.models.session.update( {'user': req.cookies[ini.cookie.ts.user], 'hash': req.cookies[ini.cookie.ts.session]},
                                            {live: false},
                                            function (err, numberAffected, rawResponse) {
                     global.app.console.log(msg, "Session terminating.")
-                    res.clearCookie('ts.user.id');
-                    res.clearCookie('ts.user.session');
+                    res.clearCookie(ini.cookie.ts.user);
+                    res.clearCookie(ini.cookie.ts.session);
                     api.response(res, null, true, obj);
                 });
             });
@@ -174,9 +213,9 @@ var middleware = function(app, mdb){
 
     //  Get document from the database
     api.add({   "url": urlJoin("/api", "get", "doc", ":alias"),
-                "param": {
-                    ":alias": { "desc": "Alias of document to retrieve.", "opt": fileOptions() }
-                },
+                "param": [
+                    {":alias": { "desc": "Alias of document to retrieve.", "opt": fileOptions() }}
+                ],
                 "desc": "Gets an allowed document from the application",
                 "return": "GET"
             },
@@ -198,6 +237,7 @@ var middleware = function(app, mdb){
 
     //  Adding error handling and help
     api.end();
+
 };
 
 //  Export content

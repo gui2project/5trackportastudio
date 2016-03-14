@@ -15,7 +15,9 @@ var DropDown = function(){
 
     var _this = this;
 
-    this.id = null;     //  The id of the dropdown element
+    this.dropDownId = null;     //  The dropDownId of the dropdown element
+    this.navigationId = null;   //  The navigationId of the dropdown element
+
     this.state = false;  //  true for open, false for closed
 
     /**
@@ -23,23 +25,23 @@ var DropDown = function(){
      *
      *  Initializes the dropdown menu, should be run on load.
      *
-     *  @param  id      The id of the dropdown element
+     *  @param  dropDownId      The dropDownId of the dropdown element
      *
      */
-    this.init = function(id){
-        this.setId(id);
-        this.show('INIT');
-    };
+    this.init = function(dropDownId, navigationId){
+        _this.dropDownId = dropDownId;
+        _this.navigationId = navigationId;
 
-    /**
-     *  @name   setId
-     *
-     *  Sets the dropdown id
-     *
-     *  @param  myid    The id of the dropdown element
-     */
-    this.setId = function(myid){
-        _this.id = myid;
+        // Close on external click
+        $(document).mouseup(function (e) {
+            if ((!$(_this.dropDownId).is(e.target) &&
+                    $(_this.dropDownId).has(e.target).length === 0) &&
+                (!$(_this.navigationId).is(e.target) &&
+                    $(_this.navigationId).has(e.target).length === 0)){
+                    _this.dropdown.close();
+                }});
+
+        this.show('INIT');
     };
 
     /**
@@ -53,9 +55,14 @@ var DropDown = function(){
          *
          *  Opens the menu
          */
-        open: function(){
-            $(_this.id).slideDown( 600 );
-            _this.state = true;
+        open: function(open){
+            open = _this.default(open, true);
+            if (open) {
+                $(_this.dropDownId).slideDown( 600 );
+                _this.state = true;
+            } else {
+                _this.dropdown.close();
+            }
         },
 
         /**
@@ -64,7 +71,7 @@ var DropDown = function(){
          *  Closes the menu
          */
         close: function(){
-            $(_this.id).slideUp( 600 );
+            $(_this.dropDownId).slideUp( 600 );
             _this.state = false;
         },
 
@@ -73,8 +80,8 @@ var DropDown = function(){
          *
          *  Toggles the dropdown
          */
-         toggle: function(){
-             _this.state ? _this.dropdown.close() : _this.dropdown.open() ;
+        toggle: function(){
+            _this.state ? _this.dropdown.close() : _this.dropdown.open() ;
         }
     };
 
@@ -95,7 +102,7 @@ var DropDown = function(){
              */
             fxCatalog: function(json){
 
-                var container = _this.id + ' .fx-catalog-panel .content';
+                var container = _this.dropDownId + ' .fx-catalog-panel .content';
 
                 //sort FX catalog by name
                 json.sort(function(a, b){
@@ -107,7 +114,6 @@ var DropDown = function(){
                 // add items to catalog
                 $(container).html("");
                 json.forEach(function(item){
-                    console.log(item);
                     var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span';
                     var desc = '<span class="fx-catalog-panel-item-desc">' + item.desc + '</span';
                     var image = '<span class="fx-catalog-panel-item-image">' + item.image + '</span';
@@ -136,7 +142,7 @@ var DropDown = function(){
                 // add items to catalog
                 json.forEach(function(item){
                     var htmlObj = item;
-                    $(_this.id + ' .mix-catalog-panel').append(htmlObj);
+                    $(_this.dropDownId + ' .mix-catalog-panel').append(htmlObj);
                 });
             },
 
@@ -148,8 +154,8 @@ var DropDown = function(){
              *  @param  obj    The json object that holds the account information
              */
             account: function(obj){
-                $(_this.id + ' .account-panel-name').html(obj.name);
-                $(_this.id + ' .account-panel-email').html(obj.email);
+                $(_this.dropDownId + ' .account-user-name').html(obj.name);
+                $(_this.dropDownId + ' .account-user-email').html(obj.email);
             },
 
             /**
@@ -160,10 +166,10 @@ var DropDown = function(){
              *  @param  obj    The json object that holds the extra information
              */
             information: function(obj){
-                $(_this.id + ' .information-panel-title').html(obj.title);
-                $(_this.id + ' .information-panel-image').html(obj.image);
-                $(_this.id + ' .information-panel-desc').html(obj.desc);
-                //$(_this.id + ' .information-panel-actions').html(obj.actions);
+                $(_this.dropDownId + ' .information-panel-title').html(obj.title);
+                $(_this.dropDownId + ' .information-panel-image').html(obj.image);
+                $(_this.dropDownId + ' .information-panel-desc').html(obj.desc);
+                //$(_this.dropDownId + ' .information-panel-actions').html(obj.actions);
             }
         },
 
@@ -179,12 +185,12 @@ var DropDown = function(){
         /**
          *  @name display
          *
-         *  displays or hides a panel
+         *  displays or hdropDownIdes a panel
          */
         display:{
             toggle: function(bool, toggleclass){
-                bool ? $(_this.id + ' ' + toggleclass).addClass("display") :
-                        $(_this.id + ' ' + toggleclass).removeClass("display");
+                bool ? $(_this.dropDownId + ' ' + toggleclass).addClass("display") :
+                        $(_this.dropDownId + ' ' + toggleclass).removeClass("display");
             },
             all: function(state){
                 _this.panel.display.left(state);
@@ -201,11 +207,13 @@ var DropDown = function(){
                 _this.panel.display.toggle(state, '.mix-catalog-panel' );
                 _this.panel.display.toggle(state, '.about-panel' );
                 _this.panel.display.toggle(state, '.contact-panel' );
+                _this.panel.display.toggle(state, '.api-panel' );
             }
         },
 
         wait: {
             start: function (position) {
+               return;
                 switch(position){
                     case 'LEFT':
                         _this.panel.display.left(false);
@@ -223,6 +231,7 @@ var DropDown = function(){
                 }
             },
             stop: function (position) {
+                return;
                 switch(position){
                     case 'LEFT':
                         _this.panel.display.toggle(false, '.wait-left-panel' );
@@ -240,6 +249,34 @@ var DropDown = function(){
 
     };
 
+    this.navigation = {
+        display:{
+            toggle: function(bool, toggleclass){
+                bool ?  $(_this.navigationId + ' ' + toggleclass).addClass("display") :
+                        $(_this.navigationId + ' ' + toggleclass).removeClass("display");
+            },
+            all: function(state){
+                _this.navigation.display.secured(state);
+                _this.navigation.display.unsecured(state);
+            },
+            secured: function(state){
+                _this.navigation.display.toggle(state, '.link-sign-out' );
+            },
+            unsecured: function(state){
+                _this.navigation.display.toggle(state, '.link-sign-in' );
+                _this.navigation.display.toggle(state, '.link-register' );
+            },
+            lock: function(state){
+                _this.navigation.display.secured(state);
+                _this.navigation.display.unsecured(!state);
+            }
+        }
+    };
+
+    this.default = function(opt, def) {
+        return (typeof opt === 'undefined') ? def : opt;
+    };
+
     /**
      *  @name   show
      *
@@ -247,29 +284,30 @@ var DropDown = function(){
      *
      *  @param  view    The view to display
      */
-    this.show = function( view ){
+    this.show = function(view, opt, open){
 
         var url, success, pre, fail, state;
-        var url1 = "/api/get/projects/user/56e154d5cc33fe584c3756a8";
-            //var url = "/api/get/projects/user/:id";
 
-            var url2 = "/api/get/user/56e154d5cc33fe584c3756a8";
+        opt = _this.default(opt, false);
+        open = _this.default(open, true);
+        state = true;
+
         if (view == 'TOGGLE'){
             this.dropdown.toggle();
             return;
         }
 
         this.panel.display.all(false);
-
-        state = true;
+        this.navigation.display.lock(opt);
 
         switch (view){
             case 'ALL':
                 this.panel.display.all(true);
-                this.dropdown.open();
+                this.dropdown.open(open);
                 return;
 
             case 'INIT':
+
                 this.panel.display.toggle(state, '.login-panel' );
                 this.panel.display.toggle(state, '.register-panel' );
                 this.panel.display.toggle(state, '.about-panel' );
@@ -277,28 +315,24 @@ var DropDown = function(){
 
             case 'FX':
                 url = "/api/get/effects";
-                pre = function(){
-                    _this.panel.wait.start('RIGHT');
-                };
+                pre = function(){_this.panel.wait.start('RIGHT');};
                 success = function(data){
-                    console.log(data);
                     _this.panel.set.fxCatalog(data);
                     _this.panel.wait.stop('RIGHT');
 
                     _this.panel.display.toggle(true, '.fx-catalog-panel' );
                     _this.panel.display.toggle(true, '.account-panel-name' );
 
-                    _this.dropdown.open();
+                    _this.dropdown.open(open);
                 };
                 fail = function(data) {
-                    console.log(data);
                     alert('ERROR');
                     _this.panel.wait.stop('RIGHT');
 
                     _this.panel.display.toggle(true, '.fx-catalog-panel' );
                     _this.panel.display.toggle(true, '.account-panel-name' );
 
-                    _this.dropdown.open();
+                    _this.dropdown.open(open);
                 }
 
                 this.panel.load(url, pre, success, fail);
@@ -307,21 +341,77 @@ var DropDown = function(){
 
             case 'MIX':
                 this.panel.display.toggle(state, '.mix-catalog-panel' );
-                this.panel.display.toggle(state, '.account-panel-name' );
-                this.dropdown.open();
+
+                var url = '/api/get/user/' + ts.user_id;
+                var pre = function(){
+                    _this.panel.wait.start('LEFT');
+                };
+                var success = function(data){
+                    _this.panel.set.account(data);
+                    _this.panel.wait.stop('LEFT');
+                    _this.panel.display.toggle(state, '.account-panel' )
+                };
+                var fail = function(data){
+                    _this.panel.set.account({name: 'Unknown user name', email: 'Unknown user email'});
+                    _this.panel.wait.stop('LEFT');
+                    _this.panel.display.toggle(state, '.account-panel' )
+                };
+
+                _this.panel.load(url, pre, success, fail);
+                this.dropdown.open(open);
                 return;
 
             case 'LOGIN':
                 this.panel.display.toggle(state, '.login-panel' );
                 this.panel.display.toggle(state, '.about-panel' );
-                this.dropdown.open();
+                this.dropdown.open(open);
                 return;
-
             case 'REGISTER':
                 this.panel.display.toggle(state, '.register-panel' );
                 this.panel.display.toggle(state, '.about-panel' );
-                this.dropdown.open();
+                this.dropdown.open(open);
                 return;
+            case 'API':
+
+                url = '/api/get/help/';
+                pre = function(){
+                    $("#api").html('');
+                    _this.panel.wait.start('RIGHT');
+                };
+                success = function(data) {
+                    data.forEach(function(item){
+                        var opt, params, desc, url, pn, pd, po;
+                        pn = pd = po = params = desc = '';
+
+                        item.param.forEach(function(param){
+                            for ( var key in param) {
+                                //console.log(key, param[key].desc );
+                                pn = key;
+                                pd = param[key].desc;
+                                po = '';
+                                po = param[key].opt.join(' | ');
+
+                                params += '<div class="api-row-tabbed"><span class="api-item-param">' + pn +'</span><span class="api-item-param-description">' + pd + '</span></div>';
+                                if (po) params += '<div class="api-row-options"><span class="api-item-param-options">'+ po + '</span></div>';
+                            }
+                        });
+
+                        url = '<div class="api-row"><span class="api-item-url">' + item.url + '</span></div>'
+
+                        desc = '<div class="api-row-tabbed"><span class="api-item">' + item.desc + '</span></div>';
+                        html = '<div class="api-entry row form-group col-md-12 col-sm-12 col-xs-12">' + url + params + desc + '</div>'
+
+                        $("#api").append(html);
+                    });
+                    //_this.panel.wait.stop('RIGHT');
+                    _this.panel.display.toggle(state, '.api-panel' );
+                };
+
+                fail = function(){ console.log('api-failed'); _this.panel.wait.stop('RIGHT');};
+                _this.panel.load(url, pre, success, fail);
+                this.dropdown.open(open);
+                return;
+
         }
     };
 };

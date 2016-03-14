@@ -42,16 +42,17 @@ mixin dropdown(id)
                             button.col-md-12.col-sm-12.col-xs-12(id="dropdown-button-register") register
 
             .panel.account-panel.col-md-12.col-sm-12.col-xs-12
+                form(id="account-form", action="", method="post", novalidate="novalidate")
                 .row.title.col-md-12.col-sm-12.col-xs-12
                     i.fa.fa-cog
                     span.sys-font account settings
                 .row.form-group.content.col-md-12.col-sm-12.col-xs-12
-                    .row.col-md-12.col-sm-12.col-xs-12
-                        .account-title account
-                    .row.col-md-12.col-sm-12.col-xs-12
-                        .account-user-name name goes here
-                    .row.col-md-12.col-sm-12.col-xs-12
-                        .account-user-email email goes here
+                    .row.form-group.col-md-12.col-sm-12.col-xs-12
+                        label(for="account-user-name") name
+                        .account-user-name(id="account-user-name", name="account-user-name") name goes here
+                    .row.form-group.col-md-12.col-sm-12.col-xs-12
+                        label(for="account-user-email") email
+                        .account-user-email(id="account-user-email", name="account-user-email") email goes here
 
             .panel.information-panel.col-md-12.col-sm-12.col-xs-12
                 .row.title.col-md-12.col-sm-12.col-xs-12
@@ -93,3 +94,8 @@ mixin dropdown(id)
                     i.fa.fa-envelope-o
                     span.sys-font contact us
                 .row.form-group.content.col-md-12.col-sm-12.col-xs.12
+            .panel.api-panel.col-md-12.col-sm-12.col-xs-12
+                .row.form-group.title.col-md-12.col-sm-12.col-xs-12
+                    i.fa.fa-terminal
+                    span.sys-font api
+                .row.form-group.content.col-md-12.col-sm-12.col-xs.12(id='api')

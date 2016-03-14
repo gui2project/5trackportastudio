@@ -1,6 +1,5 @@
 include ../partial/navigation.jade
 include ../partial/footer.jade
-include ../partial/dropdown.jade
 
 doctype html
 html
@@ -25,11 +24,19 @@ html
     script(src='/dep/angular/angular.min.js')
     script(src='/dep/jquery/jquery.min.js')
     script(src='/dep/jquery-validation/jquery.validate.js')
+    script(src='/dep/js-cookie/js.cookie.js')
     script(src='/dep/bootstrap/js/bootstrap.min.js')
 
     link(rel='stylesheet', href='/dep/css/bootstrap-slider.css')
     link(rel='stylesheet', href='/dep/bootstrap/css/bootstrap.min.css')
     script(src='/dep/js/bootstrap-slider.js')
+
+    //- link(rel="stylesheet", href="/dep/css/jquery.jscrollpane.css")
+    //- script(src="/dep/js/jquery.mousewheel.js")
+    //- script(src="/dep/js/jquery.jscrollpane.min.js")
+
+    //-  Application function library
+    script(src='/app/js/lib.js')
 
     //- Mixins
     link(rel='stylesheet', href='/app/css/StopWatch.css')
@@ -66,4 +73,3 @@ html
     +navigation()
     block content
     +footer()
-    +dropdown('partial')

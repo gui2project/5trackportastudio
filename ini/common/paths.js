@@ -21,6 +21,7 @@ var paths = {
     jquery:      path.join(root, 'node_modules', 'jquery', 'dist'),
     jqueryui:    path.join(root, 'node_modules', 'jquery-ui'),
     jqueryvalidation: path.join(root, 'node_modules', 'jquery-validation', 'dist'),
+    jscookie:    path.join(root, 'node_modules', 'js-cookie', 'src'),
     nodeModules: path.join(root, 'node_modules'),
     mongodb:     path.join(root, 'server', 'lib', 'mongodb'),
     partial:     path.join(root, 'server', 'mvc', 'views', 'partial'),
