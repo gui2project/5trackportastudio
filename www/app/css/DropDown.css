@@ -4,7 +4,7 @@
  *  Contains dropdown related styles.
  */
 
- .dropdown {
+ .dropdown{
     position: absolute;
     top: 50px;
     left: 0;
@@ -16,6 +16,15 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom: outset 1px #333;
+}
+
+.dropdown .holder{
+    overflow-y: auto;
+    height: 700px;
+    float: left;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 .dropdown-left, .dropdown-right {
@@ -83,14 +92,17 @@
     float: left !important;
 }
 
-.api-item-url {font-size:16px;color:#18A5D6;}
+.api-item-url {
+    font-size:16px;
+    color:#149BDF;
+    }
 .api-item-param {
     font-style: italic;
     margin-right: 25px;
     width: 40px;
     display: inline-block;
     color: #FF007D;
-    }
+}
 .api-row-tabbed {
     margin-left:25px;
 }
@@ -101,7 +113,7 @@
     color: #FF007D;
 }
 .api-row-options {
-    color:#666;
+    color:#149BDF
 }
 .api-url-param {
     font-style: italic;

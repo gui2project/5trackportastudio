@@ -223,7 +223,7 @@ div.master-label {
     display: block !important;
 }
 
-.error + .error{
+label.error{
     position: absolute;
     bottom: -20px;
     right: 13px;
@@ -233,11 +233,11 @@ div.master-label {
     color: #FF007D;
 }
 
-.error + .error,
+.error,
 .panel-entry,
 span.hover
  {
-    background: #202020;
+    background: #333333;
     border-radius: 5px;
     padding: 5px;
     border: 1px solid #181818;
@@ -285,4 +285,30 @@ a.menu:hover span.hover{
 }
 a.menu {
     margin: 0 5px 0 0;
+}
+
+.icon-right{
+    float:right;
+}
+
+
+span.icon-right .fa{
+    display:none;
+    color: #149BDF;
+}
+
+.icon-right.err .fa-times,
+.icon-right.err .fa-unlock {
+    color:#FF007D;
+    display:block;
+}
+
+.icon-right.pass .fa-check,
+.icon-right.pass .fa-lock {
+    color:#149BDF;
+    display:block;
+}
+
+.link-api {
+    margin-left:5px;
 }

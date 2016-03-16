@@ -4,32 +4,35 @@
  *  The Document on load function, kicks off after a page is rendered.
  */
 
-//  PRELOAD
-
-//  Get cookie values
-ts.user_id = getCookie('ts_user_id');
-ts.user_session = getCookie('ts_user_session');
-
-//  INIT components for initial html view
-dd = new DropDown();
-dd.init('#partial', '#navigation');
-
-sw = new StopWatch();
-
-//  Determine if session is valid and prepare panels - needs ts variable
-validateSession();
-
 //  ONLOAD
 $( document ).ready(function() {
 
     //  INIT COMPONENTS
+
+    dd = new DropDown();
+    sw = new StopWatch();
+
+    dd.init({
+        dropDownId: '#partial',
+        navigationId: '#navigation',
+        speed: 600
+    });
     sw.run('INIT', '#stopWatch-1 div.timedisplay');
-    dd.show('INIT', ts.session = false, false);
+
+    //  Determine if session is valid and prepare panels
+    validateSession(function(){
+        console.log('initial setup - session');
+        dd.show('MIX');
+    }, function(){
+        console.log('initial setup - no session');
+        dd.show('INIT');
+    });
 
     //  FORM VALIDATION
 
     // Setup form validation on the #register-form element
-    $("#register-form").validate({
+    var registerValidator = $("#register-form").validate({
+        focusInvalid: false,
 
         // Specify the validation rules
         rules: {
@@ -74,31 +77,60 @@ $( document ).ready(function() {
         },
 
         submitHandler: function(form) {
-             var cred = {name: $('#register-name').val(), email: $('#register-email').val(), pass: $('#register-password-1').val(), login: true};
-             var url = '/api/post/user/';
+            var regCheck = {};
+            regCheck.registered = {"register-email": "Email in use"};
+            regCheck.server = {"register-email": "Server error, refresh and try again."};
+            regCheck.cookie = {"register-email": "Invalid cookies."};
 
-             $.ajax({
+            $.ajax({
                 method: "POST",
-                url: url,
-                data: cred
+                url: '/api/post/user/',
+                data: {
+                    name: $('#register-name').val(),
+                    email: $('#register-email').val(),
+                    pass: $('#register-password-1').val(),
+                    login: true
+                }
             }).done(function(data) {
-                console.log('User registered');
+                validateSession(function(){
+                    console.log('User registered');
+                     dd.show('MIX');
+                     $("#register-form").closest('form').find("input[type=text], input[type=password], input[type=email], textarea").val("");
+                     $("#register-form .icon-right").removeClass("err");
+                     $("#register-form .icon-right").removeClass("pass");
 
-                ts = {
-                    user_id: getCookie('ts_user_id'),
-                    user_session: getCookie('ts_user_session')
-                };
-
-                dd.show('MIX', true);
-
+                },function(){
+                    console.log('registration-failed: Check your cookies.');
+                    $("#register-form").closest('form').find("input[type=password]").val("");
+                    registerValidator.showErrors(regCheck.cookie);
+                });
             }).fail(function(data){
-                console.log('Registration failed');
-            });
+                validateSession(function(){
+                    console.log('registration-failed: There was an error processing the form.');
+                    $("#register-form").closest('form').find("input[type=password]").val("");
+                    registerValidator.showErrors(regCheck.server);
+                },function(){
+                    console.log('registration-failed: user is registered');
+                    $("#register-form").closest('form').find("input[type=password]").val("");
+                    registerValidator.showErrors(regCheck.registered);
+                });
+              });
+        },
+
+        highlight: function(element, errorClass, validClass) {
+            $(".icon-right." + element.id).addClass("err");
+            $(".icon-right." + element.id).removeClass("pass");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(".icon-right." + element.id).addClass("pass");
+            $(".icon-right." + element.id).removeClass("err");
         }
     });
 
     // Setup form validation on the #login-form element
-    $("#login-form").validate({
+    var loginValidator = $("#login-form").validate({
+
+        focusInvalid: false,
 
         // Specify the validation rules
         rules: {
@@ -125,41 +157,95 @@ $( document ).ready(function() {
         },
 
         submitHandler: function(form) {
-             var cred = {email: $('#login-email').val(), pass: $('#login-password').val()};
-             var url = '/api/post/login/';
+             var credCheck = {};
+             credCheck.fail = {"login-password": "Invalid credentials."};
+             credCheck.server = {"login-password": "Server error, refresh and try again."};
+             credCheck.cookie = {"login-password": "Invalid cookies."};
 
              $.ajax({
                 method: "POST",
-                url: url,
-                data: cred
+                url: '/api/post/login/',
+                data: {
+                    email: $('#login-email').val(),
+                    pass: $('#login-password').val()
+                }
             }).done(function() {
-                console.log('login');
-
-                ts = {
-                    user_id: getCookie('ts_user_id'),
-                    user_session: getCookie('ts_user_session')
-                };
-
-                dd.show('MIX', true);
-
+                validateSession(function(){
+                    console.log('user logged in');
+                    $("#login-form").closest('form').find("input[type=text], input[type=password], input[type=email], textarea").val("");
+                    $("#login-form .icon-right").removeClass("err");
+                    $("#login-form .icon-right").removeClass("pass");
+                    dd.show('MIX');
+                },function(){
+                    console.log('login-failed: Check your cookies.');
+                    $("#login-form").closest('form').find("input[type=password]").val("");
+                    loginValidator.showErrors(credCheck.cookie);
+                });
             }).fail(function(){
-                console.log('login-failed');
+                validateSession(function(){
+                    console.log('login-failed: There was an error processing the form.');
+                    $("#login-form").closest('form').find("input[type=password]").val("");
+                    loginValidator.showErrors(credCheck.server);
+                },function(){
+                    console.log('login-failed: invalid credentials.');
+                    $("#login-form").closest('form').find("input[type=password]").val("");
+                    loginValidator.showErrors(credCheck.fail);
+                });
             });
+        },
+
+        highlight: function(element, errorClass, validClass) {
+            console.log(element.id);
+            $(".icon-right." + element.id).addClass("err");
+            $(".icon-right." + element.id).removeClass("pass");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(".icon-right." + element.id).addClass("pass");
+            $(".icon-right." + element.id).removeClass("err");
         }
+    });
+
+    //  CLICK CONTROLS
+
+    // Setup logo
+    $(".navbar-brand-label").on('click', function(){
+        dd.show('TOGGLE');
     });
 
     // Setup up logout
     $(".link-sign-out").on('click', function(){
-        var url = '/api/get/logout/';
-
         $.ajax({
-            url: url
+            url: '/api/get/logout/'
         }).done(function() {
-            console.log('logged out');
-            dd.show('LOGIN', false);
+            validateSession(function(){
+                console.log('logged-out-failed');
+            }, function(){
+                console.log('logged-out');
+                dd.show('LOGIN');
+            });
         }).fail(function(){
-            console.log('logged out-failed');
+            validateSession(function(){
+                console.log('logged-out-failed: cookies were not deleted');
+            }, function(){
+                console.log('logged-out-failed: server error');
+            });
+
         });
+    });
+
+    // Setup up sign-in
+    $(".link-sign-in").on('click', function(){
+        dd.show('LOGIN');
+    });
+
+    // Setup up register
+    $(".link-register").on('click', function(){
+        dd.show('REGISTER');
+    });
+
+    // Setup api link
+    $(".link-api").on('click', function(){
+        dd.show('API');
     });
 
 });

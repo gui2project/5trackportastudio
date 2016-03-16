@@ -16,24 +16,25 @@ include ../panels/tutorial-panel.jade
 mixin dropdown(id)
     //  Dropdown
     .dropdown.col-md-12.col-sm-12.col-xs-12(id=id)
-        //  Dropdown left
-        .dropdown-left.col-md-3.col-sm-12.col-xs-12
-            //  Dropdown left wait
-            .panel.wait-left-panel.wait.col-md-12.col-sm-12.col-xs-12
-            //  Dropdown left panels
-            +login-panel()
-            +register-panel()
-            +account-panel()
-            +information-panel()
-            //- +menu-panel()
-        //  Dropdown rigt
-        .dropdown-right.col-md-9.col-sm-12.col-xs-12
-            //  Dropdown right wait
-            .panel.wait-right-panel.wait.col-md-12.col-sm-12.col-xs-12
-            //  Dropdown right panels
-            +fx-catalog-panel()
-            +mix-catalog-panel()
-            +about-panel()
-            +contact-panel()
-            +api-panel()
-            +tutorial-panel()
+        .holder
+            //  Dropdown left
+            .dropdown-left.col-md-3.col-sm-12.col-xs-12
+                //  Dropdown left wait
+                .panel.wait-left-panel.wait.col-md-12.col-sm-12.col-xs-12
+                //  Dropdown left panels
+                +login-panel()
+                +register-panel()
+                +account-panel()
+                +information-panel()
+                //- +menu-panel()
+            //  Dropdown rigt
+            .dropdown-right.col-md-9.col-sm-12.col-xs-12
+                //  Dropdown right wait
+                .panel.wait-right-panel.wait.col-md-12.col-sm-12.col-xs-12
+                //  Dropdown right panels
+                +fx-catalog-panel()
+                +mix-catalog-panel()
+                +about-panel()
+                +contact-panel()
+                +api-panel()
+                +tutorial-panel()

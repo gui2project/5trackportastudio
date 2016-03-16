@@ -1,9 +1,11 @@
 mixin icon-header(title, label, displayName, hoverEnabled)
-    //  Icon
+    //  Icon http://fontawesome.io/
     if (title == 'account-settings')
         i.fa.fa-cog
     else if (title == 'sign-in')
         i.fa.fa-sign-in
+    else if (title == 'registration')
+        i.fa.fa-user-plus
     else if (title == 'menu')
         i.fa.fa-bars
     else if (title == 'fx-catalog')
@@ -18,6 +20,14 @@ mixin icon-header(title, label, displayName, hoverEnabled)
         i.fa.fa-terminal
     else if (title == 'tutorial')
         i.fa.fa-graduation-cap
+    else if (title == 'lock')
+        i.fa.fa-lock
+    else if (title == 'unlock')
+        i.fa.fa-unlock
+    else if (title == 'check')
+        i.fa.fa-check
+    else if (title == 'x')
+        i.fa.fa-times
     //-Determine name
     if (displayName)
         //  Icon label
