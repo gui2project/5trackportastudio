@@ -28,7 +28,7 @@ var projectFiles = {
 
 //  UTILITY
 
-gulp.task( 'clean:gitlock', function() {
+gulp.task( 'rm-gitlock', function() {
   return gulp.src( '/.git/index.lock', { read: false })
     .pipe(rm())
 })
@@ -89,9 +89,13 @@ gulp.task('git-pull', function(){
         function (err) {
             if (err) throw err; })});
 
-//Test change
 
-//  Check syntax
+//  ROUTINES
+
+//  Syntax testing
 gulp.task( 'test-lint', ['lint-js', 'lint-json', 'lint-css', 'lint-jade']);
-gulp.task( 'update-master', ['test-lint', 'git-add', 'git-commit', 'git-pull', 'git-push-master']);
-gulp.task( 'update-heroku', ['update-mater', 'git-push-heroku']);
+
+//  Git updates
+gulp.task( 'git-master', ['test-lint', 'git-add', 'git-commit', 'git-pull', 'git-push-master']);
+gulp.task( 'git-heroku', ['git-master', 'git-push-heroku']);
+gulp.task( 'git-error', ['rm-gitlock'])

@@ -27,7 +27,8 @@ trackstudio
 │   │   ├───models/         Data files
 │   │   └───views/          Jade layouts.
 │   │       ├───layout/     Full page layouts.
-│   │       └───partial/    Block layouts.
+│   │       ├───mixin/      Jade mixins.
+│   │       └───content/    page content.
 │   │
 │   └───routes/             URL routing.
 │
@@ -142,15 +143,10 @@ trackstudio
 ### Heroku
 - To push to https://trackstudio.heroku.com run:
     ```
-    git push origin heroku
+    gulp git-master
     ```
 
 - To push the master branch to https://trackstudio.heroku.com run:
     ```
-    git push origin master:heroku
-    ```
-
-- Or Use `update.sh` to do both
-    ```
-    .\bin\update.sh -ac -M "Commit Message"
+    gulp git-heroku
     ```
