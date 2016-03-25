@@ -53,9 +53,7 @@ gulp.task('lint-jade', function() {
 
 
 //  GIT
-gulp.task('test', function(){
-    console.log(argv.m);
-});
+
 //  Run git add with options
 gulp.task('git-add', function(){
     gulp.src('./')
@@ -88,4 +86,4 @@ gulp.task('git-pull', function(){
 //  Check syntax
 gulp.task( 'test-lint', ['lint-js', 'lint-json', 'lint-css', 'lint-jade']);
 gulp.task( 'update-master', ['test-lint', 'git-add', 'git-commit', 'git-pull', 'git-push-master']);
-gulp.task( 'update-heroku', ['test-lint', 'update-mater', 'git-push-heroku']);
+gulp.task( 'update-heroku', ['update-mater', 'git-push-heroku']);
