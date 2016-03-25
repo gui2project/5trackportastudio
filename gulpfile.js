@@ -10,7 +10,9 @@ var jshint      = require('gulp-jshint');
 var jsonlint    = require("gulp-jsonlint");
 var csslint     = require('gulp-csslint');
 var puglint     = require('gulp-pug-lint');
-var rm          = require( 'gulp-rm' )
+var rm          = require('gulp-rm');
+var notify      = require('gulp-notify');
+
 var git         = require('gulp-git');
 
 //  Variables
@@ -27,6 +29,10 @@ var projectFiles = {
 };
 
 //  UTILITY
+
+var onError = function(err) {
+    console.log(err);
+}
 
 gulp.task( 'rm-gitlock', function() {
   return gulp.src( '/.git/index.lock', { read: false })

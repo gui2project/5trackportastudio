@@ -55,6 +55,8 @@
     "gulp-git": "^1.7.0",
     "gulp-jshint": "^2.0.0",
     "gulp-jsonlint": "^1.1.2",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
     "gulp-pug-lint": "^0.1.6",
     "gulp-rm": "^1.0.0",
     "jshint": "^2.9.1",
