@@ -10,7 +10,7 @@ var jshint      = require('gulp-jshint');
 var jsonlint    = require("gulp-jsonlint");
 var csslint     = require('gulp-csslint');
 var puglint     = require('gulp-pug-lint');
-
+var rm          = require( 'gulp-rm' )
 var git         = require('gulp-git');
 
 //  Variables
@@ -25,6 +25,13 @@ var projectFiles = {
    ],
    json: ['./server/mvc/models/*.json']
 };
+
+//  UTILITY
+
+gulp.task( 'clean:gitlock', function() {
+  return gulp.src( '/.git/index.lock', { read: false })
+    .pipe(rm())
+})
 
 //  CODE LINTERS
 
@@ -82,6 +89,7 @@ gulp.task('git-pull', function(){
         function (err) {
             if (err) throw err; })});
 
+//Test change
 
 //  Check syntax
 gulp.task( 'test-lint', ['lint-js', 'lint-json', 'lint-css', 'lint-jade']);
