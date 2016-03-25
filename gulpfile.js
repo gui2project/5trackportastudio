@@ -11,8 +11,8 @@ var jsonlint    = require("gulp-jsonlint");
 var csslint     = require('gulp-csslint');
 var puglint     = require('gulp-pug-lint');
 var rm          = require('gulp-rm');
-var notify      = require('gulp-notify');
-
+var fail        = require('gulp-fail');
+var gulpIf      = require('gulp-if');
 var git         = require('gulp-git');
 
 //  Variables
@@ -28,17 +28,7 @@ var projectFiles = {
    json: ['./server/mvc/models/*.json']
 };
 
-//  UTILITY
-
-var onError = function(err) {
-    console.log(err);
-}
-
-gulp.task( 'rm-gitlock', function() {
-  return gulp.src( '/.git/index.lock', { read: false })
-    .pipe(rm())
-})
-
+var message     = argv.m ? argv.m : 'I was lazy and didnt give Gulp a commit message.';
 //  CODE LINTERS
 
 //  Javascript
@@ -66,6 +56,10 @@ gulp.task('lint-jade', function() {
 
 
 //  GIT
+gulp.task( 'rm-gitlock', function() {
+  return gulp.src( '/.git/index.lock', { read: false })
+    .pipe(rm())
+})
 
 //  Run git add with options
 gulp.task('git-add', function(){
@@ -75,7 +69,7 @@ gulp.task('git-add', function(){
 //  Run git commit with options
 gulp.task('git-commit', function(){
     gulp.src('./')
-        .pipe(git.commit(argv.m))});
+        .pipe(git.commit(message))});
 
 //  Push to master
 gulp.task('git-push-master', function(){
@@ -102,6 +96,6 @@ gulp.task('git-pull', function(){
 gulp.task( 'test-lint', ['lint-js', 'lint-json', 'lint-css', 'lint-jade']);
 
 //  Git updates
-gulp.task( 'git-master', ['test-lint', 'git-add', 'git-commit', 'git-pull', 'git-push-master']);
+gulp.task( 'git-error', ['rm-gitlock']);
+gulp.task( 'git-master', ['test-lint', 'git-error', 'git-add', 'git-commit', 'git-pull', 'git-push-master']);
 gulp.task( 'git-heroku', ['git-master', 'git-push-heroku']);
-gulp.task( 'git-error', ['rm-gitlock'])
