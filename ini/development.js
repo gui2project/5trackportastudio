@@ -18,5 +18,8 @@ var ini = {
     security:   require('./common/security.js')
 };
 
+//  Default override
+ini.security.ssl.state = false;
+
 // Export Content
 module.exports = ini;

@@ -1,0 +1,9 @@
+include ./splash-cover.jade
+include ./splash-browser.jade
+include ./splash-microphone.jade
+
+mixin splash()
+    //Splash Section
+    +splash-cover()
+    +splash-microphone()
+    +splash-browser()

@@ -48,26 +48,6 @@ var map = {
             web: '/',
             sys: path.join(paths.ctrl, 'home'),
             call: 'index'
-        },
-        {
-            web: '/home',
-            sys: path.join(paths.ctrl, 'home'),
-            call: 'home'
-        },
-        {
-            web: '/about',
-            sys: path.join(paths.ctrl, 'about'),
-            call: 'index'
-        },
-        {
-            web: '/contact',
-            sys: path.join(paths.ctrl, 'contact'),
-            call: 'index'
-        },
-        {
-            web: '/faq',
-            sys: path.join(paths.ctrl, 'faq'),
-            call: 'index'
         }
     ]
 };

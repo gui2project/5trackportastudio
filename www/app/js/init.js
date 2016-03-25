@@ -4,8 +4,21 @@
  *  This file runs before any other scripts to initialize the system
  */
 
+//  CONTEXT DETERMINATIONS
+
+//  Determine audio context
+window.AudioContext     = window.AudioContext ||
+                          window.webkitAudioContext;
+
+//  Determine navigator for microphone detection
+navigator.getUserMedia  = (navigator.getUserMedia ||
+                          navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia ||
+                          navigator.msGetUserMedia);
+
 //  VARIABLE DECLARATIONS
 
+var ac = null;              //  Audio Context
 var sw = null;              //  Stop watch
 var dd = null;              //  Drop Down
 var ts = {                  //  trackstudio cookies
@@ -152,4 +165,56 @@ var validateSession = function(callSession, callNoSession){
  */
 var dVar = function(param, def) {
     return (typeof param === 'undefined') ? def : param;
+};
+
+/**
+ *  @name   getMicrophone
+ *
+ *  Detects the microphone and sets up callbacks
+ *
+ *  @param  micSuccess     The microphone success callback
+ *  @param  micFailure     The microphone failure callback
+ *  @param  browserFailure The browser incompatibility callback
+ */
+var getMicrophone = function(micSuccess, micFailure, browserFailure){
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia({audio: true}, micSuccess, micFailure);
+    } else browserFailure();
+};
+
+//http://stackoverflow.com/questions/2400935/browser-detection-in-javascript
+var getBrowser = function(){
+    return (function(){
+        var ua      = navigator.userAgent;
+        var temp    = null;
+        var ret     = {browser: null, version: null};
+        var M       = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+
+        if (/trident/i.test(M[ 1 ])) {
+            temp    = /\brv[ :]+(\d+)/g.exec(ua) || [];
+            ret.browser = 'IE';
+            ret.version = (temp[ 1 ] || '');
+            return ret;
+        }
+
+        if (M[ 1 ] === 'Chrome') {
+            temp    = ua.match(/\b(OPR|Edge)\/(\d+)/);
+            if (temp != null) {
+                ret.browser = temp.slice(1)[0].replace('OPR', 'Opera');
+                ret.version = temp.slice(1)[1]
+                return ret;
+            }
+        }
+
+        M       = M[ 2 ] ? [ M[ 1 ], M[ 2 ] ] : [navigator.appName, navigator.appVersion, '-?'];
+        temp    = ua.match(/version\/(\d+)/i)
+
+        if (temp != null)
+                M.splice(1, 1, temp[ 1 ]);
+
+        ret.browser = M[ 0 ];
+        ret.version = M[ 1 ];
+
+        return ret;
+    })();
 };

@@ -28,6 +28,12 @@ mixin icon-header(title, label, displayName, hoverEnabled)
         i.fa.fa-check
     else if (title == 'x')
         i.fa.fa-times
+    else if (title == 'mic')
+        i.fa.fa-microphone
+    else if (title == 'warning')
+        i.fa.fa-warning.warning
+    else if (title == 'enable')
+        i.fa.fa-shield
     //-Determine name
     if (displayName)
         //  Icon label

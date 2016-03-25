@@ -48,6 +48,17 @@
     "serve-favicon": "^2.3.0",
     "url-join": "0.0.1"
   },
+  "devDependencies": {
+    "csslint-stylish": "0.0.4",
+    "gulp": "^3.9.1",
+    "gulp-csslint": "^0.2.2",
+    "gulp-git": "^1.7.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-jsonlint": "^1.1.2",
+    "gulp-pug-lint": "^0.1.6",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0"
+  },
   "engines": {
     "node": "~5.4.1",
     "npm": "~3.3.12"

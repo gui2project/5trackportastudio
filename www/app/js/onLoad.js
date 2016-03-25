@@ -7,15 +7,46 @@
 //  ONLOAD
 $( document ).ready(function() {
 
-    //  INIT COMPONENTS
+    //  ENVIRONMENT
+    var userAgent = getBrowser();
+    console.log('--- User Agent', userAgent);
 
+    //  HARDWARE SUPPORT
+    var mic = getMicrophone(function(stream){ // Microphone Success
+        console.log('microphone-browser-compatible: success');
+        console.log("microphone-enabled: success");
+        $('.splash.cover').fadeOut(1000);
+        //Kick off doms code
+
+    }, function(err) { // Microphone Enabled Error
+        console.log('microphone-browser-compatible: success');
+        console.log('microphone-enabled: failure: ' + err);
+        $('.splash.microphone').toggleClass('hide');
+        $('.splash.cover').fadeOut(300);
+
+        // Show Browser Microphone instructions
+        console.log('Displaying Microphone Instructions');
+        $('.splash.microphone .instructions').removeClass('display');
+
+        $.inArray( userAgent.browser, ['Chrome', 'IE', 'Opera', 'Safari']) ?
+            $('.splash.microphone .instructions.' + userAgent.browser).addClass('display') :
+            $('.splash.microphone .instructions.other').addClass('display');
+
+    }, function(){ // Browser Support Error
+        console.log('microphone-browser-compatible: failure');
+        $('.splash.browser').toggleClass('hide');
+        $('.splash.cover').fadeOut(300);
+    });
+
+    //  INIT COMPONENTS
     dd = new DropDown();
     sw = new StopWatch();
+    ac = new AudioContext();
 
     dd.init({
         dropDownId: '#partial',
         navigationId: '#navigation',
-        speed: 600
+        speed: 800
     });
     sw.run('INIT', '#stopWatch-1 div.timedisplay');
 
@@ -248,4 +279,9 @@ $( document ).ready(function() {
         dd.show('API');
     });
 
+    //  Application Ready
+
+
+
 });
+

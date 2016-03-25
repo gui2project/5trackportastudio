@@ -6,7 +6,8 @@
  *  code modified from http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
  */
 
-var crypto  = require('crypto')
+var crypto  = require('crypto');
+var https   = require('https');
 
 var ini     = require(global.app.ini());
 
@@ -46,6 +47,19 @@ var Security = function() {
             .toString(16)
             .substring(1);
     };
+
+    this.ssl = function(app){
+        if (ini.security.ssl.state) {
+            var https = require('https');
+
+            var httpsOptions = {
+                key:    ini.security.ssl.key,
+                cert:   ini.security.ssl.cert
+            };
+            global.app.console.log(msg, 'SSL.');
+            https.createServer(httpsOptions, app).listen(ini.security.ssl.port);
+        }
+    }
 };
 
 /**

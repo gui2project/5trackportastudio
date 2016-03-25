@@ -30,9 +30,9 @@ var error = function(){
     this.server = function(err, req, res, next) {
         res.status(err.status || 500);
         ini.mode === 'dev' ?
-            res.render(path.join(ini.path.partial, 'error'),
+            res.render(path.join(ini.path.mixin, 'error'),
                 {message: err.message, error: err}) :
-            res.render(path.join(ini.path.partial, 'error'),
+            res.render(path.join(ini.path.mixin, 'error'),
                 {message: err.message, error: {}});
     };
 };

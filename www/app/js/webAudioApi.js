@@ -6,7 +6,7 @@ var audioRecorder = null,
     rawRecordingBuffer = null;
 
 //Options for initializing navigator.getUserMedia
-var opts = 
+var opts =
 {
   audio: {
       optional: [{ echoCancellation: false }]
@@ -25,18 +25,18 @@ function isGetUserMediaSupported() {
      if (!navigator.getUserMedia)
         navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     if (!navigator.getUserMedia)
-        return alert('GetUserMedia is not supported in your browser');   
+        return alert('GetUserMedia is not supported in your browser');
 }
 
 //Initiate grabbing the users default microphone feed
-function initializeAudio(){      
+function initializeAudio(){
     navigator.getUserMedia(opts, gotStream, function(e) {
                 alert('Error getting audio');
                 console.log(e);
             });
 }
 
-function gotStream(stream) { 
+function gotStream(stream) {
     audioInput = audioContext.createMediaStreamSource(stream);
     audioRecorder = new Recorder(audioInput,{workerPath:'/javascripts/recorderWorker.js'});
 }
@@ -58,7 +58,7 @@ function TrackTemplate()//constructor for a blank track
     var isArmed = false;
     var pausedLocation = null;
     var isMuted = false;
-    
+
     this.InitTrack = function()//initializes a blank track ready for recording
     {
         this.gain.value = .7;
@@ -74,15 +74,15 @@ function TrackTemplate()//constructor for a blank track
         this.eqLow.frequency.value = 250;
         this.eqLow.gain.value = 0;
         this.eqLow.Q.value = .75;
-        
+
         this.eqHigh.connect(this.eqMid);
         this.eqMid.connect(this.eqLow);
         this.eqLow.connect(this.gain);
         this.gain.connect(this.pan);
         this.pan.connect(audioContext.destination);
-        this.gain.connect(this.meter);      
+        this.gain.connect(this.meter);
     }
-    
+
     this.playTrack = function(){
         if(this.buffer!=null)
         {
@@ -90,21 +90,21 @@ function TrackTemplate()//constructor for a blank track
             bufferSource.buffer = this.buffer;
             bufferSource.connect(this.eqHigh);
             bufferSource.start(0);
-            
+
         }
     }
-    
+
     this.stopTrack = function(){
         if(this.buffer!=null)
         {
             bufferSource.stop();
         }
     }
-    
+
     this.pauseTrack = function(){
         //needs Jose's clock
     }
-    
+
     this.armTrackToggle = function(){
         if(isArmed == false)
         {
@@ -117,7 +117,7 @@ function TrackTemplate()//constructor for a blank track
             isArmed = false;
         }
     }
-    
+
     this.muteTrackToggle = function(){
         if(!isMuted){
             this.pan.disconnect();
@@ -128,7 +128,7 @@ function TrackTemplate()//constructor for a blank track
             isMuted = false;
         }
     }
-    
+
     this.recordToggle = function()
     {
         if(isArmed == true)
@@ -149,19 +149,18 @@ function TrackTemplate()//constructor for a blank track
         else
         console.log("Track must be armed to record");
     }
-    
+
     this.getRecorderBuffer = function()
     {
         _this = this;//bring scope to callback function
         audioRecorder.getBuffer(this.grabFromAudioRecorderBuffer);
     }
-    
+
     this.grabFromAudioRecorderBuffer = function(buffers){
-        recordingBuffer = audioContext.createBuffer( 2, buffers[0].length, audioContext.sampleRate );      
+        recordingBuffer = audioContext.createBuffer( 2, buffers[0].length, audioContext.sampleRate );
         recordingBuffer.getChannelData(0).set(buffers[0]);
         recordingBuffer.getChannelData(1).set(buffers[1]);
         _this.buffer = recordingBuffer;
     }
 }
 
-    

@@ -2,3 +2,5 @@
 *.geany
 node_modules/*
 .goutputstream*
+.vscode
+.vscode/*
