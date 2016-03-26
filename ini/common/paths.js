@@ -27,12 +27,32 @@ var paths = {
     mixin:              path.join(root, 'server', 'mvc', 'views', 'mixin'),
     private:            path.join(root, 'server'),
     public:             path.join(root, 'www'),
+    projectFiles: {
+        cfgMongodb:     path.join(root, 'ini', 'mongodb.cfg'),
+        css: [
+                        path.join(root, 'www', 'app', 'css', '*.cs')
+        ] ,
+        jade: [
+                        path.join(root, 'server', 'mvc', 'views', '*.jade')
+        ],
+        json: [
+                        path.join(root, 'server', 'mvc', 'models', '*.json')
+        ],
+        js: [
+                        path.join(root, 'ini', '*.js'),
+                        path.join(root, 'server', '*.js'),
+                        path.join(root, 'www', 'app', '*.js'),
+                        path.join(root, 'app.js')
+        ],
+        mongoDB:        path.join('C:', 'Program Files', 'MongoDB', 'Server', '3.2', 'bin', 'mongod.exe')
+    },
     root:               root,
     routes:             path.join(root, 'server', 'routes', 'paths'),
     security:           path.join(root, 'server', 'lib', 'Security'),
     users:              path.join(root, 'server', 'routes', 'users'),
     views:              path.join(root, 'server', 'mvc', 'views')
 };
+
 
 //  Export content
 module.exports = paths;

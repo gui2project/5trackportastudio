@@ -52,8 +52,10 @@
     "csslint-stylish": "0.0.4",
     "gulp": "^3.9.1",
     "gulp-csslint": "^0.2.2",
+    "gulp-exec": "^2.1.2",
     "gulp-fail": "^1.0.1",
     "gulp-git": "^1.7.0",
+    "gulp-help": "^1.6.1",
     "gulp-if": "^2.0.0",
     "gulp-jshint": "^2.0.0",
     "gulp-jsonlint": "^1.1.2",
@@ -61,8 +63,14 @@
     "gulp-plumber": "^1.1.0",
     "gulp-pug-lint": "^0.1.6",
     "gulp-rm": "^1.0.0",
+    "gulp-run": "^1.6.12",
     "jshint": "^2.9.1",
-    "jshint-stylish": "^2.1.0"
+    "jshint-stylish": "^2.1.0",
+    "makedir": "0.0.11",
+    "mkdir": "0.0.2",
+    "mkdirp": "^0.5.1",
+    "windows-service-controller": "^0.1.5",
+    "yamljs": "^0.2.7"
   },
   "engines": {
     "node": "~5.4.1",
