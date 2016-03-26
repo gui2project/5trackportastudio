@@ -42,7 +42,7 @@ var map = {
     dynamic: [
         {
             web: '/',
-            sys: path.join(paths.ctrl, 'home'),
+            sys: path.join(paths.ctrl, 'main'),
             call: 'index'
         }
     ]

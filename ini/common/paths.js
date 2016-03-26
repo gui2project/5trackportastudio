@@ -28,7 +28,6 @@ var paths = {
     private:            path.join(root, 'server'),
     public:             path.join(root, 'www'),
     projectFiles: {
-        cfgMongodb:     path.join(root, 'ini', 'mongodb.cfg'),
         css: [
                         path.join(root, 'www', 'app', 'css', '*.cs')
         ] ,
@@ -44,7 +43,10 @@ var paths = {
                         path.join(root, 'www', 'app', '*.js'),
                         path.join(root, 'app.js')
         ],
-        mongoDB:        path.join('C:', 'Program Files', 'MongoDB', 'Server', '3.2', 'bin', 'mongod.exe')
+        mongodb:{
+           cfg:         path.join(root, 'ini', 'mongodb.cfg'),
+           exe:         path.join('C:', 'Program Files', 'MongoDB', 'Server', '3.2', 'bin', 'mongod.exe')
+        }
     },
     root:               root,
     routes:             path.join(root, 'server', 'routes', 'paths'),

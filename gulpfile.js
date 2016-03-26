@@ -1,3 +1,11 @@
+/**
+ *  @file   gulpfile.js
+ *
+ *  This file holds the gulp task scripts, it is the task runner.
+ *
+ *  to view operations that can be performed run
+ *      gulp help
+ */
 
 //  INCLUDES
 var argv            = require('yargs').argv;
@@ -16,13 +24,11 @@ var gulp            = require('gulp-help')(require('gulp'));
 //  Get application root directory and system mode
 var root            = path.resolve(__dirname);
 var mode            = process.env.TS_RUN_MODE;
-
-// Set application mode to: development | production
 global.app          = require('./server/lib/Global.js')(mode, root);
-var ini             = require(global.app.ini());    //  configuration object
 
 //  VARIABLES
-var cfgMongoDB      = yaml.load(ini.path.projectFiles.cfgMongodb);
+var ini             = require(global.app.ini());    //  configuration object
+var cfgMongoDB      = yaml.load(ini.path.projectFiles.mongodb.cfg);
 
 //  CODE LINTERS
 
@@ -104,7 +110,7 @@ gulp.task('service.mongodb.create.dirs', false,
 //  Create MongoDB service
 gulp.task('service.mongodb.create', false, ['service.mongodb.create.dirs'],
     function(cb){
-        var cmdStr = 'mongod.exe --config ' + ini.path.projectFiles.cfgMongodb + ' --install'
+        var cmdStr = 'mongod.exe --config ' + ini.path.projectFiles.mongodb.cfg + ' --install'
         exec(cmdStr, function (err, stdout, stderr) {
             console.log(stdout, stderr);
             cb(err);})});

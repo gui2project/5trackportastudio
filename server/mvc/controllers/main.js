@@ -1,7 +1,7 @@
 /**
- *  @file   home.js
+ *  @file   main.js
  *
- *  This file holds the GET controller for the home page.
+ *  This file holds the GET controller for the main page.
  */
 
 var path    = require('path');
