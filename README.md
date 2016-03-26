@@ -36,12 +36,15 @@ trackstudio
 │   ├───api/                API directory.
 │   ├───app/                Application files.
 │   │   ├───css/            Cascading style sheets.
-│   │   ├───doc/            Document files. Linked back to /doc
 │   │   ├───img/            Image files.
 │   │   └───js/             JavaScript files.
 │   └───dep/                Dependency files.
+│       ├───css/            Cascading style sheets.
+│       ├───img/            Image files.
+│       └───js/             JavaScript files.
 │
 ├───app.js                  Application controller.
+├───gulpfile.js             Gulp scripts.
 ├───package.json            npm package file.
 ├───Procfile                Heroku instructions for deployment.
 └───README.md               Installation instructions.
@@ -101,27 +104,27 @@ trackstudio
 - To install
 -- verify the contents of `ini\mongodb.cfg` and `ini\common\db.js` match your installation and then run:
     ```
-    ./bin/mongodb.sh --install
+    gulp mongodb.create
     ```
 
 - To Remove (leaves data and logs intact)
     ```
-    ./bin/mongodb.sh --remove
+    gulp mongodb.remove
     ```
 
 - To start the service run:
     ```
-    ./bin/mongodb.sh --start
+    gulp mongodb.start
     ```
 
 - To restart the service run:
     ```
-    ./bin/mongodb.sh --restart
+    gulp mongodb.restart
     ```
 
 - To stop the service run:
     ```
-    ./bin/mongodb.sh --stop
+    gulp mongodb.stop
     ```
 
 ### Local
@@ -140,13 +143,13 @@ trackstudio
     ctrl-c
     ```
 
-### Heroku
+### Git
 - To push to https://trackstudio.heroku.com run:
     ```
-    gulp git-master
+    gulp git.master
     ```
 
 - To push the master branch to https://trackstudio.heroku.com run:
     ```
-    gulp git-heroku
+    gulp git.heroku
     ```

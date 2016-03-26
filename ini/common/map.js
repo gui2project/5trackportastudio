@@ -15,10 +15,6 @@ var map = {
             sys: paths.public
         },
         {
-            web: '/app/doc',
-            sys: paths.documents
-        },
-        {
             web: '/dep/angular',
             sys: paths.angular
         },
