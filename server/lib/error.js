@@ -1,7 +1,7 @@
 /**
- *  @file   error.js
+ *  @file   Error.js
  *
- *  This holds the error handlers for the server.
+ *  This holds the error handlers for the application.
  */
 
 var path = require('path');
@@ -40,6 +40,7 @@ var error = function () {
                 error: {}
             });
     };
+
 };
 
 /**

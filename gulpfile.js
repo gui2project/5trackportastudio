@@ -27,46 +27,38 @@ var jsonFormat = require('gulp-json-format');
 
 //  Get application root directory and system mode
 var root = path.resolve(__dirname);
-var mode = process.env.TS_RUN_MODE;
-global.app = require('./server/lib/Global.js')(mode, root);
+global.app = require('./server/lib/Global.js')('gulp', root);
+var ini = require(global.app.ini()); //  configuration object
+
+//  LOCAL INCLUDES
+var errorGulp = require(ini.path.errorGulp);
 
 //  VARIABLES
-var ini = require(global.app.ini()); //  configuration object
 var cfgMongoDB = yaml.load(ini.path.projectFiles.mongodb.cfg);
-var gulpHelpOpt = {
-    hideDepsMessage: true,
-    hideEmpty: true
-};
 
-//  START GULP with help screen
-var gulp = require('gulp-help')(require('gulp'), gulpHelpOpt);
+//  START GULP WITH HELP
+var gulp = require('gulp-help')(require('gulp'), ini.opt.help);
 
 //  CODE FORMATTERS
 
 //  JavaScript
 gulp.task('code.format.js', "Formats JS code.", [],
     function () {
-        return gulp.src(ini.path.projectFiles.js.loc, {
-                base: './'
-            })
+        return gulp.src(ini.path.projectFiles.js.loc, ini.opt.inPlace)
             .pipe(beautify_js(require(ini.path.projectFiles.js.format)))
             .pipe(gulp.dest('./'));
     });
 //  CSS
 gulp.task('code.format.css', "Formats CSS code.", [],
     function () {
-        return gulp.src(ini.path.projectFiles.css.loc, {
-                base: './'
-            })
+        return gulp.src(ini.path.projectFiles.css.loc, ini.opt.inPlace)
             .pipe(beautify_css(require(ini.path.projectFiles.css.format)))
             .pipe(gulp.dest('./'));
     });
 //  JSON
 gulp.task('code.format.json', "Formats JSON code.", [],
     function () {
-        return gulp.src(ini.path.projectFiles.json.loc, {
-                base: './'
-            })
+        return gulp.src(ini.path.projectFiles.json.loc, ini.opt.inPlace)
             .pipe(jsonFormat(4))
             .pipe(gulp.dest('./'));
     });
@@ -105,30 +97,23 @@ gulp.task('code.lint.jade', 'Checks jade/pug syntax.', [],
 
 //  GIT TASKS
 
-// Remove git lock file
+//  Remove git lock file
 gulp.task('git.rm.lock', false, [],
     function () {
-        return gulp.src('/.git/index.lock', {
-                read: false
-            })
+        return gulp.src('/.git/index.lock', ini.opt.git.lock)
             .pipe(rm());
     });
 //  Store Credentials
 gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
     function () {
         var cmdStr = 'git config --global credential.helper store';
-        exec(cmdStr, function (err, stdout, stderr) {
-            console.log(stdout, stderr);
-            cb(err);
-        });
+        exec(cmdStr, errorGulp.exec);
     });
 //  Run git add with -A option
 gulp.task('git.add', false, ['code.prepare', 'git.rm.lock'],
     function () {
         return gulp.src('./')
-            .pipe(git.add({
-                args: '-A'
-            }));
+            .pipe(git.add(ini.opt.git.add));
     });
 //  Run git commit with -m option
 gulp.task('git.commit', false, ['git.add'],
@@ -136,34 +121,21 @@ gulp.task('git.commit', false, ['git.add'],
         var message = argv.m ? argv.m : 'Pushing with Gulp.';
         return gulp.src('./')
             .pipe(git.commit(message));
-    }, {
-        options: {
-            'm="message"': 'Commit message to use.'
-        }
-    });
+    }, ini.opt.git.commit);
 //  Run git pull
 gulp.task('git.pull', false, ['git.commit'],
     function () {
-        return git.pull('origin', 'master',
-            function (err) {
-                if (err) throw err;
-            });
+        return git.pull('origin', 'master', errorGulp.git);
     });
 //  Push to master
 gulp.task('git.push.master', false, ['git.pull'],
     function () {
-        return git.push('origin', 'master',
-            function (err) {
-                if (err) throw err;
-            });
+        return git.push('origin', 'master', errorGulp.git);
     });
 //  Push to heroku
 gulp.task('git.push.heroku', false, ['git.push.master'],
     function () {
-        return git.push('origin', 'master:heroku',
-            function (err) {
-                if (err) throw err;
-            });
+        return git.push('origin', 'master:heroku', errorGulp.git);
     });
 
 //  WINDOWS SERVICES
@@ -185,37 +157,25 @@ gulp.task('service.mongodb.create.dirs', false, [],
 gulp.task('service.mongodb.create', false, ['service.mongodb.create.dirs'],
     function (cb) {
         var cmdStr = 'mongod.exe --config ' + ini.path.projectFiles.mongodb.cfg + ' --install';
-        exec(cmdStr, function (err, stdout, stderr) {
-            console.log(stdout, stderr);
-            cb(err);
-        });
+        exec(cmdStr, errorGulp.exec);
     });
 //  Stop MongoDB service
 gulp.task('service.mongodb.stop', false, [],
     function (cb) {
         var cmdStr = 'net stop ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        exec(cmdStr, function (err, stdout, stderr) {
-            console.log(stdout, stderr);
-            cb(err);
-        });
+        exec(cmdStr, errorGulp.exec);
     });
 //  Start MongoDB service
 gulp.task('service.mongodb.start', false, [],
     function (cb) {
         var cmdStr = 'net start ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        exec(cmdStr, function (err, stdout, stderr) {
-            console.log(stdout, stderr);
-            cb(err);
-        });
+        exec(cmdStr, errorGulp.exec);
     });
 //  Remove MongoDB service
 gulp.task('service.mongodb.remove', false, ['service.mongodb.stop'],
     function (cb) {
         var cmdStr = 'sc.exe delete ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        exec(cmdStr, function (err, stdout, stderr) {
-            console.log(stdout, stderr);
-            cb(err);
-        });
+        exec(cmdStr, errorGulp.exec);
     });
 
 //  DISPLAYED ROUTINES
@@ -228,9 +188,9 @@ gulp.task('mongodb.stop', 'Stops MongoDB service on windows.', ['service.mongodb
 gulp.task('mongodb.delete', 'Removes MongoDB service on windows.', ['service.mongodb.remove']);
 
 //  Code scripts
-gulp.task('code.lint.all', 'Performs all syntax tests', ['code.lint.js', 'code.lint.json', 'code.lint.css', 'code.lint.jade']);
-gulp.task('code.format.all', 'Formats code base', ['code.format.js', 'code.format.css', 'code.format.json']);
-gulp.task('code.prepare', 'Checks and formats code base', ['code.format.all', 'code.lint.all']);
+gulp.task('code.lint', 'Performs all syntax tests', ['code.lint.js', 'code.lint.json', 'code.lint.css', 'code.lint.jade']);
+gulp.task('code.format', 'Formats code base', ['code.format.js', 'code.format.css', 'code.format.json']);
+gulp.task('code.prepare', 'Checks and formats code base', ['code.format', 'code.lint']);
 
 //  Git updates
 gulp.task('git.error', 'Handle commong Git errors', ['git.rm.lock']);

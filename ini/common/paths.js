@@ -17,6 +17,7 @@ var paths = {
     documents: path.join(root, 'doc'),
     models: path.join(root, 'server', 'mvc', 'models'),
     error: path.join(root, 'server', 'lib', 'Error'),
+    errorGulp: path.join(root, 'server', 'lib', 'Error-gulp'),
     images: path.join(root, 'www', 'app', 'img'),
     jquery: path.join(root, 'node_modules', 'jquery', 'dist'),
     jqueryui: path.join(root, 'node_modules', 'jquery-ui'),
