@@ -53,19 +53,19 @@ function createAudioMeter(audioContext, clipLevel, averaging, clipLag) {
     processor.connect(audioContext.destination);
 
     processor.checkClipping =
-        function() {
+        function () {
             if (!this.clipping)
                 return false;
             if ((this.lastClip + this.clipLag) < window.performance.now())
                 this.clipping = false;
             return this.clipping;
-    };
+        };
 
     processor.shutdown =
-        function() {
+        function () {
             this.disconnect();
             this.onaudioprocess = null;
-    };
+        };
 
     return processor;
 }

@@ -15,9 +15,9 @@ var ini = require(global.app.ini());
 var msg = '[API]';
 
 // Document serving
-var fileOptions = function() {
+var fileOptions = function () {
     var arr = [];
-    ini.file.docs.forEach(function(obj) {
+    ini.file.docs.forEach(function (obj) {
         arr.push(obj.alias);
     });
     return arr;
@@ -31,7 +31,7 @@ var fileOptions = function() {
  * @param   app     The express application reference
  * @param   mdb     The mongoose database wrapper
  */
-var middleware = function(app, mdb) {
+var middleware = function (app, mdb) {
 
     //  Holds the API entry point and documentation generating object
     var api = require(ini.path.apiHandler)(app);
@@ -48,7 +48,7 @@ var middleware = function(app, mdb) {
             "desc": "Gets a user from the database.",
             "return": "POST"
         },
-        function(req, res, obj) {
+        function (req, res, obj) {
             global.app.console.log(msg, urlJoin("/api", "post", "find-user"));
             global.app.console.log(msg, 'PARAMS', req.body);
 
@@ -58,7 +58,7 @@ var middleware = function(app, mdb) {
                 var ObjectId = mongoose.Types.ObjectId;
                 mdb.models.users.findOne({
                     '_id': req.body.id
-                }, 'name email', function(err, person) {
+                }, 'name email', function (err, person) {
                     api.response(res, err, person, obj);
                 });
             }
@@ -71,7 +71,7 @@ var middleware = function(app, mdb) {
             "desc": "Gets a list of effects.",
             "return": "GET"
         },
-        function(req, res, obj) {
+        function (req, res, obj) {
             global.app.console.log(msg, urlJoin("/api", "get", "effects"));
             var data = require(path.join(ini.path.models, "effects.json"));
             api.response(res, false, data, obj);
@@ -84,12 +84,12 @@ var middleware = function(app, mdb) {
             "desc": "Checks if a session is valid.",
             "return": "GET"
         },
-        function(req, res, obj) {
+        function (req, res, obj) {
             global.app.console.log(msg, urlJoin("/api", "get", "session", "valid"));
             global.app.console.log(msg, req.cookies);
             mdb.models.session.findOne({
                 'hash': req.cookies[ini.cookie.ts.session]
-            }, 'user live', function(err, session) { // <-- error is here because there is no session
+            }, 'user live', function (err, session) { // <-- error is here because there is no session
                 global.app.console.log(msg, session);
                 if (session === null) {
                     api.response(res, false, false, obj);
@@ -128,11 +128,11 @@ var middleware = function(app, mdb) {
             "desc": "Adds a user to the database.",
             "return": "POST"
         },
-        function(req, res, obj) {
+        function (req, res, obj) {
             global.app.console.log(msg, urlJoin("/api", "post", "user"));
             mdb.models.users.findOne({
                 'email': req.body.email
-            }, 'email', function(err, person) {
+            }, 'email', function (err, person) {
 
                 if (person === null) {
                     global.app.console.log(msg, "Adding user.", person);
@@ -148,7 +148,7 @@ var middleware = function(app, mdb) {
                         salt: salt,
                         projects: null
                     });
-                    myuser.save(function(err, user) {
+                    myuser.save(function (err, user) {
                         if (req.body.login) {
                             var salt1 = security.salt();
                             var salt2 = security.salt();
@@ -158,10 +158,11 @@ var middleware = function(app, mdb) {
                             var mysession = new mdb.models.session({
                                 hash: sessionhash,
                                 user: user._id,
-                                time: new Date().getTime(),
+                                time: new Date()
+                                    .getTime(),
                                 live: true
                             });
-                            mysession.save(function(err, session) {
+                            mysession.save(function (err, session) {
                                 global.app.console.log(msg, "Unique session made.");
 
                                 res.cookie(ini.cookie.ts.user, user._id, ini.cookie.options);
@@ -199,12 +200,12 @@ var middleware = function(app, mdb) {
             "desc": "Authenticates a user.",
             "return": "POST"
         },
-        function(req, res, obj) {
+        function (req, res, obj) {
             global.app.console.log(msg, urlJoin("/api", "post", "login"));
             global.app.console.log(msg, 'input', req.body.email);
             mdb.models.users.findOne({
                 'email': req.body.email
-            }, 'email hash salt', function(err, person) {
+            }, 'email hash salt', function (err, person) {
 
                 if (person !== null) {
                     global.app.console.log(msg, "Authenticating user.");
@@ -223,17 +224,18 @@ var middleware = function(app, mdb) {
 
                         mdb.models.users.findOne({
                             'hash': sessionhash
-                        }, 'user', function(err, session) {
+                        }, 'user', function (err, session) {
 
                             if (session === null) {
 
                                 var mysession = new mdb.models.session({
                                     hash: sessionhash,
                                     user: person._id,
-                                    time: new Date().getTime(),
+                                    time: new Date()
+                                        .getTime(),
                                     live: true
                                 });
-                                mysession.save(function(err, doc) {
+                                mysession.save(function (err, doc) {
                                     global.app.console.log(msg, "Unique session made.");
 
                                     res.cookie(ini.cookie.ts.user, person._id, ini.cookie.options);
@@ -269,7 +271,7 @@ var middleware = function(app, mdb) {
             "desc": "Deauthenticates a user.",
             "return": "GET"
         },
-        function(req, res, obj) {
+        function (req, res, obj) {
             global.app.console.log(msg, urlJoin("/api", "get", "logout"));
             mdb.models.session.update({
                     'user': req.cookies[ini.cookie.ts.user],
@@ -277,14 +279,13 @@ var middleware = function(app, mdb) {
                 }, {
                     live: false
                 },
-                function(err, numberAffected, rawResponse) {
+                function (err, numberAffected, rawResponse) {
                     global.app.console.log(msg, "Session terminating.");
                     res.clearCookie(ini.cookie.ts.user);
                     res.clearCookie(ini.cookie.ts.session);
                     api.response(res, null, true, obj);
                 });
         });
-
 
     //  Get document from the database
     api.add({
@@ -298,13 +299,13 @@ var middleware = function(app, mdb) {
             "desc": "Gets an allowed document from the application",
             "return": "GET"
         },
-        function(req, res, obj) {
+        function (req, res, obj) {
             global.app.console.log(msg, urlJoin("/api", "get", "doc", ":alias"));
             var myerr = true;
-            ini.file.docs.forEach(function(obj) {
+            ini.file.docs.forEach(function (obj) {
                 if (req.params.alias.toLowerCase() == obj.alias.toLowerCase()) {
                     myerr = false;
-                    fs.readFile(obj.sys, function(err, data) {
+                    fs.readFile(obj.sys, function (err, data) {
                         res.contentType(obj.mime);
                         res.send(data);
                     });

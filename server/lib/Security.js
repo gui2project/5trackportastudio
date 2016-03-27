@@ -24,9 +24,9 @@ var msg = '[ SECURITY ]';
  *  var salt = security.salt();
  *  var hash = security.hash(req.params.pass, salt);
  */
-var Security = function() {
+var Security = function () {
 
-    this.hash = function(pass, salt) {
+    this.hash = function (pass, salt) {
         global.app.console.log(msg, 'Hashing a password.');
         var h = crypto.createHash('sha512');
 
@@ -36,19 +36,19 @@ var Security = function() {
         return h.digest('base64');
     };
 
-    this.salt = function() {
+    this.salt = function () {
         //global.app.console.log(msg, 'Creating cryptoplogically secure GUID.');
         return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
             this.s4() + '-' + this.s4() + this.s4() + this.s4();
     };
 
-    this.s4 = function() {
+    this.s4 = function () {
         return Math.floor((1 + Math.random()) * 0x10000)
             .toString(16)
             .substring(1);
     };
 
-    this.ssl = function(app) {
+    this.ssl = function (app) {
         if (ini.security.ssl.state) {
             var https = require('https');
 
@@ -57,7 +57,8 @@ var Security = function() {
                 cert: ini.security.ssl.cert
             };
             global.app.console.log(msg, 'SSL.');
-            https.createServer(httpsOptions, app).listen(ini.security.ssl.port);
+            https.createServer(httpsOptions, app)
+                .listen(ini.security.ssl.port);
         }
     };
 };
@@ -69,7 +70,7 @@ var Security = function() {
  *
  *  @return     An instantiated Security object.
  */
-var exp = function() {
+var exp = function () {
     //  Generate an instance of the Security object
     return new Security();
 };

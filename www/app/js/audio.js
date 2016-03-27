@@ -14,7 +14,7 @@ function BufferLoader(context, urlList, callback) {
     this.loadCount = 0;
 }
 
-BufferLoader.prototype.loadBuffer = function(url, index) {
+BufferLoader.prototype.loadBuffer = function (url, index) {
     // Load buffer asynchronously
     var request = new XMLHttpRequest();
     request.open("GET", url, true);
@@ -22,11 +22,11 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
 
     var loader = this;
 
-    request.onload = function() {
+    request.onload = function () {
         // Asynchronously decode the audio file data in request.response
         loader.context.decodeAudioData(
             request.response,
-            function(buffer) {
+            function (buffer) {
                 if (!buffer) {
                     alert('error decoding file data: ' + url);
                     return;
@@ -35,25 +35,25 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
                 if (++loader.loadCount == loader.urlList.length)
                     loader.onload(loader.bufferList);
             },
-            function(error) {
+            function (error) {
                 console.error('decodeAudioData error', error);
             }
         );
     };
 
-    request.onerror = function() {
+    request.onerror = function () {
         alert('BufferLoader: XHR error');
     };
 
     request.send();
 };
 
-BufferLoader.prototype.load = function() {
+BufferLoader.prototype.load = function () {
     for (var i = 0; i < this.urlList.length; ++i)
         this.loadBuffer(this.urlList[i], i);
 };
 
-var Audio = function() {
+var Audio = function () {
 
     var _this = this;
 
@@ -63,7 +63,6 @@ var Audio = function() {
         mono: 1,
         stereo: 2
     };
-
 
     this.callback = null;
     this.src = [];
@@ -77,7 +76,7 @@ var Audio = function() {
     this.analyser = [];
     this.javascriptNode = [];
 
-    this.init = function() {
+    this.init = function () {
         console.log(msg, "Determining context.");
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -85,12 +84,12 @@ var Audio = function() {
         _this.ac = new AudioContext(); //c
     };
 
-    this.url = function(url) {
+    this.url = function (url) {
         console.log(msg, "Saving urls.", url);
         _this.urls = url;
     };
 
-    this.load = function(urls, callback) {
+    this.load = function (urls, callback) {
         music.init();
         music.url(urls);
         _this.callback = callback;
@@ -99,8 +98,8 @@ var Audio = function() {
         _this.buff.load();
     };
 
-    this.loaded = function() {
-        _this.buff.bufferList.forEach(function(sound, index) {
+    this.loaded = function () {
+        _this.buff.bufferList.forEach(function (sound, index) {
             var channels;
 
             // setup a javascript node for the analyser
@@ -109,8 +108,6 @@ var Audio = function() {
             _this.analyser[index] = _this.ac.createAnalyser();
             _this.analyser[index].smoothingTimeConstant = 0.3;
             _this.analyser[index].fftSize = 1024;
-
-
 
             console.log(msg, "Loading src", index);
             _this.src[index] = _this.ac.createBufferSource(); //s
@@ -155,19 +152,21 @@ var Audio = function() {
         _this.callback();
     };
 
-    this.play = function(index, delay) {
-        var now = new Date().getTime();
+    this.play = function (index, delay) {
+        var now = new Date()
+            .getTime();
         console.log(msg, "Playing src", index, 'at', delay, 'from', now);
         _this.src[index].start(delay);
     };
 
-    this.pause = function(index, delay) {
-        var now = new Date().getTime();
+    this.pause = function (index, delay) {
+        var now = new Date()
+            .getTime();
         console.log(msg, "Stopping src", index, 'at', delay, 'from', now);
         _this.src[index].stop(delay);
     };
 
-    this.pan = function(index, range) {
+    this.pan = function (index, range) {
         var xDeg = parseInt(range);
         var zDeg = xDeg + 90;
 
@@ -181,13 +180,13 @@ var Audio = function() {
         _this.panner[index].setPosition(x, 0, z);
     };
 
-    this.stereo = function(index, Lvalue, Rvalue) {
+    this.stereo = function (index, Lvalue, Rvalue) {
         console.log(msg, 'Stereo volume set to', Lvalue, Rvalue);
         _this.Lgain[index].gain.value = Lvalue;
         _this.Rgain[index].gain.value = Rvalue;
     };
 
-    this.mono = function(index, value) {
+    this.mono = function (index, value) {
         console.log(msg, 'Mono volume set to', value);
         _this.gain[index].gain.value = value;
 

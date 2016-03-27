@@ -1,4 +1,4 @@
-(function(f) {
+(function (f) {
     if (typeof exports === "object" && typeof module !== "undefined") {
         module.exports = f();
     } else if (typeof define === "function" && define.amd) {
@@ -17,7 +17,7 @@
 
         g.Recorder = f();
     }
-})(function() {
+})(function () {
     var define,
         module,
         exports;
@@ -36,7 +36,7 @@
                 var l = n[o] = {
                     exports: {}
                 };
-                t[o][0].call(l.exports, function(e) {
+                t[o][0].call(l.exports, function (e) {
                     var n = t[o][1][e];
                     return s(n ? n : e);
                 }, l, l.exports, e, t, n, r);
@@ -49,20 +49,23 @@
         return s;
     })({
         1: [
-            function(require, module, exports) {
+
+            function (require, module, exports) {
                 "use strict";
 
-                module.exports = require("./recorder").Recorder;
+                module.exports = require("./recorder")
+                    .Recorder;
 
             }, {
                 "./recorder": 2
             }
         ],
         2: [
-            function(require, module, exports) {
+
+            function (require, module, exports) {
                 'use strict';
 
-                var _createClass = (function() {
+                var _createClass = (function () {
                     function defineProperties(target, props) {
                         for (var i = 0; i < props.length; i++) {
                             var descriptor = props[i];
@@ -72,7 +75,7 @@
                             Object.defineProperty(target, descriptor.key, descriptor);
                         }
                     }
-                    return function(Constructor, protoProps, staticProps) {
+                    return function (Constructor, protoProps, staticProps) {
                         if (protoProps) defineProperties(Constructor.prototype, protoProps);
                         if (staticProps) defineProperties(Constructor, staticProps);
                         return Constructor;
@@ -100,7 +103,7 @@
                     }
                 }
 
-                var Recorder = exports.Recorder = (function() {
+                var Recorder = exports.Recorder = (function () {
                     function Recorder(source, cfg) {
                         var _this = this;
 
@@ -119,9 +122,10 @@
 
                         Object.assign(this.config, cfg);
                         this.context = source.context;
-                        this.node = (this.context.createScriptProcessor || this.context.createJavaScriptNode).call(this.context, this.config.bufferLen, this.config.numChannels, this.config.numChannels);
+                        this.node = (this.context.createScriptProcessor || this.context.createJavaScriptNode)
+                            .call(this.context, this.config.bufferLen, this.config.numChannels, this.config.numChannels);
 
-                        this.node.onaudioprocess = function(e) {
+                        this.node.onaudioprocess = function (e) {
                             if (!_this.recording) return;
 
                             var buffer = [];
@@ -139,29 +143,29 @@
 
                         var self = {};
                         this.worker = new _inlineWorker2.
-                        default (function() {
+                        default(function () {
                             var recLength = 0,
                                 recBuffers = [],
                                 sampleRate,
                                 numChannels;
 
-                            self.onmessage = function(e) {
+                            self.onmessage = function (e) {
                                 switch (e.data.command) {
-                                    case 'init':
-                                        init(e.data.config);
-                                        break;
-                                    case 'record':
-                                        record(e.data.buffer);
-                                        break;
-                                    case 'exportWAV':
-                                        exportWAV(e.data.type);
-                                        break;
-                                    case 'getBuffer':
-                                        getBuffer();
-                                        break;
-                                    case 'clear':
-                                        clear();
-                                        break;
+                                case 'init':
+                                    init(e.data.config);
+                                    break;
+                                case 'record':
+                                    record(e.data.buffer);
+                                    break;
+                                case 'exportWAV':
+                                    exportWAV(e.data.type);
+                                    break;
+                                case 'getBuffer':
+                                    getBuffer();
+                                    break;
+                                case 'clear':
+                                    clear();
+                                    break;
                                 }
                             };
 
@@ -306,7 +310,7 @@
                             }
                         });
 
-                        this.worker.onmessage = function(e) {
+                        this.worker.onmessage = function (e) {
                             var cb = _this.callbacks[e.data.command].pop();
                             if (typeof cb == 'function') {
                                 cb(e.data.data);
@@ -360,7 +364,8 @@
                     }], [{
                         key: 'forceDownload',
                         value: function forceDownload(blob, filename) {
-                            var url = (window.URL || window.webkitURL).createObjectURL(blob);
+                            var url = (window.URL || window.webkitURL)
+                                .createObjectURL(blob);
                             var link = window.document.createElement('a');
                             link.href = url;
                             link.download = filename || 'output.wav';
@@ -381,7 +386,8 @@
             }
         ],
         3: [
-            function(require, module, exports) {
+
+            function (require, module, exports) {
                 "use strict";
 
                 module.exports = require("./inline-worker");
@@ -390,11 +396,12 @@
             }
         ],
         4: [
-            function(require, module, exports) {
-                (function(global) {
+
+            function (require, module, exports) {
+                (function (global) {
                     "use strict";
 
-                    var _createClass = (function() {
+                    var _createClass = (function () {
                         function defineProperties(target, props) {
                             for (var key in props) {
                                 var prop = props[key];
@@ -403,29 +410,31 @@
                             }
                             Object.defineProperties(target, props);
                         }
-                        return function(Constructor, protoProps, staticProps) {
+                        return function (Constructor, protoProps, staticProps) {
                             if (protoProps) defineProperties(Constructor.prototype, protoProps);
                             if (staticProps) defineProperties(Constructor, staticProps);
                             return Constructor;
                         };
                     })();
 
-                    var _classCallCheck = function(instance, Constructor) {
+                    var _classCallCheck = function (instance, Constructor) {
                         if (!(instance instanceof Constructor)) {
                             throw new TypeError("Cannot call a class as a function");
                         }
                     };
 
-                    var WORKER_ENABLED = !! (global === global.window && global.URL && global.Blob && global.Worker);
+                    var WORKER_ENABLED = !!(global === global.window && global.URL && global.Blob && global.Worker);
 
-                    var InlineWorker = (function() {
+                    var InlineWorker = (function () {
                         function InlineWorker(func, self) {
                             var _this = this;
 
                             _classCallCheck(this, InlineWorker);
 
                             if (WORKER_ENABLED) {
-                                var functionBody = func.toString().trim().match(/^function\s*\w*\s*\([\w\s,]*\)\s*{([\w\W]*?)}$/)[1];
+                                var functionBody = func.toString()
+                                    .trim()
+                                    .match(/^function\s*\w*\s*\([\w\s,]*\)\s*{([\w\W]*?)}$/)[1];
                                 var url = global.URL.createObjectURL(new global.Blob([functionBody], {
                                     type: "text/javascript"
                                 }));
@@ -434,15 +443,15 @@
                             }
 
                             this.self = self;
-                            this.self.postMessage = function(data) {
-                                setTimeout(function() {
+                            this.self.postMessage = function (data) {
+                                setTimeout(function () {
                                     _this.onmessage({
                                         data: data
                                     });
                                 }, 0);
                             };
 
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 func.call(self);
                             }, 0);
                         }
@@ -452,7 +461,7 @@
                                 value: function postMessage(data) {
                                     var _this = this;
 
-                                    setTimeout(function() {
+                                    setTimeout(function () {
                                         _this.self.onmessage({
                                             data: data
                                         });
@@ -465,7 +474,8 @@
                     })();
 
                     module.exports = InlineWorker;
-                }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
+                })
+                .call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
             }, {}
         ]
     }, {}, [1])(1);

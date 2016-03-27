@@ -4,14 +4,14 @@
  *  Contains css font descriptions
  */
 
- @font-face {
+@font-face {
     font-family: 'digital7';
     src: url('/dep/fonts/digital-7/mono.eot?#iefix') format('embedded-opentype'),
-         url('/dep/fonts/digital-7/mono.ttf') format('truetype');
+    url('/dep/fonts/digital-7/mono.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Segment7Standard';
     src: url('/dep/fonts/segment-7/Segment7Standard.eot?#iefix') format('embedded-opentype'),
-         url('/dep/fonts/segment-7/Segment7Standard.otf') format('opentype');
+    url('/dep/fonts/segment-7/Segment7Standard.otf') format('opentype');
 }

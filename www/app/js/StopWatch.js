@@ -11,7 +11,7 @@
  *
  *  modified from https://gist.github.com/electricg/4372563
  */
-var StopWatch = function() {
+var StopWatch = function () {
 
     var _this = this;
 
@@ -27,8 +27,9 @@ var StopWatch = function() {
      *
      *  @return      current time
      */
-    this.now = function() {
-        return (new Date()).getTime();
+    this.now = function () {
+        return (new Date())
+            .getTime();
     };
 
     /**
@@ -36,7 +37,7 @@ var StopWatch = function() {
      *
      *  start the clock
      */
-    this.start = function() {
+    this.start = function () {
         _this.startAt = _this.startAt ? _this.startAt : _this.now();
     };
 
@@ -45,7 +46,7 @@ var StopWatch = function() {
      *
      *  stop the clock
      */
-    this.stop = function() {
+    this.stop = function () {
         // If running, update elapsed time otherwise keep it
         _this.lapTime = _this.startAt ? _this.lapTime + _this.now() - _this.startAt : _this.lapTime;
         _this.startAt = 0; // Paused
@@ -56,7 +57,7 @@ var StopWatch = function() {
      *
      *  reset the clock time values
      */
-    this.reset = function() {
+    this.reset = function () {
         _this.lapTime = 0;
         _this.startAt = 0;
     };
@@ -68,7 +69,7 @@ var StopWatch = function() {
      *
      *  @return     the runtime
      */
-    this.getTime = function() {
+    this.getTime = function () {
         return _this.lapTime + (_this.startAt ? _this.now() - _this.startAt : 0);
     };
 
@@ -82,7 +83,7 @@ var StopWatch = function() {
      *
      *  @return {STRING}    formated number
      */
-    this.pad = function(num, size) {
+    this.pad = function (num, size) {
         var s = "0000" + num;
         return s.substr(s.length - size);
     };
@@ -96,7 +97,7 @@ var StopWatch = function() {
      *
      * @return  the new time string to display
      */
-    this.formatTime = function(time) {
+    this.formatTime = function (time) {
         var h, m, s, ms, newTime;
 
         h = m = s = ms = 0;
@@ -122,7 +123,7 @@ var StopWatch = function() {
      *
      *  @param  id      the id of the element
      */
-    this.setId = function(id) {
+    this.setId = function (id) {
         _this.id = id;
     };
 
@@ -133,7 +134,7 @@ var StopWatch = function() {
      *
      *  @return         the id of the clock
      */
-    this.getId = function() {
+    this.getId = function () {
         return _this.id;
     };
 
@@ -142,7 +143,7 @@ var StopWatch = function() {
      *
      *  sets the display interval of the clock, In other words it animates changes in time
      */
-    this.setClocktimer = function() {
+    this.setClocktimer = function () {
         setInterval(_this.update, 1);
     };
 
@@ -151,7 +152,7 @@ var StopWatch = function() {
      *
      *  clears the display interval of the clock, in other words it stops animation
      */
-    this.clearClocktimer = function() {
+    this.clearClocktimer = function () {
         clearInterval(_this.clocktimer);
     };
 
@@ -160,8 +161,9 @@ var StopWatch = function() {
      *
      *  interval function, writes the time of the clock into the element.
      */
-    this.update = function() {
-        $(_this.getId()).html(_this.formatTime(_this.getTime()));
+    this.update = function () {
+        $(_this.getId())
+            .html(_this.formatTime(_this.getTime()));
     };
 
     /**
@@ -173,7 +175,7 @@ var StopWatch = function() {
      *
      *  @return         the current laptime
      */
-    this.adjust = function(mod) {
+    this.adjust = function (mod) {
         _this.run('STOP');
 
         if (_this.laptime + mod <= 0)
@@ -199,33 +201,33 @@ var StopWatch = function() {
      *
      * @return              The lapTime or RunTime on the stopwatch
      */
-    this.run = function(action, option) {
+    this.run = function (action, option) {
         switch (action) {
-            case 'INIT': // requires option IdString
-                _this.setId(option);
-                _this.update();
-                return _this.laptime;
+        case 'INIT': // requires option IdString
+            _this.setId(option);
+            _this.update();
+            return _this.laptime;
 
-            case 'START':
-                _this.setClocktimer();
-                _this.start();
-                return _this.laptime;
+        case 'START':
+            _this.setClocktimer();
+            _this.start();
+            return _this.laptime;
 
-            case 'STOP':
-                _this.stop();
-                _this.clearClocktimer();
-                return _this.laptime;
+        case 'STOP':
+            _this.stop();
+            _this.clearClocktimer();
+            return _this.laptime;
 
-            case 'RESET':
-                _this.stop();
-                _this.clearClocktimer();
-                _this.reset();
-                _this.update();
-                return _this.laptime;
+        case 'RESET':
+            _this.stop();
+            _this.clearClocktimer();
+            _this.reset();
+            _this.update();
+            return _this.laptime;
 
-            case 'ADJUST': //needs a value from option
-                _this.adjust(option);
-                return _this.laptime;
+        case 'ADJUST': //needs a value from option
+            _this.adjust(option);
+            return _this.laptime;
         }
     };
 };

@@ -10,7 +10,7 @@
  *
  * Thanks to vor, eskimoblood, spiffistan, FabrizioC
  */
-(function(factory) {
+(function (factory) {
     if (typeof exports === 'object') {
         // CommonJS
         module.exports = factory(require('jquery'));
@@ -21,7 +21,7 @@
         // Browser globals
         factory(jQuery);
     }
-}(function($) {
+}(function ($) {
 
     /**
      * Kontrol library
@@ -37,7 +37,7 @@
 
     k.c = {};
     k.c.d = $(document);
-    k.c.t = function(e) {
+    k.c.t = function (e) {
         return e.originalEvent.touches.length - 1;
     };
 
@@ -51,7 +51,7 @@
      * k.o.call(this);
      * </code>
      */
-    k.o = function() {
+    k.o = function () {
         var s = this;
 
         this.o = null; // array of options
@@ -80,13 +80,14 @@
         this.relativeHeight = false;
         this.$div = null; // component div
 
-        this.run = function() {
-            var cf = function(e, conf) {
+        this.run = function () {
+            var cf = function (e, conf) {
                 var k;
                 for (k in conf) {
                     s.o[k] = conf[k];
                 }
-                s._carve().init();
+                s._carve()
+                    .init();
                 s._configure()
                     ._draw();
             };
@@ -127,10 +128,10 @@
                 release: null, // function (value) {}
 
                 // Output formatting, allows to add unit: %, ms ...
-                format: function(v) {
+                format: function (v) {
                     return v;
                 },
-                parse: function(v) {
+                parse: function (v) {
                     return parseFloat(v);
                 }
             }, this.o);
@@ -147,21 +148,22 @@
                 // fieldset = array of integer
                 this.v = {};
                 this.i = this.$.find('input');
-                this.i.each(function(k) {
+                this.i.each(function (k) {
                     var $this = $(this);
                     s.i[k] = $this;
                     s.v[k] = s.o.parse($this.val());
 
                     $this.bind(
                         'change blur',
-                        function() {
+                        function () {
                             var val = {};
                             val[k] = $this.val();
                             s.val(s._validate(val));
                         }
                     );
                 });
-                this.$.find('legend').remove();
+                this.$.find('legend')
+                    .remove();
             } else {
 
                 // input = integer
@@ -173,7 +175,7 @@
 
                 this.$.bind(
                     'change blur',
-                    function() {
+                    function () {
                         s.val(s._validate(s.o.parse(s.$.val())));
                     }
                 );
@@ -184,17 +186,19 @@
                 this.$.hide();
 
             // adds needed DOM elements (canvas, div)
-            this.$c = $(document.createElement('canvas')).attr({
-                width: this.o.width,
-                height: this.o.height
-            });
+            this.$c = $(document.createElement('canvas'))
+                .attr({
+                    width: this.o.width,
+                    height: this.o.height
+                });
 
             // wraps all elements in a div
             // add to DOM before Canvas init is triggered
             this.$div = $('<div style="' + (this.o.inline ? 'display:inline;' : '') + 'width:' +
                 this.o.width + 'px;height:' + this.o.height + 'px;"></div>');
 
-            this.$.wrap(this.$div).before(this.$c);
+            this.$.wrap(this.$div)
+                .before(this.$c);
             this.$div = this.$.parent();
 
             if (typeof G_vmlCanvasManager !== 'undefined') {
@@ -207,7 +211,7 @@
                 throw {
                     name: "CanvasNotSupportedException",
                     message: "Canvas not supported. Please use excanvas on IE8.0.",
-                    toString: function() {
+                    toString: function () {
                         return this.name + ": " + this.message;
                     }
                 };
@@ -263,14 +267,18 @@
             return this;
         };
 
-        this._carve = function() {
+        this._carve = function () {
             if (this.relative) {
                 var w = this.relativeWidth ?
-                    this.$div.parent().width() *
-                    parseInt(this.o.width) / 100 : this.$div.parent().width(),
+                    this.$div.parent()
+                    .width() *
+                    parseInt(this.o.width) / 100 : this.$div.parent()
+                    .width(),
                     h = this.relativeHeight ?
-                        this.$div.parent().height() *
-                        parseInt(this.o.height) / 100 : this.$div.parent().height();
+                    this.$div.parent()
+                    .height() *
+                    parseInt(this.o.height) / 100 : this.$div.parent()
+                    .height();
 
                 // apply relative
                 this.w = this.h = Math.min(w, h);
@@ -302,7 +310,7 @@
             return this;
         };
 
-        this._draw = function() {
+        this._draw = function () {
 
             // canvas pre-rendering
             var d = true;
@@ -318,8 +326,8 @@
                 s.draw();
         };
 
-        this._touch = function(e) {
-            var touchMove = function(e) {
+        this._touch = function (e) {
+            var touchMove = function (e) {
                 var v = s.xy2val(
                     e.originalEvent.touches[s.t].pageX,
                     e.originalEvent.touches[s.t].pageY
@@ -344,17 +352,17 @@
                 .bind("touchmove.k", touchMove)
                 .bind(
                     "touchend.k",
-                    function() {
+                    function () {
                         k.c.d.unbind('touchmove.k touchend.k');
                         s.val(s.cv);
                     }
-            );
+                );
 
             return this;
         };
 
-        this._mouse = function(e) {
-            var mouseMove = function(e) {
+        this._mouse = function (e) {
+            var mouseMove = function (e) {
                 var v = s.xy2val(e.pageX, e.pageY);
 
                 if (v == s.cv) return;
@@ -374,7 +382,7 @@
                 .bind(
                     // Escape key cancel current change
                     "keyup.k",
-                    function(e) {
+                    function (e) {
                         if (e.keyCode === 27) {
                             k.c.d.unbind("mouseup.k mousemove.k keyup.k");
 
@@ -384,19 +392,19 @@
                             s.cancel();
                         }
                     }
-            )
+                )
                 .bind(
                     "mouseup.k",
-                    function(e) {
+                    function (e) {
                         k.c.d.unbind('mousemove.k mouseup.k keyup.k');
                         s.val(s.cv);
                     }
-            );
+                );
 
             return this;
         };
 
-        this._xy = function() {
+        this._xy = function () {
             var o = this.$c.offset();
             this.x = o.left;
             this.y = o.top;
@@ -404,23 +412,25 @@
             return this;
         };
 
-        this._listen = function() {
+        this._listen = function () {
             if (!this.o.readOnly) {
                 this.$c
                     .bind(
                         "mousedown",
-                        function(e) {
+                        function (e) {
                             e.preventDefault();
-                            s._xy()._mouse(e);
+                            s._xy()
+                                ._mouse(e);
                         }
-                )
+                    )
                     .bind(
                         "touchstart",
-                        function(e) {
+                        function (e) {
                             e.preventDefault();
-                            s._xy()._touch(e);
+                            s._xy()
+                                ._touch(e);
                         }
-                );
+                    );
 
                 this.listen();
             } else {
@@ -428,16 +438,18 @@
             }
 
             if (this.relative) {
-                $(window).resize(function() {
-                    s._carve().init();
-                    s._draw();
-                });
+                $(window)
+                    .resize(function () {
+                        s._carve()
+                            .init();
+                        s._draw();
+                    });
             }
 
             return this;
         };
 
-        this._configure = function() {
+        this._configure = function () {
 
             // Hooks
             if (this.o.draw) this.dH = this.o.draw;
@@ -455,29 +467,29 @@
             return this;
         };
 
-        this._clear = function() {
+        this._clear = function () {
             this.$c[0].width = this.$c[0].width;
         };
 
-        this._validate = function(v) {
+        this._validate = function (v) {
             var val = (~~(((v < 0) ? -0.5 : 0.5) + (v / this.o.step))) * this.o.step;
             return Math.round(val * 100) / 100;
         };
 
         // Abstract methods
-        this.listen = function() {}; // on start, one time
-        this.extend = function() {}; // each time configure triggered
-        this.init = function() {}; // each time configure triggered
-        this.change = function(v) {}; // on change
-        this.val = function(v) {}; // on release
-        this.xy2val = function(x, y) {}; //
-        this.draw = function() {}; // on change / on release
-        this.clear = function() {
+        this.listen = function () {}; // on start, one time
+        this.extend = function () {}; // each time configure triggered
+        this.init = function () {}; // each time configure triggered
+        this.change = function (v) {}; // on change
+        this.val = function (v) {}; // on release
+        this.xy2val = function (x, y) {}; //
+        this.draw = function () {}; // on change / on release
+        this.clear = function () {
             this._clear();
         };
 
         // Utils
-        this.h2rgba = function(h, a) {
+        this.h2rgba = function (h, a) {
             var rgb;
             h = h.substring(1, 7);
             rgb = [
@@ -489,18 +501,17 @@
             return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a + ")";
         };
 
-        this.copy = function(f, t) {
+        this.copy = function (f, t) {
             for (var i in f) {
                 t[i] = f[i];
             }
         };
     };
 
-
     /**
      * k.Dial
      */
-    k.Dial = function() {
+    k.Dial = function () {
         k.o.call(this);
 
         this.startAngle = null;
@@ -511,7 +522,7 @@
         this.w2 = null;
         this.PI2 = 2 * Math.PI;
 
-        this.extend = function() {
+        this.extend = function () {
             this.o = $.extend({
                 bgColor: this.$.data('bgcolor') || '#EEEEEE',
                 angleOffset: this.$.data('angleoffset') || 0,
@@ -520,7 +531,7 @@
             }, this.o);
         };
 
-        this.val = function(v, triggerRelease) {
+        this.val = function (v, triggerRelease) {
             if (null !== v) {
 
                 // reverse format
@@ -541,7 +552,7 @@
             }
         };
 
-        this.xy2val = function(x, y) {
+        this.xy2val = function (x, y) {
             var a, ret;
 
             a = Math.atan2(
@@ -568,13 +579,13 @@
             return ret;
         };
 
-        this.listen = function() {
+        this.listen = function () {
 
             // bind MouseWheel
             var s = this,
                 mwTimerStop,
                 mwTimerRelease,
-                mw = function(e) {
+                mw = function (e) {
                     e.preventDefault();
 
                     var ori = e.originalEvent,
@@ -596,14 +607,14 @@
                     if (s.rH) {
                         // Handle mousewheel stop
                         clearTimeout(mwTimerStop);
-                        mwTimerStop = setTimeout(function() {
+                        mwTimerStop = setTimeout(function () {
                             s.rH(v);
                             mwTimerStop = null;
                         }, 100);
 
                         // Handle mousewheel releases
                         if (!mwTimerRelease) {
-                            mwTimerRelease = setTimeout(function() {
+                            mwTimerRelease = setTimeout(function () {
                                 if (mwTimerStop)
                                     s.rH(v);
                                 mwTimerRelease = null;
@@ -624,7 +635,7 @@
             this.$
                 .bind(
                     "keydown",
-                    function(e) {
+                    function (e) {
                         var kc = e.keyCode;
 
                         // numpad support
@@ -639,7 +650,8 @@
                                 kc !== 8 && // bs
                                 kc !== 9 && // tab
                                 kc !== 189 && // -
-                                (kc !== 190 || s.$.val().match(/\./))) { // . allowed once
+                                (kc !== 190 || s.$.val()
+                                    .match(/\./))) { // . allowed once
                                 e.preventDefault();
                             }
 
@@ -656,16 +668,16 @@
                                 s._draw();
 
                                 // long time keydown speed-up
-                                to = window.setTimeout(function() {
+                                to = window.setTimeout(function () {
                                     m *= 2;
                                 }, 30);
                             }
                         }
                     }
-            )
+                )
                 .bind(
                     "keyup",
-                    function(e) {
+                    function (e) {
                         if (isNaN(kval)) {
                             if (to) {
                                 window.clearTimeout(to);
@@ -680,13 +692,13 @@
                                 if (s.$.val() < s.o.min && s.$.val(s.o.min));
                         }
                     }
-            );
+                );
 
             this.$c.bind("mousewheel DOMMouseScroll", mw);
             this.$.bind("mousewheel DOMMouseScroll", mw);
         };
 
-        this.init = function() {
+        this.init = function () {
             if (this.v < this.o.min || this.v > this.o.max) {
                 this.v = this.o.min;
             }
@@ -714,41 +726,43 @@
             this.endAngle = 1.5 * Math.PI + this.angleOffset + this.angleArc;
 
             var s = max(
-                String(Math.abs(this.o.max)).length,
-                String(Math.abs(this.o.min)).length,
+                String(Math.abs(this.o.max))
+                .length,
+                String(Math.abs(this.o.min))
+                .length,
                 2
             ) + 2;
 
             if (this.o.displayInput && this.i.css({
-                'width': ((this.w / 2 + 4) >> 0) + 'px',
-                'height': ((this.w / 3) >> 0) + 'px',
-                'position': 'absolute',
-                'vertical-align': 'middle',
-                'margin-top': ((this.w / 3) >> 0) + 'px',
-                'margin-left': '-' + ((this.w * 3 / 4 + 2) >> 0) + 'px',
-                'border': 0,
-                'background': 'none',
-                'font': this.o.fontWeight + ' ' + ((this.w / s) >> 0) + 'px ' + this.o.font,
-                'text-align': 'center',
-                'color': this.o.inputColor || this.o.fgColor,
-                'padding': '0px',
-                '-webkit-appearance': 'none'
-            }) || this.i.css({
-                'width': '0px',
-                'visibility': 'hidden'
-            }));
+                    'width': ((this.w / 2 + 4) >> 0) + 'px',
+                    'height': ((this.w / 3) >> 0) + 'px',
+                    'position': 'absolute',
+                    'vertical-align': 'middle',
+                    'margin-top': ((this.w / 3) >> 0) + 'px',
+                    'margin-left': '-' + ((this.w * 3 / 4 + 2) >> 0) + 'px',
+                    'border': 0,
+                    'background': 'none',
+                    'font': this.o.fontWeight + ' ' + ((this.w / s) >> 0) + 'px ' + this.o.font,
+                    'text-align': 'center',
+                    'color': this.o.inputColor || this.o.fgColor,
+                    'padding': '0px',
+                    '-webkit-appearance': 'none'
+                }) || this.i.css({
+                    'width': '0px',
+                    'visibility': 'hidden'
+                }));
         };
 
-        this.change = function(v) {
+        this.change = function (v) {
             this.cv = v;
             this.$.val(this.o.format(v));
         };
 
-        this.angle = function(v) {
+        this.angle = function (v) {
             return (v - this.o.min) * this.angleArc / (this.o.max - this.o.min);
         };
 
-        this.arc = function(v) {
+        this.arc = function (v) {
             var sa, ea;
             v = this.angle(v);
             if (this.o.flip) {
@@ -770,7 +784,7 @@
             };
         };
 
-        this.draw = function() {
+        this.draw = function () {
             var c = this.g, // context
                 a = this.arc(this.cv), // Arc
                 pa, // Previous arc
@@ -801,20 +815,21 @@
             c.stroke();
         };
 
-        this.cancel = function() {
+        this.cancel = function () {
             this.val(this.v);
         };
     };
 
-    $.fn.dial = $.fn.knob = function(o) {
+    $.fn.dial = $.fn.knob = function (o) {
         return this.each(
-            function() {
-                var d = new k.Dial();
-                d.o = o;
-                d.$ = $(this);
-                d.run();
-            }
-        ).parent();
+                function () {
+                    var d = new k.Dial();
+                    d.o = o;
+                    d.$ = $(this);
+                    d.run();
+                }
+            )
+            .parent();
     };
 
 }));

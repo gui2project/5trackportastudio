@@ -7,7 +7,7 @@
 var path = require('path');
 var ini = require(global.app.ini());
 
-var index = function(req, res) {
+var index = function (req, res) {
 
     res.render(path.join(ini.path.views, 'content', 'page.mixer.jade'), {
         title: 'trackstudio'

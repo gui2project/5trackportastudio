@@ -16,18 +16,20 @@ button,
 .data-not-active {
     background-color: #fafafa;
 }
+
 main > .container {
     background-color: #212121;
 }
+
 footer {
     background-color: #181818;
 }
 
-.dropdown button{
+.dropdown button {
     background: #D8D8D8;
-    color:#181818;
-    line-height:30px;
-    height:30px;
+    color: #181818;
+    line-height: 30px;
+    height: 30px;
 }
 
 .panel button,
@@ -41,58 +43,63 @@ footer .copyright,
 .panel button {
     color: #fafafa;
 }
+
 button {
     color: #181818;
 }
+
 main .name input,
 input.editable-text {
     color: #212121;
 }
+
 main .solo button,
 main .mute button,
 main .record button,
 main .playback button {
     color: #FF007D;
 }
+
 .panel .title .fa {
     color: #149BDF;
 }
+
 .data-not-active {
     color: #333 !important;
 }
+
 .data-active {
     color: #fafafa !important;
 }
 
-
- div.stopWatch{
-    border:1px inset #333;
-    background:rgb(20,155,223);
+div.stopWatch {
+    border: 1px inset #333;
+    background: rgb(20,155,223);
 }
+
 div.stopWatch > div.timedisplay {
     font-family: 'Segment7Standard';
     font-size: 40px;
     text-align: center;
-    border:1px inset #333;
-    color:#333;
+    border: 1px inset #333;
+    color: #333;
 }
 
-
- .dropdown{
+.dropdown {
     position: absolute;
     top: 50px;
     left: 0;
-    right:0;
+    right: 0;
     background: #181818;
     z-index: 1000;
     padding: 0;
-    color:#fafafa;
+    color: #fafafa;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom: outset 1px #333;
 }
 
-.dropdown .holder{
+.dropdown .holder {
     overflow-y: auto;
     height: 700px;
     float: left;
@@ -102,22 +109,22 @@ div.stopWatch > div.timedisplay {
 }
 
 .dropdown-left, .dropdown-right {
-    height:100%;
+    height: 100%;
 }
 
 .panel {
-    background:none;
-    border:none;
+    background: none;
+    border: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-    margin-top:10px;
-    float:none;
+    margin-top: 10px;
+    float: none;
 }
 
-.panel .title .fa{
+.panel .title .fa {
     line-height: 20px;
     font-size: 15px;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .fx-catalog-panel,
@@ -137,7 +144,7 @@ div.stopWatch > div.timedisplay {
     background-image: url('/app/img/wait.gif');
     background-repeat: no-repeat;
     background-position: center center;
-    height:100%;
+    height: 100%;
     display: none;
 }
 
@@ -146,24 +153,28 @@ div.stopWatch > div.timedisplay {
 .dropdown .col-md-1, .dropdown .col-md-10, .dropdown .col-md-11, .dropdown .col-md-12, .dropdown .col-md-2, .dropdown .col-md-3, .dropdown .col-md-4, .dropdown .col-md-5, .dropdown .col-md-6, .dropdown .col-md-7, .dropdown .col-md-8, .dropdown .col-md-9 {
     float: none;
 }
+
 .wait-left-panel {
     float: left;
 }
+
 .wait-right-panel {
     float: left;
 }
+
 .dropdown .row {
     margin-left: 0;
 }
 
-.dropdown-left{
+.dropdown-left {
     float: left !important;
 }
 
 .api-item-url {
-    font-size:16px;
-    color:#149BDF;
-    }
+    font-size: 16px;
+    color: #149BDF;
+}
+
 .api-item-param {
     font-style: italic;
     margin-right: 25px;
@@ -171,30 +182,35 @@ div.stopWatch > div.timedisplay {
     display: inline-block;
     color: #FF007D;
 }
+
 .api-row-tabbed {
-    margin-left:25px;
+    margin-left: 25px;
 }
-.api-row-options{
+
+.api-row-options {
     margin-left: 90px;
 }
+
 .api-url-param {
     color: #FF007D;
 }
+
 .api-row-options {
-    color:#149BDF
+    color: #149BDF;
 }
+
 .api-url-param {
     font-style: italic;
 }
+
 .api-item-param,
 .api-item-param-description {
     font-size: 14px;
 }
 
- div.track{
+div.track {
     text-align: center;
 }
-
 
 header {
     z-index: 1001;
@@ -203,13 +219,12 @@ header {
     left: 0;
     width: 100%;
     border-bottom: 0;
-    height:20px;
-
+    height: 20px;
 }
 
 .navbar-default {
     background-color: #181818;
-    border:0;
+    border: 0;
 }
 
 .navbar-default .navbar-brand {
@@ -218,13 +233,13 @@ header {
 
 .navbar-brand-label,
 .splash-brand-label {
-    height:40px;
+    height: 40px;
     background-image: url('/app/img/favicon-white.png');
     background-repeat: no-repeat;
     background-position: left 0;
     padding-left: 26px;
     background-size: 22px 22px;
-    margin-left:5px;
+    margin-left: 5px;
     color: #FAFAFA;
 }
 
@@ -240,22 +255,22 @@ div.navbar-right-links a.link-register span,
 div.navbar-right-links a.link-sign-out span,
 .navbar-info-display,
 .navbar-header > a > span {
-    height:38px;
-    line-height:55px;
+    height: 38px;
+    line-height: 55px;
     color: #FAFAFA;
     float: right;
 }
 
-
 .navbar-brand-label:hover,
 span.navbar-brand-label:hover,
 div.navbar-right-links > a > span:hover {
-    color: #149BDF;;
+    color: #149BDF;
+    ;
     text-decoration: none;
     border-bottom: 1px solid #149BDF;
 }
 
-.catalog-label{
+.catalog-label {
     height: 50px;
     line-height: 50px;
     margin-left: 10px;
@@ -278,15 +293,15 @@ div.navbar-right-links > a > span:hover {
 }
 
 .navbar-info-display {
-    height:35px;
-    line-height:55px;
+    height: 35px;
+    line-height: 55px;
     color: #FAFAFA;
-    float:left;
-
+    float: left;
 }
+
 a.link-register,
 a.link-sign-in,
-a.link-sign-out{
+a.link-sign-out {
     display: none;
 }
 /*Positioning*/
@@ -295,13 +310,14 @@ body {
     width: 100%;
     height: 100%;
 }
+
 body,
 .sys-font {
     font-family: 'Open Sans', sans-serif;
     /*Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
-
     font-weight: 300;
 }
+
 body {
     float: left;
 }
@@ -311,28 +327,34 @@ main > .container {
     border-radius: 10px;
     margin-top: 60px;
 }
+
 main .container .row {
     padding: 8px 0;
 }
+
 main .container .row:first-child {
     padding: 8px 0;
     border-top: none;
 }
+
 main .row-container {
     padding: 0;
     margin: 0;
     margin-right: -15px;
     margin-left: -15px;
 }
+
 main .name {
     margin: auto;
     font-size: 20px;
     text-align: center;
 }
+
 main .name input {
     margin: auto;
     text-align: center;
 }
+
 main .eq,
 main .pan {
     width: 98px;
@@ -340,11 +362,13 @@ main .pan {
     margin: auto;
     position: relative;
 }
+
 main .eq span,
 main .pan span {
     width: 20px;
     margin: auto;
 }
+
 main .eq label,
 main .pan label {
     text-align: center;
@@ -357,12 +381,15 @@ main .pan label {
     padding: 0;
     margin: 0;
 }
+
 main .eq label {
     top: 19px;
 }
+
 main .pan label {
     bottom: 25px;
 }
+
 main .solo button,
 main .mute button,
 main .record button {
@@ -370,19 +397,21 @@ main .record button {
     height: 40px;
     font-weight: bold;
 }
+
 main .solo,
 main .mute,
 main .record {
     float: left;
     margin: 0;
     padding: 0;
-
 }
+
 main .fader {
     clear: both;
     width: 20px;
     margin: auto;
 }
+
 main .fader .slider-handle.custom {
     width: 20px;
     height: 50px;
@@ -391,6 +420,7 @@ main .fader .slider-handle.custom {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 main .playback button {
     padding: 10px;
     width: 100%;
@@ -404,58 +434,68 @@ footer {
     bottom: 0;
     border-top: 1px solid #333;
 }
+
 footer .copyright {
     font-size: 12px;
     text-align: center;
     margin-top: 10px;
 }
+
 .track,
 .master {
     border: 1px outset #333;
     margin: 0;
     height: 750px;
 }
+
 .track:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
 .master:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
 .fa {
     font-size: 20px;
 }
+
 img.logo {
     float: left;
     width: 16px;
     margin: 3px 5px 0 0;
 }
+
 input.editable-text {
     margin: auto;
     text-align: center;
     float: none;
 }
+
 div.mixer-editable {
     margin: auto;
     text-align: center;
 }
-div.track-label {
-        cursor: text;
-}
 
+div.track-label {
+    cursor: text;
+}
 
 div.master-label {
     cursor: default;
 }
+
 .pointer {
     cursor: pointer;
 }
+
 .display {
     display: block !important;
 }
 
-label.error{
+label.error {
     position: absolute;
     bottom: -20px;
     right: 13px;
@@ -467,21 +507,21 @@ label.error{
 
 .error,
 .panel-entry,
-span.hover
- {
+span.hover {
     background: #333333;
     border-radius: 5px;
     padding: 5px;
     border: 1px solid #181818;
 }
 
-.form-control{
+.form-control {
     margin-bottom: 12px;
 }
 
-.navbar-brand-label:hover{
+.navbar-brand-label:hover {
     background-image: url('/app/img/favicon-blue.png');
 }
+
 label {
     font-weight: 300;
 }
@@ -489,60 +529,60 @@ label {
 .row.title {
     margin-bottom: 8px;
 }
+
 .row.title span {
     font-size: 16px;
 }
 
 .dropdown {
-   height: auto;
-   min-height: 627px;
+    height: auto;
+    min-height: 627px;
 }
 
-.dropdown-right{
+.dropdown-right {
     overflow: auto;
 }
 
-
-span.hover{
-    display:none;
-    color:#FF007D;
+span.hover {
+    display: none;
+    color: #FF007D;
 }
 
-a.menu:hover span.hover{
+a.menu:hover span.hover {
     display: inline-block;
     position: absolute;
     z-index: 1;
-    top:-40px;
+    top: -40px;
     left: 0;
 }
+
 a.menu {
     margin: 0 5px 0 0;
 }
 
-.icon-right{
-    float:right;
+.icon-right {
+    float: right;
 }
 
-
-span.icon-right .fa{
-    display:none;
+span.icon-right .fa {
+    display: none;
     color: #149BDF;
 }
 
 .icon-right.err .fa-times,
 .icon-right.err .fa-unlock {
-    color:#FF007D;
-    display:block;
+    color: #FF007D;
+    display: block;
 }
 
 .icon-right.pass .fa-check,
 .icon-right.pass .fa-lock {
-    color:#149BDF;
-    display:block;
+    color: #149BDF;
+    display: block;
 }
 
 .link-api {
-    margin-left:5px;
+    margin-left: 5px;
 }
 
 .splash {
@@ -554,10 +594,12 @@ span.icon-right .fa{
     z-index: 2000;
     background: #333;
 }
-.splash-brand{
-    width:100%;
-    height:100%;
+
+.splash-brand {
+    width: 100%;
+    height: 100%;
 }
+
 .splash-brand-label {
     position: absolute;
     top: 50%;
@@ -567,26 +609,32 @@ span.icon-right .fa{
     background-position: left 11px;
     padding-left: 50px;
     background-size: 40px 40px;
-    margin-left: 6px;font-size: 40px;
+    margin-left: 6px;
+    font-size: 40px;
 }
-.splash-label{
+
+.splash-label {
     color: #149BDF;
 }
-.warning{
 
+.warning {
     color: #FF007D !important;
 }
-.instructions{
+
+.instructions {
     color: #fafafa;
 }
 
 p.response {
-    margin-left:45px;
-    float:left;
+    margin-left: 45px;
+    float: left;
 }
 
 .instructions ol.panel {
-    margin-left:30px;
-    float:left;
+    margin-left: 30px;
+    float: left;
 }
-.left { float:left;}
+
+.left {
+    float: left;
+}

@@ -5,7 +5,8 @@
  */
 
 //  Requires
-var schema = require('mongoose').Schema;
+var schema = require('mongoose')
+    .Schema;
 
 //  Database configurations
 var db = {

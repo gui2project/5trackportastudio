@@ -29,32 +29,43 @@ var paths = {
     public: path.join(root, 'www'),
     projectFiles: {
         css: {
-            linter: path.join(root, 'ini', 'linter', 'csslinterc.json'),
+            format: path.join(root, 'ini', 'format', 'css.json'),
+            linter: path.join(root, 'ini', 'linter', 'css.json'),
             loc: [
-                path.join(root, 'www', 'app', 'css', '**', '*.css')
+                path.join(root, 'server', '**', '*.css'),
+                path.join(root, 'ini', '**', '*.css'),
+                path.join(root, 'www', 'app', '**', '*.css'),
+                path.join(root, '*.css'),
             ],
         },
         jade: {
-            linter: path.join(root, 'ini', 'linter', 'jadelinterc.json'),
+            format: path.join(root, 'ini', 'format', 'jade.json'),
+            linter: path.join(root, 'ini', 'linter', 'jade.json'),
             loc: [
-                path.join(root, 'server', 'mvc', 'views', '**', '*.jade')
+                path.join(root, 'server', '**', '*.jade'),
+                path.join(root, 'ini', '**', '*.jade'),
+                path.join(root, 'www', 'app', '**', '*.jade'),
+                path.join(root, '*.jade'),
             ]
         },
         json: {
-            linter: path.join(root, 'ini', 'linter', 'jsonlinterc.json'),
+            format: path.join(root, 'ini', 'format', 'json.json'),
+            linter: path.join(root, 'ini', 'linter', 'json.json'),
             loc: [
-                path.join(root, 'server', 'mvc', 'models', '**', '*.json'),
-                path.join(root, 'ini', 'linter', '**', '*.json')
+                path.join(root, 'server', '**', '*.json'),
+                path.join(root, 'ini', '**', '*.json'),
+                path.join(root, 'www', 'app', '**', '*.json'),
+                path.join(root, '*.json'),
             ]
         },
         js: {
             format: path.join(root, 'ini', 'format', 'js.json'),
-            linter: path.join(root, 'ini', 'linter', 'jslinterc.json'),
+            linter: path.join(root, 'ini', 'linter', 'js.json'),
             loc: [
                 path.join(root, 'ini', '**', '*.js'),
                 path.join(root, 'server', '**', '*.js'),
                 path.join(root, 'www', 'app', '**', '*.js'),
-                path.join(root, 'app.js')
+                path.join(root, '*.js')
             ]
         },
         mongodb: {

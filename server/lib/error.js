@@ -8,13 +8,13 @@ var path = require('path');
 var ini = require(global.app.ini());
 var msg = '[ ERROR ]';
 
-var error = function() {
+var error = function () {
     /**
      *  @name   notFound
      *
      *  Process a 404 missing resource
      */
-    this.notFound = function(req, res, next) {
+    this.notFound = function (req, res, next) {
         var err = new Error('Not Found');
         err.status = 404;
         next(err);
@@ -27,7 +27,7 @@ var error = function() {
      *  dev  - will print stack trace
      *  prod - no stack traces leaked to user
      */
-    this.server = function(err, req, res, next) {
+    this.server = function (err, req, res, next) {
         res.status(err.status || 500);
         if (ini.mode === 'dev')
             res.render(path.join(ini.path.mixin, 'error'), {
@@ -49,7 +49,7 @@ var error = function() {
  *
  *  @param  app     the express application
  */
-var middleware = function(app) {
+var middleware = function (app) {
 
     global.app.console.log(msg, "Initializing.");
     err = new error();

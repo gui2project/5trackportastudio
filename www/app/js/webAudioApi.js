@@ -30,7 +30,7 @@ function isGetUserMediaSupported() {
 
 //Initiate grabbing the users default microphone feed
 function initializeAudio() {
-    navigator.getUserMedia(opts, gotStream, function(e) {
+    navigator.getUserMedia(opts, gotStream, function (e) {
         alert('Error getting audio');
         console.log(e);
     });
@@ -61,7 +61,7 @@ function TrackTemplate() { //constructor for a blank track
     this.timer = new StopWatch();
     this.isRecording = false;
 
-    this.InitTrack = function() { //initializes a blank track ready for recording
+    this.InitTrack = function () { //initializes a blank track ready for recording
         this.gain.value = 0.7;
         this.eqHigh.type = "peaking";
         this.eqHigh.frequency.value = 2000;
@@ -84,7 +84,7 @@ function TrackTemplate() { //constructor for a blank track
         this.gain.connect(this.meter);
     };
 
-    this.playTrack = function() {
+    this.playTrack = function () {
         if (this.buffer !== null) {
             bufferSource = audioContext.createBufferSource(2, this.buffer, audioContext.sampleRate);
             bufferSource.buffer = this.buffer;
@@ -93,17 +93,17 @@ function TrackTemplate() { //constructor for a blank track
         }
     };
 
-    this.stopTrack = function() {
+    this.stopTrack = function () {
         if (this.buffer !== null) {
             bufferSource.stop();
         }
     };
 
-    this.pauseTrack = function() {
+    this.pauseTrack = function () {
         //needs Jose's clock
     };
 
-    this.armTrackToggle = function() {
+    this.armTrackToggle = function () {
         if (isArmed === false) {
             audioInput.connect(this.eqHigh);
             isArmed = true;
@@ -113,7 +113,7 @@ function TrackTemplate() { //constructor for a blank track
         }
     };
 
-    this.muteTrackToggle = function() {
+    this.muteTrackToggle = function () {
         if (!isMuted) {
             this.pan.disconnect();
             isMuted = true;
@@ -123,7 +123,7 @@ function TrackTemplate() { //constructor for a blank track
         }
     };
 
-    this.recordToggle = function() {
+    this.recordToggle = function () {
         if (isArmed === true) {
             if (this.isRecording === false) {
                 audioRecorder.clear();
@@ -138,15 +138,17 @@ function TrackTemplate() { //constructor for a blank track
             console.log("Track must be armed to record");
     };
 
-    this.getRecorderBuffer = function() {
+    this.getRecorderBuffer = function () {
         _this = this; //bring scope to callback function
         audioRecorder.getBuffer(this.grabFromAudioRecorderBuffer);
     };
 
-    this.grabFromAudioRecorderBuffer = function(buffers) {
+    this.grabFromAudioRecorderBuffer = function (buffers) {
         recordingBuffer = audioContext.createBuffer(2, buffers[0].length, audioContext.sampleRate);
-        recordingBuffer.getChannelData(0).set(buffers[0]);
-        recordingBuffer.getChannelData(1).set(buffers[1]);
+        recordingBuffer.getChannelData(0)
+            .set(buffers[0]);
+        recordingBuffer.getChannelData(1)
+            .set(buffers[1]);
         _this.buffer = recordingBuffer;
     };
 }

@@ -51,6 +51,7 @@
   "devDependencies": {
     "csslint-stylish": "0.0.4",
     "gulp": "^3.9.1",
+    "gulp-cssbeautify": "^0.1.3",
     "gulp-csslint": "^0.2.2",
     "gulp-exec": "^2.1.2",
     "gulp-fail": "^1.0.1",
@@ -59,6 +60,7 @@
     "gulp-if": "^2.0.0",
     "gulp-jadelint": "^0.1.0",
     "gulp-js-prettify": "^0.1.0",
+    "gulp-jsbeautify": "^0.1.1",
     "gulp-jshint": "^2.0.0",
     "gulp-jsonlint": "^1.1.2",
     "gulp-notify": "^2.2.0",

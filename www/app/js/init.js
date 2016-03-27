@@ -43,12 +43,12 @@ var ts = { //  trackstudio cookies
  *
  *  @return         The code being required
  */
-var require = function(src) {
+var require = function (src) {
     switch (src) {
-        case 'jquery':
-            return $;
-        default:
-            return undefined;
+    case 'jquery':
+        return $;
+    default:
+        return undefined;
     }
 };
 
@@ -63,7 +63,7 @@ var require = function(src) {
  *
  *  @return ret     The value of the cookie
  */
-var getCookie = function(name) {
+var getCookie = function (name) {
     var re, //  Holds the regular expression
         ret, //  The cookie string value
         exp, //  The regular expression
@@ -94,12 +94,12 @@ var getCookie = function(name) {
  *  @param  callSession     The function to call on success
  *  @param  callNoSession   The function to call on failure
  */
-var validateSession = function(callSession, callNoSession) {
+var validateSession = function (callSession, callNoSession) {
     console.log('--- Validationg session');
 
     //  Setting Defaults
-    callNoSession = dVar(callNoSession, function() {});
-    callSession = dVar(callSession, function() {});
+    callNoSession = dVar(callNoSession, function () {});
+    callSession = dVar(callSession, function () {});
 
     //  Initializing cookie value
     ts.user_id = getCookie('ts_user_id');
@@ -117,38 +117,40 @@ var validateSession = function(callSession, callNoSession) {
     } else {
         //  User cookie found
         $.ajax({
-            url: '/api/get/session/valid'
-        }).done(function(data) {
-            var session;
+                url: '/api/get/session/valid'
+            })
+            .done(function (data) {
+                var session;
 
-            //  Update cookie
-            ts.user_id = getCookie('ts_user_id');
-            ts.user_session = getCookie('ts_user_session');
+                //  Update cookie
+                ts.user_id = getCookie('ts_user_id');
+                ts.user_session = getCookie('ts_user_session');
 
-            if (data) {
-                console.log(" Succesful return: Valid session");
-                ts.session = true;
-                session = callSession;
-            } else {
-                console.log(" Succesful return: Invalid session");
+                if (data) {
+                    console.log(" Succesful return: Valid session");
+                    ts.session = true;
+                    session = callSession;
+                } else {
+                    console.log(" Succesful return: Invalid session");
+                    ts.session = false;
+                    session = callNoSession;
+                }
+
+                console.log('Current cookie:', ts);
+                dd.navigation.display.lock(ts.session);
+
+                if (session) session();
+            })
+            .fail(function () {
+                ts.user_id = getCookie('ts_user_id');
+                ts.user_session = getCookie('ts_user_session');
                 ts.session = false;
-                session = callNoSession;
-            }
 
-            console.log('Current cookie:', ts);
-            dd.navigation.display.lock(ts.session);
+                console.log("Invalid session", ts);
+                dd.navigation.display.lock(ts.session);
 
-            if (session) session();
-        }).fail(function() {
-            ts.user_id = getCookie('ts_user_id');
-            ts.user_session = getCookie('ts_user_session');
-            ts.session = false;
-
-            console.log("Invalid session", ts);
-            dd.navigation.display.lock(ts.session);
-
-            if (callNoSession) callNoSession();
-        });
+                if (callNoSession) callNoSession();
+            });
     }
 };
 
@@ -162,7 +164,7 @@ var validateSession = function(callSession, callNoSession) {
  *
  *  @return         The default paramater
  */
-var dVar = function(param, def) {
+var dVar = function (param, def) {
     return (typeof param === 'undefined') ? def : param;
 };
 
@@ -175,7 +177,7 @@ var dVar = function(param, def) {
  *  @param  micFailure     The microphone failure callback
  *  @param  browserFailure The browser incompatibility callback
  */
-var getMicrophone = function(micSuccess, micFailure, browserFailure) {
+var getMicrophone = function (micSuccess, micFailure, browserFailure) {
     if (navigator.getUserMedia) {
         navigator.getUserMedia({
             audio: true
@@ -184,8 +186,8 @@ var getMicrophone = function(micSuccess, micFailure, browserFailure) {
 };
 
 //http://stackoverflow.com/questions/2400935/browser-detection-in-javascript
-var getBrowser = function() {
-    return (function() {
+var getBrowser = function () {
+    return (function () {
         var ua = navigator.userAgent;
         var temp = null;
         var ret = {

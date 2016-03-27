@@ -15,7 +15,7 @@ var chalk = require('chalk'); //  coloring for console label
 var msg = '[ GLOBAL ]';
 
 //  The information object
-var info = function(pJson, mode, root) {
+var info = function (pJson, mode, root) {
 
     /**
      *  Use this scope in children
@@ -35,14 +35,14 @@ var info = function(pJson, mode, root) {
         /**
          *  consol.log replacement
          */
-        log: function() {
+        log: function () {
             //  prepend to arguments
             Array.prototype.unshift.call(arguments,
                 chalk.cyan('[' + _this.about + ']'));
             //  modify local console behavior
             console.log.apply(this, arguments);
         },
-        err: function() {
+        err: function () {
             //  prepend to arguments
             Array.prototype.unshift.call(arguments,
                 chalk.bgRed('[' + _this.about + ':ERROR]'));
@@ -54,7 +54,7 @@ var info = function(pJson, mode, root) {
     /**
      *  The path to the configuration file
      */
-    this.ini = function() {
+    this.ini = function () {
         return path.join(this.root, 'ini', this.mode + '.js');
     };
 
@@ -85,7 +85,7 @@ var info = function(pJson, mode, root) {
  *
  *  @return     An instantiated configuration object.
  */
-var exp = function(mode, root) {
+var exp = function (mode, root) {
     //  Generate an instance of the information object
     return new info(pjson, mode, root);
 };
