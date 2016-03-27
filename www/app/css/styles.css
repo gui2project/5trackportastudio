@@ -22,6 +22,14 @@ main > .container {
 footer {
     background-color: #181818;
 }
+
+.dropdown button{
+    background: #D8D8D8;
+    color:#181818;
+    line-height:30px;
+    height:30px;
+}
+
 .panel button,
 .data-active {
     background-color: #149BDF;
@@ -97,12 +105,6 @@ div.stopWatch > div.timedisplay {
     height:100%;
 }
 
-.dropdown button{
-    background: #D8D8D8;
-    color:#181818;
-    line-height:30px;
-    height:30px;
-}
 .panel {
     background:none;
     border:none;
