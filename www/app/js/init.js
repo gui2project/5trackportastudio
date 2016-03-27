@@ -7,24 +7,24 @@
 //  CONTEXT DETERMINATIONS
 
 //  Determine audio context
-window.AudioContext     = window.AudioContext ||
-                          window.webkitAudioContext;
+window.AudioContext = window.AudioContext ||
+    window.webkitAudioContext;
 
 //  Determine navigator for microphone detection
-navigator.getUserMedia  = (navigator.getUserMedia ||
-                          navigator.webkitGetUserMedia ||
-                          navigator.mozGetUserMedia ||
-                          navigator.msGetUserMedia);
+navigator.getUserMedia = (navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia ||
+    navigator.msGetUserMedia);
 
 //  VARIABLE DECLARATIONS
 
-var ac = null;              //  Audio Context
-var sw = null;              //  Stop watch
-var dd = null;              //  Drop Down
-var ts = {                  //  trackstudio cookies
-    user_id: null,              //  user hash
-    user_session: null,         //  session hash
-    session: false              //  session state
+var ac = null; //  Audio Context
+var sw = null; //  Stop watch
+var dd = null; //  Drop Down
+var ts = { //  trackstudio cookies
+    user_id: null, //  user hash
+    user_session: null, //  session hash
+    session: false //  session state
 };
 
 //  APPLICATION FUNCTIONS
@@ -43,8 +43,8 @@ var ts = {                  //  trackstudio cookies
  *
  *  @return         The code being required
  */
-var require = function(src){
-    switch(src){
+var require = function(src) {
+    switch (src) {
         case 'jquery':
             return $;
         default:
@@ -63,28 +63,27 @@ var require = function(src){
  *
  *  @return ret     The value of the cookie
  */
-var getCookie = function(name){
-    var re,         //  Holds the regular expression
-        ret,        //  The cookie string value
-        exp,        //  The regular expression
-        cookie;     //  Holds the cookie name
+var getCookie = function(name) {
+    var re, //  Holds the regular expression
+        ret, //  The cookie string value
+        exp, //  The regular expression
+        cookie; //  Holds the cookie name
 
     exp = /[^"]+(?=(" ")|"$)/g;
     ret = cookie = Cookies.get(name);
 
     //  Undefined cookie
-    if (cookie == undefined)
+    if (cookie === undefined)
         return 'empty';
 
     //  Detect for quote artifact
     if (cookie.indexOf('"') != -1) {
-        re      = new RegExp();
-        cookie  = re.exec(cookie);
-        ret     = (Array.isArray(cookie) ? cookie[0] : cookie);
+        cookie = exp.exec(cookie);
+        ret = (Array.isArray(cookie) ? cookie[0] : cookie);
     }
 
     //  Previously recognized empty cookie
-    return (ret == null ? 'empty' : ret);
+    return (ret === null ? 'empty' : ret);
 };
 
 /**
@@ -95,17 +94,17 @@ var getCookie = function(name){
  *  @param  callSession     The function to call on success
  *  @param  callNoSession   The function to call on failure
  */
-var validateSession = function(callSession, callNoSession){
+var validateSession = function(callSession, callNoSession) {
     console.log('--- Validationg session');
 
     //  Setting Defaults
-    callNoSession   = dVar(callNoSession, function(){});
-    callSession     = dVar(callSession, function(){});
+    callNoSession = dVar(callNoSession, function() {});
+    callSession = dVar(callSession, function() {});
 
     //  Initializing cookie value
-    ts.user_id      = getCookie('ts_user_id');
+    ts.user_id = getCookie('ts_user_id');
     ts.user_session = getCookie('ts_user_session');
-    ts.session      = false;
+    ts.session = false;
 
     //  Lock Navigation
     dd.navigation.display.lock(ts.session);
@@ -114,7 +113,7 @@ var validateSession = function(callSession, callNoSession){
         //  No user cookie found
         console.log("No session", ts);
 
-        if(callNoSession) callNoSession();
+        if (callNoSession) callNoSession();
     } else {
         //  User cookie found
         $.ajax({
@@ -126,7 +125,7 @@ var validateSession = function(callSession, callNoSession){
             ts.user_id = getCookie('ts_user_id');
             ts.user_session = getCookie('ts_user_session');
 
-            if (data){
+            if (data) {
                 console.log(" Succesful return: Valid session");
                 ts.session = true;
                 session = callSession;
@@ -140,7 +139,7 @@ var validateSession = function(callSession, callNoSession){
             dd.navigation.display.lock(ts.session);
 
             if (session) session();
-        }).fail(function(){
+        }).fail(function() {
             ts.user_id = getCookie('ts_user_id');
             ts.user_session = getCookie('ts_user_session');
             ts.session = false;
@@ -176,44 +175,49 @@ var dVar = function(param, def) {
  *  @param  micFailure     The microphone failure callback
  *  @param  browserFailure The browser incompatibility callback
  */
-var getMicrophone = function(micSuccess, micFailure, browserFailure){
+var getMicrophone = function(micSuccess, micFailure, browserFailure) {
     if (navigator.getUserMedia) {
-        navigator.getUserMedia({audio: true}, micSuccess, micFailure);
+        navigator.getUserMedia({
+            audio: true
+        }, micSuccess, micFailure);
     } else browserFailure();
 };
 
 //http://stackoverflow.com/questions/2400935/browser-detection-in-javascript
-var getBrowser = function(){
-    return (function(){
-        var ua      = navigator.userAgent;
-        var temp    = null;
-        var ret     = {browser: null, version: null};
-        var M       = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+var getBrowser = function() {
+    return (function() {
+        var ua = navigator.userAgent;
+        var temp = null;
+        var ret = {
+            browser: null,
+            version: null
+        };
+        var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
 
-        if (/trident/i.test(M[ 1 ])) {
-            temp    = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        if (/trident/i.test(M[1])) {
+            temp = /\brv[ :]+(\d+)/g.exec(ua) || [];
             ret.browser = 'IE';
-            ret.version = (temp[ 1 ] || '');
+            ret.version = (temp[1] || '');
             return ret;
         }
 
-        if (M[ 1 ] === 'Chrome') {
-            temp    = ua.match(/\b(OPR|Edge)\/(\d+)/);
-            if (temp != null) {
+        if (M[1] === 'Chrome') {
+            temp = ua.match(/\b(OPR|Edge)\/(\d+)/);
+            if (temp !== null) {
                 ret.browser = temp.slice(1)[0].replace('OPR', 'Opera');
-                ret.version = temp.slice(1)[1]
+                ret.version = temp.slice(1)[1];
                 return ret;
             }
         }
 
-        M       = M[ 2 ] ? [ M[ 1 ], M[ 2 ] ] : [navigator.appName, navigator.appVersion, '-?'];
-        temp    = ua.match(/version\/(\d+)/i)
+        M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+        temp = ua.match(/version\/(\d+)/i);
 
-        if (temp != null)
-                M.splice(1, 1, temp[ 1 ]);
+        if (temp !== null)
+            M.splice(1, 1, temp[1]);
 
-        ret.browser = M[ 0 ];
-        ret.version = M[ 1 ];
+        ret.browser = M[0];
+        ret.version = M[1];
 
         return ret;
     })();

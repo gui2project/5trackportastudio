@@ -4,14 +4,10 @@
  *  The configuration file for cookies.
  */
 
-//  Requires
-
-var root            = global.app.root
-
 //  Database configurations
 var cookie = {
     options: {
-        path:"/"//,
+        path: "/" //,
         //domain: "",
         //secure: false,
         //httpOnly: "",

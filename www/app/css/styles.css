@@ -4,7 +4,6 @@
  *  Contains application wide styles.
  */
 
-@charset "UTF-8";
 * {
     margin: 0;
     padding: 0;
@@ -90,8 +89,8 @@ div.stopWatch > div.timedisplay {
     height: 700px;
     float: left;
     width: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .dropdown-left, .dropdown-right {
@@ -201,14 +200,14 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    border-bottom: 0px;
+    border-bottom: 0;
     height:20px;
 
 }
 
 .navbar-default {
     background-color: #181818;
-    border:0px;
+    border:0;
 }
 
 .navbar-default .navbar-brand {
@@ -220,7 +219,7 @@ header {
     height:40px;
     background-image: url('/app/img/favicon-white.png');
     background-repeat: no-repeat;
-    background-position: left 0px;
+    background-position: left 0;
     padding-left: 26px;
     background-size: 22px 22px;
     margin-left:5px;
@@ -318,8 +317,8 @@ main .container .row:first-child {
     border-top: none;
 }
 main .row-container {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     margin-right: -15px;
     margin-left: -15px;
 }
@@ -353,8 +352,8 @@ main .pan label {
     position: absolute;
     left: 27px;
     bottom: 35px;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 main .eq label {
     top: 19px;
@@ -373,8 +372,8 @@ main .solo,
 main .mute,
 main .record {
     float: left;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 
 }
 main .fader {
@@ -411,7 +410,7 @@ footer .copyright {
 .track,
 .master {
     border: 1px outset #333;
-    margin: 0px;
+    margin: 0;
     height: 750px;
 }
 .track:first-child {
@@ -512,7 +511,7 @@ a.menu:hover span.hover{
     position: absolute;
     z-index: 1;
     top:-40px;
-    left: 0px;
+    left: 0;
 }
 a.menu {
     margin: 0 5px 0 0;
@@ -546,10 +545,10 @@ span.icon-right .fa{
 
 .splash {
     position: fixed;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 2000;
     background: #333;
 }

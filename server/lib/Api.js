@@ -4,12 +4,12 @@
  *  The Api handler for the application.
  */
 
-var path    = require('path');
+var path = require('path');
 var urlJoin = require('url-join');
 
-var ini     = require(global.app.ini());
+var ini = require(global.app.ini());
 var httpRes = require(path.join(ini.path.models, 'response.json'));
-var msg     = '[ API ]';
+var msg = '[ API ]';
 
 
 /**
@@ -39,13 +39,13 @@ var msg     = '[ API ]';
  */
 var Api = function(app) {
     //  Properties
-    this.app = app;     //  The express application
-    this.first = true;  //  First method flag
+    this.app = app; //  The express application
+    this.first = true; //  First method flag
 
     //  Crud types
     this.methods = [];
 
-    this.validMethod = function(method){
+    this.validMethod = function(method) {
         switch (method.toLowerCase()) {
             case "get":
             case "post":
@@ -66,21 +66,22 @@ var Api = function(app) {
      *  @param  obj     The api object documentation
      *  @param  func    The api function
      */
-    this.add = function( obj, func){
-        global.app.console.log(msg, 'Adding API method.', obj.url) ;
-        if (!this.validMethod(obj.return)){
+    this.add = function(obj, func) {
+        global.app.console.log(msg, 'Adding API method.', obj.url);
+        if (!this.validMethod(obj.
+            return)) {
             global.app.console.err(msg, 'Invalid API return methods for', obj.url);
             return false;
         }
-        global.app.console.log(msg, 'Valid method.', obj.url) ;
+        global.app.console.log(msg, 'Valid method.', obj.url);
         this.methods.push(obj);
         this.app[obj["return"].toLowerCase()](obj.url,
-                function(req, res){
-                    func(req, res, httpRes.crud[obj["return"]]);
-                });
+            function(req, res) {
+                func(req, res, httpRes.crud[obj["return"]]);
+            });
 
-        if (this.first){
-            global.app.console.log(msg, 'Defining API methods.') ;
+        if (this.first) {
+            global.app.console.log(msg, 'Defining API methods.');
             this.first = false;
         }
 
@@ -99,12 +100,12 @@ var Api = function(app) {
      *  @param  doc     The object to display
      *  @param  obj     The httpResponse object, the request type.
      */
-    this.response = function(res, err, doc, obj){
+    this.response = function(res, err, doc, obj) {
         if (err) {
-            global.app.console.err(msg, 'Error case', err, doc)
+            global.app.console.err(msg, 'Error case', err, doc);
             res.status(obj.failure).send(httpRes.resp[obj.failure].msg);
         } else {
-            if (obj.data){
+            if (obj.data) {
                 res.status(obj.success).json(doc);
             } else {
                 res.status(obj.success).send(httpRes.resp[obj.success].msg);
@@ -117,29 +118,29 @@ var Api = function(app) {
      *
      *  Prepares the help response and handles api error for invalid url.
      */
-    this.end = function(){
+    this.end = function() {
         var _this = this;
 
         // Adding help method
         this.add({
-            "url": urlJoin("/api", "get", "help"),
-            "param": [null],
-            "desc": "Returns an api description object.",
-            "return": "GET"
-        },
-        function(req, res, obj){
-             _this.response(res, null, _this.methods, obj);
-        });
+                "url": urlJoin("/api", "get", "help"),
+                "param": [null],
+                "desc": "Returns an api description object.",
+                "return": "GET"
+            },
+            function(req, res, obj) {
+                _this.response(res, null, _this.methods, obj);
+            });
 
         // Sort methods by url
-        this.methods.sort(function(a, b){
-            if(a.url < b.url) return -1;
-            if(a.url > b.url) return 1;
+        this.methods.sort(function(a, b) {
+            if (a.url < b.url) return -1;
+            if (a.url > b.url) return 1;
             return 0;
         });
 
         // Bad Request the API url does not  exist
-        this.app.get( '/api/*', function(req,res){
+        this.app.get('/api/*', function(req, res) {
             _this.response(res, true, "400", httpRes.crud.MISSING);
         });
 
@@ -158,7 +159,7 @@ var Api = function(app) {
  *
  *  @return     An instantiated API object.
  */
-var exp = function(app){
+var exp = function(app) {
     //  Generate an instance of the API object
     return new Api(app);
 };

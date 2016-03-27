@@ -5,37 +5,59 @@
  */
 
 //  Requires
-var schema          = require('mongoose').Schema;
-var root            = global.app.root
+var schema = require('mongoose').Schema;
 
 //  Database configurations
 var db = {
     host: 'www.josefflores.com',
-    models:[
-        {
-            collection: 'users',
-            schema: {
-                name: {type: String, required: true},
-                email: {type: String, required: true},
-                hash: {type: String, required: true},
-                salt: {type: String, required: true},
-                projects: [{type: String}]
-            }
-        },
-        {
-            collection: 'session',
-            schema: {
-                user: {type: String, required: true},
-                hash: {type: String, required: true},
-                time: {type: Number, required: true},
-                live: {type: Boolean, required: true}
+    models: [{
+        collection: 'users',
+        schema: {
+            name: {
+                type: String,
+                required: true
+            },
+            email: {
+                type: String,
+                required: true
+            },
+            hash: {
+                type: String,
+                required: true
+            },
+            salt: {
+                type: String,
+                required: true
+            },
+            projects: [{
+                type: String
+            }]
+        }
+    }, {
+        collection: 'session',
+        schema: {
+            user: {
+                type: String,
+                required: true
+            },
+            hash: {
+                type: String,
+                required: true
+            },
+            time: {
+                type: Number,
+                required: true
+            },
+            live: {
+                type: Boolean,
+                required: true
             }
         }
-    ],
+    }],
     name: 'trackstudio',
     options: {
         server: {
-            socketOptions:  {
+            socketOptions: {
                 keepAlive: 1,
                 connectTimeoutMS: 30000
             }
@@ -53,7 +75,7 @@ var db = {
 };
 
 //  Mongo DB URL
-db.url = 'mongodb://' + db.user + ':' + db.pass + '@' + db.host + ':' + db.port + '/' + db.name ;
+db.url = 'mongodb://' + db.user + ':' + db.pass + '@' + db.host + ':' + db.port + '/' + db.name;
 
 //  Export content
 module.exports = db;

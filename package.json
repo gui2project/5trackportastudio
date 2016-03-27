@@ -57,6 +57,8 @@
     "gulp-git": "^1.7.0",
     "gulp-help": "^1.6.1",
     "gulp-if": "^2.0.0",
+    "gulp-jadelint": "^0.1.0",
+    "gulp-js-prettify": "^0.1.0",
     "gulp-jshint": "^2.0.0",
     "gulp-jsonlint": "^1.1.2",
     "gulp-notify": "^2.2.0",

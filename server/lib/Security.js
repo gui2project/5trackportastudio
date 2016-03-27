@@ -6,12 +6,12 @@
  *  code modified from http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
  */
 
-var crypto  = require('crypto');
-var https   = require('https');
+var crypto = require('crypto');
+var https = require('https');
 
-var ini     = require(global.app.ini());
+var ini = require(global.app.ini());
 
-var msg     = '[ SECURITY ]';
+var msg = '[ SECURITY ]';
 
 /**
  *  @name   Security
@@ -26,7 +26,7 @@ var msg     = '[ SECURITY ]';
  */
 var Security = function() {
 
-    this.hash = function (pass, salt) {
+    this.hash = function(pass, salt) {
         global.app.console.log(msg, 'Hashing a password.');
         var h = crypto.createHash('sha512');
 
@@ -48,18 +48,18 @@ var Security = function() {
             .substring(1);
     };
 
-    this.ssl = function(app){
+    this.ssl = function(app) {
         if (ini.security.ssl.state) {
             var https = require('https');
 
             var httpsOptions = {
-                key:    ini.security.ssl.key,
-                cert:   ini.security.ssl.cert
+                key: ini.security.ssl.key,
+                cert: ini.security.ssl.cert
             };
             global.app.console.log(msg, 'SSL.');
             https.createServer(httpsOptions, app).listen(ini.security.ssl.port);
         }
-    }
+    };
 };
 
 /**
@@ -69,7 +69,7 @@ var Security = function() {
  *
  *  @return     An instantiated Security object.
  */
-var exp = function(){
+var exp = function() {
     //  Generate an instance of the Security object
     return new Security();
 };

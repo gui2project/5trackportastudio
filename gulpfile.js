@@ -16,10 +16,10 @@ var exec            = require('child_process').exec;
 var jshint          = require('gulp-jshint');
 var jsonlint        = require("gulp-jsonlint");
 var csslint         = require('gulp-csslint');
-var puglint         = require('gulp-pug-lint');
+var jadelint        = require('gulp-jadelint');
 var rm              = require('gulp-rm');
 var git             = require('gulp-git');
-var gulp            = require('gulp-help')(require('gulp'));
+var prettify        = require('gulp-js-prettify');
 
 //  Get application root directory and system mode
 var root            = path.resolve(__dirname);
@@ -29,40 +29,72 @@ global.app          = require('./server/lib/Global.js')(mode, root);
 //  VARIABLES
 var ini             = require(global.app.ini());    //  configuration object
 var cfgMongoDB      = yaml.load(ini.path.projectFiles.mongodb.cfg);
+var gulpHelpOpt     = {
+    hideDepsMessage:true,
+    hideEmpty:true
+};
+
+//  START GULP with help screen
+var gulp            = require('gulp-help')(require('gulp'), gulpHelpOpt);
+
+//  CODE FORMATTERS
+
+//  Prettify JS
+gulp.task('prettify', function() {
+    gulp.src(ini.path.projectFiles.js.loc)
+        .pipe(prettify(require(ini.path.projectFiles.js.format)))
+        .pipe(gulp.dest('./src'))});
 
 //  CODE LINTERS
 
 //  Javascript
-gulp.task('test.lint.js', 'Checks JS syntax.',
+gulp.task('test.lint.js', 'Checks JS syntax.', [],
     function() {
-        return gulp.src(ini.path.projectFiles.js)
+        console.log(ini.path.projectFiles.js.loc);
+        return gulp.src(ini.path.projectFiles.js.loc)
             .pipe(jshint())
-            .pipe(jshint.reporter('fail'))});
+            .pipe(jshint.reporter())});
 //  Json
-gulp.task('test.lint.json', 'Checks json syntax.',
+gulp.task('test.lint.json', 'Checks json syntax.', [],
     function() {
-        return gulp.src(ini.path.projectFiles.json)
+        console.log(ini.path.projectFiles.json.loc);
+        return gulp.src(ini.path.projectFiles.json.loc)
             .pipe(jsonlint())
-            .pipe(jsonlint.reporter('fail'))});
+            .pipe(jsonlint.reporter())});
 //  CSS
-gulp.task('test.lint.css', 'Checks css syntax.',
+gulp.task('test.lint.css', 'Checks css syntax.', [],
     function() {
-        return gulp.src(ini.path.projectFiles.css)
-            .pipe(csslint())
-            .pipe(csslint.reporter('fail'))});
+        console.log(ini.path.projectFiles.css.loc);
+        return gulp.src(ini.path.projectFiles.css.loc)
+            .pipe(csslint(require(ini.path.projectFiles.css.linter)))
+            .pipe(csslint.reporter())
+            .pipe(csslint.failReporter())});
 //  Jade/ Pug
-gulp.task('test.lint.jade', 'Checks jade/pug syntax.',
+gulp.task('test.lint.jade', 'Checks jade/pug syntax.', [],
     function() {
-        return gulp.src(ini.path.projectFiles.jade)
-            .pipe(puglint())});
+        console.log(ini.path.projectFiles.jade.loc);
+        return gulp
+            .src(ini.path.projectFiles.jade.loc)
+            .pipe(jadelint(require(ini.path.projectFiles.jade.linter)))
+        });
+
+
+
 
 //  GIT TASKS
 
 // Remove git lock file
-gulp.task('rm.gitlock', false,
+gulp.task('rm.gitlock', false, [],
     function() {
         return gulp.src( '/.git/index.lock', { read: false })
             .pipe(rm())});
+//  Store Credentials
+gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
+    function(){
+        var cmdStr = 'git config --global credential.helper store'
+        exec(cmdStr, function (err, stdout, stderr) {
+            console.log(stdout, stderr);
+            cb(err);})});
 //  Run git add with -A option
 gulp.task('git.add', false, ['test.lint.all', 'rm.gitlock'],
     function(){
@@ -71,7 +103,7 @@ gulp.task('git.add', false, ['test.lint.all', 'rm.gitlock'],
 //  Run git commit with -m option
 gulp.task('git.commit', false, ['git.add'],
     function(){
-        var message = argv.m ? argv.m : 'I was lazy and didnt give Gulp a commit message.';
+        var message = argv.m ? argv.m : 'Pushing with Gulp.';
         return gulp.src('./')
                 .pipe(git.commit(message))}, {
         options: {'m="message"': 'Commit message to use.'}});
@@ -97,11 +129,11 @@ gulp.task('git.push.heroku', false, ['git.push.master'],
 //  WINDOWS SERVICES
 
 //  Show translated configuration file to json
-gulp.task('service.mongodb.show.config', false,
+gulp.task('service.mongodb.show.config', false, [],
     function(){
         console.log(cfgMongoDB);});
 //  Create necessary directories
-gulp.task('service.mongodb.create.dirs', false,
+gulp.task('service.mongodb.create.dirs', false, [],
     function(){
         var mpath = cfgMongoDB.systemLog.path.split('\\');
         mpath.pop();
@@ -115,14 +147,14 @@ gulp.task('service.mongodb.create', false, ['service.mongodb.create.dirs'],
             console.log(stdout, stderr);
             cb(err);})});
 //  Stop MongoDB service
-gulp.task('service.mongodb.stop', false,
+gulp.task('service.mongodb.stop', false, [],
     function(cb){
         var cmdStr = 'net stop ' + cfgMongoDB.processManagement.windowsService.serviceName;
         exec(cmdStr, function (err, stdout, stderr) {
             console.log(stdout, stderr);
             cb(err);})});
 //  Start MongoDB service
-gulp.task('service.mongodb.start', false,
+gulp.task('service.mongodb.start', false, [],
     function(cb){
         var cmdStr = 'net start ' + cfgMongoDB.processManagement.windowsService.serviceName;
         exec(cmdStr, function (err, stdout, stderr) {

@@ -4,11 +4,11 @@
  *  This holds the error handlers for the server.
  */
 
-var path    = require('path');
-var ini     = require(global.app.ini());
-var msg     = '[ ERROR ]';
+var path = require('path');
+var ini = require(global.app.ini());
+var msg = '[ ERROR ]';
 
-var error = function(){
+var error = function() {
     /**
      *  @name   notFound
      *
@@ -29,11 +29,16 @@ var error = function(){
      */
     this.server = function(err, req, res, next) {
         res.status(err.status || 500);
-        ini.mode === 'dev' ?
-            res.render(path.join(ini.path.mixin, 'error'),
-                {message: err.message, error: err}) :
-            res.render(path.join(ini.path.mixin, 'error'),
-                {message: err.message, error: {}});
+        if (ini.mode === 'dev')
+            res.render(path.join(ini.path.mixin, 'error'), {
+                message: err.message,
+                error: err
+            });
+        else
+            res.render(path.join(ini.path.mixin, 'error'), {
+                message: err.message,
+                error: {}
+            });
     };
 };
 
@@ -44,7 +49,7 @@ var error = function(){
  *
  *  @param  app     the express application
  */
-var middleware = function(app){
+var middleware = function(app) {
 
     global.app.console.log(msg, "Initializing.");
     err = new error();
@@ -61,7 +66,3 @@ var middleware = function(app){
 
 //  Export content
 module.exports = middleware;
-
-
-
-

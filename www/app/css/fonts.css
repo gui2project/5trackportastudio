@@ -6,13 +6,12 @@
 
  @font-face {
     font-family: 'digital7';
-    src: url('/dep/fonts/digital-7/mono.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    src: url('/dep/fonts/digital-7/mono.eot?#iefix') format('embedded-opentype'),
+         url('/dep/fonts/digital-7/mono.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Segment7Standard';
-    src: url('/dep/fonts/segment-7/Segment7Standard.otf') format('opentype');
-    font-weight: normal;
-    font-style: italic;
-      }
+    src: url('/dep/fonts/segment-7/Segment7Standard.eot?#iefix') format('embedded-opentype'),
+         url('/dep/fonts/segment-7/Segment7Standard.otf') format('opentype');
+}

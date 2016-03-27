@@ -11,14 +11,14 @@
  *
  *  modified from https://gist.github.com/electricg/4372563
  */
-var	StopWatch = function() {
+var StopWatch = function() {
 
     var _this = this;
 
-    this.startAt	= 0;       //  start time
-    this.lapTime	= 0;       //  run time
-    this.id         = "";      //   Id name
-    this.clocktimer = null;    //   setinterval holder
+    this.startAt = 0; //  start time
+    this.lapTime = 0; //  run time
+    this.id = ""; //   Id name
+    this.clocktimer = null; //   setinterval holder
 
     /**
      *  @name       now
@@ -27,7 +27,7 @@ var	StopWatch = function() {
      *
      *  @return      current time
      */
-    this.now	= function() {
+    this.now = function() {
         return (new Date()).getTime();
     };
 
@@ -37,7 +37,7 @@ var	StopWatch = function() {
      *  start the clock
      */
     this.start = function() {
-         _this.startAt	= _this.startAt ? _this.startAt : _this.now();
+        _this.startAt = _this.startAt ? _this.startAt : _this.now();
     };
 
     /**
@@ -47,8 +47,8 @@ var	StopWatch = function() {
      */
     this.stop = function() {
         // If running, update elapsed time otherwise keep it
-        _this.lapTime	= _this.startAt ? _this.lapTime + _this.now() - _this.startAt : _this.lapTime;
-        _this.startAt	= 0; // Paused
+        _this.lapTime = _this.startAt ? _this.lapTime + _this.now() - _this.startAt : _this.lapTime;
+        _this.startAt = 0; // Paused
     };
 
     /**
@@ -96,17 +96,17 @@ var	StopWatch = function() {
      *
      * @return  the new time string to display
      */
-    this.formatTime  = function(time) {
+    this.formatTime = function(time) {
         var h, m, s, ms, newTime;
 
         h = m = s = ms = 0;
         newTime = '';
 
-        h = Math.floor( time / (60 * 60 * 1000) );
+        h = Math.floor(time / (60 * 60 * 1000));
         time = time % (60 * 60 * 1000);
-        m = Math.floor( time / (60 * 1000) );
+        m = Math.floor(time / (60 * 1000));
         time = time % (60 * 1000);
-        s = Math.floor( time / 1000 );
+        s = Math.floor(time / 1000);
         ms = time % 1000;
 
         var colon = '<span class="sys-font">:</span>';
@@ -122,7 +122,7 @@ var	StopWatch = function() {
      *
      *  @param  id      the id of the element
      */
-    this.setId = function(id){
+    this.setId = function(id) {
         _this.id = id;
     };
 
@@ -133,8 +133,8 @@ var	StopWatch = function() {
      *
      *  @return         the id of the clock
      */
-    this.getId = function(){
-        return  _this.id;
+    this.getId = function() {
+        return _this.id;
     };
 
     /**
@@ -142,7 +142,7 @@ var	StopWatch = function() {
      *
      *  sets the display interval of the clock, In other words it animates changes in time
      */
-    this.setClocktimer = function(){
+    this.setClocktimer = function() {
         setInterval(_this.update, 1);
     };
 
@@ -151,7 +151,7 @@ var	StopWatch = function() {
      *
      *  clears the display interval of the clock, in other words it stops animation
      */
-    this.clearClocktimer = function(){
+    this.clearClocktimer = function() {
         clearInterval(_this.clocktimer);
     };
 
@@ -160,8 +160,8 @@ var	StopWatch = function() {
      *
      *  interval function, writes the time of the clock into the element.
      */
-    this.update = function(){
-        $(_this.getId() ).html(_this.formatTime(_this.getTime()));
+    this.update = function() {
+        $(_this.getId()).html(_this.formatTime(_this.getTime()));
     };
 
     /**
@@ -175,9 +175,15 @@ var	StopWatch = function() {
      */
     this.adjust = function(mod) {
         _this.run('STOP');
-        _this.laptime + mod <= 0 ? _this.run('RESET') : _this.laptime += mod;
+
+        if (_this.laptime + mod <= 0)
+            _this.run('RESET');
+        else
+            _this.laptime += mod;
+
         return _this.laptime;
-    }
+    };
+
     /**
      *  @name   run
      *
@@ -193,28 +199,28 @@ var	StopWatch = function() {
      *
      * @return              The lapTime or RunTime on the stopwatch
      */
-    this.run = function(action, option){
-        switch(action){
+    this.run = function(action, option) {
+        switch (action) {
             case 'INIT': // requires option IdString
-                   _this.setId(option);
-	               _this.update();
+                _this.setId(option);
+                _this.update();
                 return _this.laptime;
 
             case 'START':
-                   _this.setClocktimer();
-                   _this.start();
+                _this.setClocktimer();
+                _this.start();
                 return _this.laptime;
 
             case 'STOP':
-                    _this.stop();
-	                _this.clearClocktimer();
+                _this.stop();
+                _this.clearClocktimer();
                 return _this.laptime;
 
             case 'RESET':
-                    _this.stop();
-	                _this.clearClocktimer();
-                    _this.reset();
-                    _this.update();
+                _this.stop();
+                _this.clearClocktimer();
+                _this.reset();
+                _this.update();
                 return _this.laptime;
 
             case 'ADJUST': //needs a value from option

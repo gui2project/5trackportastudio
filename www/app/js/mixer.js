@@ -40,14 +40,14 @@ $(function() {
 
     /* Set up volume sliders */
     $('.slider').slider({
-        reversed : true,
+        reversed: true,
         precision: 2,
-        min  : 0.00,
-        max  : 1.00,
+        min: 0.00,
+        max: 1.00,
         step: 0.01,
         value: 0.70,
         orientation: 'vertical',
-        tooltip_position:'left'
+        tooltip_position: 'left'
     });
 
     /* Knob function */
@@ -55,7 +55,7 @@ $(function() {
         $(this).addClass('changing');
     }).on('mousemove', function() {
         // Check if dragging
-        if(!$(this).hasClass('changing')) {
+        if (!$(this).hasClass('changing')) {
             return;
         }
 
@@ -64,13 +64,13 @@ $(function() {
         var knobValue = parseFloat($(this).parent().find('input').val());
         console.log(this);
         // Check which knob you are (EQ or pan)
-        if($(this).parent().parent().hasClass('eq')) {
+        if ($(this).parent().parent().hasClass('eq')) {
             // Get EQ type (high, mid, low)
             var eqType = $(this).parent().parent().parent().parent().attr('class').split(' ')[1];
 
-            eq(trackNumber,eqType,knobValue);
+            eq(trackNumber, eqType, knobValue);
 
-        } else if($(this).parent().parent().hasClass('pan')) {
+        } else if ($(this).parent().parent().hasClass('pan')) {
 
             pan(trackNumber, knobValue);
         }
@@ -85,8 +85,8 @@ $(function() {
         // Get track number and value of the slider
         var trackNumber = parseInt($(this).parent().attr("value"));
         var sliderVal = parseFloat($(this).val());
-        if(!isNaN(sliderVal))
-        gain(trackNumber,sliderVal);
+        if (!isNaN(sliderVal))
+            gain(trackNumber, sliderVal);
     });
 
     /* Mute buttons */
@@ -98,7 +98,7 @@ $(function() {
         var isMuted = parseInt($(this).attr('data-muted'));
 
         // Toggle armed
-        if(parseInt(isMuted)) {
+        if (parseInt(isMuted)) {
             // Turn off armed
             $(this).attr('data-muted', 0);
 
@@ -128,7 +128,7 @@ $(function() {
         var isArmed = parseInt($(this).attr('data-armed'));
 
         // Toggle armed
-        if(isArmed) {
+        if (isArmed) {
             // Turn off armed
             $(this).attr('data-armed', 0);
 
@@ -152,12 +152,12 @@ $(function() {
     });
 
     var mixerbutton = function(element) {
-       $('button.stop').removeClass('data-active');
-       $('button.rewind').removeClass('data-active');
-       $('button.forward').removeClass('data-active');
-       $('button.play').removeClass('data-active');
-       element.addClass('data-active');
-    }
+        $('button.stop').removeClass('data-active');
+        $('button.rewind').removeClass('data-active');
+        $('button.forward').removeClass('data-active');
+        $('button.play').removeClass('data-active');
+        element.addClass('data-active');
+    };
 
     /* Playback buttons */
     $('.playback button').on('click', function() {
@@ -165,7 +165,7 @@ $(function() {
         var buttonVal = $(this).attr("value");
 
         // Switch for button functions
-        switch(buttonVal) {
+        switch (buttonVal) {
             case 'Stop':
                 stop();
                 mixerbutton($('button.stop'));
