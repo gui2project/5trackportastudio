@@ -1,5 +1,5 @@
 /**
- *  @file   db.js
+ *  @name   db.js
  *
  *  The configuration file for mongodb.
  */

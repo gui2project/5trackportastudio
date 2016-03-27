@@ -1,5 +1,5 @@
 /**
- *  @file   gulp.js
+ *  @name   gulp.js
  *
  *  The configuration file to use during gulp tasks.
  *  It holds settings for the gulp taskrunner.

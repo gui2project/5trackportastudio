@@ -1,5 +1,5 @@
 /**
- *  @file   app.js
+ *  @name   app.js
  *
  *  This file is the controller for the application.
  */
@@ -18,7 +18,7 @@ var root = path.resolve(__dirname);
 var mode = process.env.TS_RUN_MODE;
 
 // Set application mode to: development | production
-global.app = require('./server/lib/Global.js')(mode, root);
+global.app = require('./server/lib/GlobalApplication.js')(mode, root);
 
 var ini = require(global.app.ini()); //  configuration object
 var mdb = require(ini.path.mongodb); //  mongoose wrapper

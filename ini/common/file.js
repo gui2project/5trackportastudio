@@ -1,5 +1,5 @@
 /**
- *  @file   file.js
+ *  @name   file.js
  *
  *  The configuration file for mapping documents.
  */

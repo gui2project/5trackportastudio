@@ -1,5 +1,5 @@
 /**
- *  @file   Api.js
+ *  @name   Api.js
  *
  *  The Api handler for the application.
  */
@@ -12,38 +12,48 @@ var httpRes = require(path.join(ini.path.models, 'response.json'));
 var msg = '[ API ]';
 
 /**
- *  @name   Api
+ *  @class   Api
  *
  *  This is the api object. It adds api point to the express application.
  *
- *  API Usage:
+ *  ### Examples:
  *
- *  var api = new Api(app);
+ *      var api = new Api(app);
  *
- *  api.add({
- *      "url": urlJoin( "/api/", "Comma", "separated", "path", "components"),
- *      "param": null | {"paramName": { "desc": "description of param", "opt": null | [ "array of options" ] }, ...
- *      "desc": "Description of the api method.",
- *      "return": "POST|PUT|GET|DELETE"
- *  },
- *  function(req, res, obj){
- *      // Api method action with final responses using
- *      // api.response(res, {errorObject}, {documentObject}, obj);
- *      // where errorObject and documentObject are user defined
- *  });
+ *      api.add({
+ *          "url": urlJoin( "/api/", "Comma", "separated", "path", "components"),
+ *          "param": null | {"paramName": { "desc": "description of param", "opt": null | [ "array of options" ] }, ...
+ *          "desc": "Description of the api method.",
+ *          "return": "POST|PUT|GET|DELETE"
+ *      },
+ *      function(req, res, obj){
+ *          // Api method action with final responses using
+ *          // api.response(res, {errorObject}, {documentObject}, obj);
+ *          // where errorObject and documentObject are user defined
+ *      });
  *
- *  ...
+ *      ...
  *
- *  api.end();
+ *      api.end();
+ *
+ *  @param {obj}    app     The express application
  */
 var Api = function (app) {
     //  Properties
     this.app = app; //  The express application
     this.first = true; //  First method flag
-
-    //  Crud types
     this.methods = [];
 
+    /**
+     *  @method validMethod
+     *
+     *  Checks to see if valid return type was passed
+     *
+     *  @param  {String}    method  the return type
+     *
+     *  @return {Boolean}   true    return type is valid
+     *  @return {Boolean}   false   unknown return type
+     */
     this.validMethod = function (method) {
         switch (method.toLowerCase()) {
         case "get":
@@ -58,12 +68,12 @@ var Api = function (app) {
     };
 
     /**
-     *  @name   add
+     *  @method   add
      *
      *  Adds a method to the api and documents it.
      *
-     *  @param  obj     The api object documentation
-     *  @param  func    The api function
+     *  @param  {Object}    obj     The api object documentation
+     *  @param  {Function}  func    The api function
      */
     this.add = function (obj, func) {
         global.app.console.log(msg, 'Adding API method.', obj.url);
@@ -87,16 +97,16 @@ var Api = function (app) {
     };
 
     /**
-     *  @name   response
+     *  @method   response
      *
      *  Passes the results of a database manipulation to the response handler,
      *  alongside the type of request that was made with any corresponding
      *  errors or documents.
      *
-     *  @param  res     The response
-     *  @param  err     The error object
-     *  @param  doc     The object to display
-     *  @param  obj     The httpResponse object, the request type.
+     *  @param  {Object}    res     The response passed by the application
+     *  @param  {Object}    err     The error object
+     *  @param  {Object}    doc     The data document
+     *  @param  {Object}    obj     The request type.
      */
     this.response = function (res, err, doc, obj) {
         if (err) {
@@ -115,7 +125,7 @@ var Api = function (app) {
     };
 
     /**
-     *  @name   end
+     *  @method   end
      *
      *  Prepares the help response and handles api error for invalid url.
      */
@@ -152,18 +162,18 @@ var Api = function (app) {
 };
 
 /**
- *  @name exp
+ *  @function     middleWare
  *
  *  Middle ware to intercept for the Api class
  *
- *  @param      app    The express object
+ *  @param  {Object}    app    The express application
  *
- *  @return     An instantiated API object.
+ *  @return {Object}        An instantiated API object.
  */
-var exp = function (app) {
+var middleWare = function (app) {
     //  Generate an instance of the API object
     return new Api(app);
 };
 
 //  Export content
-module.exports = exp;
+module.exports = middleWare;

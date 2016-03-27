@@ -1,8 +1,8 @@
 /**
- *  @file   api.js
+ *  @name   api.js
  *
- *  This is the API routing file it determines the content to be saved or served
- *  back
+ *  This is the API routing file it determines the content to be saved
+ *  or served back
  */
 
 var fs = require('fs');
@@ -14,7 +14,13 @@ var ini = require(global.app.ini());
 
 var msg = '[API]';
 
-// Document serving
+/**
+ *  @function   fileOptions
+ *
+ *  Generates an array of document aliases from the ini.file.docs object
+ *
+ *  @return     {Array}     An array of Document aliases
+ */
 var fileOptions = function () {
     var arr = [];
     ini.file.docs.forEach(function (obj) {
@@ -24,14 +30,15 @@ var fileOptions = function () {
 };
 
 /**
- * @name    middleware
+ * @function    middleWare
  *
- * Sets up API routing.
+ * Sets up API routing. Self Documenting methods are added to the api, They are
+ * self documenting because the first paramter adds itself to the API help object.
  *
- * @param   app     The express application reference
- * @param   mdb     The mongoose database wrapper
+ * @param   {Object}    app     The express application reference
+ * @param   {Object}    mdb     The mongoDB database object
  */
-var middleware = function (app, mdb) {
+var middleWare = function (app, mdb) {
 
     //  Holds the API entry point and documentation generating object
     var api = require(ini.path.apiHandler)(app);
@@ -323,4 +330,4 @@ var middleware = function (app, mdb) {
 };
 
 //  Export content
-module.exports = middleware;
+module.exports = middleWare;

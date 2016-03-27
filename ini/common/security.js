@@ -1,5 +1,5 @@
 /**
- *  @file   security.js
+ *  @name   security.js
  *
  *  The configuration file for security settings.
  */

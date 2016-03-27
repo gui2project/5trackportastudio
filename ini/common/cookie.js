@@ -1,5 +1,5 @@
 /**
- *  @file   cookie.js
+ *  @name   cookie.js
  *
  *  The configuration file for cookies.
  */

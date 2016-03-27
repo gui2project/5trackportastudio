@@ -1,5 +1,5 @@
 /**
- *  @file   map.js
+ *  @name   map.js
  *
  *  The configuration file for web mapping paths.
  */

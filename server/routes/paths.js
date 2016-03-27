@@ -1,5 +1,5 @@
 /**
- *  @file   paths.js
+ *  @name   paths.js
  *
  *  This is the url routing file it determines the controller or file that will
  *  be served by the node server.
@@ -10,19 +10,19 @@ var ini = require(global.app.ini());
 var msg = "[ PATHS ]";
 
 /**
- * @name    middleware
+ * @function    middleWare
  *
- * Sets up static and dynamic routing from a configuration file.
+ * Sets up static and dynamic routing from the configuration file.
  *
- * @param   app     the express application reference
+ * @param   {Object}    app     The express application reference
  */
-var middleware = function (app) {
+var middleWare = function (app) {
 
     var router = express.Router();
 
     global.app.console.log(msg, "Initializing.");
 
-    /* Routing - GET */
+    // Routing - GET
     global.app.console.log(msg, "Mapping dynamic URL paths.");
     ini.map.dynamic.forEach(function (map) {
         global.app.console.log(msg, " - ", map.web);
@@ -43,4 +43,4 @@ var middleware = function (app) {
 };
 
 //  Export content
-module.exports = middleware;
+module.exports = middleWare;

@@ -1,5 +1,5 @@
 /**
- *  @file   paths.js
+ *  @name   paths.js
  *
  *  The configuration file for absolute paths.
  */
@@ -16,7 +16,7 @@ var paths = {
     ctrl: path.join(root, 'server', 'mvc', 'controllers'),
     documents: path.join(root, 'doc'),
     models: path.join(root, 'server', 'mvc', 'models'),
-    error: path.join(root, 'server', 'lib', 'Error'),
+    error: path.join(root, 'server', 'lib', 'ErrorHandler'),
     errorGulp: path.join(root, 'server', 'lib', 'Error-gulp'),
     images: path.join(root, 'www', 'app', 'img'),
     jquery: path.join(root, 'node_modules', 'jquery', 'dist'),
