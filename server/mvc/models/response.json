@@ -16,13 +16,13 @@
             "success": "201",
             "failure": "400",
             "data": "true",
-            "use":  "Create data."
+            "use": "Create data."
         },
         "DELETE": {
             "success": "204",
             "failure": "404",
             "data": "true",
-            "use":  "Delete data."
+            "use": "Delete data."
         },
         "MISSING": {
             "success": "400",

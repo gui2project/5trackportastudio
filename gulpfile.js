@@ -23,6 +23,7 @@ var rm = require('gulp-rm');
 var git = require('gulp-git');
 var beautify_js = require('gulp-jsbeautify');
 var beautify_css = require('gulp-cssbeautify');
+var jsonFormat = require('gulp-json-format');
 
 //  Get application root directory and system mode
 var root = path.resolve(__dirname);
@@ -58,6 +59,15 @@ gulp.task('code.format.css', "Formats CSS code.", [],
                 base: './'
             })
             .pipe(beautify_css(require(ini.path.projectFiles.css.format)))
+            .pipe(gulp.dest('./'));
+    });
+//  JSON
+gulp.task('code.format.json', "Formats JSON code.", [],
+    function () {
+        return gulp.src(ini.path.projectFiles.json.loc, {
+                base: './'
+            })
+            .pipe(jsonFormat(4))
             .pipe(gulp.dest('./'));
     });
 
@@ -219,7 +229,7 @@ gulp.task('mongodb.delete', 'Removes MongoDB service on windows.', ['service.mon
 
 //  Code scripts
 gulp.task('code.lint.all', 'Performs all syntax tests', ['code.lint.js', 'code.lint.json', 'code.lint.css', 'code.lint.jade']);
-gulp.task('code.format.all', 'Formats code base', ['code.format.js', 'code.format.css']);
+gulp.task('code.format.all', 'Formats code base', ['code.format.js', 'code.format.css', 'code.format.json']);
 gulp.task('code.prepare', 'Checks and formats code base', ['code.format.all', 'code.lint.all']);
 
 //  Git updates
