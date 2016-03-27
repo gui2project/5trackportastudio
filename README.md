@@ -100,8 +100,8 @@ trackstudio
 
 ### Databse (Windows System)
 - To install
--- verify the contents of `ini\mongodb.cfg` and `ini\common\db.js` match your installation
--- run:
+ - verify the contents of `ini\mongodb.cfg` and `ini\common\db.js` match your installation
+ - run:
     ```
     gulp mongodb.create
     ```

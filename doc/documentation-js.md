@@ -16,10 +16,6 @@
 
 <!-- Start ini\production.js -->
 
-## production.js 
- The configuration file to use during production.
- It holds settings for the application.
-
 <!-- End ini\production.js -->
 
 
@@ -27,18 +23,12 @@
 
 <!-- Start ini\common\cookie.js -->
 
-## cookie.js 
- The configuration file for cookies.
-
 <!-- End ini\common\cookie.js -->
 
 
 
 
 <!-- Start ini\common\db.js -->
-
-## db.js 
- The configuration file for mongodb.
 
 <!-- End ini\common\db.js -->
 
@@ -53,6 +43,9 @@
 
 
 <!-- Start ini\common\map.js -->
+
+## map.js 
+ The configuration file for web mapping paths.
 
 <!-- End ini\common\map.js -->
 
