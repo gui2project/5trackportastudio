@@ -79,7 +79,11 @@ var paths = {
     routes: path.join(root, 'server', 'routes', 'paths'),
     security: path.join(root, 'server', 'lib', 'Security'),
     users: path.join(root, 'server', 'routes', 'users'),
-    templateMd: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.ejs'),
+    templateMd: {
+        js: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.js.ejs'),
+        jshead: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.js.head.ejs'),
+        readme: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.readme.ejs')
+    },
     views: path.join(root, 'server', 'mvc', 'views')
 };
 

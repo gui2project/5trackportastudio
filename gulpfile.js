@@ -82,16 +82,7 @@ gulp.task('code.doc.js', "Extracts documentation for JS code.", ['code.lint.js']
             .pipe(concat('documentation-js.md'))
             .pipe(gulp.dest('./doc/'));
     });
-gulp.task('code.doc.readme.new', "Creates a documentation file.", [],
-    function () {
-        return gulp.src('./')
-            .pipe(markdox({
-                template: ini.path.templateReadme
-            }))
-            .pipe(concat('readme.md'))
-            .pipe(gulp.dest('./doc/'));
-    });
-//sreturn gulp.src(['./doc/readme.md', '/doc/documentation-js-header', './doc/documentation-js.md'])
+
 //  CODE FORMATTERS
 
 //  JavaScript

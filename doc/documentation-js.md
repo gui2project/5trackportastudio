@@ -1,8 +1,7 @@
 
 
 <!-- Start ini\development.js -->
-
-## developement.js
+## ini\development.js
 
 The configuration file to use during development. It holds settings for the application.
 
@@ -12,8 +11,7 @@ The configuration file to use during development. It holds settings for the appl
 
 
 <!-- Start ini\gulp.js -->
-
-## gulp.js
+## ini\gulp.js
 
 The configuration file to use during gulp tasks. It holds settings for the gulp taskrunner.
 
@@ -23,8 +21,7 @@ The configuration file to use during gulp tasks. It holds settings for the gulp 
 
 
 <!-- Start ini\production.js -->
-
-## production.js
+## ini\production.js
 
 The configuration file to use during production.
 
@@ -34,8 +31,7 @@ The configuration file to use during production.
 
 
 <!-- Start ini\common\cookie.js -->
-
-## cookie.js
+## ini\common\cookie.js
 
 The configuration file for cookies.
 
@@ -45,8 +41,7 @@ The configuration file for cookies.
 
 
 <!-- Start ini\common\db.js -->
-
-## db.js
+## ini\common\db.js
 
 The configuration file for mongodb.
 
@@ -56,8 +51,7 @@ The configuration file for mongodb.
 
 
 <!-- Start ini\common\file.js -->
-
-## file.js
+## ini\common\file.js
 
 The configuration file for mapping documents.
 
@@ -67,8 +61,7 @@ The configuration file for mapping documents.
 
 
 <!-- Start ini\common\map.js -->
-
-## map.js
+## ini\common\map.js
 
 The configuration file for web mapping paths.
 
@@ -78,8 +71,7 @@ The configuration file for web mapping paths.
 
 
 <!-- Start ini\common\paths.js -->
-
-## paths.js
+## ini\common\paths.js
 
 The configuration file for absolute paths.
 
@@ -89,8 +81,7 @@ The configuration file for absolute paths.
 
 
 <!-- Start ini\common\security.js -->
-
-## security.js
+## ini\common\security.js
 
 The configuration file for security settings.
 
@@ -100,16 +91,15 @@ The configuration file for security settings.
 
 
 <!-- Start server\mvc\controllers\main.js -->
-
-## main.js
+## server\mvc\controllers\main.js
 
 This file holds the GET controller for the main page.
 
-## index(req, res)
+### Function: index(req, res)
 
 The default page for the application
 
-### Params:
+#### Params:
 
 * **Object** *req* The request passed by the application
 * **Object** *res* The response passed by the application
@@ -120,12 +110,11 @@ The default page for the application
 
 
 <!-- Start server\lib\Api.js -->
-
-## Api.js
+## server\lib\Api.js
 
 The Api handler for the application.
 
-## Api
+### Class: Api
 
 This is the Api class. It adds api point to the express application.
 
@@ -149,25 +138,25 @@ This is the Api class. It adds api point to the express application.
 
      api.end();
 
-### Params:
+#### Params:
 
 * **obj** *app* The express application
 
-## Api.validMethod(method)
+### Method: Api.validMethod(method)
 
 Checks to see if valid return type was passed
 
-### Params:
+#### Params:
 
 * **Enum** *method* The return type get|post|put|delete
 
-### Return:
+#### Return:
 
 * **Boolean** true The return type is valid
 
 * **Boolean** false An unknown return type
 
-## Api.add(obj, func)
+### Method: Api.add(obj, func)
 
 Adds a method to the api and documents it.
 
@@ -189,38 +178,38 @@ Adds a method to the api and documents it.
 
      ...
 
-### Params:
+#### Params:
 
 * **Object** *obj* The api object documentation
 * **Function** *func* The api function
 
-## Api.response(res, err, doc, obj)
+### Method: Api.response(res, err, doc, obj)
 
 Passes the results of a database manipulation to the response handler,
  alongside the type of request that was made with any corresponding
  errors or documents.
 
-### Params:
+#### Params:
 
 * **Object** *res* The response passed by the application
 * **Object** *err* The error object
 * **Object** *doc* The data document
 * **Object** *obj* The request type.
 
-## Api.end()
+### Method: Api.end()
 
 Signals the Api.add method will no longer be used and, prepares
  the help responses. Also sets up and handles api error for invalid url.
 
-## middleWare(app)
+### Function: middleWare(app)
 
 Middle ware to intercept for the Api class
 
-### Params:
+#### Params:
 
 * **Object** *app* The express application
 
-### Return:
+#### Return:
 
 * **Object** An instantiated API object.
 
@@ -230,34 +219,33 @@ Middle ware to intercept for the Api class
 
 
 <!-- Start server\lib\Error-gulp.js -->
-
-## Error-gulp.js
+## server\lib\Error-gulp.js
 
 This holds the error handlers for Gulp.
 
-## ErrorGulp
+### Class: ErrorGulp
 
 This class holds all the error haandlers for Gulp.
 
-## ErrorGulp.git(err)
+### Method: ErrorGulp.git(err)
 
 Processes a gulp-git error
 
-### Params:
+#### Params:
 
 * **Object** *err* The error being handled
 
-## ErrorGulp.exec(err, stdout, stderr)
+### Method: ErrorGulp.exec(err, stdout, stderr)
 
 Handles errors for gulp-exec.
 
-### Params:
+#### Params:
 
 * **Object** *err* The error being handled
 * **Stream** *stdout* stdout stream
 * **Stream** *stderr* stderr stream
 
-## middleWare()
+### Function: middleWare()
 
 Error handler middle ware intercept function
 
@@ -267,43 +255,42 @@ Error handler middle ware intercept function
 
 
 <!-- Start server\lib\ErrorHandler.js -->
-
-## Error.js
+## server\lib\ErrorHandler.js
 
 This holds the error handlers for the application.
 
-## ErrorHandler
+### Class: ErrorHandler
 
 This class holds all the error responses for the application.
 
-## ErrorHandler.notFound(req, res, next)
+### Method: ErrorHandler.notFound(req, res, next)
 
 Process a 404 missing resource
 
-### Params:
+#### Params:
 
 * **Object** *req* The request passed by the application
 * **Object** *res* The response passed by the application
 * **Function** *next* The function to the next express item
 
-## ErrorHandler.server(err, req, res, next)
+### Method: ErrorHandler.server(err, req, res, next)
 
 Processes a 500 server error
 
 See: tested against ini.mode for `dev|prod`.          `dev` leaks stack trace to user
 
-### Params:
+#### Params:
 
 * **Object** *err* The error passed by the application
 * **Object** *req* The request passed by the application
 * **Object** *res* The response passed by the application
 * **Function** *next* The function to the next express item
 
-## middleWare(app)
+### Function: middleWare(app)
 
 Error handler middle ware intercept function
 
-### Params:
+#### Params:
 
 * **Object** *app* The express application
 
@@ -313,8 +300,7 @@ Error handler middle ware intercept function
 
 
 <!-- Start server\lib\GlobalApplication.js -->
-
-## GlobalApplication.js
+## server\lib\GlobalApplication.js
 
 Holds the Global application obj, this object determines information about the
  running application and resolves which configuration file to use. It also
@@ -322,7 +308,7 @@ Holds the Global application obj, this object determines information about the
  console logs to help diferentiate message made by the developers from those
  made by dependencies or the system.
 
-## GlobalApplication
+### Class: GlobalApplication
 
 The Global application object, ties in configurations package information and application reporting.
  To be run from app.js
@@ -336,13 +322,13 @@ The Global application object, ties in configurations package information and ap
      // Set application mode to: development | production
      global.app = require('./server/lib/GlobalApplication.js')(mode, root);
 
-### Params:
+#### Params:
 
 * **JSON** *pJson* The package.json contents. Supplied by middleWare function.
 * **String** *mode* The ini/(developement|production|gulp).js file to use.
 * **String** *root* The application root directory.
 
-## GlobalApplication.console.log(Anything)
+### Method: GlobalApplication.console.log(Anything)
 
 Prepends the '[appName appVersion]'
 
@@ -351,11 +337,11 @@ Prepends the '[appName appVersion]'
      global.app.console.log( "Message" );
      //  Outputs [ appName versionName ] Message
 
-### Params:
+#### Params:
 
 * **List** *Anything* that can be passed to console.log
 
-## GlobalApplication.console.err(Anything)
+### Method: GlobalApplication.console.err(Anything)
 
 Prepends the '[appName appVersion:ERROR]' and highlights message as red
 
@@ -364,23 +350,23 @@ Prepends the '[appName appVersion:ERROR]' and highlights message as red
      global.app.console.err( "Message" );
      //  Outputs [ appName versionName:ERROR ] Message
 
-### Params:
+#### Params:
 
 * **List** *Anything* that can be passed to console.log
 
-## GlobalApplication.ini()
+### Method: GlobalApplication.ini()
 
 Generates the path to the configuration file
 
-### Return:
+#### Return:
 
 * **String** Path to the configuration file to use
 
-## middleWare(mode, root)
+### Function: middleWare(mode, root)
 
 GlobalApplication middle ware intercept function
 
-### Params:
+#### Params:
 
 * **String** *mode* The ini/(developement|production|gulp).js file to use.
 * **String** *root* The application root directory.
@@ -391,13 +377,12 @@ GlobalApplication middle ware intercept function
 
 
 <!-- Start server\lib\mongodb.js -->
-
-## mongodb.js
+## server\lib\mongodb.js
 
 The database driver wrapper. It processes schema into models and then set up
  connection handlers before attempting to start a connection to the database.
 
-## middleWare 
+### Function: middleWare 
  GlobalApplication middle ware intercept function
 
  Examples:
@@ -408,7 +393,7 @@ The database driver wrapper. It processes schema into models and then set up
          mongoose: require('mongoose')   //  The instance of mongoose to use
     };()
 
-### Return:
+#### Return:
 
 * **Obj** The Mongo DB connection object, see the example
 
@@ -420,14 +405,13 @@ Waiting for connection
 
 
 <!-- Start server\lib\Security.js -->
-
-## Security.js
+## server\lib\Security.js
 
 The Security handler for the application.
 
  code modified from http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 
-## Security
+### Class: Security
 
 This is the Security object. It adds hashing and authentication to the application..
 
@@ -437,7 +421,7 @@ This is the Security object. It adds hashing and authentication to the applicati
      var salt = security.salt();
      var hash = security.hash(req.params.pass, salt);
 
-## Security.hash(Input, Salt)
+### Method: Security.hash(Input, Salt)
 
 Generates a hash from the input and salt values
 
@@ -449,44 +433,44 @@ Generates a hash from the input and salt values
          console.log("Same input String") :
          console.log("Different input String");
 
-### Params:
+#### Params:
 
 * **String** *Input* to hash
 * **String** *Salt* to use in hash
 
-### Return:
+#### Return:
 
 * **String** Hash string
 
-## Security.salt()
+### Method: Security.salt()
 
 Generate a salt to use for Hashing
 
-### Return:
+#### Return:
 
 * **String** A cryptoplogically secure GUID to use                          as a salt during Hashing
 
-## Security.s4()
+### Method: Security.s4()
 
 Generate a Four digit salt
 
-### Return:
+#### Return:
 
 * **String** Four digit salt
 
-## ssl(app)
+### Method: ssl(app)
 
 Enable ssl security if ini.security.ssl.state == true
 
-### Params:
+#### Params:
 
 * **obj** *app* The express application
 
-## middleWare()
+### Function: middleWare()
 
 Middleware to intercept for the Security class
 
-### Return:
+#### Return:
 
 * **Object** An instantiated Security object.
 
@@ -496,28 +480,27 @@ Middleware to intercept for the Security class
 
 
 <!-- Start server\routes\api.js -->
-
-## api.js
+## server\routes\api.js
 
 This is the API routing file it determines the content to be saved
  or served back
 
-## fileOptions()
+### Function: fileOptions()
 
 Generates an array of document aliases from the ini.file.docs object
 
-### Return:
+#### Return:
 
 * **Array** An array of Document aliases
 
-## middleWare(app, mdb)
+### Function: middleWare(app, mdb)
 
 Sets up API routing. Self Documenting methods are added to the api, They are
 self documenting because the first paramter adds itself to the API help object.
 
 See: /api/get/help For generated methods
 
-### Params:
+#### Params:
 
 * **Object** *app* The express application reference
 * **Object** *mdb* The mongoDB database object
@@ -528,17 +511,16 @@ See: /api/get/help For generated methods
 
 
 <!-- Start server\routes\paths.js -->
-
-## paths.js
+## server\routes\paths.js
 
 This is the url routing file it determines the controller or file that will
  be served by the node server.
 
-## middleWare(app)
+### Function: middleWare(app)
 
 Sets up static and dynamic routing from the configuration file.
 
-### Params:
+#### Params:
 
 * **Object** *app* The express application reference
 
@@ -548,8 +530,7 @@ Sets up static and dynamic routing from the configuration file.
 
 
 <!-- Start www\app\js\audio.js -->
-
-## audio.js
+## www\app\js\audio.js
 
 This is a research file for web audio api it is not used in the project.
 
@@ -559,17 +540,16 @@ This is a research file for web audio api it is not used in the project.
 
 
 <!-- Start www\app\js\DropDown.js -->
-
-## DropDown.js
+## www\app\js\DropDown.js
 
 Contains the class for the DropDown menu.
 
-## DropDown
+### Class: DropDown
 
 This is the DropDown class it determines what content is
  displayed in the menu.
 
-## DropDown.init(Object)
+### Method: DropDown.init(Object)
 
 Initializes the DropDown menu, should be run on load.
 
@@ -582,23 +562,23 @@ Initializes the DropDown menu, should be run on load.
          {String} navigationId: The navigation menu id of the DropDown element
      });
 
-### Params:
+#### Params:
 
 * **Object** *Object* The initialization object
 
-## DropDown.open()
+### Method: DropDown.open()
 
 Opens the DropDown menu
 
-## DropDown.close()
+### Method: DropDown.close()
 
 Closes the DropDown menu
 
-## DropDown.toggle()
+### Method: DropDown.toggle()
 
 Toggles the DropDown
 
-## DropDown.panel.set.fxCatalog(json)
+### Method: DropDown.panel.set.fxCatalog(json)
 
 Adds effects to the fx catalog
 
@@ -612,11 +592,11 @@ Adds effects to the fx catalog
          {String} image = The URL to the icon image of an fxObj
      });
 
-### Params:
+#### Params:
 
 * **Array.fxObj** *json* An array of fxObjects
 
-## DropDown.panel.set.mixCatalog(json)
+### Method: DropDown.panel.set.mixCatalog(json)
 
 Adds mixes to the mix catalog
 
@@ -630,11 +610,11 @@ Adds mixes to the mix catalog
          {String} image = The URL to the icon image of an mixObj
      });
 
-### Params:
+#### Params:
 
 * **Array.mixObj** *json* An array of mixObjects
 
-## DropDown.panel.set.account(obj)
+### Method: DropDown.panel.set.account(obj)
 
 Sets the account panel information
 
@@ -647,11 +627,11 @@ Sets the account panel information
          {String} email: The name of the email holder
      });
 
-### Params:
+#### Params:
 
 * **Object** *obj* The account information.
 
-## DropDown.panel.set.information(obj)
+### Method: DropDown.panel.set.information(obj)
 
 Adds selected item descriptions, titles, images, etc
 
@@ -665,60 +645,60 @@ Adds selected item descriptions, titles, images, etc
          {String}    desc:    The description of the content being displayed
      });
 
-### Params:
+#### Params:
 
 * **Object** *obj* The selected item information object
 
-## DropDown.panel.load(options, pre, success, fail)
+### Method: DropDown.panel.load(options, pre, success, fail)
 
 Loads information for panels and handles succesful returns and failures. It is
  A modification of the $.ajax function
 
-### Params:
+#### Params:
 
 * **Object** *options* an $.ajax settings object
 * **Function** *pre* the function to run before the ajax call
 * **Function** *success* the function to call after a succesful ajax call
 * **Function** *fail* the function to call after a failed ajax call
 
-## DropDown.panel.display.toggle(state, toggleClass)
+### Method: DropDown.panel.display.toggle(state, toggleClass)
 
 Displays or hides a panel from view.
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The display state of a panel
 * **String** *toggleClass* The panel class to control
 
-## DropDown.panel.display.all(state)
+### Method: DropDown.panel.display.all(state)
 
 Modify the display state of all panels
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The state to place all panels
 
-## DropDown.panel.display.left(state)
+### Method: DropDown.panel.display.left(state)
 
 Modify the display state of all left side panels
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The state to place left side panels
 
-## DropDown.panel.display.right(state)
+### Method: DropDown.panel.display.right(state)
 
 Modify the display state of all right side panels
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The state to place right side panels
 
-## DropDown.panel.display.wait.start(position)
+### Method: DropDown.panel.display.wait.start(position)
 
 Start a wait screen. {Currently disabled}
 
-### Params:
+#### Params:
 
 * **Enum** *position* LEFT|RIGHT|ALL The wait screen(s) to start displaying.
 
@@ -738,11 +718,11 @@ switch(position){
                         return;
                 }
 
-## DropDown.panel.display.wait.start(position)
+### Method: DropDown.panel.display.wait.start(position)
 
 Stop a wait screen. {Currently disabled}
 
-### Params:
+#### Params:
 
 * **Enum** *position* LEFT|RIGHT|ALL The wait screen(s) to stop displaying.
 
@@ -759,54 +739,54 @@ switch(position){
                         return;
                 }
 
-## DropDown.navigation.display.toggle(state, toggleClass)
+### Method: DropDown.navigation.display.toggle(state, toggleClass)
 
 Toggle the display of a navbar element
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The display state to place a navbar element in
 * **String** *toggleClass* The class of the navbar element to modify
 
-## DropDown.navigation.display.all(state)
+### Method: DropDown.navigation.display.all(state)
 
 Toggle the display of all navbar elements
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The display state to place all navbar element in
 
-## DropDown.navigation.display.secured(state)
+### Method: DropDown.navigation.display.secured(state)
 
 Toggle the display of all secured view navbar elements
  This is the logged in state
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The display state to place all secured view navbar element in
 
-## DropDown.navigation.display.unsecured(state)
+### Method: DropDown.navigation.display.unsecured(state)
 
 Toggle the display of all unsecured view navbar elements
  This is the logged out state
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The display state to place all unsecured view navbar element in
 
-## DropDown.navigation.display.lock(state)
+### Method: DropDown.navigation.display.lock(state)
 
 Toggle the Logged in view state
 
-### Params:
+#### Params:
 
 * **Boolean** *state* The state of the secured view
 
-## DropDown.show(view, opt)
+### Method: DropDown.show(view, opt)
 
 Makes the views that the dropdown manages
 
-### Params:
+#### Params:
 
 * **String** *view* The view to display
 * **String** *opt* Options to pass the views
@@ -817,8 +797,9 @@ Makes the views that the dropdown manages
 
 
 <!-- Start www\app\js\init.js -->
+## www\app\js\init.js
 
-## require 
+### Function: require 
  This is a client side function that emulates the action of require for
  loaded node_modules that are being served through static virtual directory.
 
@@ -826,24 +807,24 @@ Makes the views that the dropdown manages
  this is important because any changes to the node_module locally will not
  propogate when being rebuilt.(src)
 
-### Params:
+#### Params:
 
 * *src* The string name being required
 
-### Return:
+#### Return:
 
 * The code being required
 
-## getCookie 
+### Function: getCookie 
  Retrieves cookies from the system, this function is necessary
  because artifacts were being passed prepended to the cookie
  value.(name)
 
-### Params:
+#### Params:
 
 * *name* The cookie name to search for
 
-### Return:
+#### Return:
 
 * ret The value of the cookie
 
@@ -853,6 +834,7 @@ Makes the views that the dropdown manages
 
 
 <!-- Start www\app\js\knob.js -->
+## www\app\js\knob.js
 
 Downward compatible, touchable dial
 
@@ -866,11 +848,11 @@ Thanks to vor, eskimoblood, spiffistan, FabrizioC
 
 Kontrol library
 
-## k
+### Class: k
 
 Definition of globals and core
 
-## o()
+### Method: o()
 
 Kontrol Object
 
@@ -881,7 +863,7 @@ Each concrete component must call this one.
 k.o.call(this);
 </code>
 
-## Dial()
+### Method: Dial()
 
 k.Dial
 
@@ -891,46 +873,47 @@ k.Dial
 
 
 <!-- Start www\app\js\mixer.js -->
+## www\app\js\mixer.js
 
-## $()
+### Method: $()
 
-## $()
+### Method: $()
 
 Add data to the mute & record buttons
 
-## $()
+### Method: $()
 
 Set up track names
 
-## $()
+### Method: $()
 
 Set up EQ knobs
 
-## $()
+### Method: $()
 
 Set up pan knobs
 
-## $()
+### Method: $()
 
 Set up volume sliders
 
-## $()
+### Method: $()
 
 Knob function
 
-## $()
+### Method: $()
 
 Slider function
 
-## $()
+### Method: $()
 
 Mute buttons
 
-## $()
+### Method: $()
 
 Recording buttons
 
-## $()
+### Method: $()
 
 Playback buttons
 
@@ -940,6 +923,7 @@ Playback buttons
 
 
 <!-- Start www\app\js\onLoad.js -->
+## www\app\js\onLoad.js
 
 <!-- End www\app\js\onLoad.js -->
 
@@ -947,18 +931,19 @@ Playback buttons
 
 
 <!-- Start www\app\js\recorder.js -->
+## www\app\js\recorder.js
 
-## writeString()
+### Method: writeString()
 
 RIFF identifier
 
 RIFF chunk length
 
-## writeString()
+### Method: writeString()
 
 RIFF type
 
-## writeString()
+### Method: writeString()
 
 format chunk identifier
 
@@ -976,7 +961,7 @@ block align (channel count * bytes per sample)
 
 bits per sample
 
-## writeString()
+### Method: writeString()
 
 data chunk identifier
 
@@ -988,8 +973,9 @@ data chunk length
 
 
 <!-- Start www\app\js\recorderWorker.js -->
+## www\app\js\recorderWorker.js
 
-## recLength
+### Class: recLength
 
 License (MIT)
 
@@ -1009,17 +995,17 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
-## writeString()
+### Method: writeString()
 
 RIFF identifier
 
 file length
 
-## writeString()
+### Method: writeString()
 
 RIFF type
 
-## writeString()
+### Method: writeString()
 
 format chunk identifier
 
@@ -1037,7 +1023,7 @@ block align (channel count * bytes per sample)
 
 bits per sample
 
-## writeString()
+### Method: writeString()
 
 data chunk identifier
 
@@ -1049,96 +1035,97 @@ data chunk length
 
 
 <!-- Start www\app\js\StopWatch.js -->
+## www\app\js\StopWatch.js
 
-## StopWatch 
+### Function: StopWatch 
  This is a stopwatch that will be used to create a clock to manage tracks play position
 
  modified from https://gist.github.com/electricg/4372563()
 
-## now 
+### Method: now 
  Gets current time()
 
-### Return:
+#### Return:
 
 * current time
 
-## start 
+### Method: start 
  start the clock()
 
-## stop 
+### Method: stop 
  stop the clock()
 
-## reset 
+### Method: reset 
  reset the clock time values()
 
-## getTime 
+### Method: getTime 
  get the runtime()
 
-### Return:
+#### Return:
 
 * the runtime
 
-## pad 
+### Method: pad 
  gives a number formated with leading zeroes(num, size)
 
-### Params:
+#### Params:
 
 * *num* the number to pad
 * *size* how many digits to show
 
-### Return:
+#### Return:
 
 * **STRING** formated number
 
-## formatTime 
+### Method: formatTime 
 Formats the time display(time)
 
-### Params:
+#### Params:
 
 * *time* The timestamp to display
 
-### Return:
+#### Return:
 
 * the new time string to display
 
-## setId 
+### Method: setId 
  sets the id of the element to insert the clock(id)
 
-### Params:
+#### Params:
 
 * *id* the id of the element
 
-## getId 
+### Method: getId 
  get the Id of the element that has the clock()
 
-### Return:
+#### Return:
 
 * the id of the clock
 
-## setClocktimer 
+### Method: setClocktimer 
  sets the display interval of the clock, In other words it animates changes in time()
 
-## clearClocktimer 
+### Method: clearClocktimer 
  clears the display interval of the clock, in other words it stops animation()
 
-## update 
+### Method: update 
  interval function, writes the time of the clock into the element.()
 
-## adjust 
+### Method: adjust 
 adjusts the clock to a given time(mod)
 
-### Params:
+#### Params:
 
 * *mod* the value to adjust the time by
 
-### Return:
+#### Return:
 
 * the current laptime
 
-## run 
+### Method: run 
  This is the command function to the clock, it accepts(action, option)
 
-### Params:
+#### Params:
 
 * *action* 'START' - Starts the stopwatch                      'STOP'  -   Stops the stopwatch
                      'RESET' -   Restarts the stopwatch
@@ -1146,7 +1133,7 @@ adjusts the clock to a given time(mod)
 * *option* Any options that an action requires.          null        no options
          idString    Required by 'INIT', the idstring of the element that will display the clock
 
-### Return:
+#### Return:
 
 * The lapTime or RunTime on the stopwatch
 
@@ -1156,6 +1143,7 @@ adjusts the clock to a given time(mod)
 
 
 <!-- Start www\app\js\track-label.js -->
+## www\app\js\track-label.js
 
 <!-- End www\app\js\track-label.js -->
 
@@ -1163,6 +1151,7 @@ adjusts the clock to a given time(mod)
 
 
 <!-- Start www\app\js\volume-meter.js -->
+## www\app\js\volume-meter.js
 
 The MIT License (MIT)
 
@@ -1186,7 +1175,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## createAudioMeter()
+### Function: createAudioMeter()
 
 Usage:
 audioNode = createAudioMeter(audioContext,clipLevel,averaging,clipLag);
@@ -1207,8 +1196,9 @@ Access the clipping through node.checkClipping(); use node.shutdown to get rid o
 
 
 <!-- Start www\app\js\webAudioApi.js -->
+## www\app\js\webAudioApi.js
 
-## AudioContext
+### Class: AudioContext
 
 <!-- End www\app\js\webAudioApi.js -->
 
@@ -1216,8 +1206,9 @@ Access the clipping through node.checkClipping(); use node.shutdown to get rid o
 
 
 <!-- Start www\app\js\webAudioInterface.js -->
+## www\app\js\webAudioInterface.js
 
-## $()
+### Method: $()
 
 var track = [null,null,null,null]
 
@@ -1251,7 +1242,6 @@ track[index].pan.pan.value = amount;
 
 
 <!-- Start app.js -->
-
 ## app.js
 
 This file is the controller for the application.
@@ -1262,7 +1252,6 @@ This file is the controller for the application.
 
 
 <!-- Start gulpfile.js -->
-
 ## gulpfile.js
 
 This file holds the gulp task scripts, it is the task runner.
@@ -1297,7 +1286,7 @@ This file holds the gulp task scripts, it is the task runner.
          mongodb.start         Starts MongoDB service on windows.
          mongodb.stop          Stops MongoDB service on windows.
 
-## function()
+### Method: function()
 
 'code.doc.readme.new',
 
