@@ -28,7 +28,7 @@ var security = require(ini.path.security)();
 var app = express();
 
 //  Set up SSL or leave http
-security.ssl(app);
+//security.ssl(app);
 
 app.set('env', ini.app.mode);
 app.set('views', ini.path.views);
