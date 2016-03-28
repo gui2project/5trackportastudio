@@ -77,14 +77,21 @@ gulp.task('code.doc.js', "Extracts documentation for JS code.", ['code.lint.js']
     function () {
         return gulp.src(ini.path.projectFiles.js.loc)
             .pipe(markdox({
-                template: ini.path.templateMd
+                template: ini.path.templateMd.js
             }))
-            //.pipe(jsdoc('./documentation-output'))
             .pipe(concat('documentation-js.md'))
-            //.pipe(removeHtmlComments())
             .pipe(gulp.dest('./doc/'));
     });
-
+gulp.task('code.doc.readme.new', "Creates a documentation file.", [],
+    function () {
+        return gulp.src('./')
+            .pipe(markdox({
+                template: ini.path.templateReadme
+            }))
+            .pipe(concat('readme.md'))
+            .pipe(gulp.dest('./doc/'));
+    });
+//sreturn gulp.src(['./doc/readme.md', '/doc/documentation-js-header', './doc/documentation-js.md'])
 //  CODE FORMATTERS
 
 //  JavaScript
@@ -236,10 +243,19 @@ gulp.task('mongodb.delete', 'Removes MongoDB service on windows.', ['service.mon
 //  Code scripts
 gulp.task('code.lint', 'Performs all syntax tests', ['code.lint.js', 'code.lint.json', 'code.lint.css', 'code.lint.jade']);
 gulp.task('code.format', 'Formats code base', ['code.format.js', 'code.format.css', 'code.format.json']);
-gulp.task('code.doc', 'Documents code base', ['code.doc.js']);
+gulp.task('code.doc', 'Documents code base', ['code.doc.js'], /*'code.doc.readme.new', */
+    function () {
+        return gulp.src(['./doc/readme.md', '/doc/documentation-js-header', './doc/documentation-js.md'])
+            .pipe(concat('readme.md'))
+            .pipe(gulp.dest('./doc/'));
+    });
 gulp.task('code.prepare', 'Checks, formats, and documents code base', ['code.format', 'code.lint', 'code.doc']);
 
 //  Git updates
 gulp.task('git.error', 'Handle commong Git errors', ['git.rm.lock']);
-gulp.task('git.master', 'Pushes code to master branch.', ['git.push.master'], function () {}, ini.opt.git.commit);
-gulp.task('git.heroku', 'Pushes code to master branch, heroku branch, and deploys to heroku.', ['git.push.heroku'], function () {}, ini.opt.git.commit);
+gulp.task('git.master', 'Pushes code to master branch.', ['git.push.master'],
+    function () {},
+    ini.opt.git.commit);
+gulp.task('git.heroku', 'Pushes code to master branch, heroku branch, and deploys to heroku.', ['git.push.heroku'],
+    function () {},
+    ini.opt.git.commit);
