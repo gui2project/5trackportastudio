@@ -31,7 +31,6 @@ function isGetUserMediaSupported() {
 //Initiate grabbing the users default microphone feed
 function initializeAudio() {
     navigator.getUserMedia(opts, gotStream, function (e) {
-        alert('Error getting audio');
         console.log(e);
     });
 }
