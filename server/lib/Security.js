@@ -1,9 +1,9 @@
 /**
- *  @name   Security.js
- *
  *  The Security handler for the application.
  *
- *  code modified from @link http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+ *  code modified from http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+ *
+ *  @name   Security.js
  */
 
 var crypto = require('crypto');
@@ -14,8 +14,6 @@ var ini = require(global.app.ini());
 var msg = '[ SECURITY ]';
 
 /**
- *  @class   Security
- *
  *  This is the Security object. It adds hashing and authentication to the application..
  *
  *  ### Examples:
@@ -23,18 +21,28 @@ var msg = '[ SECURITY ]';
  *      var security = new Security();
  *      var salt = security.salt();
  *      var hash = security.hash(req.params.pass, salt);
+ *
+ *  @class   Security
  */
 var Security = function () {
 
     /**
-     *  @method     hash
-     *
      *  Generates a hash from the input and salt values
+     *
+     *  Examples:
+     *
+     *      var security = new Security();
+     *
+     *      savedHash == security.hash("InputString", savedSalt) ?
+     *          console.log("Same input String") :
+     *          console.log("Different input String");
+     *
+     *  @method     Security.hash
      *
      *  @param     {String}    Input to hash
      *  @param     {String}    Salt to use in hash
      *
-     *  @return     {String}    Hash string
+     *  @return    {String}    Hash string
      */
     this.hash = function (input, salt) {
 
@@ -48,9 +56,9 @@ var Security = function () {
     };
 
     /**
-     *  @method     salt
-     *
      *  Generate a salt to use for Hashing
+     *
+     *  @method     Security.salt
      *
      *  @return     {String}    A cryptoplogically secure GUID to use
      *                          as a salt during Hashing
@@ -61,9 +69,9 @@ var Security = function () {
     };
 
     /**
-     *  @method     s4
-     *
      *  Generate a Four digit salt
+     *
+     *  @method     Security.s4
      *
      *  @return {String}    Four digit salt
      */
@@ -74,9 +82,9 @@ var Security = function () {
     };
 
     /**
-     *  @method     ssl
-     *
      *  Enable ssl security if ini.security.ssl.state == true
+     *
+     *  @method     ssl
      *
      *  @param {obj}    app     The express application
      */
@@ -97,9 +105,9 @@ var Security = function () {
 };
 
 /**
- *  @function   middleWare
+ *  Middleware to intercept for the Security class
  *
- *  Middle ware to intercept for the Security class
+ *  @function   middleWare
  *
  *  @return {Object}    An instantiated Security object.
  */

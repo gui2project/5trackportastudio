@@ -1,7 +1,7 @@
 /**
- *  @name   Api.js
- *
  *  The Api handler for the application.
+ *
+ *  @name   Api.js
  */
 
 var path = require('path');
@@ -12,11 +12,9 @@ var httpRes = require(path.join(ini.path.models, 'response.json'));
 var msg = '[ API ]';
 
 /**
- *  @class   Api
+ *  This is the Api class. It adds api point to the express application.
  *
- *  This is the api object. It adds api point to the express application.
- *
- *  ### Examples:
+ *  Examples:
  *
  *      var api = new Api(app);
  *
@@ -36,6 +34,7 @@ var msg = '[ API ]';
  *
  *      api.end();
  *
+ *  @class   Api
  *  @param {obj}    app     The express application
  */
 var Api = function (app) {
@@ -45,14 +44,14 @@ var Api = function (app) {
     this.methods = [];
 
     /**
-     *  @method validMethod
-     *
      *  Checks to see if valid return type was passed
      *
-     *  @param  {String}    method  the return type
+     *  @method Api.validMethod
      *
-     *  @return {Boolean}   true    return type is valid
-     *  @return {Boolean}   false   unknown return type
+     *  @param  {Enum}    method  The return type get|post|put|delete
+     *
+     *  @return {Boolean}   true    The return type is valid
+     *  @return {Boolean}   false   An unknown return type
      */
     this.validMethod = function (method) {
         switch (method.toLowerCase()) {
@@ -68,10 +67,27 @@ var Api = function (app) {
     };
 
     /**
-     *  @method   add
-     *
      *  Adds a method to the api and documents it.
      *
+     *  Examples:
+     *
+     *      var api = new Api(app);
+     *
+     *      api.add({
+     *          "url": urlJoin( "/api/", "Comma", "separated", "path", "components"),
+     *          "param": null | {"paramName": { "desc": "description of param", "opt": null | [ "array of options" ] }, ...
+     *          "desc": "Description of the api method.",
+     *          "return": "POST|PUT|GET|DELETE"
+     *      },
+     *      function(req, res, obj){
+     *          // Api method action with final responses using
+     *          // api.response(res, {errorObject}, {documentObject}, obj);
+     *          // where errorObject and documentObject are user defined
+     *      });
+     *
+     *      ...
+     *
+     *  @method     Api.add
      *  @param  {Object}    obj     The api object documentation
      *  @param  {Function}  func    The api function
      */
@@ -97,11 +113,11 @@ var Api = function (app) {
     };
 
     /**
-     *  @method   response
-     *
      *  Passes the results of a database manipulation to the response handler,
      *  alongside the type of request that was made with any corresponding
      *  errors or documents.
+     *
+     *  @method   Api.response
      *
      *  @param  {Object}    res     The response passed by the application
      *  @param  {Object}    err     The error object
@@ -125,9 +141,10 @@ var Api = function (app) {
     };
 
     /**
-     *  @method   end
+     *  Signals the Api.add method will no longer be used and, prepares
+     *  the help responses. Also sets up and handles api error for invalid url.
      *
-     *  Prepares the help response and handles api error for invalid url.
+     *  @method   Api.end
      */
     this.end = function () {
         var _this = this;
@@ -162,9 +179,9 @@ var Api = function (app) {
 };
 
 /**
- *  @function     middleWare
- *
  *  Middle ware to intercept for the Api class
+ *
+ *  @function     middleWare
  *
  *  @param  {Object}    app    The express application
  *

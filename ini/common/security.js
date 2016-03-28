@@ -1,7 +1,7 @@
 /**
- *  @name   security.js
- *
  *  The configuration file for security settings.
+ *
+ *  @name   security.js
  */
 
 //  Database configurations

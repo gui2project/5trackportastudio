@@ -1,20 +1,20 @@
 /**
- *  @name   Error-gulp.js
- *
  *  This holds the error handlers for Gulp.
+ *
+ *  @name   Error-gulp.js
  */
 
 /**
- *  @class  ErrorGulp
- *
  *  This class holds all the error haandlers for Gulp.
+ *
+ *  @class  ErrorGulp
  */
 var ErrorGulp = function () {
 
     /**
-     *  @method   git
-     *
      *  Processes a gulp-git error
+     *
+     *  @method   ErrorGulp.git
      *
      *  @param  {Object}    err     The error being handled
      *  @throw  {Object}    err     The error being handled
@@ -24,9 +24,9 @@ var ErrorGulp = function () {
     };
 
     /**
-     *  @method   exec
-     *
      *  Handles errors for gulp-exec.
+     *
+     *  @method   ErrorGulp.exec
      *
      *  @param  {Object}    err         The error being handled
      *  @param  {Stream}    stdout      stdout stream
@@ -40,9 +40,9 @@ var ErrorGulp = function () {
 };
 
 /**
- *  @function   middleWare
- *
  *  Error handler middle ware intercept function
+ *
+ *  @function   middleWare
  */
 var middleWare = function () {
     return new Error();

@@ -1,11 +1,11 @@
 /**
- *  @name   GlobalApplication.js
- *
  *  Holds the Global application obj, this object determines information about the
  *  running application and resolves which configuration file to use. It also
  *  creates creates logging function wrappers that appends '[appName]' to the
  *  console logs to help diferentiate message made by the developers from those
  *  made by dependencies or the system.
+ *
+ *  @name   GlobalApplication.js
  */
 
 //  Requires
@@ -14,11 +14,21 @@ var chalk = require('chalk'); //  coloring for console label
 var msg = '[ GLOBAL ]';
 
 /**
+ *  The Global application object, ties in configurations package information and application reporting.
+ *  To be run from app.js
+ *
+ *  Examples:
+ *
+ *      //  Get application root directory and system mode
+ *      var root = path.resolve(__dirname);
+ *      var mode = process.env.TS_RUN_MODE;
+ *
+ *      // Set application mode to: development | production
+ *      global.app = require('./server/lib/GlobalApplication.js')(mode, root);
+ *
  *  @class  GlobalApplication
  *
- *  The Global application object, ties in configurations package information and application reporting.
- *
- *  @param  {JSON}      pJson   The package.json contents.
+ *  @param  {JSON}      pJson   The package.json contents. Supplied by middleWare function.
  *  @param  {String}    mode    The ini/(developement|production|gulp).js file to use.
  *  @param  {String}    root    The application root directory.
  */
@@ -30,17 +40,21 @@ var GlobalApplication = function (pJson, mode, root) {
     //  Console reporting object
     this.console = {};
 
-    /**
-     *  @name about
-     *
-     *  The label to use for the application, Name and version of the application from package.json
-     */
+    //  The label to use for the application, Name and version of the application from package.json
     this.about = pJson.name + ' ' + pJson.version;
+    this.mode = mode; //  The mode the application is running in
+    this.root = root; // The root path of the application
 
     /**
-     *  @method     console.log
-     *
      *  Prepends the '[appName appVersion]'
+     *
+     *  Examples:
+     *
+     *      global.app.console.log( "Message" );
+     *      //  Outputs [ appName versionName ] Message
+     *
+     *  @method     GlobalApplication.console.log
+     *  @param {List}   Anything that can be passed to console.log
      */
     this.console.log = function () {
         //  prepend to arguments
@@ -51,9 +65,15 @@ var GlobalApplication = function (pJson, mode, root) {
     };
 
     /**
-     *  @method     console.err
-     *
      *  Prepends the '[appName appVersion:ERROR]' and highlights message as red
+     *
+     *  Examples:
+     *
+     *      global.app.console.err( "Message" );
+     *      //  Outputs [ appName versionName:ERROR ] Message
+     *
+     *  @method     GlobalApplication.console.err
+     *  @param {List}   Anything that can be passed to console.log
      */
     this.console.err = function () {
         //  prepend to arguments
@@ -64,29 +84,14 @@ var GlobalApplication = function (pJson, mode, root) {
     };
 
     /**
-     *  @method     ini
+     *  Generates the path to the configuration file
      *
-     *  The path to the configuration file
-     *
+     *  @method     GlobalApplication.ini
      *  @return {String}    Path to the configuration file to use
      */
     this.ini = function () {
         return path.join(this.root, 'ini', this.mode + '.js');
     };
-
-    /**
-     *  @name     mode
-     *
-     *  The mode the application is running in
-     */
-    this.mode = mode;
-
-    /**
-     *  @name   root
-     *
-     *  The root path of the application
-     */
-    this.root = root;
 
     //  Output creation status and info
     this.console.log(msg, 'Initializing.');
@@ -97,9 +102,9 @@ var GlobalApplication = function (pJson, mode, root) {
 };
 
 /**
- *  @function   middleWare
- *
  *  GlobalApplication middle ware intercept function
+ *
+ *  @function   middleWare
  *
  *  @param  {String}    mode    The ini/(developement|production|gulp).js file to use.
  *  @param  {String}    root    The application root directory.

@@ -1,15 +1,20 @@
 /**
- *  @name   file.js
- *
  *  The configuration file for mapping documents.
+ *
+ *  @name   file.js
  */
 
 //  Requires
 var path = require('path');
 var paths = require('./paths.js');
 
+//  File alias and mime descriptions
 var files = {
     docs: [{
+        alias: "doc-js.md",
+        mime: "text/markdown",
+        sys: path.join(paths.documents, "documentation-js.md")
+    }, {
         alias: "memo",
         mime: "application/pdf",
         sys: path.join(paths.documents, "Memo-trackstudio-Anderson-Cabrall-Flores-Meza.pdf")

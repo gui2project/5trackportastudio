@@ -1,8 +1,8 @@
 /**
- *  @name   mongodb.js
- *
  *  The database driver wrapper. It processes schema into models and then set up
  *  connection handlers before attempting to start a connection to the database.
+ *
+ *  @name   mongodb.js
  */
 
 var ini = require(global.app.ini());
@@ -13,7 +13,15 @@ var msg = '[ MongoDB ]';
  *
  *  GlobalApplication middle ware intercept function
  *
- *  @return  {Obj}    The Mongo DB connection object
+ *  Examples:
+ *
+ *      mdb = {
+ *          models: {}, //  All the MongoDB models
+ *          schema: {}, //  All the MongoDB scemas
+ *          mongoose: require('mongoose')   //  The instance of mongoose to use
+ *     };
+ *
+ *  @return  {Obj}    The Mongo DB connection object, see the example
  */
 var middleWare = function () {
 

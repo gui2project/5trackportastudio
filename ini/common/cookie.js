@@ -1,7 +1,7 @@
 /**
- *  @name   cookie.js
- *
  *  The configuration file for cookies.
+ *
+ *  @name   cookie.js
  */
 
 //  Database configurations

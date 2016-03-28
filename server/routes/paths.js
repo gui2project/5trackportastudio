@@ -1,8 +1,8 @@
 /**
- *  @name   paths.js
- *
  *  This is the url routing file it determines the controller or file that will
  *  be served by the node server.
+ *
+ *  @name   paths.js
  */
 
 var express = require('express');
@@ -10,10 +10,9 @@ var ini = require(global.app.ini());
 var msg = "[ PATHS ]";
 
 /**
- * @function    middleWare
- *
  * Sets up static and dynamic routing from the configuration file.
  *
+ * @function    middleWare
  * @param   {Object}    app     The express application reference
  */
 var middleWare = function (app) {

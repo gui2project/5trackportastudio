@@ -1,7 +1,7 @@
 /**
- *  @name   Error.js
- *
  *  This holds the error handlers for the application.
+ *
+ *  @name   Error.js
  */
 
 var path = require('path');
@@ -9,15 +9,15 @@ var ini = require(global.app.ini());
 var msg = '[ ERROR ]';
 
 /**
- *  @class  Error
- *
  *  This class holds all the error responses for the application.
+ *
+ *  @class  ErrorHandler
  */
 var ErrorHandler = function () {
     /**
-     *  @method     notFound
-     *
      *  Process a 404 missing resource
+     *
+     *  @method     ErrorHandler.notFound
      *
      *  @param  {Object}    req     The request passed by the application
      *  @param  {Object}    res     The response passed by the application
@@ -29,9 +29,9 @@ var ErrorHandler = function () {
         next(err);
     };
     /**
-     *  @method   server
-     *
      *  Processes a 500 server error
+     *
+     *  @method   ErrorHandler.server
      *
      *  @see    tested against ini.mode for `dev|prod`.
      *          `dev` leaks stack trace to user
@@ -58,9 +58,9 @@ var ErrorHandler = function () {
 };
 
 /**
- *  @function   middleWare
- *
  *  Error handler middle ware intercept function
+ *
+ *  @function   middleWare
  *
  *  @param  {Object}    app    The express application
  */

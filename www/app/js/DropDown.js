@@ -1,32 +1,38 @@
 /**
- *  @file   DropDown.js
+ *  Contains the class for the DropDown menu.
  *
- *  Contains the class for the dropdown menu.
+ *  @name   DropDown.js
  */
 
 /**
- *  @name   DropDown
- *
- *  This is the dropdown class it determines what content is
+ *  This is the DropDown class it determines what content is
  *  displayed in the menu.
  *
+ *  @class   DropDown
  */
 var DropDown = function () {
 
     var _this = this;
 
-    this.dropDownId = null; //  The dropDownId of the dropdown element
-    this.navigationId = null; //  The navigationId of the dropdown element
+    this.dropDownId = null; //  The dropDownId of the DropDown element
+    this.navigationId = null; //  The navigationId of the DropDown element
     this.state = false; //  True for open, false for closed
-    this.speed = 600; //  Speed of dropdown animation
+    this.speed = 600; //  Speed of DropDown animation
 
     /**
-     *  @name   init
+     *  Initializes the DropDown menu, should be run on load.
      *
-     *  Initializes the dropdown menu, should be run on load.
+     *  Examples:
      *
-     *  @param  dropDownId      The drop down id of the dropdown element
-     *  @param  navigationId    The navigation menu id of the dropdown element
+     *      var dropDown = new DropDown();
+     *      ...
+     *      dropDown.init({
+     *          {String} dropDownId: The DropDown id of the DropDown element,
+     *          {String} navigationId: The navigation menu id of the DropDown element
+     *      });
+     *
+     *  @method  DropDown.init
+     *  @param  {Object}    Object  The initialization object
      */
     this.init = function (obj) {
         console.log("--- Initializing dropdown with:", obj);
@@ -52,18 +58,14 @@ var DropDown = function () {
             });
     };
 
-    /**
-     *  @name   dropdown
-     *
-     *  Dropdown actions
-     */
+    //  DropDown
     this.dropdown = {
         /**
-         *  @name   open
+         *  Opens the DropDown menu
          *
-         *  Opens the menu
+         *  @method   DropDown.open
          */
-        open: function (open) {
+        open: function () {
             console.log("  Opening 'dropdown'");
             $(_this.dropDownId)
                 .slideDown(_this.speed);
@@ -72,9 +74,9 @@ var DropDown = function () {
         },
 
         /**
-         *  @name   close
+         *  Closes the DropDown menu
          *
-         *  Closes the menu
+         *  @method   DropDown.close
          */
         close: function () {
             console.log("  Closing 'dropdown'");
@@ -84,9 +86,9 @@ var DropDown = function () {
         },
 
         /**
-         *  @name   toggle
+         *  Toggles the DropDown
          *
-         *  Toggles the dropdown
+         *  @method  DropDown.toggle
          */
         toggle: function () {
             if (_this.state)
@@ -96,20 +98,25 @@ var DropDown = function () {
         }
     };
 
-    /**
-     *  @name   panel
-     *
-     *  Panel actions
-     */
+    // Panel actions
     this.panel = {
         // setters
         set: {
             /**
-             *  @name   fxCatalog
-             *
              *  Adds effects to the fx catalog
              *
-             *  @param  json    The json object that holds the effects information
+             *  Examples:
+             *
+             *      var dropDown = new DropDown();
+             *      ...
+             *      dropDown.panel.set.fxCatalog({
+             *          {String} title = The title of an fxObj,
+             *          {String} desc  =  The description of an fxObj,
+             *          {String} image = The URL to the icon image of an fxObj
+             *      });
+             *
+             *  @method     DropDown.panel.set.fxCatalog
+             *  @param      {Array.fxObj}      json   An array of fxObjects
              */
             fxCatalog: function (json) {
                 console.log('dropdown.panel.set.fxCatalog');
@@ -138,11 +145,20 @@ var DropDown = function () {
             },
 
             /**
-             *  @name   fxCatalog
-             *
              *  Adds mixes to the mix catalog
              *
-             *  @param  json    The json object that holds the mix information
+             *  Examples:
+             *
+             *      var dropDown = new DropDown();
+             *      ...
+             *      dropDown.panel.set.mixCatalog({
+             *          {String} title = The title of an mixObj,
+             *          {String} date  = The date of a mixObj creation,
+             *          {String} image = The URL to the icon image of an mixObj
+             *      });
+             *
+             *  @method     DropDown.panel.set.mixCatalog
+             *  @param      {Array.mixObj}      json   An array of mixObjects
              */
             mixCatalog: function (json) {
                 console.log('dropdown.panel.set.mixCatalog');
@@ -162,11 +178,19 @@ var DropDown = function () {
             },
 
             /**
-             *  @name   account
+             *  Sets the account panel information
              *
-             *  Adds account information
+             *  Examples:
              *
-             *  @param  obj    The json object that holds the account information
+             *      var dropDown = new DropDown();
+             *      ...
+             *      dropDown.panel.set.account({
+             *          {String} name: The name of the account holder,
+             *          {String} email: The name of the email holder
+             *      });
+             *
+             *  @method DropDown.panel.set.account
+             *  @param  {Object}    obj    The account information.
              */
             account: function (obj) {
                 console.log('dropdown.panel.set.account');
@@ -177,11 +201,20 @@ var DropDown = function () {
             },
 
             /**
-             *  @name   information
-             *
              *  Adds selected item descriptions, titles, images, etc
              *
-             *  @param  obj    The json object that holds the extra information
+             *  Examples:
+             *
+             *      var dropDown = new DropDown();
+             *      ...
+             *      dropDown.panel.set.information({
+             *          {String}    title:   The title of the information being displayed
+             *          {URL}       image:   The URL of an image to display
+             *          {String}    desc:    The description of the content being displayed
+             *      });
+             *
+             *  @method DropDown.panel.set.information
+             *  @param  {Object}    obj     The selected item information object
              */
             information: function (obj) {
                 console.log('dropdown.panel.set.information');
@@ -195,7 +228,16 @@ var DropDown = function () {
             }
         },
 
-        // api loaders
+        /**
+         *  Loads information for panels and handles succesful returns and failures. It is
+         *  A modification of the $.ajax function
+         *
+         *  @method DropDown.panel.load
+         *  @param  {Object}    options     an $.ajax settings object
+         *  @param  {Function}  pre         the function to run before the ajax call
+         *  @param  {Function}  success     the function to call after a succesful ajax call
+         *  @param  {Function}  fail        the function to call after a failed ajax call
+         */
         load: function (options, pre, success, fail) {
             console.log('dropdown.panel.load');
             pre();
@@ -205,12 +247,15 @@ var DropDown = function () {
                 .fail(fail);
         },
 
-        /**
-         *  @name display
-         *
-         *  displays or hdropDownIdes a panel
-         */
+        //  Display methods
         display: {
+            /**
+             *  Displays or hides a panel from view.
+             *
+             *  @method DropDown.panel.display.toggle
+             *  @param  {Boolean}   state           The display state of a panel
+             *  @param  {String}    toggleClass     The panel class to control
+             */
             toggle: function (state, toggleclass) {
                 console.log('  Toggling display of', toggleclass, 'to', state);
                 if (state)
@@ -220,16 +265,34 @@ var DropDown = function () {
                     $(_this.dropDownId + ' ' + toggleclass)
                     .removeClass("display");
             },
+            /**
+             *  Modify the display state of all panels
+             *
+             *  @method DropDown.panel.display.all
+             *  @param  {Boolean}   state           The state to place all panels
+             */
             all: function (state) {
                 _this.panel.display.left(state);
                 _this.panel.display.right(state);
             },
+            /**
+             *  Modify the display state of all left side panels
+             *
+             *  @method DropDown.panel.display.left
+             *  @param  {Boolean}   state           The state to place left side panels
+             */
             left: function (state) {
                 _this.panel.display.toggle(state, '.account-panel');
                 _this.panel.display.toggle(state, '.login-panel');
                 _this.panel.display.toggle(state, '.register-panel');
                 _this.panel.display.toggle(state, '.information-panel');
             },
+            /**
+             *  Modify the display state of all right side panels
+             *
+             *  @method DropDown.panel.display.right
+             *  @param  {Boolean}   state           The state to place right side panels
+             */
             right: function (state) {
                 _this.panel.display.toggle(state, '.fx-catalog-panel');
                 _this.panel.display.toggle(state, '.mix-catalog-panel');
@@ -239,7 +302,14 @@ var DropDown = function () {
             }
         },
 
+        //  Wait Screens
         wait: {
+            /**
+             *  Start a wait screen. {Currently disabled}
+             *
+             *  @method DropDown.panel.display.wait.start
+             *  @param  {Enum}   position   LEFT|RIGHT|ALL The wait screen(s) to start displaying.
+             */
             start: function (position) {
                 console.log('dropdown.panel.wait.start');
                 return;
@@ -259,6 +329,12 @@ var DropDown = function () {
                         return;
                 }*/
             },
+            /**
+             *  Stop a wait screen. {Currently disabled}
+             *
+             *  @method DropDown.panel.display.wait.start
+             *  @param  {Enum}   position   LEFT|RIGHT|ALL The wait screen(s) to stop displaying.
+             */
             stop: function (position) {
                 console.log('dropdown.panel.wait.stop');
                 return;
@@ -279,8 +355,17 @@ var DropDown = function () {
 
     };
 
+    //  Navigation Bar
     this.navigation = {
+        //  Display Methods
         display: {
+            /**
+             *  Toggle the display of a navbar element
+             *
+             *  @method DropDown.navigation.display.toggle
+             *  @param  {Boolean}   state       The display state to place a navbar element in
+             *  @param  {String}    toggleClass The class of the navbar element to modify
+             */
             toggle: function (state, toggleclass) {
                 var selector = _this.navigationId + ' .container .navbar-right-links ' + toggleclass;
                 if (state)
@@ -290,19 +375,45 @@ var DropDown = function () {
                     $(selector)
                     .removeClass("display");
             },
+            /**
+             *  Toggle the display of all navbar elements
+             *
+             *  @method DropDown.navigation.display.all
+             *  @param  {Boolean}   state       The display state to place all navbar element in
+             */
             all: function (state) {
                 _this.navigation.display.secured(state);
                 _this.navigation.display.unsecured(state);
             },
+            /**
+             *  Toggle the display of all secured view navbar elements
+             *  This is the logged in state
+             *
+             *  @method DropDown.navigation.display.secured
+             *  @param  {Boolean}   state       The display state to place all secured view navbar element in
+             */
             secured: function (state) {
                 console.log("  Toggling display of 'auth' to", state);
                 _this.navigation.display.toggle(state, '.link-sign-out');
             },
+            /**
+             *  Toggle the display of all unsecured view navbar elements
+             *  This is the logged out state
+             *
+             *  @method DropDown.navigation.display.unsecured
+             *  @param  {Boolean}   state       The display state to place all unsecured view navbar element in
+             */
             unsecured: function (state) {
                 console.log("  Toggling display of 'anon' to", state);
                 _this.navigation.display.toggle(state, '.link-sign-in');
                 _this.navigation.display.toggle(state, '.link-register');
             },
+            /**
+             *  Toggle the Logged in view state
+             *
+             *  @method DropDown.navigation.display.lock
+             *  @param  {Boolean}   state       The state of the secured view
+             */
             lock: function (state) {
                 _this.navigation.display.secured(state);
                 _this.navigation.display.unsecured(!state);
@@ -311,38 +422,37 @@ var DropDown = function () {
     };
 
     /**
-     *  @name   show
+     *  Makes the views that the dropdown manages
      *
-     *  Makes the views that the dropdown can hold
-     *
-     *  @param  view    The view to display
+     *  @method DropDown.show
+     *  @param  {String}  view    The view to display
+     *  @param  {String}  opt     Options to pass the views
      */
-    this.show = function (view, opt, open) {
+    this.show = function (view, opt) {
 
-        var state;
-
+        //  Setting default variables
         opt = dVar(opt, false);
-        open = dVar(open, true);
-        state = true;
 
         console.log('--- Showing view:', view);
 
+        //  Handling the opening and closing of the dropdown
         if (view == 'TOGGLE') {
             this.dropdown.toggle();
             return;
         }
 
+        //  Switching views
         switch (view) {
         case 'ALL':
             this.panel.display.all(true);
-            this.dropdown.open(open);
+            this.dropdown.open();
             return;
 
         case 'INIT':
             this.panel.display.all(false);
-            this.panel.display.toggle(state, '.login-panel');
-            this.panel.display.toggle(state, '.register-panel');
-            this.panel.display.toggle(state, '.about-panel');
+            this.panel.display.toggle(true, '.login-panel');
+            this.panel.display.toggle(true, '.register-panel');
+            this.panel.display.toggle(true, '.about-panel');
             return;
 
         case 'FX':
@@ -355,7 +465,7 @@ var DropDown = function () {
                 location.hash = "fx-catalog";
                 _this.panel.display.toggle(true, '.fx-catalog-panel');
                 _this.panel.display.toggle(true, '.account-panel-name');
-                _this.dropdown.open(open);
+                _this.dropdown.open();
             }, function (data) {});
             return;
 
@@ -369,10 +479,10 @@ var DropDown = function () {
                 }
             }, function () {
                 _this.panel.display.all(false);
-                _this.panel.display.toggle(state, '.mix-catalog-panel');
+                _this.panel.display.toggle(true, '.mix-catalog-panel');
             }, function (data) {
                 _this.panel.set.account(data);
-                _this.panel.display.toggle(state, '.account-panel');
+                _this.panel.display.toggle(true, '.account-panel');
             }, function (data) {
                 _this.panel.set.account({
                     name: 'Unknown user name',
@@ -383,16 +493,16 @@ var DropDown = function () {
 
         case 'LOGIN':
             this.panel.display.all(false);
-            this.panel.display.toggle(state, '.login-panel');
-            this.panel.display.toggle(state, '.about-panel');
-            this.dropdown.open(open);
+            this.panel.display.toggle(true, '.login-panel');
+            this.panel.display.toggle(true, '.about-panel');
+            this.dropdown.open();
             return;
 
         case 'REGISTER':
             this.panel.display.all(false);
-            this.panel.display.toggle(state, '.register-panel');
-            this.panel.display.toggle(state, '.about-panel');
-            this.dropdown.open(open);
+            this.panel.display.toggle(true, '.register-panel');
+            this.panel.display.toggle(true, '.about-panel');
+            this.dropdown.open();
             return;
 
         case 'API':
@@ -428,12 +538,12 @@ var DropDown = function () {
                     $("#api")
                         .append(html);
 
-                    _this.panel.display.toggle(state, '.api-panel');
-                    _this.dropdown.open(open);
+                    _this.panel.display.toggle(true, '.api-panel');
+                    _this.dropdown.open();
                 });
             }, function () {
                 console.log('api-failed');
-                _this.dropdown.open(open);
+                _this.dropdown.open();
             });
             return;
         }

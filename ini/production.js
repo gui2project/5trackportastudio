@@ -1,8 +1,7 @@
 /**
- *  @name   production.js
- *
  *  The configuration file to use during production.
- *  It holds settings for the application.
+ *
+ *  @name    production.js
  */
 
 // Configuration settings

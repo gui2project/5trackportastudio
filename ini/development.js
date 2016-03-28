@@ -1,8 +1,7 @@
 /**
- *  @name   development.js
+ *  The configuration file to use during development. It holds settings for the application.
  *
- *  The configuration file to use during development.
- *  It holds settings for the application.
+ *  @name   developement.js
  */
 
 // Configuration settings

@@ -1,7 +1,7 @@
 /**
- *  @file   audio.js
- *
  *  This is a research file for web audio api it is not used in the project.
+ *
+ *  @name   audio.js
  */
 
 var msg = '[ MUSIC ]';

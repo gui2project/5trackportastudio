@@ -1,7 +1,7 @@
 /**
- *  @name   app.js
+ * This file is the controller for the application.
  *
- *  This file is the controller for the application.
+ *  @name   app.js
  */
 
 //  Requires

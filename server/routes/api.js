@@ -1,8 +1,8 @@
 /**
- *  @name   api.js
- *
  *  This is the API routing file it determines the content to be saved
  *  or served back
+ *
+ *  @name   api.js
  */
 
 var fs = require('fs');
@@ -15,10 +15,9 @@ var ini = require(global.app.ini());
 var msg = '[API]';
 
 /**
- *  @function   fileOptions
- *
  *  Generates an array of document aliases from the ini.file.docs object
  *
+ *  @function   fileOptions
  *  @return     {Array}     An array of Document aliases
  */
 var fileOptions = function () {
@@ -30,13 +29,13 @@ var fileOptions = function () {
 };
 
 /**
- * @function    middleWare
- *
  * Sets up API routing. Self Documenting methods are added to the api, They are
  * self documenting because the first paramter adds itself to the API help object.
  *
+ * @function    middleWare
  * @param   {Object}    app     The express application reference
  * @param   {Object}    mdb     The mongoDB database object
+ * @see /api/get/help   For generated methods
  */
 var middleWare = function (app, mdb) {
 

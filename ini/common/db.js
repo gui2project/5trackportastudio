@@ -1,7 +1,7 @@
 /**
- *  @name   db.js
- *
  *  The configuration file for mongodb.
+ *
+ *  @name   db.js
  */
 
 //  Requires

@@ -1,9 +1,7 @@
 /**
- *  @name   gulpfile.js
- *
  *  This file holds the gulp task scripts, it is the task runner.
  *
- *  ### Examples:
+ *  Examples:
  *      Usage
  *           gulp [TASK] [OPTIONS...]
  *
@@ -32,6 +30,8 @@
  *          mongodb.delete        Removes MongoDB service on windows.
  *          mongodb.start         Starts MongoDB service on windows.
  *          mongodb.stop          Stops MongoDB service on windows.
+ *
+ *  @name   gulpfile.js
  */
 
 //  INCLUDES
@@ -54,6 +54,7 @@ var path = require('path');
 var rm = require('gulp-rm');
 var yaml = require('yamljs');
 var removeHtmlComments = require('gulp-remove-html-comments');
+var jsdoc = require("gulp-jsdoc");
 
 //  Get application root directory and system mode
 var root = path.resolve(__dirname);
@@ -72,10 +73,13 @@ var gulp = require('gulp-help')(require('gulp'), ini.opt.help);
 //  DOCUMENTATION
 
 //  JavaScript
-gulp.task('code.doc.js', "Extracts documentation for JS code.", [],
+gulp.task('code.doc.js', "Extracts documentation for JS code.", ['code.lint.js'],
     function () {
         return gulp.src(ini.path.projectFiles.js.loc)
-            .pipe(markdox())
+            .pipe(markdox({
+                template: ini.path.templateMd
+            }))
+            //.pipe(jsdoc('./documentation-output'))
             .pipe(concat('documentation-js.md'))
             //.pipe(removeHtmlComments())
             .pipe(gulp.dest('./doc/'));
@@ -108,21 +112,21 @@ gulp.task('code.format.json', "Formats JSON code.", [],
 //  CODE LINTERS
 
 //  JavaScript
-gulp.task('code.lint.js', 'Checks JS syntax.', [],
+gulp.task('code.lint.js', 'Checks JS syntax.', ['code.format.js'],
     function () {
         return gulp.src(ini.path.projectFiles.js.loc)
             .pipe(lint_js())
             .pipe(lint_js.reporter());
     });
 //  Json
-gulp.task('code.lint.json', 'Checks json syntax.', [],
+gulp.task('code.lint.json', 'Checks json syntax.', ['code.format.json'],
     function () {
         return gulp.src(ini.path.projectFiles.json.loc)
             .pipe(lint_json())
             .pipe(lint_json.reporter());
     });
 //  CSS
-gulp.task('code.lint.css', 'Checks css syntax.', [],
+gulp.task('code.lint.css', 'Checks css syntax.', ['code.format.css'],
     function () {
         return gulp.src(ini.path.projectFiles.css.loc)
             .pipe(lint_css(require(ini.path.projectFiles.css.linter)))

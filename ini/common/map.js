@@ -1,13 +1,14 @@
 /**
- *  @name   map.js
- *
  *  The configuration file for web mapping paths.
+ *
+ *  @name   map.js
  */
 
 //  Requires
 var path = require('path');
 var paths = require('./paths.js');
 
+//  URL to File path mappings
 var map = {
     static: [{
         web: '/',

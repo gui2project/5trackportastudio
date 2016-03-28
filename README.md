@@ -102,9 +102,9 @@ trackstudio
 - To install
  - verify the contents of `ini\mongodb.cfg` and `ini\common\db.js` match your installation
  - run:
-    ```
-    gulp mongodb.create
-    ```
+        ```
+        gulp mongodb.create
+        ```
 
 - To Remove (leaves data and logs intact)
     ```

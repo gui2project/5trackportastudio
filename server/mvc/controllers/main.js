@@ -1,17 +1,16 @@
 /**
- *  @name   main.js
- *
  *  This file holds the GET controller for the main page.
+ *
+ *  @name   main.js
  */
 
 var path = require('path');
 var ini = require(global.app.ini());
 
 /**
- *  @function   index
- *
  *  The default page for the application
  *
+ *  @function   index
  *  @param  {Object}    req     The request passed by the application
  *  @param  {Object}    res     The response passed by the application
  */

@@ -1,13 +1,14 @@
 /**
- *  @name   paths.js
- *
  *  The configuration file for absolute paths.
+ *
+ *  @name   paths.js
  */
 
 //  Requires
 var path = require('path');
 var root = global.app.root;
 
+//  File and Directory Paths
 var paths = {
     angular: path.join(root, 'node_modules', 'angular'),
     api: path.join(root, 'server', 'routes', 'api'),
@@ -78,6 +79,7 @@ var paths = {
     routes: path.join(root, 'server', 'routes', 'paths'),
     security: path.join(root, 'server', 'lib', 'Security'),
     users: path.join(root, 'server', 'routes', 'users'),
+    templateMd: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.ejs'),
     views: path.join(root, 'server', 'mvc', 'views')
 };
 
