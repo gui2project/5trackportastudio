@@ -18,7 +18,7 @@ var root = path.resolve(__dirname);
 var mode = process.env.TS_RUN_MODE;
 
 // Set application mode to: development | production
-global.app = require('./server/lib/GlobalApplication.js')(mode, root);
+global.app = require('./server/lib/GlobalApplication.js')('development', root);
 
 var ini = require(global.app.ini()); //  configuration object
 var mdb = require(ini.path.mongodb); //  mongoose wrapper
