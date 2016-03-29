@@ -25,7 +25,7 @@ var paths = {
     jqueryvalidation: path.join(root, 'node_modules', 'jquery-validation', 'dist'),
     jscookie: path.join(root, 'node_modules', 'js-cookie', 'src'),
     nodeModules: path.join(root, 'node_modules'),
-    mongodb: path.join(root, 'server', 'lib', 'Mongodb'),
+    mongodb: path.join(root, 'server', 'lib', 'mongodb'),
     mixin: path.join(root, 'server', 'mvc', 'views', 'mixin'),
     private: path.join(root, 'server'),
     public: path.join(root, 'www'),

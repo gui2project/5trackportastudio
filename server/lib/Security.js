@@ -49,7 +49,7 @@ var Security = function () {
         var h = crypto.createHash('sha512');
         global.app.console.log(msg, 'Hashing input.');
 
-        h.update(String(pass));
+        h.update(String(input));
         h.update(String(salt));
 
         return h.digest('base64');

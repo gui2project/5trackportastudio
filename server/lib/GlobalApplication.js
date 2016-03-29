@@ -42,8 +42,6 @@ var GlobalApplication = function (pJson, mode, root) {
 
     //  The label to use for the application, Name and version of the application from package.json
     this.about = pJson.name + ' ' + pJson.version;
-    this.mode = mode; //  The mode the application is running in
-    this.root = root; // The root path of the application
 
     /**
      *  Prepends the '[appName appVersion]'
@@ -92,6 +90,9 @@ var GlobalApplication = function (pJson, mode, root) {
     this.ini = function () {
         return path.join(this.root, 'ini', this.mode + '.js');
     };
+
+    this.mode = mode; //  The mode the application is running in
+    this.root = root; // The root path of the application
 
     //  Output creation status and info
     this.console.log(msg, 'Initializing.');

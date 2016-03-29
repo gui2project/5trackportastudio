@@ -267,7 +267,6 @@ var middleWare = function (app, mdb) {
                     api.response(res, true, true, obj);
                 }
             });
-
         });
 
     //  Logout a user
