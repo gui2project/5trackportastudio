@@ -7,17 +7,27 @@
   <!-- Start <?= doc.filename ?> -->
   ## <?= doc.filename ?>
 
+
   <? doc.javadoc.forEach(function(comment) { ?>
     <? if (!comment.ignore) { ?>
       <? if (comment.name) { ?>
 
         <? if (comment.isMethod ) { ?>
-          ### Method: <?= comment.name ?>(<?= comment.paramStr ?>)
+
+          ---
+
+          #### Method: <?= comment.name ?>(<?= comment.paramStr ?>)
         <? } else if (comment.isFunction) { ?>
+
+          ---
+
           ### Function: <?= comment.name ?>(<?= comment.paramStr ?>)
         <? } else if (comment.name.endsWith(".js")) { ?>
 
         <? } else { ?>
+
+          ---
+
           ### Class: <?= comment.name ?>
         <? } ?>
 
@@ -42,19 +52,34 @@
         <? } ?>
 
       <? if (comment.propertyTags.length > 0) { ?>
-        #### Properties:
+        <? if (comment.isMethod) { ?>
+          ##### Properties:
+        <? } else { ?>
+          #### Properties:
+        <? } ?>
+
         <? comment.propertyTags.forEach(function(propertyTag) { ?>
           * **<?= propertyTag.joinedTypes ?>** *<?= propertyTag.name ?>* <?= propertyTag.description ?><? }) ?>
       <? } ?>
 
       <? if (comment.paramTags.length > 0) { ?>
-        #### Params:
+        <? if (comment.isMethod) { ?>
+          ##### Params:
+        <? } else { ?>
+          #### Params:
+        <? } ?>
+
         <? comment.paramTags.forEach(function(paramTag) { ?>
           *<? if (paramTag.types.length > 0) { ?> **<?= paramTag.joinedTypes ?>**<? } ?> *<?= paramTag.name ?>* <?= paramTag.description ?><? }) ?>
       <? } ?>
 
       <? if (comment.returnTags.length > 0) { ?>
-        #### Return:
+        <? if (comment.isMethod) { ?>
+          ##### Return:
+        <? } else { ?>
+          #### Return:
+        <? } ?>
+
         <? comment.returnTags.forEach(function(returnTag) { ?>
           *<? if (returnTag.types.length > 0) { ?> **<?= returnTag.joinedTypes ?>**<? } ?> <?= returnTag.description ?>
         <? }) ?>

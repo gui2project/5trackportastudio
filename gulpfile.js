@@ -72,8 +72,8 @@ var gulp = require('gulp-help')(require('gulp'), ini.opt.help);
 
 //  DOCUMENTATION
 
-//  JavaScript
-gulp.task('code.doc.js', "Extracts documentation for JS code.", ['code.lint.js'],
+//  JavaScript Documentation
+gulp.task('code.doc.js', false, ['code.lint.js'],
     function () {
         return gulp.src(ini.path.projectFiles.js.loc)
             .pipe(markdox({
@@ -81,6 +81,36 @@ gulp.task('code.doc.js', "Extracts documentation for JS code.", ['code.lint.js']
             }))
             .pipe(concat('documentation-js.md'))
             .pipe(gulp.dest('./doc/'));
+    });
+//  Header for JS section
+gulp.task('code.doc.js.head', false, ['code.doc.js'],
+    function () {
+        return gulp.src('./app.js')
+            .pipe(markdox({
+                template: ini.path.templateMd.jshead
+            }))
+            .pipe(concat('documentation-js-head.md'))
+            .pipe(gulp.dest('./doc/'))
+            .pipe(markdox({
+                template: ini.path.templateMd.readme
+            }))
+            .pipe(concat('readme.md'))
+            .pipe(gulp.dest('./doc/'));
+    });
+//  Merge into Readme
+gulp.task('code.doc.merge', false, ['code.doc.js.head'],
+    function () {
+        return gulp.src(['./doc/Readme.md',
+                './doc/documentation-js-head.md', './doc/documentation-js.md'
+            ])
+            .pipe(concat('Readme.md'))
+            .pipe(gulp.dest('./doc/'));
+    });
+//  clean generated src readme files except for Readme.md
+gulp.task('code.doc.clean', false, ['code.doc.merge'],
+    function () {
+        return gulp.src(['./doc/documentation-js-head.md', './doc/documentation-js.md'])
+            .pipe(rm());
     });
 
 //  CODE FORMATTERS
@@ -234,7 +264,7 @@ gulp.task('mongodb.delete', 'Removes MongoDB service on windows.', ['service.mon
 //  Code scripts
 gulp.task('code.lint', 'Performs all syntax tests', ['code.lint.js', 'code.lint.json', 'code.lint.css', 'code.lint.jade']);
 gulp.task('code.format', 'Formats code base', ['code.format.js', 'code.format.css', 'code.format.json']);
-gulp.task('code.doc', 'Documents code base', ['code.doc.js'], /*'code.doc.readme.new', */
+gulp.task('code.doc', 'Documents code base', ['code.doc.clean'], /*'code.doc.readme.new', */
     function () {
         return gulp.src(['./doc/readme.md', '/doc/documentation-js-header', './doc/documentation-js.md'])
             .pipe(concat('readme.md'))

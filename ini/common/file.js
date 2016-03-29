@@ -11,9 +11,9 @@ var paths = require('./paths.js');
 //  File alias and mime descriptions
 var files = {
     docs: [{
-        alias: "doc-js.md",
+        alias: "documentation-readme.md",
         mime: "text/markdown",
-        sys: path.join(paths.documents, "documentation-js.md")
+        sys: path.join(paths.documents, "readme.md")
     }, {
         alias: "memo",
         mime: "application/pdf",
