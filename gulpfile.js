@@ -54,7 +54,7 @@ var path = require('path');
 var rm = require('gulp-rm');
 var yaml = require('yamljs');
 var removeHtmlComments = require('gulp-remove-html-comments');
-var jsdoc = require("gulp-jsdoc");
+//var jsdoc = require("gulp-jsdoc");
 
 //  Get application root directory and system mode
 var root = path.resolve(__dirname);

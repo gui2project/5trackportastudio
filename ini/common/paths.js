@@ -84,6 +84,7 @@ var paths = {
         jshead: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.js.head.ejs'),
         readme: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.readme.ejs')
     },
+    tripjs: path.join(root, 'node_modules', 'trip.js', 'dist'),
     views: path.join(root, 'server', 'mvc', 'views')
 };
 

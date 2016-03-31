@@ -46,6 +46,7 @@
         "pandoc-bin": "^0.1.2",
         "restful-api": "^0.1.8",
         "serve-favicon": "^2.3.0",
+        "trip.js": "^3.1.5",
         "url-join": "0.0.1"
     },
     "devDependencies": {
