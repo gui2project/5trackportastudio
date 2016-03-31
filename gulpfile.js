@@ -144,14 +144,16 @@ gulp.task('code.lint.js', 'Checks JS syntax.', ['code.format.js'],
     function () {
         return gulp.src(ini.path.projectFiles.js.loc)
             .pipe(lint_js())
-            .pipe(lint_js.reporter());
+            .pipe(lint_js.reporter())
+            .pipe(lint_js.reporter('fail'));
     });
 //  Json
 gulp.task('code.lint.json', 'Checks json syntax.', ['code.format.json'],
     function () {
         return gulp.src(ini.path.projectFiles.json.loc)
             .pipe(lint_json())
-            .pipe(lint_json.reporter());
+            .pipe(lint_json.reporter())
+            .pipe(lint_json.reporter('fail'));
     });
 //  CSS
 gulp.task('code.lint.css', 'Checks css syntax.', ['code.format.css'],
