@@ -6,6 +6,10 @@
 
 //  CONTEXT DETERMINATIONS
 
+// Redirect user to https
+if(window.location.href.indexOf("https") > -1) {
+    window.location.href = "https://trackstudio.herokuapp.com/";
+
 //  Determine audio context
 window.AudioContext = window.AudioContext ||
     window.webkitAudioContext;

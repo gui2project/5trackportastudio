@@ -1,0 +1,51 @@
+{
+    "dateCreated":"",
+    "dateLastModified":"",
+    "mixName":"untitled",
+    "tracks":[
+        {
+            "trackNumber":1,
+            "trackName":"Track 1",
+            "eq":{
+                "treble":0,
+                "bass":0
+                },
+            "pan":0,
+            "volume":0.7,
+            "fx":"Long Reverb"
+        },
+        {
+            "trackNumber":2,
+            "trackName":"Track 2",
+            "eq":{
+                "treble":0,
+                "bass":0
+                },
+            "pan":0,
+            "volume":0.7,
+            "fx":"Echo"
+        },
+        {
+            "trackNumber":3,
+            "trackName":"Track 3",
+            "eq":{
+                "treble":0,
+                "bass":0
+                },
+            "pan":0,
+            "volume":0.7,
+            "fx":"Drive"
+        },
+        {
+            "trackNumber":4,
+            "trackName":"Track 4",
+            "eq":{
+                "treble":0,
+                "bass":0
+                },
+            "pan":0,
+            "volume":0.7,
+            "fx":"Short Reverb"
+        }
+    ]
+}
