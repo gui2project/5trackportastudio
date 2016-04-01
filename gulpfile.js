@@ -1,36 +1,6 @@
 /**
  *  This file holds the gulp task scripts, it is the task runner.
  *
- *  Examples:
- *      Usage
- *           gulp [TASK] [OPTIONS...]
- *
- *      Available tasks
- *          code.doc              Documents code base
- *          code.doc.js           Extracts documentation for JS code.
- *          code.format           Formats code base
- *          code.format.css       Formats CSS code.
- *          code.format.js        Formats JS code.
- *          code.format.json      Formats JSON code.
- *          code.lint             Performs all syntax tests
- *          code.lint.css         Checks css syntax.
- *          code.lint.jade        Checks jade/pug syntax.
- *          code.lint.js          Checks JS syntax.
- *          code.lint.json        Checks json syntax.
- *          code.prepare          Checks, formats, and documents code base
- *          git.cred.store        Tell git to store your credentials.
- *          git.error             Handle commong Git errors
- *          git.heroku            Pushes code to master branch, heroku branch, and deploys to heroku.
- *           --m="message"        Commit message to use.
- *          git.master            Pushes code to master branch.
- *           --m="message"        Commit message to use.
- *          help                  Display this help text.
- *          mongodb.config        Shows the MongoDB config file in json.
- *          mongodb.create        Creates MongoDB service on windows.
- *          mongodb.delete        Removes MongoDB service on windows.
- *          mongodb.start         Starts MongoDB service on windows.
- *          mongodb.stop          Stops MongoDB service on windows.
- *
  *  @name   gulpfile.js
  */
 
@@ -38,6 +8,7 @@
 var argv = require('yargs')
     .argv;
 var concat = require('gulp-concat');
+var execFull = require('gulp-exec');
 var exec = require('child_process')
     .exec;
 var format_css = require('gulp-cssbeautify');
@@ -53,8 +24,9 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 var rm = require('gulp-rm');
 var yaml = require('yamljs');
-var removeHtmlComments = require('gulp-remove-html-comments');
-//var jsdoc = require("gulp-jsdoc");
+var gulpIgnore = require('gulp-ignore');
+var deleteLines = require('gulp-delete-lines');
+var indent = require('gulp-indent');
 
 //  Get application root directory and system mode
 var root = path.resolve(__dirname);
@@ -70,22 +42,29 @@ var cfgMongoDB = yaml.load(ini.path.projectFiles.mongodb.cfg);
 //  START GULP WITH HELP
 var gulp = require('gulp-help')(require('gulp'), ini.opt.help);
 
+/**
+ *  Removes given files
+ *
+ *  @name   removeFiles
+ *  @param {Array.String}   files   An array of file paths.
+ *  @return {Stream}    Gulp Stream
+ */
+var removeFiles = function (files) {
+    return gulp.src(files)
+        .pipe(rm());
+};
 //  DOCUMENTATION
 
-//  JavaScript Documentation
-gulp.task('code.doc.js', false, ['code.lint.js'],
+//  Javascript documentation
+gulp.task('code.doc.js', false, ['code.lint.js', 'code.format.js'],
     function () {
         return gulp.src(ini.path.projectFiles.js.loc)
+            .pipe(gulpIgnore.exclude('./gulpfile.js'))
             .pipe(markdox({
                 template: ini.path.templateMd.js
             }))
             .pipe(concat('documentation-js.md'))
-            .pipe(gulp.dest('./doc/'));
-    });
-//  Header for JS section
-gulp.task('code.doc.js.head', false, ['code.doc.js'],
-    function () {
-        return gulp.src('./app.js')
+            .pipe(gulp.dest('./doc/'))
             .pipe(markdox({
                 template: ini.path.templateMd.jshead
             }))
@@ -97,22 +76,71 @@ gulp.task('code.doc.js.head', false, ['code.doc.js'],
             .pipe(concat('readme.md'))
             .pipe(gulp.dest('./doc/'));
     });
-//  Merge into Readme
-gulp.task('code.doc.merge', false, ['code.doc.js.head'],
+
+//  Get help output
+gulp.task('code.doc.gulp', false, ['code.lint.js', 'code.format.js'],
     function () {
-        return gulp.src(['./doc/Readme.md',
+        var options = {
+            pipeStdout: true // default = false, true means stdout is written to file.contents
+        };
+        var filters = {
+            'filters': [
+                /^\[/
+            ]
+        };
+        var indentOpt = {
+            tabs: true,
+            amount: 1
+        };
+        var markDownTemplate = {
+            gulphead: {
+                template: ini.path.templateMd.gulphead
+            },
+            js: {
+                template: ini.path.templateMd.js
+            }
+        };
+        return gulp.src('./gulpfile.js')
+            .pipe(markdox(markDownTemplate.js))
+            .pipe(concat('documentation-gulp.md'))
+            .pipe(gulp.dest('./doc/'))
+            .pipe(markdox(markDownTemplate.gulphead))
+            .pipe(concat('documentation-gulp-head.md'))
+            .pipe(gulp.dest('./doc/'))
+            .pipe(execFull('gulp', options))
+            .pipe(deleteLines(filters))
+            .pipe(concat('documentation-gulp-out.md'))
+            .pipe(indent(indentOpt))
+            .pipe(gulp.dest('./doc/'));
+    });
+
+//  Merge into Readme
+gulp.task('code.doc.merge', false, ['code.doc.js', 'code.doc.gulp'],
+    function () {
+        return gulp.src([
+                './doc/readme.md',
+                './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md',
                 './doc/documentation-js-head.md', './doc/documentation-js.md'
             ])
-            .pipe(concat('Readme.md'))
+            .pipe(concat('readme.md'))
             .pipe(gulp.dest('./doc/'));
     });
 //  clean generated src readme files except for Readme.md
-gulp.task('code.doc.clean', false, ['code.doc.merge'],
+gulp.task('code.doc.clean', false, ['code.doc.gulp.clean', 'code.doc.js.clean']);
+// Clean Gulp Readmes
+gulp.task('code.doc.gulp.clean', false, [],
     function () {
-        return gulp.src(['./doc/documentation-js-head.md', './doc/documentation-js.md'])
-            .pipe(rm());
+        return removeFiles([
+            './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md'
+        ]);
     });
-
+//  Clean JS Readmes
+gulp.task('code.doc.js.clean', false, [],
+    function () {
+        return removeFiles([
+            './doc/documentation-js-head.md', './doc/documentation-js.md'
+        ]);
+    });
 //  CODE FORMATTERS
 
 //  JavaScript
@@ -209,7 +237,7 @@ gulp.task('git.push.heroku', false, ['git.push.master'],
     });
 //  Store Credentials
 gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
-    function () {
+    function (cb) {
         var cmdStr = 'git config --global credential.helper store';
         exec(cmdStr, errorGulp.exec);
     });
@@ -266,13 +294,14 @@ gulp.task('mongodb.delete', 'Removes MongoDB service on windows.', ['service.mon
 //  Code scripts
 gulp.task('code.lint', 'Performs all syntax tests', ['code.lint.js', 'code.lint.json', 'code.lint.css', 'code.lint.jade']);
 gulp.task('code.format', 'Formats code base', ['code.format.js', 'code.format.css', 'code.format.json']);
-gulp.task('code.doc', 'Documents code base', ['code.doc.clean'], /*'code.doc.readme.new', */
+gulp.task('code.doc', 'Documents code base', ['code.doc.merge']);
+gulp.task('code.prepare', 'Checks, formats, and documents code base', ['code.format', 'code.lint', 'code.doc'],
     function () {
-        return gulp.src(['./doc/readme.md', '/doc/documentation-js-header', './doc/documentation-js.md'])
-            .pipe(concat('readme.md'))
-            .pipe(gulp.dest('./doc/'));
+        return removeFiles([
+            './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md',
+            './doc/documentation-js-head.md', './doc/documentation-js.md'
+        ]);
     });
-gulp.task('code.prepare', 'Checks, formats, and documents code base', ['code.format', 'code.lint', 'code.doc']);
 
 //  Git updates
 gulp.task('git.error', 'Handle commong Git errors', ['git.rm.lock']);

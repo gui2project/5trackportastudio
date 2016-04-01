@@ -33,7 +33,7 @@ var ErrorGulp = function () {
      *  @param  {Stream}    stderr      stderr stream
      */
     this.exec = function (err, stdout, stderr) {
-        console.log(stdout, stderr);
+        console.log('GULP-EXEC-ERROR', stdout, stderr);
         cb(err);
     };
 

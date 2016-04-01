@@ -17,7 +17,7 @@ var map = {
         web: '/dep/angular',
         sys: paths.angular
     }, {
-        web: '/dep/tripjs',
+        web: '/dep/trip-js',
         sys: paths.tripjs
     }, {
         web: '/dep/bootstrap',

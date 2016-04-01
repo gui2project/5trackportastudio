@@ -34,8 +34,10 @@ var paths = {
             format: path.join(root, 'ini', 'format', 'css.json'),
             linter: path.join(root, 'ini', 'linter', 'css.json'),
             loc: [
-                path.join(root, 'server', '**', '*.css'),
+                path.join(root, 'bin', '**', '*.css'),
+                path.join(root, 'doc', '**', '*.css'),
                 path.join(root, 'ini', '**', '*.css'),
+                path.join(root, 'server', '**', '*.css'),
                 path.join(root, 'www', 'app', '**', '*.css'),
                 path.join(root, '*.css'),
             ],
@@ -44,8 +46,10 @@ var paths = {
             format: path.join(root, 'ini', 'format', 'jade.json'),
             linter: path.join(root, 'ini', 'linter', 'jade.json'),
             loc: [
-                path.join(root, 'server', '**', '*.jade'),
+                path.join(root, 'bin', '**', '*.jade'),
+                path.join(root, 'doc', '**', '*.jade'),
                 path.join(root, 'ini', '**', '*.jade'),
+                path.join(root, 'server', '**', '*.jade'),
                 path.join(root, 'www', 'app', '**', '*.jade'),
                 path.join(root, '*.jade'),
             ]
@@ -54,8 +58,10 @@ var paths = {
             format: path.join(root, 'ini', 'format', 'json.json'),
             linter: path.join(root, 'ini', 'linter', 'json.json'),
             loc: [
-                path.join(root, 'server', '**', '*.json'),
+                path.join(root, 'bin', '**', '*.json'),
                 path.join(root, 'ini', '**', '*.json'),
+                path.join(root, 'doc', '**', '*.json'),
+                path.join(root, 'server', '**', '*.json'),
                 path.join(root, 'www', 'app', '**', '*.json'),
                 path.join(root, '*.json'),
             ]
@@ -64,7 +70,9 @@ var paths = {
             format: path.join(root, 'ini', 'format', 'js.json'),
             linter: path.join(root, 'ini', 'linter', 'js.json'),
             loc: [
+                path.join(root, 'bin', '**', '*.js'),
                 path.join(root, 'ini', '**', '*.js'),
+                path.join(root, 'doc', '**', '*.js'),
                 path.join(root, 'server', '**', '*.js'),
                 path.join(root, 'www', 'app', '**', '*.js'),
                 path.join(root, '*.js')
@@ -82,6 +90,7 @@ var paths = {
     templateMd: {
         js: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.js.ejs'),
         jshead: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.js.head.ejs'),
+        gulphead: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.gulp.head.ejs'),
         readme: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.readme.ejs')
     },
     tripjs: path.join(root, 'node_modules', 'trip.js', 'dist'),
