@@ -18,13 +18,13 @@ var paths = {
     documents: path.join(root, 'doc'),
     models: path.join(root, 'server', 'mvc', 'models'),
     error: path.join(root, 'server', 'lib', 'ErrorHandler'),
-    errorGulp: path.join(root, 'server', 'lib', 'Error-gulp'),
     images: path.join(root, 'www', 'app', 'img'),
     jquery: path.join(root, 'node_modules', 'jquery', 'dist'),
     jqueryui: path.join(root, 'node_modules', 'jquery-ui'),
     jqueryvalidation: path.join(root, 'node_modules', 'jquery-validation', 'dist'),
     jscookie: path.join(root, 'node_modules', 'js-cookie', 'src'),
     nodeModules: path.join(root, 'node_modules'),
+    lib: path.join(root, 'server', 'lib'),
     mongodb: path.join(root, 'server', 'lib', 'mongodb'),
     mixin: path.join(root, 'server', 'mvc', 'views', 'mixin'),
     private: path.join(root, 'server'),
@@ -87,12 +87,7 @@ var paths = {
     routes: path.join(root, 'server', 'routes', 'paths'),
     security: path.join(root, 'server', 'lib', 'Security'),
     users: path.join(root, 'server', 'routes', 'users'),
-    templateMd: {
-        js: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.js.ejs'),
-        jshead: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.js.head.ejs'),
-        gulphead: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.gulp.head.ejs'),
-        readme: path.join(root, 'server', 'mvc', 'views', 'template', 'template.md.readme.ejs')
-    },
+    template: path.join(root, 'server', 'mvc', 'views', 'template'),
     tripjs: path.join(root, 'node_modules', 'trip.js', 'dist'),
     views: path.join(root, 'server', 'mvc', 'views')
 };

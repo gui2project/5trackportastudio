@@ -24,6 +24,7 @@ var fileOptions = function () {
     var arr = [];
     ini.file.docs.forEach(function (obj) {
         arr.push(obj.alias);
+        arr.push(obj.alias + '.' + obj.ext);
     });
     return arr;
 };
@@ -292,7 +293,7 @@ var middleWare = function (app, mdb) {
                 });
         });
 
-    //  Get document from the database
+    //  Get document from the application
     api.add({
             "url": urlJoin("/api", "get", "doc", ":alias"),
             "param": [{
@@ -308,7 +309,8 @@ var middleWare = function (app, mdb) {
             global.app.console.log(msg, urlJoin("/api", "get", "doc", ":alias"));
             var myerr = true;
             ini.file.docs.forEach(function (obj) {
-                if (req.params.alias.toLowerCase() == obj.alias.toLowerCase()) {
+                if (req.params.alias.toLowerCase() == obj.alias.toLowerCase() ||
+                    req.params.alias.toLowerCase() == obj.alias.toLowerCase() + '.' + obj.ext.toLowerCase()) {
                     myerr = false;
                     fs.readFile(obj.sys, function (err, data) {
                         res.contentType(obj.mime);

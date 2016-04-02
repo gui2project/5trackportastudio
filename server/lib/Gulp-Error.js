@@ -1,15 +1,15 @@
 /**
  *  This holds the error handlers for Gulp.
  *
- *  @name   Error-gulp.js
+ *  @name   Gulp-Error.js
  */
 
 /**
  *  This class holds all the error haandlers for Gulp.
  *
- *  @class  ErrorGulp
+ *  @class  GulpError
  */
-var ErrorGulp = function () {
+var GulpError = function () {
 
     /**
      *  Processes a gulp-git error
@@ -40,12 +40,12 @@ var ErrorGulp = function () {
 };
 
 /**
- *  Error handler middle ware intercept function
+ *  GulpError handler middle ware intercept function
  *
  *  @function   middleWare
  */
 var middleWare = function () {
-    return new Error();
+    return new GulpError();
 };
 
 //  Export content
