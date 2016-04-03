@@ -20,7 +20,6 @@ This readme holds the documentation for the code in the project, it is dynamical
 	  code.lint.js          Checks JS syntax.
 	  code.lint.json        Checks json syntax.
 	  git.cred.store        Tell git to store your credentials.
-	  git.error             Handle commong Git errors
 	  git.heroku            Pushes code to master branch, heroku branch, and deploys to heroku. 
 	   --m="message"        Commit message to use.
 	  git.master            Pushes code to master branch. 
