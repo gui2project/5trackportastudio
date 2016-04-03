@@ -1,3 +1,8 @@
+/**
+ *  This holds the scripts for Gulp.
+ *
+ *  @name   Gulp-Scripts.js
+ */
 var ini = require(global.app.ini()); //  configuration object
 
 //  INCLUDES
