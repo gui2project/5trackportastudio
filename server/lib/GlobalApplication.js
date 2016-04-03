@@ -8,9 +8,13 @@
  *  @name   GlobalApplication.js
  */
 
-//  Requires
+//  REQUIRES
+
 var path = require('path');
 var chalk = require('chalk'); //  coloring for console label
+
+//  VARIABLES
+
 var msg = '[ GLOBAL ]';
 
 /**

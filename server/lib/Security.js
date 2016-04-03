@@ -6,10 +6,14 @@
  *  @name   Security.js
  */
 
+//  REQUIRES
+
 var crypto = require('crypto');
 var https = require('https');
 
 var ini = require(global.app.ini());
+
+//  VARIABLES
 
 var msg = '[ SECURITY ]';
 

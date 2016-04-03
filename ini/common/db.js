@@ -4,7 +4,8 @@
  *  @name   db.js
  */
 
-//  Requires
+//  REQUIRES
+
 var schema = require('mongoose')
     .Schema;
 

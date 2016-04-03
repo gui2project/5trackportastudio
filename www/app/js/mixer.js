@@ -77,7 +77,7 @@ $(function () {
             var trackNumber = parseInt($(this)
                 .parent()
                 .parent()
-                .attr("value"));
+                .attr('value'));
             var knobValue = parseFloat($(this)
                 .parent()
                 .find('input')
@@ -120,11 +120,12 @@ $(function () {
             // Get track number and value of the slider
             var trackNumber = parseInt($(this)
                 .parent()
-                .attr("value"));
+                .attr('value'));
             var sliderVal = parseFloat($(this)
                 .val());
-            if (!isNaN(sliderVal))
+            if (!isNaN(sliderVal)) {
                 gain(trackNumber, sliderVal);
+            }
         });
 
     /* Mute buttons */
@@ -133,7 +134,7 @@ $(function () {
             // Get track number and value of the knob
             var trackNumber = parseInt($(this)
                 .parent()
-                .attr("value"));
+                .attr('value'));
             console.log(this);
             // Check variables
             var isMuted = parseInt($(this)
@@ -173,7 +174,7 @@ $(function () {
             // Get track number and value of the knob
             var trackNumber = parseInt($(this)
                 .parent()
-                .attr("value"));
+                .attr('value'));
 
             // Check variables
             var isArmed = parseInt($(this)
@@ -226,7 +227,7 @@ $(function () {
         .on('click', function () {
             // Get the button type
             var buttonVal = $(this)
-                .attr("value");
+                .attr('value');
 
             // Switch for button functions
             switch (buttonVal) {

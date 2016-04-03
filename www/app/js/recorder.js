@@ -1,15 +1,15 @@
 (function (f) {
-    if (typeof exports === "object" && typeof module !== "undefined") {
+    if (typeof exports === 'object' && typeof module !== 'undefined') {
         module.exports = f();
-    } else if (typeof define === "function" && define.amd) {
+    } else if (typeof define === 'function' && define.amd) {
         define([], f);
     } else {
         var g;
-        if (typeof window !== "undefined") {
+        if (typeof window !== 'undefined') {
             g = window;
-        } else if (typeof global !== "undefined") {
+        } else if (typeof global !== 'undefined') {
             g = global;
-        } else if (typeof self !== "undefined") {
+        } else if (typeof self !== 'undefined') {
             g = self;
         } else {
             g = this;
@@ -25,13 +25,15 @@
         function s(o, u) {
             if (!n[o]) {
                 if (!t[o]) {
-                    var a = typeof require == "function" && require;
-                    if (!u && a)
+                    var a = typeof require === 'function' && require;
+                    if (!u && a) {
                         return a(o, !0);
-                    if (i)
+                    }
+                    if (i) {
                         return i(o, !0);
-                    var f = new Error("Cannot find module '" + o + "'");
-                    throw (f.code = "MODULE_NOT_FOUND", f);
+                    }
+                    var f = new Error('Cannot find module "' + o + '"');
+                    throw (f.code = 'MODULE_NOT_FOUND', f);
                 }
                 var l = n[o] = {
                     exports: {}
@@ -43,21 +45,22 @@
             }
             return n[o].exports;
         }
-        var i = typeof require == "function" && require;
-        for (var o = 0; o < r.length; o++)
+        var i = typeof require === 'function' && require;
+        for (var o = 0; o < r.length; o++) {
             s(r[o]);
+        }
         return s;
     })({
         1: [
 
             function (require, module, exports) {
-                "use strict";
+                'use strict';
 
-                module.exports = require("./recorder")
+                module.exports = require('./recorder')
                     .Recorder;
 
             }, {
-                "./recorder": 2
+                './recorder': 2
             }
         ],
         2: [
@@ -71,18 +74,24 @@
                             var descriptor = props[i];
                             descriptor.enumerable = descriptor.enumerable || false;
                             descriptor.configurable = true;
-                            if ("value" in descriptor) descriptor.writable = true;
+                            if ('value' in descriptor) {
+                                descriptor.writable = true;
+                            }
                             Object.defineProperty(target, descriptor.key, descriptor);
                         }
                     }
                     return function (Constructor, protoProps, staticProps) {
-                        if (protoProps) defineProperties(Constructor.prototype, protoProps);
-                        if (staticProps) defineProperties(Constructor, staticProps);
+                        if (protoProps) {
+                            defineProperties(Constructor.prototype, protoProps);
+                        }
+                        if (staticProps) {
+                            defineProperties(Constructor, staticProps);
+                        }
                         return Constructor;
                     };
                 })();
 
-                Object.defineProperty(exports, "__esModule", {
+                Object.defineProperty(exports, '__esModule', {
                     value: true
                 });
                 exports.Recorder = undefined;
@@ -99,7 +108,7 @@
 
                 function _classCallCheck(instance, Constructor) {
                     if (!(instance instanceof Constructor)) {
-                        throw new TypeError("Cannot call a class as a function");
+                        throw new TypeError('Cannot call a class as a function');
                     }
                 }
 
@@ -126,7 +135,9 @@
                             .call(this.context, this.config.bufferLen, this.config.numChannels, this.config.numChannels);
 
                         this.node.onaudioprocess = function (e) {
-                            if (!_this.recording) return;
+                            if (!_this.recording) {
+                                return;
+                            }
 
                             var buffer = [];
                             for (var channel = 0; channel < _this.config.numChannels; channel++) {
@@ -312,7 +323,7 @@
 
                         this.worker.onmessage = function (e) {
                             var cb = _this.callbacks[e.data.command].pop();
-                            if (typeof cb == 'function') {
+                            if (typeof cb === 'function') {
                                 cb(e.data.data);
                             }
                         };
@@ -339,7 +350,9 @@
                         key: 'getBuffer',
                         value: function getBuffer(cb) {
                             cb = cb || this.config.callback;
-                            if (!cb) throw new Error('Callback not set');
+                            if (!cb) {
+                                throw new Error('Callback not set');
+                            }
 
                             this.callbacks.getBuffer.push(cb);
 
@@ -352,7 +365,9 @@
                         value: function exportWAV(cb, mimeType) {
                             mimeType = mimeType || this.config.mimeType;
                             cb = cb || this.config.callback;
-                            if (!cb) throw new Error('Callback not set');
+                            if (!cb) {
+                                throw new Error('Callback not set');
+                            }
 
                             this.callbacks.exportWAV.push(cb);
 
@@ -369,8 +384,8 @@
                             var link = window.document.createElement('a');
                             link.href = url;
                             link.download = filename || 'output.wav';
-                            var click = document.createEvent("Event");
-                            click.initEvent("click", true, true);
+                            var click = document.createEvent('Event');
+                            click.initEvent('click', true, true);
                             link.dispatchEvent(click);
                         }
                     }]);
@@ -382,44 +397,50 @@
                 default = Recorder;
 
             }, {
-                "inline-worker": 3
+                'inline-worker': 3
             }
         ],
         3: [
 
             function (require, module, exports) {
-                "use strict";
+                'use strict';
 
-                module.exports = require("./inline-worker");
+                module.exports = require('./inline-worker');
             }, {
-                "./inline-worker": 4
+                './inline-worker': 4
             }
         ],
         4: [
 
             function (require, module, exports) {
                 (function (global) {
-                    "use strict";
+                    'use strict';
 
                     var _createClass = (function () {
                         function defineProperties(target, props) {
                             for (var key in props) {
                                 var prop = props[key];
                                 prop.configurable = true;
-                                if (prop.value) prop.writable = true;
+                                if (prop.value) {
+                                    prop.writable = true;
+                                }
                             }
                             Object.defineProperties(target, props);
                         }
                         return function (Constructor, protoProps, staticProps) {
-                            if (protoProps) defineProperties(Constructor.prototype, protoProps);
-                            if (staticProps) defineProperties(Constructor, staticProps);
+                            if (protoProps) {
+                                defineProperties(Constructor.prototype, protoProps);
+                            }
+                            if (staticProps) {
+                                defineProperties(Constructor, staticProps);
+                            }
                             return Constructor;
                         };
                     })();
 
                     var _classCallCheck = function (instance, Constructor) {
                         if (!(instance instanceof Constructor)) {
-                            throw new TypeError("Cannot call a class as a function");
+                            throw new TypeError('Cannot call a class as a function');
                         }
                     };
 
@@ -436,7 +457,7 @@
                                     .trim()
                                     .match(/^function\s*\w*\s*\([\w\s,]*\)\s*{([\w\W]*?)}$/)[1];
                                 var url = global.URL.createObjectURL(new global.Blob([functionBody], {
-                                    type: "text/javascript"
+                                    type: 'text/javascript'
                                 }));
 
                                 return new global.Worker(url);
@@ -475,7 +496,7 @@
 
                     module.exports = InlineWorker;
                 })
-                .call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
+                .call(this, typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {});
             }, {}
         ]
     }, {}, [1])(1);

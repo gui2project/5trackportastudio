@@ -17,7 +17,7 @@ var StopWatch = function () {
 
     this.startAt = 0; //  start time
     this.lapTime = 0; //  run time
-    this.id = ""; //   Id name
+    this.id = ''; //   Id name
     this.clocktimer = null; //   setinterval holder
 
     /**
@@ -84,7 +84,7 @@ var StopWatch = function () {
      *  @return {STRING}    formated number
      */
     this.pad = function (num, size) {
-        var s = "0000" + num;
+        var s = '0000' + num;
         return s.substr(s.length - size);
     };
 
@@ -178,10 +178,11 @@ var StopWatch = function () {
     this.adjust = function (mod) {
         _this.run('STOP');
 
-        if (_this.laptime + mod <= 0)
+        if (_this.laptime + mod <= 0) {
             _this.run('RESET');
-        else
+        } else {
             _this.laptime += mod;
+        }
 
         return _this.laptime;
     };

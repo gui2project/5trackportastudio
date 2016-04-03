@@ -7,10 +7,10 @@
 //  Database configurations
 var cookie = {
     options: {
-        path: "/" //,
-            //domain: "",
+        path: '/' //,
+            //domain: '',
             //secure: false,
-            //httpOnly: "",
+            //httpOnly: '',
             //firstPartyOnly: true
     },
     ts: {

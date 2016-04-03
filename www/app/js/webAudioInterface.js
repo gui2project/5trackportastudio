@@ -253,3 +253,8 @@ function eq(trackNumber, type, amount) {
         }
     }
 }
+
+function downloadProject(){
+    //record whole project into recording buffer
+    //download blob
+}

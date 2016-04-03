@@ -26,10 +26,12 @@ function captureAudio() {
 
 //Checks if we can grab mic feed (called from capture audio)
 function isGetUserMediaSupported() {
-    if (!navigator.getUserMedia)
+    if (!navigator.getUserMedia) {
         navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-    if (!navigator.getUserMedia)
+    }
+    if (!navigator.getUserMedia) {
         return alert('GetUserMedia is not supported in your browser');
+    }
 }
 
 //Grabs mic feed (called from capture audio)
@@ -182,8 +184,9 @@ function TrackTemplate() {
                 this.isRecording = false;
                 this.getRecorderBuffer();
             }
-        } else
-            console.log("Track must be armed to record");
+        } else {
+            console.log('Track must be armed to record');
+        }
     };
 
     this.getRecorderBuffer = function () {

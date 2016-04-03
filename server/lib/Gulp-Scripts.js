@@ -3,12 +3,12 @@
  *
  *  @name   Gulp-Scripts.js
  */
-var ini = require(global.app.ini()); //  configuration object
 
-//  INCLUDES
+//  REQUIRES
+
 var rm = require('gulp-rm');
 var concat = require('gulp-concat');
-var markdox = require("gulp-markdox");
+var markdox = require('gulp-markdox');
 var exec = require('child_process')
     .exec;
 var execFull = require('gulp-exec');
@@ -16,6 +16,8 @@ var deleteLines = require('gulp-delete-lines');
 var indent = require('gulp-indent');
 var combiner = require('stream-combiner2');
 var gulp = require('gulp');
+
+var ini = require(global.app.ini()); //  configuration object
 
 /**
  *  The GulpScripts class, holds all the common functions as methods.
@@ -73,9 +75,12 @@ function GulpScripts() {
         ];
 
         if (srcOverride === false) {
-            tasks.unshift(gulp.src('./app.js'));
-        } else if (srcOverride !== null)
+            {
+                tasks.unshift(gulp.src('./app.js'));
+            }
+        } else if (srcOverride !== null) {
             tasks.unshift(gulp.src(srcOverride));
+        }
 
         return combiner.obj(tasks);
     };

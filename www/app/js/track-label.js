@@ -21,12 +21,13 @@ $.fn.tracklabel = function () {
             .parent()
             .parent()
             .parent()
-            .hasClass('master'))
+            .hasClass('master')) {
             $(id)
-            .addClass('master-label');
-        else
+                .addClass('master-label');
+        } else {
             $(id)
-            .addClass('track-label');
+                .addClass('track-label');
+        }
     };
 
     this.each(function () {
@@ -37,7 +38,9 @@ $.fn.tracklabel = function () {
     $(this)
         .on('click', function () {
             if ($(this)
-                .hasClass('master-label')) return;
+                .hasClass('master-label')) {
+                return;
+            }
 
             // Save last name
             original = $(this)
@@ -73,50 +76,59 @@ $.fn.tracklabel = function () {
             var text;
 
             if ($(this)
-                .hasClass('master-label')) return;
+                .hasClass('master-label')) {
+                return;
+            }
 
             // Take out of edit mode
             $(this)
                 .removeClass('mixer-enabled');
 
             // Get text from the input field
-            if (e.type == "escapeKey")
-                text = "";
-            else
+            if (e.type === 'escapeKey') {
+                text = '';
+            } else {
                 text = $(this)
-                .find('input')
-                .val();
+                    .find('input')
+                    .val();
+            }
 
             // Check if input is empty
             $(this)
                 .remove('input');
-            if (text === "")
+            if (text === '') {
                 $(this)
-                .text(original);
-            else
+                    .text(original);
+            } else {
                 $(this)
-                .text(text);
+                    .text(text);
+            }
 
             if ($(this)
-                .text() === "")
+                .text() === '') {
                 $(this)
-                .text("Track");
+                    .text('Track');
+            }
         });
 
     // Detect key releases
     $(this)
         .on('keyup', function (e) {
             if ($(this)
-                .hasClass('master-label')) return;
+                .hasClass('master-label')) {
+                return;
+            }
 
             // Check if enter key was pressed
-            if (e.keyCode == 13)
+            if (e.keyCode === 13) {
                 $(this)
-                .trigger('enterKey');
+                    .trigger('enterKey');
+            }
 
             // If escape key was pressed
-            if (e.keyCode == 27)
+            if (e.keyCode === 27) {
                 $(this)
-                .trigger('escapeKey');
+                    .trigger('escapeKey');
+            }
         });
 };

@@ -4,31 +4,25 @@
  *  @name   app.js
  */
 
-//  Requires
+//  REQUIRES
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
-var https = require('https');
 var logger = require('morgan');
 var path = require('path');
 
 //  Get application root directory and system mode
 var root = path.resolve(__dirname);
-var mode = process.env.TS_RUN_MODE;
-
-// Set application mode to: development | production
+var mode = process.env.TS_RUN_MODE; // development | production
 global.app = require('./server/lib/GlobalApplication.js')(mode, root);
 
 var ini = require(global.app.ini()); //  configuration object
 var mdb = require(ini.path.mongodb)(); //  mongoose wrapper
-var security = require(ini.path.security)();
 
 //  Setup
 var app = express();
-
-//  Set up SSL or leave http
-//security.ssl(app);
 
 app.set('env', ini.app.mode);
 app.set('views', ini.path.views);

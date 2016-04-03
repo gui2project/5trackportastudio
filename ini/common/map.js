@@ -4,7 +4,8 @@
  *  @name   map.js
  */
 
-//  Requires
+//  REQUIRES
+
 var path = require('path');
 var paths = require('./paths.js');
 

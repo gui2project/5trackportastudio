@@ -4,8 +4,12 @@
  *  @name   paths.js
  */
 
-//  Requires
+//  REQUIRES
+
 var path = require('path');
+
+//  VARIABLES
+
 var root = global.app.root;
 
 //  File and Directory Paths

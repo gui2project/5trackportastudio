@@ -4,7 +4,10 @@
  *  @name   main.js
  */
 
+//  REQUIRES
+
 var path = require('path');
+
 var ini = require(global.app.ini());
 
 /**

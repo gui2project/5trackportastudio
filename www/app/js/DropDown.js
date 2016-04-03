@@ -10,7 +10,7 @@
  *
  *  @class   DropDown
  */
-var DropDown = function () {
+function DropDown() {
 
     var _this = this;
 
@@ -18,7 +18,7 @@ var DropDown = function () {
     this.navigationId = null; //  The navigationId of the DropDown element
     this.state = false; //  True for open, false for closed
     this.speed = 600; //  Speed of DropDown animation
-
+    this.history = [];
     /**
      *  Initializes the DropDown menu, should be run on load.
      *
@@ -35,18 +35,20 @@ var DropDown = function () {
      *  @param  {Object}    Object  The initialization object
      */
     this.init = function (obj) {
-        console.log("--- Initializing dropdown with:", obj);
+        console.log('--- Initializing dropdown with:', obj);
 
         // Set values
         _this.dropDownId = dVar(obj.dropDownId, '');
         _this.navigationId = dVar(obj.navigationId, '');
         _this.speed = dVar(obj.speed, 600);
 
+        _this.panel.set.fxCatalog();
         // Close on external click
         $(document)
             .mouseup(function (e) {
                 if ((!$(_this.dropDownId)
-                        .is(e.target) && $(_this.dropDownId)
+                        .is(e.target) &&
+                        $(_this.dropDownId)
                         .has(e.target)
                         .length === 0) &&
                     (!$(_this.navigationId)
@@ -58,6 +60,75 @@ var DropDown = function () {
             });
     };
 
+    //  Keeps track of panel state history
+    this.stateHistory = {
+        /**
+         *  Adds a non duplicate state.
+         *
+         *  @method DropDown.stateHistory.push
+         *  @param  {String}    State to add
+         */
+        push: function (view) {
+            console.log(_this.history);
+
+            if (_this.history[_this.history.length - 1] === view) {
+                console.log('Not pushing dupplicate');
+            } else {
+                _this.history.push(view);
+            }
+
+            console.log(_this.history);
+        },
+
+        /**
+         *  Gets last state, and removes it. Always leaves the first state.
+         *
+         *  @method DropDown.stateHistory.pop
+         *  @return {String}    The last state
+         */
+        pop: function () {
+            console.log(_this.history);
+
+            if (_this.history.length === 1) {
+                ret = 'INIT';
+            } else {
+                ret = _this.history.pop();
+            }
+
+            console.log(_this.history);
+
+            return ret;
+        },
+
+        /**
+         *  Gets current state.
+         *
+         *  @method DropDown.stateHistory.top
+         *  @return {String}    The current state.
+         */
+        top: function () {
+            var popped;
+
+            console.log(_this.history);
+
+            popped = _this.history.pop();
+            _this.history.push(popped);
+
+            console.log(_this.history);
+
+            return popped;
+        },
+        /**
+         *  Gets all the stored states, where the index corresponds to the order.
+         *
+         *  @method DropDown.stateHistory.top
+         *  @return {Array.String}    Array of states.
+         */
+        all: function () {
+            return _this.history;
+        }
+    };
+
     //  DropDown
     this.dropdown = {
         /**
@@ -66,7 +137,7 @@ var DropDown = function () {
          *  @method   DropDown.open
          */
         open: function () {
-            console.log("  Opening 'dropdown'");
+            console.log('  Opening "dropdown"');
             $(_this.dropDownId)
                 .slideDown(_this.speed);
             _this.state = true;
@@ -79,7 +150,7 @@ var DropDown = function () {
          *  @method   DropDown.close
          */
         close: function () {
-            console.log("  Closing 'dropdown'");
+            console.log('  Closing "dropdown"');
             $(_this.dropDownId)
                 .slideUp(_this.speed);
             _this.state = false;
@@ -91,10 +162,11 @@ var DropDown = function () {
          *  @method  DropDown.toggle
          */
         toggle: function () {
-            if (_this.state)
+            if (_this.state) {
                 _this.dropdown.close();
-            else
+            } else {
                 _this.dropdown.open();
+            }
         }
     };
 
@@ -109,39 +181,51 @@ var DropDown = function () {
              *
              *      var dropDown = new DropDown();
              *      ...
-             *      dropDown.panel.set.fxCatalog({
-             *          {String} title = The title of an fxObj,
-             *          {String} desc  =  The description of an fxObj,
-             *          {String} image = The URL to the icon image of an fxObj
-             *      });
+             *      dropDown.panel.set.fxCatalog();
              *
              *  @method     DropDown.panel.set.fxCatalog
-             *  @param      {Array.fxObj}      json   An array of fxObjects
              */
-            fxCatalog: function (json) {
+            fxCatalog: function () {
                 console.log('dropdown.panel.set.fxCatalog');
                 var container = _this.dropDownId + ' .fx-catalog-panel .content';
 
-                //sort FX catalog by name
-                json.sort(function (a, b) {
-                    if (a.title < b.title) return -1;
-                    if (a.title > b.title) return 1;
-                    return 0;
-                });
+                _this.panel.load({
+                        url: '/api/get/doc/fx-catalog'
+                    }, function () {
+                        //  Clear catalog
+                        $(container)
+                            .html('');
+                    },
+                    function (data) {
+                        //  sort FX catalog by name
+                        data.sort(function (a, b) {
+                            if (a.title < b.title) {
+                                return -1;
+                            }
+                            if (a.title > b.title) {
+                                return 1;
+                            }
+                            return 0;
+                        });
 
-                // add items to catalog
-                $(container)
-                    .html("");
-                json.forEach(function (item) {
-                    var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span';
-                    var desc = '<span class="fx-catalog-panel-item-desc">' + item.desc + '</span';
-                    var image = '<span class="fx-catalog-panel-item-image">' + item.image + '</span';
+                        //  add items to catalog
+                        data.forEach(function (item) {
+                            var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span';
+                            var desc = '<span class="fx-catalog-panel-item-desc">' + item.desc + '</span';
+                            var image = '<span class="fx-catalog-panel-item-image">' + item.image + '</span';
 
-                    var htmlObj = '<div class="fx-catalog-panel-item">' + image + title + desc + '</div>';
+                            var htmlObj = '<div class="fx-catalog-panel-item">' + image + title + desc + '</div>';
 
-                    $(container)
-                        .append(htmlObj);
-                });
+                            $(container)
+                                .append(htmlObj);
+                        });
+                    },
+                    function () {
+                        var html = 'There was a problem loading the FX-Catalog.';
+
+                        $(container)
+                            .html(html);
+                    });
             },
 
             /**
@@ -164,8 +248,12 @@ var DropDown = function () {
                 console.log('dropdown.panel.set.mixCatalog');
                 //sort mix catalog by name
                 json.sort(function (a, b) {
-                    if (a.date < b.date) return -1;
-                    if (a.date > b.date) return 1;
+                    if (a.date < b.date) {
+                        return -1;
+                    }
+                    if (a.date > b.date) {
+                        return 1;
+                    }
                     return 0;
                 });
 
@@ -184,22 +272,72 @@ var DropDown = function () {
              *
              *      var dropDown = new DropDown();
              *      ...
-             *      dropDown.panel.set.account({
-             *          {String} name: The name of the account holder,
-             *          {String} email: The name of the email holder
-             *      });
+             *      dropDown.panel.set.account();
              *
              *  @method DropDown.panel.set.account
-             *  @param  {Object}    obj    The account information.
              */
-            account: function (obj) {
-                console.log('dropdown.panel.set.account');
-                $(_this.dropDownId + ' .account-user-name')
-                    .html(obj.name);
-                $(_this.dropDownId + ' .account-user-email')
-                    .html(obj.email);
+            account: function () {
+                _this.panel.load({
+                    url: '/api/post/find-user/',
+                    method: 'POST',
+                    data: {
+                        id: ts.user_id
+                    }
+                }, function () {
+                    console.log('MIX', ts);
+                }, function (data) {
+                    $(_this.dropDownId + ' .account-user-name')
+                        .html(data.name);
+                    $(_this.dropDownId + ' .account-user-email')
+                        .html(data.email);
+                }, function (data) {
+                    $(_this.dropDownId + ' .account-user-name')
+                        .html('Unknown user name');
+                    $(_this.dropDownId + ' .account-user-email')
+                        .html('Unknown user email');
+                });
             },
 
+            api: function () {
+                _this.panel.load({
+                    url: '/api/get/help/'
+                }, function () {
+                    $('#api')
+                        .html('');
+                }, function (data) {
+                    data.forEach(function (item) {
+                        var opt, params, desc, url, pn, pd, po;
+                        pn = pd = po = params = desc = '';
+
+                        item.param.forEach(function (param) {
+                            for (var key in param) {
+                                pn = key;
+                                pd = param[key].desc;
+                                po = '';
+                                po = param[key].opt.join(' | ');
+
+                                item.url = item.url.replace(key, '<span class="api-url-param">' + key + '</span>');
+
+                                params += '<div class="api-row-tabbed"><span class="api-item-param">' +
+                                    pn + '</span><span class="api-item-param-description">' +
+                                    pd + '</span></div>';
+                                if (po) {
+                                    params += '<div class="api-row-options"><span class="api-item-param-options">' + po + '</span></div>';
+                                }
+                            }
+                        });
+
+                        url = '<div class="api-row"><span class="api-item-url">' + item.url + '</span></div>';
+                        desc = '<div class="api-row-tabbed"><span class="api-item">' + item.desc + '</span></div>';
+                        html = '<div class="panel-entry row form-group col-md-12 col-sm-12 col-xs-12">' + url + params + desc + '</div>';
+
+                        $('#api')
+                            .append(html);
+                    });
+                }, function () {
+                    console.log('api-failed');
+                });
+            },
             /**
              *  Adds selected item descriptions, titles, images, etc
              *
@@ -258,12 +396,13 @@ var DropDown = function () {
              */
             toggle: function (state, toggleclass) {
                 console.log('  Toggling display of', toggleclass, 'to', state);
-                if (state)
+                if (state) {
                     $(_this.dropDownId + ' ' + toggleclass)
-                    .addClass("display");
-                else
+                        .addClass('display');
+                } else {
                     $(_this.dropDownId + ' ' + toggleclass)
-                    .removeClass("display");
+                        .removeClass('display');
+                }
             },
             /**
              *  Modify the display state of all panels
@@ -299,6 +438,7 @@ var DropDown = function () {
                 _this.panel.display.toggle(state, '.about-panel');
                 _this.panel.display.toggle(state, '.contact-panel');
                 _this.panel.display.toggle(state, '.api-panel');
+                _this.panel.display.toggle(state, '.tutorial-panel');
             }
         },
 
@@ -368,12 +508,13 @@ var DropDown = function () {
              */
             toggle: function (state, toggleclass) {
                 var selector = _this.navigationId + ' .container .navbar-right-links ' + toggleclass;
-                if (state)
+                if (state) {
                     $(selector)
-                    .addClass("display");
-                else
+                        .addClass('display');
+                } else {
                     $(selector)
-                    .removeClass("display");
+                        .removeClass('display');
+                }
             },
             /**
              *  Toggle the display of all navbar elements
@@ -393,7 +534,7 @@ var DropDown = function () {
              *  @param  {Boolean}   state       The display state to place all secured view navbar element in
              */
             secured: function (state) {
-                console.log("  Toggling display of 'auth' to", state);
+                console.log('  Toggling display of "auth" to', state);
                 _this.navigation.display.toggle(state, '.link-sign-out');
             },
             /**
@@ -404,7 +545,7 @@ var DropDown = function () {
              *  @param  {Boolean}   state       The display state to place all unsecured view navbar element in
              */
             unsecured: function (state) {
-                console.log("  Toggling display of 'anon' to", state);
+                console.log('  Toggling display of "anon" to', state);
                 _this.navigation.display.toggle(state, '.link-sign-in');
                 _this.navigation.display.toggle(state, '.link-register');
             },
@@ -436,116 +577,104 @@ var DropDown = function () {
         console.log('--- Showing view:', view);
 
         //  Handling the opening and closing of the dropdown
-        if (view == 'TOGGLE') {
+        if (view === 'TOGGLE') {
             this.dropdown.toggle();
             return;
         }
 
+        this.panel.display.toggle(false, '.api-panel');
+
         //  Switching views
         switch (view) {
         case 'ALL':
+            this.stateHistory.push(view);
+
             this.panel.display.all(true);
             this.dropdown.open();
             return;
 
         case 'INIT':
+            this.stateHistory.push(view);
+
             this.panel.display.all(false);
-            this.panel.display.toggle(true, '.login-panel');
+
             this.panel.display.toggle(true, '.register-panel');
+            this.panel.display.toggle(true, '.login-panel');
+
+            this.panel.display.toggle(true, '.tutorial-panel');
+            this.panel.display.toggle(true, '.about-panel');
+            return;
+
+        case 'LOGGED_OUT':
+            this.stateHistory.push(view);
+
+            this.panel.display.all(false);
+
+            this.panel.display.toggle(true, '.login-panel');
+
+            this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
         case 'FX':
-            this.panel.load({
-                url: "/api/get/effects"
-            }, function () {
-                _this.panel.display.all(false);
-            }, function (data) {
-                _this.panel.set.fxCatalog(data);
-                location.hash = "fx-catalog";
-                _this.panel.display.toggle(true, '.fx-catalog-panel');
-                _this.panel.display.toggle(true, '.account-panel-name');
-                _this.dropdown.open();
-            }, function (data) {});
+            this.stateHistory.push(view);
+
+            this.panel.display.right(false);
+
+            this.panel.display.toggle(true, '.account-panel');
+            this.panel.display.toggle(true, '.fx-catalog-panel');
+            this.panel.display.toggle(true, '.tutorial-panel');
+
+            this.dropdown.open();
             return;
 
         case 'MIX':
-            console.log('MIX', ts);
-            _this.panel.load({
-                url: '/api/post/find-user/',
-                method: "POST",
-                data: {
-                    id: ts.user_id
-                }
-            }, function () {
-                _this.panel.display.all(false);
-                _this.panel.display.toggle(true, '.mix-catalog-panel');
-            }, function (data) {
-                _this.panel.set.account(data);
-                _this.panel.display.toggle(true, '.account-panel');
-            }, function (data) {
-                _this.panel.set.account({
-                    name: 'Unknown user name',
-                    email: 'Unknown user email'
-                });
-            });
+            this.stateHistory.push(view);
+
+            this.panel.display.all(false);
+
+            this.panel.set.account();
+
+            this.panel.display.toggle(true, '.account-panel');
+            this.panel.display.toggle(true, '.mix-catalog-panel');
+            this.panel.display.toggle(true, '.tutorial-panel');
+
+            this.dropdown.open();
             return;
 
         case 'LOGIN':
-            this.panel.display.all(false);
+            this.stateHistory.push(view);
+
+            this.panel.display.left(false);
             this.panel.display.toggle(true, '.login-panel');
-            this.panel.display.toggle(true, '.about-panel');
             this.dropdown.open();
             return;
 
         case 'REGISTER':
-            this.panel.display.all(false);
+            this.stateHistory.push(view);
+
+            this.panel.display.left(false);
             this.panel.display.toggle(true, '.register-panel');
-            this.panel.display.toggle(true, '.about-panel');
             this.dropdown.open();
             return;
 
         case 'API':
-            _this.panel.load({
-                url: '/api/get/help/'
-            }, function () {}, function (data) {
-                $("#api")
-                    .html('');
-                data.forEach(function (item) {
-                    var opt, params, desc, url, pn, pd, po;
-                    pn = pd = po = params = desc = '';
+            this.stateHistory.push(view);
 
-                    item.param.forEach(function (param) {
-                        for (var key in param) {
-                            pn = key;
-                            pd = param[key].desc;
-                            po = '';
-                            po = param[key].opt.join(' | ');
+            this.panel.display.toggle(true, '.api-panel');
+            this.dropdown.open();
+            return;
 
-                            item.url = item.url.replace(key, '<span class="api-url-param">' + key + '</span>');
+        case 'RESET':
+            this.panel.display.all(false);
 
-                            params += '<div class="api-row-tabbed"><span class="api-item-param">' +
-                                pn + '</span><span class="api-item-param-description">' +
-                                pd + '</span></div>';
-                            if (po) params += '<div class="api-row-options"><span class="api-item-param-options">' + po + '</span></div>';
-                        }
-                    });
+            this.show(this.stateHistory.top());
+            return;
 
-                    url = '<div class="api-row"><span class="api-item-url">' + item.url + '</span></div>';
-                    desc = '<div class="api-row-tabbed"><span class="api-item">' + item.desc + '</span></div>';
-                    html = '<div class="panel-entry row form-group col-md-12 col-sm-12 col-xs-12">' + url + params + desc + '</div>';
-
-                    $("#api")
-                        .append(html);
-
-                    _this.panel.display.toggle(true, '.api-panel');
-                    _this.dropdown.open();
-                });
-            }, function () {
-                console.log('api-failed');
-                _this.dropdown.open();
-            });
+        case 'BACK':
+            this.stateHistory.pop();
+            this.show(this.stateHistory.pop());
             return;
         }
     };
-};
+}

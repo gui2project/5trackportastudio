@@ -136,26 +136,6 @@ The configuration file to use during production.
 
 
 
-<!-- Start doc\common\cookie.js -->
-## File: doc\common\cookie.js
-
-The configuration file for cookies.
-
-<!-- End doc\common\cookie.js -->
-
-
-
-
-<!-- Start doc\common\db.js -->
-## File: doc\common\db.js
-
-The configuration file for mongodb.
-
-<!-- End doc\common\db.js -->
-
-
-
-
 <!-- Start server\mvc\controllers\main.js -->
 ## File: server\mvc\controllers\main.js
 
@@ -821,6 +801,46 @@ Initializes the DropDown menu, should be run on load.
 
 ---
 
+#### Method: DropDown.stateHistory.push(State)
+
+Adds a non duplicate state.
+
+##### Params:
+
+* **String** *State* to add
+
+---
+
+#### Method: DropDown.stateHistory.pop()
+
+Gets last state, and removes it. Always leaves the first state.
+
+##### Return:
+
+* **String** The last state
+
+---
+
+#### Method: DropDown.stateHistory.top()
+
+Gets current state.
+
+##### Return:
+
+* **String** The current state.
+
+---
+
+#### Method: DropDown.stateHistory.top()
+
+Gets all the stored states, where the index corresponds to the order.
+
+##### Return:
+
+* **Array.String** Array of states.
+
+---
+
 #### Method: DropDown.open()
 
 Opens the DropDown menu
@@ -839,7 +859,7 @@ Toggles the DropDown
 
 ---
 
-#### Method: DropDown.panel.set.fxCatalog(json)
+#### Method: DropDown.panel.set.fxCatalog()
 
 Adds effects to the fx catalog
 
@@ -847,15 +867,7 @@ Adds effects to the fx catalog
 
      var dropDown = new DropDown();
      ...
-     dropDown.panel.set.fxCatalog({
-         {String} title = The title of an fxObj,
-         {String} desc  =  The description of an fxObj,
-         {String} image = The URL to the icon image of an fxObj
-     });
-
-##### Params:
-
-* **Array.fxObj** *json* An array of fxObjects
+     dropDown.panel.set.fxCatalog();
 
 ---
 
@@ -879,7 +891,7 @@ Adds mixes to the mix catalog
 
 ---
 
-#### Method: DropDown.panel.set.account(obj)
+#### Method: DropDown.panel.set.account()
 
 Sets the account panel information
 
@@ -887,14 +899,7 @@ Sets the account panel information
 
      var dropDown = new DropDown();
      ...
-     dropDown.panel.set.account({
-         {String} name: The name of the account holder,
-         {String} email: The name of the email holder
-     });
-
-##### Params:
-
-* **Object** *obj* The account information.
+     dropDown.panel.set.account();
 
 ---
 
@@ -1552,10 +1557,10 @@ track.forEach(function(index, track){
      track[index].InitTrack()
 });
 
-console.log("armTrackToggle track:"+trackNumber);
+console.log('armTrackToggle track:'+trackNumber);
 track[trackNumber].armTrackToggle();
 
-console.log("recordToggle track:"+trackNumber);
+console.log('recordToggle track:'+trackNumber);
  thisTrack[tracknumber].recordToggle();
  if(thisTrack[tracknumber].isRecording) {
      track.forEach(function(index, thisTrack){

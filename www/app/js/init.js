@@ -7,12 +7,12 @@
 //  CONTEXT DETERMINATIONS
 
 // Redirect user to https except when coming from a developement machine
-if (window.location.protocol == "http:" &&
+if (window.location.protocol === 'http:' &&
     !window.location.host.toLowerCase()
     .startsWith('localhost', 0) &&
     !window.location.host.toLowerCase()
     .startsWith('127.0.0.1', 0)) {
-    window.location.href = "https:" +
+    window.location.href = 'https:' +
         window.location.href.substring(window.location.protocol.length);
 }
 
@@ -83,11 +83,12 @@ var getCookie = function (name) {
     ret = cookie = Cookies.get(name);
 
     //  Undefined cookie
-    if (cookie === undefined)
+    if (cookie === undefined) {
         return 'empty';
+    }
 
     //  Detect for quote artifact
-    if (cookie.indexOf('"') != -1) {
+    if (cookie.indexOf('"') !== -1) {
         cookie = exp.exec(cookie);
         ret = (Array.isArray(cookie) ? cookie[0] : cookie);
     }
@@ -119,11 +120,13 @@ var validateSession = function (callSession, callNoSession) {
     //  Lock Navigation
     dd.navigation.display.lock(ts.session);
 
-    if (ts.user_id == 'empty') {
+    if (ts.user_id === 'empty') {
         //  No user cookie found
-        console.log("No session", ts);
+        console.log('No session', ts);
 
-        if (callNoSession) callNoSession();
+        if (callNoSession) {
+            callNoSession();
+        }
     } else {
         //  User cookie found
         $.ajax({
@@ -137,11 +140,11 @@ var validateSession = function (callSession, callNoSession) {
                 ts.user_session = getCookie('ts_user_session');
 
                 if (data) {
-                    console.log(" Succesful return: Valid session");
+                    console.log(' Succesful return: Valid session');
                     ts.session = true;
                     session = callSession;
                 } else {
-                    console.log(" Succesful return: Invalid session");
+                    console.log(' Succesful return: Invalid session');
                     ts.session = false;
                     session = callNoSession;
                 }
@@ -149,17 +152,21 @@ var validateSession = function (callSession, callNoSession) {
                 console.log('Current cookie:', ts);
                 dd.navigation.display.lock(ts.session);
 
-                if (session) session();
+                if (session) {
+                    session();
+                }
             })
             .fail(function () {
                 ts.user_id = getCookie('ts_user_id');
                 ts.user_session = getCookie('ts_user_session');
                 ts.session = false;
 
-                console.log("Invalid session", ts);
+                console.log('Invalid session', ts);
                 dd.navigation.display.lock(ts.session);
 
-                if (callNoSession) callNoSession();
+                if (callNoSession) {
+                    callNoSession();
+                }
             });
     }
 };
@@ -192,7 +199,9 @@ var getMicrophone = function (micSuccess, micFailure, browserFailure) {
         navigator.getUserMedia({
             audio: true
         }, micSuccess, micFailure);
-    } else browserFailure();
+    } else {
+        browserFailure();
+    }
 };
 
 //http://stackoverflow.com/questions/2400935/browser-detection-in-javascript
@@ -225,8 +234,9 @@ var getBrowser = function () {
         M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
         temp = ua.match(/version\/(\d+)/i);
 
-        if (temp !== null)
+        if (temp !== null) {
             M.splice(1, 1, temp[1]);
+        }
 
         ret.browser = M[0];
         ret.version = M[1];
