@@ -195,24 +195,27 @@ gulp.task('code.doc', 'Documents code base', ['code.doc.merge']);
 
 //  Remove git lock file
 gulp.task('git.rm.lock', false, [],
-    function () {
+    function (cb) {
         return gulpScripts.removeFiles([
             '/.git/index.lock'
         ], ini.opt.git.lock);
     });
 //  Prepare files for submission
 gulp.task('git.prepare', 'Checks, formats, and documents code base', ['code.format', 'code.lint', 'code.doc'],
-    function () {
-        return gulpScripts.removeFiles([
-            './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md',
-            './doc/documentation-js-head.md', './doc/documentation-js.md'
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.removeFiles([
+                './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md',
+                './doc/documentation-js-head.md', './doc/documentation-js.md'
+            ])
         ]);
     });
 //  Run git add with -A option
 gulp.task('git.add', false, ['git.prepare', 'git.rm.lock'],
-    function () {
+    function (cb) {
         return gulp.src('./')
             .pipe(git.add(ini.opt.git.add));
+
     });
 //  Run git commit with -m option
 gulp.task('git.commit', false, ['git.add'],
@@ -240,7 +243,9 @@ gulp.task('git.push.heroku', false, ['git.push.master'],
 gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
     function (cb) {
         var cmdStr = 'git config --global credential.helper store';
-        return exec(cmdStr, gulpError.exec);
+        return combiner.obj([
+            exec(cmdStr, gulpError.exec)
+        ]);
     });
 //  User commands
 gulp.task('git.master', 'Pushes code to master branch.', ['git.push.master'],
