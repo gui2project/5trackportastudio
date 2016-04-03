@@ -4,8 +4,13 @@
  *  @name   Error.js
  */
 
+//  REQUIRES
+
 var path = require('path');
 var ini = require(global.app.ini());
+
+//  VARIABLES
+
 var msg = '[ ERROR ]';
 
 /**
@@ -43,16 +48,17 @@ var ErrorHandler = function () {
      */
     this.server = function (err, req, res, next) {
         res.status(err.status || 500);
-        if (ini.mode === 'dev')
+        if (ini.mode === 'dev') {
             res.render(path.join(ini.path.mixin, 'error'), {
                 message: err.message,
                 error: err
             });
-        else
+        } else {
             res.render(path.join(ini.path.mixin, 'error'), {
                 message: err.message,
                 error: {}
             });
+        }
     };
 
 };
@@ -66,18 +72,18 @@ var ErrorHandler = function () {
  */
 var middleWare = function (app) {
 
-    global.app.console.log(msg, "Initializing.");
+    global.app.console.log(msg, 'Initializing.');
     var err = new ErrorHandler();
 
-    global.app.console.log(msg, "Adding error responses..");
+    global.app.console.log(msg, 'Adding error responses..');
 
     app.use(err.notFound);
-    global.app.console.log(msg, " - ", "404 - Not Found.");
+    global.app.console.log(msg, ' - ', '404 - Not Found.');
 
     app.use(err.server);
-    global.app.console.log(msg, " - ", "500 - Server.");
+    global.app.console.log(msg, ' - ', '500 - Server.');
 
-    global.app.console.log(msg, "Done.");
+    global.app.console.log(msg, 'Done.');
 };
 
 //  Export content

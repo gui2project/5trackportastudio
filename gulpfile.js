@@ -4,27 +4,31 @@
  *  @name   gulpfile.js
  */
 
+//  REQUIRES
+
 var argv = require('yargs')
     .argv;
 var exec = require('child_process')
     .exec;
 var combiner = require('stream-combiner2');
-var format_css = require('gulp-cssbeautify');
-var format_js = require('gulp-jsbeautify');
-var format_json = require('gulp-json-format');
+var formatCss = require('gulp-cssbeautify');
+var formatJs = require('gulp-jsbeautify');
+var formatJson = require('gulp-json-format');
 var git = require('gulp-git');
 var gulpIgnore = require('gulp-ignore');
-var lint_css = require('gulp-csslint');
-var lint_jade = require('gulp-jadelint');
-var lint_js = require('gulp-jshint');
-var lint_json = require("gulp-jsonlint");
-var markdox = require("gulp-markdox");
+var lintCss = require('gulp-csslint');
+var lintJade = require('gulp-jadelint');
+var lintJs = require('gulp-jshint');
+var lintJson = require('gulp-jsonlint');
 var mkdirp = require('mkdirp');
 var path = require('path');
 var yaml = require('yamljs');
 
 //  Get application root directory and system mode
-global.app = require('./server/lib/GlobalApplication.js')('gulp', path.resolve(__dirname));
+var root = path.resolve(__dirname);
+var mode = 'gulp';
+global.app = require('./server/lib/GlobalApplication.js')(mode, root);
+
 var ini = require(global.app.ini()); //  configuration object
 
 //  Start Gulp with help
@@ -38,24 +42,24 @@ var cfgMongoDB = yaml.load(ini.path.projectFiles.mongodb.cfg);
 //  CODE FORMATTER TASKS
 
 //  JavaScript
-gulp.task('code.format.js', "Formats JS code.", [],
+gulp.task('code.format.js', 'Formats JS code.', [],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeFormat(ini.path.projectFiles.js.loc, format_js, require(ini.path.projectFiles.js.format))
+            gulpScripts.codeFormat(ini.path.projectFiles.js.loc, formatJs, require(ini.path.projectFiles.js.format))
         ]);
     });
 //  CSS
-gulp.task('code.format.css', "Formats CSS code.", [],
+gulp.task('code.format.css', 'Formats CSS code.', [],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeFormat(ini.path.projectFiles.css.loc, format_css, require(ini.path.projectFiles.css.format))
+            gulpScripts.codeFormat(ini.path.projectFiles.css.loc, formatCss, require(ini.path.projectFiles.css.format))
         ]);
     });
 //  JSON
-gulp.task('code.format.json', "Formats JSON code.", [],
+gulp.task('code.format.json', 'Formats JSON code.', [],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeFormat(ini.path.projectFiles.json.loc, format_json, 4)
+            gulpScripts.codeFormat(ini.path.projectFiles.json.loc, formatJson, 4)
         ]);
     });
 
@@ -68,28 +72,28 @@ gulp.task('code.format', 'Formats code base', ['code.format.js', 'code.format.cs
 gulp.task('code.lint.js', 'Checks JS syntax.', ['code.format.js'],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeLint(ini.path.projectFiles.js.loc, lint_js, null, true)
+            gulpScripts.codeLint(ini.path.projectFiles.js.loc, lintJs, ini.path.projectFiles.js.linter, true)
         ]);
     });
 //  Json
 gulp.task('code.lint.json', 'Checks json syntax.', ['code.format.json'],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeLint(ini.path.projectFiles.json.loc, lint_json, null, true)
+            gulpScripts.codeLint(ini.path.projectFiles.json.loc, lintJson, null, true)
         ]);
     });
 //  CSS
 gulp.task('code.lint.css', 'Checks css syntax.', ['code.format.css'],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeLint(ini.path.projectFiles.css.loc, lint_css, ini.path.projectFiles.css.linter, true)
+            gulpScripts.codeLint(ini.path.projectFiles.css.loc, lintCss, ini.path.projectFiles.css.linter, true)
         ]);
     });
 //  Jade/ Pug
 gulp.task('code.lint.jade', 'Checks jade/pug syntax.', [],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeLint(ini.path.projectFiles.jade.loc, lint_jade, ini.path.projectFiles.jade.linter, false)
+            gulpScripts.codeLint(ini.path.projectFiles.jade.loc, lintJade, ini.path.projectFiles.jade.linter, false)
         ]);
     });
 //  User Commands
@@ -215,7 +219,6 @@ gulp.task('git.add', false, ['git.prepare', 'git.rm.lock'],
     function (cb) {
         return gulp.src('./')
             .pipe(git.add(ini.opt.git.add));
-
     });
 //  Run git commit with -m option
 gulp.task('git.commit', false, ['git.add'],
@@ -225,7 +228,7 @@ gulp.task('git.commit', false, ['git.add'],
             .pipe(git.commit(message));
     }, ini.opt.git.commit);
 //  Run git pull
-gulp.task('git.pull', "Gets the latest code base from the repository.", ['git.commit'],
+gulp.task('git.pull', 'Gets the latest code base from the repository.', ['git.commit'],
     function () {
         return git.pull('origin', 'master', gulpError.git);
     });

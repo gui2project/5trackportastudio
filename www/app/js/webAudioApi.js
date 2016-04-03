@@ -22,10 +22,12 @@ function captureAudio() {
 }
 
 function isGetUserMediaSupported() {
-    if (!navigator.getUserMedia)
+    if (!navigator.getUserMedia) {
         navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-    if (!navigator.getUserMedia)
+    }
+    if (!navigator.getUserMedia) {
         return alert('GetUserMedia is not supported in your browser');
+    }
 }
 
 //Initiate grabbing the users default microphone feed
@@ -62,15 +64,15 @@ function TrackTemplate() { //constructor for a blank track
 
     this.InitTrack = function () { //initializes a blank track ready for recording
         this.gain.value = 0.7;
-        this.eqHigh.type = "peaking";
+        this.eqHigh.type = 'peaking';
         this.eqHigh.frequency.value = 2000;
         this.eqHigh.gain.value = 0;
         this.eqHigh.Q.value = 0.75;
-        this.eqMid.type = "peaking";
+        this.eqMid.type = 'peaking';
         this.eqMid.frequency.value = 800;
         this.eqMid.gain.value = 0;
         this.eqMid.Q.value = 0.75;
-        this.eqLow.type = "peaking";
+        this.eqLow.type = 'peaking';
         this.eqLow.frequency.value = 250;
         this.eqLow.gain.value = 0;
         this.eqLow.Q.value = 0.75;
@@ -133,8 +135,9 @@ function TrackTemplate() { //constructor for a blank track
                 this.isRecording = false;
                 this.getRecorderBuffer();
             }
-        } else
-            console.log("Track must be armed to record");
+        } else {
+            console.log('Track must be armed to record');
+        }
     };
 
     this.getRecorderBuffer = function () {

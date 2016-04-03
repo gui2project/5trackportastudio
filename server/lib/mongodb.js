@@ -5,7 +5,12 @@
  *  @name   mongodb.js
  */
 
+//  REQUIRES
+
 var ini = require(global.app.ini());
+
+//  VARIABLES
+
 var msg = '[ MongoDB ]';
 
 /**
@@ -40,7 +45,7 @@ var middleWare = function () {
     //  Process Schema and saving as a model
     global.app.console.log(msg, 'Defining models and schemas.');
     ini.db.models.forEach(function (model) {
-        global.app.console.log(msg, ' - ', model.collection, "\nschema :", model.schema);
+        global.app.console.log(msg, ' - ', model.collection, '\nschema :', model.schema);
         mdb.models[model.collection] = mdb.mongoose.model(model.collection,
             new mdb.mongoose.Schema(model.schema, {
                 collection: model.collection

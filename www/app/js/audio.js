@@ -17,8 +17,8 @@ function BufferLoader(context, urlList, callback) {
 BufferLoader.prototype.loadBuffer = function (url, index) {
     // Load buffer asynchronously
     var request = new XMLHttpRequest();
-    request.open("GET", url, true);
-    request.responseType = "arraybuffer";
+    request.open('GET', url, true);
+    request.responseType = 'arraybuffer';
 
     var loader = this;
 
@@ -32,8 +32,9 @@ BufferLoader.prototype.loadBuffer = function (url, index) {
                     return;
                 }
                 loader.bufferList[index] = buffer;
-                if (++loader.loadCount == loader.urlList.length)
+                if (++loader.loadCount === loader.urlList.length) {
                     loader.onload(loader.bufferList);
+                }
             },
             function (error) {
                 console.error('decodeAudioData error', error);
@@ -49,8 +50,9 @@ BufferLoader.prototype.loadBuffer = function (url, index) {
 };
 
 BufferLoader.prototype.load = function () {
-    for (var i = 0; i < this.urlList.length; ++i)
+    for (var i = 0; i < this.urlList.length; ++i) {
         this.loadBuffer(this.urlList[i], i);
+    }
 };
 
 var Audio = function () {
@@ -77,15 +79,15 @@ var Audio = function () {
     this.javascriptNode = [];
 
     this.init = function () {
-        console.log(msg, "Determining context.");
+        console.log(msg, 'Determining context.');
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-        console.log(msg, "Setting audio context.");
+        console.log(msg, 'Setting audio context.');
         _this.ac = new AudioContext(); //c
     };
 
     this.url = function (url) {
-        console.log(msg, "Saving urls.", url);
+        console.log(msg, 'Saving urls.', url);
         _this.urls = url;
     };
 
@@ -93,7 +95,7 @@ var Audio = function () {
         music.init();
         music.url(urls);
         _this.callback = callback;
-        console.log(msg, "Creating buffer.");
+        console.log(msg, 'Creating buffer.');
         _this.buff = new BufferLoader(_this.ac, _this.urls, _this.loaded);
         _this.buff.load();
     };
@@ -109,29 +111,29 @@ var Audio = function () {
             _this.analyser[index].smoothingTimeConstant = 0.3;
             _this.analyser[index].fftSize = 1024;
 
-            console.log(msg, "Loading src", index);
+            console.log(msg, 'Loading src', index);
             _this.src[index] = _this.ac.createBufferSource(); //s
 
-            console.log(msg, "Setting buff", index);
+            console.log(msg, 'Setting buff', index);
             _this.src[index].buffer = sound;
 
-            console.log(msg, "Create M gain node", index);
+            console.log(msg, 'Create M gain node', index);
             _this.gain[index] = _this.ac.createGain(); //g
 
-            console.log(msg, "Splitting into channels", channels = _this.channels.stereo);
+            console.log(msg, 'Splitting into channels', channels = _this.channels.stereo);
             _this.splitter[index] = _this.ac.createChannelSplitter(channels);
             _this.merger[index] = _this.ac.createChannelMerger(channels);
 
-            console.log(msg, "Create L gain node", index);
+            console.log(msg, 'Create L gain node', index);
             _this.Lgain[index] = _this.ac.createGain(); //g
 
-            console.log(msg, "Create R gain node", index);
+            console.log(msg, 'Create R gain node', index);
             _this.Rgain[index] = _this.ac.createGain(); //g
 
-            console.log(msg, "Create panner node", index);
+            console.log(msg, 'Create panner node', index);
             _this.panner[index] = _this.ac.createPanner(); //p
 
-            console.log(msg, "Connecting src", index);
+            console.log(msg, 'Connecting src', index);
             _this.src[index].connect(_this.gain[index]);
             _this.gain[index].connect(_this.panner[index]);
 
@@ -155,14 +157,14 @@ var Audio = function () {
     this.play = function (index, delay) {
         var now = new Date()
             .getTime();
-        console.log(msg, "Playing src", index, 'at', delay, 'from', now);
+        console.log(msg, 'Playing src', index, 'at', delay, 'from', now);
         _this.src[index].start(delay);
     };
 
     this.pause = function (index, delay) {
         var now = new Date()
             .getTime();
-        console.log(msg, "Stopping src", index, 'at', delay, 'from', now);
+        console.log(msg, 'Stopping src', index, 'at', delay, 'from', now);
         _this.src[index].stop(delay);
     };
 
@@ -170,8 +172,9 @@ var Audio = function () {
         var xDeg = parseInt(range);
         var zDeg = xDeg + 90;
 
-        if (zDeg > 90)
+        if (zDeg > 90) {
             zDeg = 180 - zDeg;
+        }
 
         var x = Math.sin(xDeg * (Math.PI / 180));
         var z = Math.sin(zDeg * (Math.PI / 180));

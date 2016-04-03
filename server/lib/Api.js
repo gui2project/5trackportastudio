@@ -4,11 +4,16 @@
  *  @name   Api.js
  */
 
+//  REQUIRES
+
 var path = require('path');
 var urlJoin = require('url-join');
 
 var ini = require(global.app.ini());
 var httpRes = require(path.join(ini.path.models, 'response.json'));
+
+//  VARIABLES
+
 var msg = '[ API ]';
 
 /**
@@ -55,10 +60,10 @@ var Api = function (app) {
      */
     this.validMethod = function (method) {
         switch (method.toLowerCase()) {
-        case "get":
-        case "post":
-        case "put":
-        case "delete":
+        case 'get':
+        case 'post':
+        case 'put':
+        case 'delete':
             return true;
 
         default:
@@ -99,9 +104,9 @@ var Api = function (app) {
         }
         global.app.console.log(msg, 'Valid method.', obj.url);
         this.methods.push(obj);
-        this.app[obj["return"].toLowerCase()](obj.url,
+        this.app[obj['return'].toLowerCase()](obj.url,
             function (req, res) {
-                func(req, res, httpRes.crud[obj["return"]]);
+                func(req, res, httpRes.crud[obj['return']]);
             });
 
         if (this.first) {
@@ -151,10 +156,10 @@ var Api = function (app) {
 
         // Adding help method
         this.add({
-                "url": urlJoin("/api", "get", "help"),
-                "param": [null],
-                "desc": "Returns an api description object.",
-                "return": "GET"
+                'url': urlJoin('/api', 'get', 'help'),
+                'param': [null],
+                'desc': 'Returns an api description object.',
+                'return': 'GET'
             },
             function (req, res, obj) {
                 _this.response(res, null, _this.methods, obj);
@@ -162,20 +167,24 @@ var Api = function (app) {
 
         // Sort methods by url
         this.methods.sort(function (a, b) {
-            if (a.url < b.url) return -1;
-            if (a.url > b.url) return 1;
+            if (a.url < b.url) {
+                return -1;
+            }
+            if (a.url > b.url) {
+                return 1;
+            }
             return 0;
         });
 
         // Bad Request the API url does not  exist
         this.app.get('/api/*', function (req, res) {
-            _this.response(res, true, "400", httpRes.crud.MISSING);
+            _this.response(res, true, '400', httpRes.crud.MISSING);
         });
 
-        global.app.console.log(msg, "Waiting for method call ...");
+        global.app.console.log(msg, 'Waiting for method call ...');
     };
 
-    global.app.console.log(msg, "Initializing.");
+    global.app.console.log(msg, 'Initializing.');
 };
 
 /**

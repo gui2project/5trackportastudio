@@ -20,7 +20,9 @@ var GulpError = function () {
      *  @throw  {Object}    err     The error being handled
      */
     this.git = function (err) {
-        if (err) throw err;
+        if (err) {
+            throw err;
+        }
     };
 
     /**
