@@ -232,23 +232,17 @@ gulp.task('git.commit', false, ['git.add'],
 //  Run git pull
 gulp.task('git.pull', "Gets the latest code base from the repository.", ['git.commit'],
     function (cb) {
-        return combiner.obj([
-            git.pull('origin', 'master', gulpError.git)
-        ]);
+        return git.pull('origin', 'master', gulpError.git);
     });
 //  Push to master
 gulp.task('git.push.master', false, ['git.pull'],
     function (cb) {
-        return combiner.obj([
-            git.push('origin', 'master', gulpError.git)
-        ]);
+        return git.push('origin', 'master', gulpError.git);
     });
 //  Push to heroku
 gulp.task('git.push.heroku', false, ['git.push.master'],
     function (cb) {
-        return combiner.obj([
-            git.push('origin', 'master:heroku', gulpError.git)
-        ]);
+        return git.push('origin', 'master:heroku', gulpError.git);
     });
 //  Store Credentials
 gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
