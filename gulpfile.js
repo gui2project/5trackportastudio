@@ -8,6 +8,7 @@ var argv = require('yargs')
     .argv;
 var exec = require('child_process')
     .exec;
+var combiner = require('stream-combiner2');
 var format_css = require('gulp-cssbeautify');
 var format_js = require('gulp-jsbeautify');
 var format_json = require('gulp-json-format');
@@ -38,18 +39,24 @@ var cfgMongoDB = yaml.load(ini.path.projectFiles.mongodb.cfg);
 
 //  JavaScript
 gulp.task('code.format.js', "Formats JS code.", [],
-    function () {
-        return gulpScripts.codeFormat(ini.path.projectFiles.js.loc, format_js, require(ini.path.projectFiles.js.format));
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.codeFormat(ini.path.projectFiles.js.loc, format_js, require(ini.path.projectFiles.js.format))
+        ]);
     });
 //  CSS
 gulp.task('code.format.css', "Formats CSS code.", [],
-    function () {
-        return gulpScripts.codeFormat(ini.path.projectFiles.css.loc, format_css, require(ini.path.projectFiles.css.format));
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.codeFormat(ini.path.projectFiles.css.loc, format_css, require(ini.path.projectFiles.css.format))
+        ]);
     });
 //  JSON
 gulp.task('code.format.json', "Formats JSON code.", [],
-    function () {
-        return gulpScripts.codeFormat(ini.path.projectFiles.json.loc, format_json, 4);
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.codeFormat(ini.path.projectFiles.json.loc, format_json, 4)
+        ]);
     });
 
 //  User Commands
@@ -59,23 +66,31 @@ gulp.task('code.format', 'Formats code base', ['code.format.js', 'code.format.cs
 
 //  JavaScript
 gulp.task('code.lint.js', 'Checks JS syntax.', ['code.format.js'],
-    function () {
-        return gulpScripts.codeLint(ini.path.projectFiles.js.loc, lint_js, null, true);
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.codeLint(ini.path.projectFiles.js.loc, lint_js, null, true)
+        ]);
     });
 //  Json
 gulp.task('code.lint.json', 'Checks json syntax.', ['code.format.json'],
-    function () {
-        return gulpScripts.codeLint(ini.path.projectFiles.json.loc, lint_json, null, true);
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.codeLint(ini.path.projectFiles.json.loc, lint_json, null, true)
+        ]);
     });
 //  CSS
 gulp.task('code.lint.css', 'Checks css syntax.', ['code.format.css'],
-    function () {
-        return gulpScripts.codeLint(ini.path.projectFiles.css.loc, lint_css, ini.path.projectFiles.css.linter, true);
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.codeLint(ini.path.projectFiles.css.loc, lint_css, ini.path.projectFiles.css.linter, true)
+        ]);
     });
 //  Jade/ Pug
 gulp.task('code.lint.jade', 'Checks jade/pug syntax.', [],
-    function () {
-        return gulpScripts.codeLint(ini.path.projectFiles.jade.loc, lint_jade, ini.path.projectFiles.jade.linter, false);
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.codeLint(ini.path.projectFiles.jade.loc, lint_jade, ini.path.projectFiles.jade.linter, false)
+        ]);
     });
 //  User Commands
 gulp.task('code.lint', 'Performs all syntax tests', ['code.lint.js', 'code.lint.json', 'code.lint.css', 'code.lint.jade']);
@@ -83,68 +98,94 @@ gulp.task('code.lint', 'Performs all syntax tests', ['code.lint.js', 'code.lint.
 //  DOCUMENTATION TASKS
 
 //  Javascript documentation
-gulp.task('code.doc.js', false, ['code.lint.js', 'code.format.js'],
-    function () {
-        return gulp.src(ini.path.projectFiles.js.loc)
-            .pipe(gulpIgnore.exclude('./gulpfile.js'))
+gulp.task('code.doc.js', false, ['code.doc.clean.js', 'code.lint.js', 'code.format.js'],
+    function (cb) {
+        return combiner.obj([
+            gulp.src(ini.path.projectFiles.js.loc),
+            gulpIgnore.exclude('./gulpfile.js'),
             //  make ./doc/documentation-js.md
-            .pipe(gulpScripts.genSingleMarkdox({
+            gulpScripts.genSingleMarkdox({
                 template: path.join(ini.path.template, 'template.md.js.ejs')
-            }, './doc/', 'documentation-js.md'))
+            }, './doc/', 'documentation-js.md', null),
             //  make ./doc/documentation-js-head.md
-            .pipe(gulpScripts.genSingleMarkdox({
+            gulpScripts.genSingleMarkdox({
                 template: path.join(ini.path.template, 'template.md.js.head.ejs')
-            }, './doc/', 'documentation-js-head.md'))
-            //  make ./doc/readme.md
-            .pipe(gulpScripts.genSingleMarkdox({
-                template: path.join(ini.path.template, 'template.md.readme.ejs')
-            }, './doc/', 'readme.md'));
+            }, './doc/', 'documentation-js-head.md', false)
+        ]);
     });
 
 //  Get help output
-gulp.task('code.doc.gulp', false, ['code.lint.js', 'code.format.js'],
-    function () {
-        return gulp.src('./gulpfile.js')
-            //  make ./doc/documentation-gulp.md
-            .pipe(gulpScripts.genSingleMarkdox({
-                template: path.join(ini.path.template, 'template.md.js.ejs')
-            }, './doc/', 'documentation-gulp.md'))
+gulp.task('code.doc.gulp', false, ['code.doc.clean.gulp', 'code.lint.js', 'code.format.js'],
+    function (cb) {
+        return combiner.obj([
+            gulp.src('./gulpfile.js'),
             //  make ./doc/documentation-gulp-head.md
-            .pipe(gulpScripts.genSingleMarkdox({
+            gulpScripts.genSingleMarkdox({
                 template: path.join(ini.path.template, 'template.md.gulp.head.ejs')
-            }, './doc/', 'documentation-gulp-head.md'))
+            }, './doc/', 'documentation-gulp-head.md', false),
             //  make ./doc/documentation-gulp-out.md
-            .pipe(gulpScripts.outputToExample('gulp', {
+            gulpScripts.outputToExample('gulp', {
                 filters: [
                     /^\[/
                 ]
-            }, './doc/', 'documentation-gulp-out.md'));
+            }, './doc/', 'documentation-gulp-out.md'),
+            //  make ./doc/documentation-gulp.md
+            gulpScripts.genSingleMarkdox({
+                template: path.join(ini.path.template, 'template.md.js.ejs')
+            }, './doc/', 'documentation-gulp.md', null)
+        ]);
     });
-
+//  Get help output
+gulp.task('code.doc.readme', false, ['code.doc.clean.readme'],
+    function (cb) {
+        return combiner.obj([
+            gulp.src('./gulpfile.js'),
+            //  make ./doc/readme.md
+            gulpScripts.genSingleMarkdox({
+                template: path.join(ini.path.template, 'template.md.readme.ejs')
+            }, './doc/', 'readme.md', false)
+        ]);
+    });
 //  Merge into Readme
-gulp.task('code.doc.merge', false, ['code.doc.js', 'code.doc.gulp'],
-    function () {
-        return gulpScripts.mergeFiles([
-                './doc/readme.md',
-                './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md',
-                './doc/documentation-js-head.md', './doc/documentation-js.md'
-            ],
-            './doc/', 'readme.md');
+gulp.task('code.doc.merge', false, ['code.doc.js', 'code.doc.gulp', 'code.doc.readme'],
+    function (cb) {
+        return combiner.obj([
+            //  Merge Files
+            gulpScripts.mergeFiles([
+                    './doc/readme.md',
+                    './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md',
+                    './doc/documentation-js-head.md', './doc/documentation-js.md'
+                ],
+                './doc/', 'readme.md')
+        ]);
     });
 //  clean generated src readme files except for Readme.md
-gulp.task('code.doc.clean', false, ['code.doc.gulp.clean', 'code.doc.js.clean']);
+gulp.task('code.doc.clean', false, ['code.doc.clean.readme', 'code.doc.clean.gulp', 'code.doc.clean.js']);
 // Clean Gulp Readmes
-gulp.task('code.doc.gulp.clean', false, [],
-    function () {
-        return gulpScripts.removeFiles([
-            './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md'
+gulp.task('code.doc.clean.gulp', false, [],
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.removeFiles([
+                './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md'
+            ])
+        ]);
+    });
+// Clean Readme
+gulp.task('code.doc.clean.readme', false, [],
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.removeFiles([
+                './doc/readme.md'
+            ])
         ]);
     });
 //  Clean JS Readmes
-gulp.task('code.doc.js.clean', false, [],
-    function () {
-        return gulpScripts.removeFiles([
-            './doc/documentation-js-head.md', './doc/documentation-js.md'
+gulp.task('code.doc.clean.js', false, [],
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.removeFiles([
+                './doc/documentation-js-head.md', './doc/documentation-js.md'
+            ])
         ]);
     });
 //  User Commands
@@ -154,59 +195,75 @@ gulp.task('code.doc', 'Documents code base', ['code.doc.merge']);
 
 //  Remove git lock file
 gulp.task('git.rm.lock', false, [],
-    function () {
-        return gulpScripts.removeFiles([
-            '/.git/index.lock'
-        ], ini.opt.git.lock);
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.removeFiles([
+                '/.git/index.lock'
+            ], ini.opt.git.lock)
+        ]);
     });
 //  Prepare files for submission
 gulp.task('git.prepare', 'Checks, formats, and documents code base', ['code.format', 'code.lint', 'code.doc'],
-    function () {
-        return gulpScripts.removeFiles([
-            './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md',
-            './doc/documentation-js-head.md', './doc/documentation-js.md'
+    function (cb) {
+        return combiner.obj([
+            gulpScripts.removeFiles([
+                './doc/documentation-gulp-head.md', './doc/documentation-gulp-out.md', './doc/documentation-gulp.md',
+                './doc/documentation-js-head.md', './doc/documentation-js.md'
+            ])
         ]);
     });
 //  Run git add with -A option
 gulp.task('git.add', false, ['git.prepare', 'git.rm.lock'],
-    function () {
-        return gulp.src('./')
-            .pipe(git.add(ini.opt.git.add));
+    function (cb) {
+        return combiner.obj([
+            gulp.src('./'),
+            git.add(ini.opt.git.add)
+        ]);
     });
 //  Run git commit with -m option
 gulp.task('git.commit', false, ['git.add'],
-    function () {
+    function (cb) {
         var message = argv.m ? argv.m : 'Pushing with Gulp.';
-        return gulp.src('./')
-            .pipe(git.commit(message));
+        return combiner.obj([
+            gulp.src('./'),
+            git.commit(message)
+        ]);
     }, ini.opt.git.commit);
 //  Run git pull
 gulp.task('git.pull', "Gets the latest code base from the repository.", ['git.commit'],
-    function () {
-        return git.pull('origin', 'master', gulpError.git);
+    function (cb) {
+        return combiner.obj([
+            git.pull('origin', 'master', gulpError.git)
+        ]);
     });
 //  Push to master
 gulp.task('git.push.master', false, ['git.pull'],
-    function () {
-        return git.push('origin', 'master', gulpError.git);
+    function (cb) {
+        return combiner.obj([
+            git.push('origin', 'master', gulpError.git)
+        ]);
     });
 //  Push to heroku
 gulp.task('git.push.heroku', false, ['git.push.master'],
-    function () {
-        return git.push('origin', 'master:heroku', gulpError.git);
+    function (cb) {
+        return combiner.obj([
+            git.push('origin', 'master:heroku', gulpError.git)
+        ]);
     });
 //  Store Credentials
 gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
     function (cb) {
         var cmdStr = 'git config --global credential.helper store';
-        return exec(cmdStr, gulpError.exec);
+        return combiner.obj([
+            exec(cmdStr, gulpError.exec)
+        ]);
     });
 //  User commands
 gulp.task('git.master', 'Pushes code to master branch.', ['git.push.master'],
-    function () {},
+    function (cb) {},
     ini.opt.git.commit);
 gulp.task('git.heroku', 'Pushes code to master branch, heroku branch, and deploys to heroku.', ['git.push.heroku'],
-    function () {},
+    function (cb) {},
     ini.opt.git.commit);
 
 gulp.task('git.error', 'Handle commong Git errors', ['git.rm.lock']);
@@ -215,12 +272,12 @@ gulp.task('git.error', 'Handle commong Git errors', ['git.rm.lock']);
 
 //  Show translated configuration file to json
 gulp.task('service.mongodb.show.config', false, [],
-    function () {
+    function (cb) {
         console.log(cfgMongoDB);
     });
 //  Create necessary directories
 gulp.task('service.mongodb.create.dirs', false, [],
-    function () {
+    function (cb) {
         var mpath = cfgMongoDB.systemLog.path.split('\\');
         mpath.pop();
         mkdirp(cfgMongoDB.storage.dbPath);
@@ -230,25 +287,33 @@ gulp.task('service.mongodb.create.dirs', false, [],
 gulp.task('service.mongodb.create', false, ['service.mongodb.create.dirs'],
     function (cb) {
         var cmdStr = 'mongod.exe --config ' + ini.path.projectFiles.mongodb.cfg + ' --install';
-        return exec(cmdStr, gulpError.exec);
+        return combiner.obj([
+            exec(cmdStr, gulpError.exec)
+        ]);
     });
 //  Stop MongoDB service
 gulp.task('service.mongodb.stop', false, [],
     function (cb) {
         var cmdStr = 'net stop ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        return exec(cmdStr, gulpError.exec);
+        return combiner.obj([
+            exec(cmdStr, gulpError.exec)
+        ]);
     });
 //  Start MongoDB service
 gulp.task('service.mongodb.start', false, [],
     function (cb) {
         var cmdStr = 'net start ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        return exec(cmdStr, gulpError.exec);
+        return combiner.obj([
+            exec(cmdStr, gulpError.exec)
+        ]);
     });
 //  Remove MongoDB service
 gulp.task('service.mongodb.remove', false, ['service.mongodb.stop'],
     function (cb) {
         var cmdStr = 'sc.exe delete ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        return exec(cmdStr, gulpError.exec);
+        return combiner.obj([
+            exec(cmdStr, gulpError.exec)
+        ]);
     });
 //  User Commands
 gulp.task('mongodb.config', 'Shows the MongoDB config file in json.', ['service.mongodb.show.config']);

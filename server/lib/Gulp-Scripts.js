@@ -9,6 +9,8 @@ var ini = require(global.app.ini()); //  configuration object
 var rm = require('gulp-rm');
 var concat = require('gulp-concat');
 var markdox = require("gulp-markdox");
+var exec = require('child_process')
+    .exec;
 var execFull = require('gulp-exec');
 var deleteLines = require('gulp-delete-lines');
 var indent = require('gulp-indent');
@@ -57,18 +59,25 @@ function GulpScripts() {
      *  Makes a single markdown file from an .ejs template
      *
      *  @method   outputToExample
-     *  @param {Array.String} command   The command to run.
      *  @param {Object} template        The .ejs template to use to create the .md file
      *  @param {String} dirOut          The output directory
      *  @param {String} fileOut         The output file name
+     *  @param {Array.String | null | false} srcOverride       null: use stream src, false: no source, string: file to use
      *  @return {Stream}                Gulp Stream
      */
-    this.genSingleMarkdox = function (template, dirOut, fileOut) {
-        return combiner.obj([
+    this.genSingleMarkdox = function (template, dirOut, fileOut, srcOverride) {
+        var tasks = [
             markdox(template),
             concat(fileOut),
             gulp.dest(dirOut)
-        ]);
+        ];
+
+        if (srcOverride === false) {
+            tasks.unshift(gulp.src('./app.js'));
+        } else if (srcOverride !== null)
+            tasks.unshift(gulp.src(srcOverride));
+
+        return combiner.obj(tasks);
     };
 
     /**
@@ -83,7 +92,9 @@ function GulpScripts() {
      */
     this.outputToExample = function (command, filters, dirOut, fileOut) {
         return combiner.obj([
+            gulp.src('./app.js'),
             execFull(command, {
+                continueOnError: false,
                 pipeStdout: true
             }),
             deleteLines(filters),
@@ -92,7 +103,12 @@ function GulpScripts() {
                 amount: 1
             }),
             concat(fileOut),
-            gulp.dest(dirOut)
+            gulp.dest(dirOut),
+            execFull.reporter({
+                err: true, // default = true, false means don't write err
+                stderr: true, // default = true, false means don't write stderr
+                stdout: false // default = true, false means don't write stdout
+            })
         ]);
     };
 
