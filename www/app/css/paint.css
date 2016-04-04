@@ -137,6 +137,6 @@ main > header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-
     background-image: url('/app/img/favicon-blue.png');
 }
 
-.container > .row-container .track-fader-slider .slider-handle {
-    background-image: url('../img/Fader.png');
+main > .container > .row-container .track-fader-slider .slider-handle {
+    background-image: url('/app/img/Fader.png');
 }
