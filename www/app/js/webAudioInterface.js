@@ -30,7 +30,7 @@ $(function () {
 });
 
 function armTrackToggle(trackNumber) {
-    console.log("armTrackToggle track:" + trackNumber);
+    console.log('armTrackToggle track:' + trackNumber);
 
     switch (trackNumber) {
     case 1:
@@ -47,13 +47,13 @@ function armTrackToggle(trackNumber) {
         break;
     }
     /**
-     * console.log("armTrackToggle track:"+trackNumber);
+     * console.log('armTrackToggle track:'+trackNumber);
      * track[trackNumber].armTrackToggle();
      */
 }
 
 function recordToggle(trackNumber) {
-    console.log("recordToggle track:" + trackNumber);
+    console.log('recordToggle track:' + trackNumber);
 
     switch (trackNumber) {
     case 1:
@@ -102,7 +102,7 @@ function recordToggle(trackNumber) {
         break;
     }
     /**
-     *  console.log("recordToggle track:"+trackNumber);
+     *  console.log('recordToggle track:'+trackNumber);
      *  thisTrack[tracknumber].recordToggle();
      *  if(thisTrack[tracknumber].isRecording) {
      *      track.forEach(function(index, thisTrack){
@@ -116,7 +116,7 @@ function recordToggle(trackNumber) {
 }
 
 function play() {
-    console.log("play");
+    console.log('play');
     track1.playTrack();
     track2.playTrack();
     track3.playTrack();
@@ -131,7 +131,7 @@ function play() {
 }
 
 function stop() {
-    console.log("stop");
+    console.log('stop');
     sw.run('STOP');
     sw.run('RESET');
     track1.stopTrack();
@@ -142,7 +142,7 @@ function stop() {
 
 function muteToggle(trackNumber) {
 
-    console.log("MuteToggle track:" + trackNumber);
+    console.log('MuteToggle track:' + trackNumber);
 
     switch (trackNumber) {
     case 1:
@@ -161,7 +161,7 @@ function muteToggle(trackNumber) {
 }
 
 function pan(trackNumber, amount) {
-    console.log("pan:" + amount + " track:" + trackNumber);
+    console.log('pan:' + amount + ' track:' + trackNumber);
     switch (trackNumber) {
     case 1:
         track1.pan.pan.value = amount;
@@ -182,7 +182,7 @@ function pan(trackNumber, amount) {
 }
 
 function gain(trackNumber, amount) {
-    console.log("Changed Gain of track:" + trackNumber + " to " + amount);
+    console.log('Changed Gain of track:' + trackNumber + ' to ' + amount);
     switch (trackNumber) {
     case 1:
         track1.gain.gain.value = amount;
@@ -200,9 +200,9 @@ function gain(trackNumber, amount) {
 }
 
 function eq(trackNumber, type, amount) {
-    console.log("Changing Eq" + type + " of Track:" + trackNumber + " amount:" + amount);
+    console.log('Changing Eq' + type + ' of Track:' + trackNumber + ' amount:' + amount);
 
-    if (type == "high") {
+    if (type === 'high') {
         switch (trackNumber) {
         case 1:
             track1.eqHigh.gain.value = amount;
@@ -219,7 +219,7 @@ function eq(trackNumber, type, amount) {
         }
     }
 
-    if (type == "mid") {
+    if (type === 'mid') {
         switch (trackNumber) {
         case 1:
             track1.eqMid.gain.value = amount;
@@ -236,7 +236,7 @@ function eq(trackNumber, type, amount) {
         }
     }
 
-    if (type == "low") {
+    if (type === 'low') {
         switch (trackNumber) {
         case 1:
             track1.eqLow.gain.value = amount;
@@ -254,7 +254,7 @@ function eq(trackNumber, type, amount) {
     }
 }
 
-function downloadProject(){
+function downloadProject() {
     //record whole project into recording buffer
     //download blob
 }
