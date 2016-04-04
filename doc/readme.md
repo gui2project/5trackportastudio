@@ -1364,13 +1364,24 @@ Playback buttons
 <!-- Start www/app/js/webAudioApi.js -->
 ## File: www/app/js/webAudioApi.js
 
+Create all EQ types
+
+---
+
+#### Method: armTrackToggle()
+
+Connects the whole signal chain
+so that you hear you microphone feed
+through your speakers, last step
+before recording process
+
 ---
 
 #### Method: grabFromAudioRecorderBuffer()
 
 Callback function for getRecorderBuffer, grabs the buffer
-    from the recorder.js and transfers it to a WebAudioApi
-    buffer called recording buffer.
+from the recorder.js and transfers it to a WebAudioApi
+recording buffer.
 
 <!-- End www/app/js/webAudioApi.js -->
 
@@ -1379,36 +1390,6 @@ Callback function for getRecorderBuffer, grabs the buffer
 
 <!-- Start www/app/js/webAudioInterface.js -->
 ## File: www/app/js/webAudioInterface.js
-
----
-
-#### Method: $()
-
-var track = [null,null,null,null]
-
-captureAudio();
-track.forEach(function(index, track){
-     track[index] = new TrackTemplate();
-     track[index].InitTrack()
-});
-
-console.log('armTrackToggle track:'+trackNumber);
-track[trackNumber].armTrackToggle();
-
-console.log('recordToggle track:'+trackNumber);
- thisTrack[tracknumber].recordToggle();
- if(thisTrack[tracknumber].isRecording) {
-     track.forEach(function(index, thisTrack){
-         if (index != tracknumber)
-             track[index].playTrack();
-      });
-  }
-
-track.forEach(function(index, track){
-     track[index].playTrack();
-});
-
-track[index].pan.pan.value = amount;
 
 <!-- End www/app/js/webAudioInterface.js -->
 

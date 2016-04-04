@@ -93,7 +93,7 @@ $(function () {
                     .parent()
                     .parent()
                     .attr('type');
-                    
+
                 //function to change EQ
                 eq(trackNumber, eqType, knobValue);
 

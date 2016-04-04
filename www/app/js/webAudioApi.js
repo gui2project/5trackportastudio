@@ -82,13 +82,13 @@ function TrackTemplate() {
         bypass: 0
     });
     var wahwah = new tuna.WahWah({
-    automode: true,                //true/false
-    baseFrequency: 0.5,            //0 to 1
-    excursionOctaves: 2,           //1 to 6
-    sweep: 0.2,                    //0 to 1
-    resonance: 10,                 //1 to 100
-    sensitivity: 0.5,              //-1 to 1
-    bypass: 0
+        automode: true, //true/false
+        baseFrequency: 0.5, //0 to 1
+        excursionOctaves: 2, //1 to 6
+        sweep: 0.2, //0 to 1
+        resonance: 10, //1 to 100
+        sensitivity: 0.5, //-1 to 1
+        bypass: 0
     });
 
     this.buffer = null;
@@ -105,16 +105,16 @@ function TrackTemplate() {
         name: null,
         container: null
     };
-    
+
     //initializes a blank track ready for recording
     this.InitTrack = function () {
 
         this.gain.value = 0.7;
 
         /*
-        *Create all EQ types
-        */
-        
+         *Create all EQ types
+         */
+
         //High
         this.eqHigh.type = 'peaking';
         this.eqHigh.frequency.value = 2000;
@@ -126,7 +126,7 @@ function TrackTemplate() {
         this.eqMid.frequency.value = 800;
         this.eqMid.gain.value = 0;
         this.eqMid.Q.value = 0.75;
-        
+
         //Low
         this.eqLow.type = 'peaking';
         this.eqLow.frequency.value = 250;
@@ -164,12 +164,12 @@ function TrackTemplate() {
     };
 
     /*
-    *Connects the whole signal chain
-    *so that you hear you microphone feed
-    *through your speakers, last step
-    *before recording process
-    */
-    
+     *Connects the whole signal chain
+     *so that you hear you microphone feed
+     *through your speakers, last step
+     *before recording process
+     */
+
     this.armTrackToggle = function () {
         if (isArmed === false) {
             audioInput.connect(this.eqHigh);
@@ -212,10 +212,10 @@ function TrackTemplate() {
     };
 
     /*
-    *Callback function for getRecorderBuffer, grabs the buffer
-    *from the recorder.js and transfers it to a WebAudioApi
-    *recording buffer.
-    */
+     *Callback function for getRecorderBuffer, grabs the buffer
+     *from the recorder.js and transfers it to a WebAudioApi
+     *recording buffer.
+     */
 
     this.grabFromAudioRecorderBuffer = function (buffers) {
         recordingBuffer = audioContext.createBuffer(2, buffers[0].length, audioContext.sampleRate);
@@ -225,72 +225,68 @@ function TrackTemplate() {
             .set(buffers[1]);
         _this.buffer = recordingBuffer;
     };
-    
+
     //Toggle effect
-    this.toggleEffect = function(effectName){
+    this.toggleEffect = function (effectName) {
         _this = this;
-        if(this.effect.container == null)
-        {
+        if (this.effect.container === null) {
             //no effect, so assing effect variable
             switchEffect(effectName);
-            
+
             //break signal chain
             this.gain.disconnect();
-            
+
             //insert effect
             this.gain.connect(this.effect.container);
             this.effect.container.connect(this.pan);
-        }
-        else if(this.effect.name === effectName)
-        {
+        } else if (this.effect.name === effectName) {
             //Same effect passed in, so remove it
             this.gain.disconnect();
             this.effect.container.disconnect();
-            
+
             //Return signal chain to normal
             this.gain.connect(this.pan);
-            
+
             //Reset Effect Variable
             this.effect.container = null;
             this.effect.name = null;
-        }
-        else{//Diffrent FX passed in, switch them
-            
+        } else { //Diffrent FX passed in, switch them
+
             //remove
             this.gain.disconnect();
             this.effect.container.disconnect();
-            
+
             //replace variable
             switchEffect(effectName);
-            
+
             //reconnect
             this.gain.connect(this.effect.container);
             this.effect.container.connect(this.pan);
         }
     };
-    
+
     //Helper function for toggleEffect function
     //switch assigns the corresponding effect argument
-    var switchEffect = function(effectName){
-        switch(effectName){
-            case 'REVERB':
+    var switchEffect = function (effectName) {
+        switch (effectName) {
+        case 'REVERB':
             _this.effect.container = reverb;
             _this.effect.name = 'REVERB';
             break;
-            case 'PINGPONG':
+        case 'PINGPONG':
             _this.effect.container = pingPong;
             _this.effect.name = 'ECHO';
             break;
-            case 'CHORUS':
+        case 'CHORUS':
             _this.effect.container = chorus;
             _this.effect.name = 'CHORUS';
             break;
-            case 'WAHWAH':
+        case 'WAHWAH':
             _this.effect.container = wahwah;
             _this.effect.name = 'WAHWAH';
             break;
         }
-    }
+    };
 }
 
 function doneEncoding(blob) {
