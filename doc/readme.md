@@ -879,11 +879,13 @@ Adds mixes to the mix catalog
 
      var dropDown = new DropDown();
      ...
-     dropDown.panel.set.mixCatalog({
-         {String} title = The title of an mixObj,
-         {String} date  = The date of a mixObj creation,
-         {String} image = The URL to the icon image of an mixObj
-     });
+     dropDown.panel.set.mixCatalog([{
+             {String} title = The title of an mixObj,
+             {String} date  = The date of a mixObj creation,
+             {String} image = The URL to the icon image of an mixObj
+         },
+         ...
+     ]);
 
 ##### Params:
 

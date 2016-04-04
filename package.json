@@ -50,6 +50,7 @@
         "url-join": "0.0.1"
     },
     "devDependencies": {
+        "csscomb": "^3.1.8",
         "csslint-stylish": "0.0.4",
         "gulp": "^3.9.1",
         "gulp-concat": "^2.6.0",

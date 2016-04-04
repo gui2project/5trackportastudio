@@ -15,3 +15,62 @@
     src: url('/dep/fonts/segment-7/Segment7Standard.eot?#iefix') format('embedded-opentype'),
     url('/dep/fonts/segment-7/Segment7Standard.otf') format('opentype');
 }
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+div.stopWatch > div.timedisplay {
+    font-family: 'Segment7Standard';
+}
+
+.api-item-param ,
+.api-url-param {
+    font-style: italic;
+}
+
+main .solo button,
+main .mute button,
+main .record button {
+    font-weight: bold;
+}
+
+label.error {
+    font-weight: normal;
+}
+
+body,
+.sys-font,
+label {
+    font-weight: 300;
+}
+
+.splash-brand-label,
+div.stopWatch > div.timedisplay {
+    font-size: 40px;
+}
+
+.fa,
+main .name {
+    font-size: 20px;
+}
+
+.api-item-url,
+.panel .title .fa,
+.row.title span {
+    font-size: 16px;
+}
+
+.api-item-param,
+.api-item-param-description {
+    font-size: 14px;
+}
+
+main .eq label,
+main .pan label {
+    font-size: 12px;
+}
+
+label.error {
+    font-size: 11px;
+}

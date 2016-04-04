@@ -210,14 +210,33 @@ function DropDown() {
 
                         //  add items to catalog
                         data.forEach(function (item) {
-                            var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span';
-                            var desc = '<span class="fx-catalog-panel-item-desc">' + item.desc + '</span';
-                            var image = '<span class="fx-catalog-panel-item-image">' + item.image + '</span';
+                            var classes = 'col-xs-4 col-sm-3 col-md-2 col-lg-2';
+                            var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span>';
+                            var url = item.image ? item.image : '';
+                            var image = '<img class="fx-catalog-panel-item-image" src="' + url + '"/>';
 
-                            var htmlObj = '<div class="fx-catalog-panel-item">' + image + title + desc + '</div>';
-
+                            var htmlObj = '<div class="square-wrapper ' + classes + '"><div id="effect-item-' + item.title + '" class="square-inner fx-catalog-panel-item">' + image + title + '</div></div>';
+                            //  Add Element
                             $(container)
                                 .append(htmlObj);
+
+                            //  Add Handler
+                            $('#effect-item-' + item.title)
+                                .on('click', function () {
+                                    console.log('#effect-item-' + item.title + ' was clicked');
+                                    console.log(item);
+                                    _this.panel.set.information(item);
+                                    _this.panel.display.toggle(true, '.information-panel');
+                                })
+                                .mouseover(function () {
+                                    console.log('#effect-item-' + item.title + ' was hovered');
+
+                                })
+                                .mouseleave(function () {
+                                    console.log('#effect-item-' + item.title + ' was left');
+                                    //_this.panel.display.toggle(false, '.information-panel');
+                                });
+
                         });
                     },
                     function () {
@@ -235,11 +254,13 @@ function DropDown() {
              *
              *      var dropDown = new DropDown();
              *      ...
-             *      dropDown.panel.set.mixCatalog({
-             *          {String} title = The title of an mixObj,
-             *          {String} date  = The date of a mixObj creation,
-             *          {String} image = The URL to the icon image of an mixObj
-             *      });
+             *      dropDown.panel.set.mixCatalog([{
+             *              {String} title = The title of an mixObj,
+             *              {String} date  = The date of a mixObj creation,
+             *              {String} image = The URL to the icon image of an mixObj
+             *          },
+             *          ...
+             *      ]);
              *
              *  @method     DropDown.panel.set.mixCatalog
              *  @param      {Array.mixObj}      json   An array of mixObjects
@@ -355,12 +376,10 @@ function DropDown() {
              *  @param  {Object}    obj     The selected item information object
              */
             information: function (obj) {
-                console.log('dropdown.panel.set.information');
-                $(_this.dropDownId + ' .information-panel-title')
+                console.log('dropdown.panel.set.information', obj);
+                $(_this.dropDownId + ' .information-panel .information-title')
                     .html(obj.title);
-                $(_this.dropDownId + ' .information-panel-image')
-                    .html(obj.image);
-                $(_this.dropDownId + ' .information-panel-desc')
+                $(_this.dropDownId + ' .information-panel .information-desc')
                     .html(obj.desc);
                 //$(_this.dropDownId + ' .information-panel-actions').html(obj.actions);
             }
@@ -619,11 +638,9 @@ function DropDown() {
         case 'FX':
             this.stateHistory.push(view);
 
-            this.panel.display.right(false);
+            this.panel.display.all(false);
 
-            this.panel.display.toggle(true, '.account-panel');
             this.panel.display.toggle(true, '.fx-catalog-panel');
-            this.panel.display.toggle(true, '.tutorial-panel');
 
             this.dropdown.open();
             return;

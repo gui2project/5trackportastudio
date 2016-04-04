@@ -5,9 +5,9 @@
  */
 
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
 }
 
 /*Background colors*/
@@ -109,7 +109,8 @@ div.stopWatch > div.timedisplay {
 }
 
 .dropdown-left, .dropdown-right {
-    height: 100%;
+    height: auto;
+    float: left !important;
 }
 
 .panel {
@@ -136,7 +137,8 @@ div.stopWatch > div.timedisplay {
 .about-panel,
 .contact-panel,
 .api-panel,
-.dropdown {
+.dropdown
+.tutorial-panel {
     display: none;
 }
 
@@ -146,12 +148,6 @@ div.stopWatch > div.timedisplay {
     background-position: center center;
     height: 100%;
     display: none;
-}
-
-.dropdown .col-xs-1, .dropdown .col-xs-10, .dropdown .col-xs-11, .dropdown .col-xs-12, .dropdown .col-xs-2, .dropdown .col-xs-3, .dropdown .col-xs-4, .dropdown .col-xs-5, .dropdown .col-xs-6, .dropdown .col-xs-7, .dropdown .col-xs-8, .dropdown .col-xs-9,
-.dropdown .col-sm-1, .dropdown .col-sm-10, .dropdown .col-sm-11, .dropdown .col-sm-12, .dropdown .col-sm-2, .dropdown .col-sm-3, .dropdown .col-sm-4, .dropdown .col-sm-5, .dropdown .col-sm-6, .dropdown .col-sm-7, .dropdown .col-sm-8, .dropdown .col-sm-9,
-.dropdown .col-md-1, .dropdown .col-md-10, .dropdown .col-md-11, .dropdown .col-md-12, .dropdown .col-md-2, .dropdown .col-md-3, .dropdown .col-md-4, .dropdown .col-md-5, .dropdown .col-md-6, .dropdown .col-md-7, .dropdown .col-md-8, .dropdown .col-md-9 {
-    float: none;
 }
 
 .wait-left-panel {
@@ -318,9 +314,7 @@ body,
     font-weight: 300;
 }
 
-body {
-    float: left;
-}
+
 /* Main mixer styling */
 
 main > .container {
@@ -377,25 +371,9 @@ main .pan label {
     height: 20px;
     position: absolute;
     left: 27px;
-    bottom: 35px;
+    bottom: 25px;
     padding: 0;
     margin: 0;
-}
-
-main .eq label {
-    top: 19px;
-}
-
-main .pan label {
-    bottom: 25px;
-}
-
-main .solo button,
-main .mute button,
-main .record button {
-    width: 90%;
-    height: 40px;
-    font-weight: bold;
 }
 
 main .solo,
@@ -404,6 +382,14 @@ main .record {
     float: left;
     margin: 0;
     padding: 0;
+}
+
+main .solo button,
+main .mute button,
+main .record button {
+    width: 90%;
+    height: 40px;
+    font-weight: bold;
 }
 
 main .fader {
@@ -424,21 +410,6 @@ main .fader .slider-handle.custom {
 main .playback button {
     padding: 10px;
     width: 100%;
-}
-/* Footer */
-
-footer {
-    width: 100%;
-    height: 40px;
-    position: fixed;
-    bottom: 0;
-    border-top: 1px solid #333;
-}
-
-footer .copyright {
-    font-size: 12px;
-    text-align: center;
-    margin-top: 10px;
 }
 
 .track,
@@ -637,4 +608,31 @@ p.response {
 
 .left {
     float: left;
+}
+
+.fx-catalog-panel-item {
+    margin: 10px 10px 10px 10px;
+}
+
+.information-image,
+.fx-catalog-panel-item {
+    background: #148bd4;
+}
+
+.fx-catalog-panel-item-title {
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    float: left;
+    color: #fff;
+    margin-top: 10px;
+}
+
+div.stretchy-wrapper {
+    float: left !important;
+}
+
+div.stretchy-wrapper > div.fx-catalog-panel-item {
+    width: 100%;
+    padding-bottom: 100%;
 }

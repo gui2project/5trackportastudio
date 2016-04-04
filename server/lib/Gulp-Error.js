@@ -36,7 +36,9 @@ var GulpError = function () {
      */
     this.exec = function (err, stdout, stderr) {
         console.log('GULP-EXEC-ERROR', stdout, stderr);
-        cb(err);
+        if (err) {
+            throw err;
+        }
     };
 
 };

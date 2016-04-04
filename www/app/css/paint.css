@@ -1,0 +1,142 @@
+/**
+ *  @file   colors.css
+ *
+ *  Contains application coloring styles.
+ */
+
+/* BACKGROUND-COLORS*/
+button,
+.data-not-active,
+.fx-catalog-label,
+.mix-catalog-label,
+.dropdown button {
+    background-color: #FAFAFA;
+}
+
+main > .container {
+    background-color: #212121;
+}
+
+div.stopWatch,
+.information-image,
+.fx-catalog-panel-item,
+.panel button,
+.data-active {
+    background-color: #149BDF;
+}
+
+.error,
+.panel-entry,
+span.hover,
+.splash {
+    background-color: #333;
+}
+
+.panel,
+.navbar-default,
+.dropdown,
+footer {
+    background-color: #181818;
+}
+
+/* FONT COLORS */
+.data-not-active,
+.stopWatch > .timedisplay {
+    color: #333333 !important;
+}
+
+button,
+.dropdown button {
+    color: #181818;
+}
+
+main .name input,
+input.editable-text {
+    color: #212121;
+}
+
+.panel .title .fa,
+.api-row-options,
+.api-item-url,
+.navbar-brand-label:hover,
+span.navbar-brand-label:hover,
+div.navbar-right-links > a > span:hover,
+span.icon-right .fa,
+.icon-right.pass .fa-check,
+.icon-right.pass .fa-lock,
+.splash-label,
+header > .navbar > .container > .navbar-right-links > a > span:hover {
+    color: #149BDF;
+}
+
+main > .container,
+.panel button,
+.dropdown,
+div.navbar-right-links a.link-sign-in span,
+div.navbar-right-links a.link-register span,
+div.navbar-right-links a.link-sign-out span,
+.navbar-info-display,
+.navbar-header > a > span,
+.navbar-brand-label,
+.splash-brand-label,
+.navbar-default .navbar-brand,
+.instructions,
+.fx-catalog-panel-item-title {
+    color: #FAFAFA;
+}
+
+.data-active {
+    color: #FAFAFA !important;
+}
+
+main .solo button,
+main .mute button,
+main .record button,
+main .playback button,
+.api-item-param,
+.api-url-param,
+.icon-right.err .fa-times,
+.icon-right.err .fa-unlock,
+span.hover,
+label.error {
+    color: #FF007D;
+}
+
+.warning {
+    color: #FF007D !important;
+}
+
+/* BORDER COLORS*/
+.error,
+.panel-entry,
+span.hover {
+    border-color: #181818;
+}
+
+.navbar-brand-label:hover,
+span.navbar-brand-label:hover,
+div.navbar-right-links > a > span:hover {
+    border-color: #149BDF;
+}
+
+.stopWatch,
+.stopWatch > .timedisplay,
+.dropdown,
+.track,
+.master {
+    border-color: #333333;
+}
+
+/*IMAGES*/
+header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label,
+.splash-brand-label {
+    background-image: url('/app/img/favicon-white.png');
+}
+
+main > header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label:hover {
+    background-image: url('/app/img/favicon-blue.png');
+}
+
+.container > .row-container .track-fader-slider .slider-handle {
+    background-image: url('../img/Fader.png');
+}
