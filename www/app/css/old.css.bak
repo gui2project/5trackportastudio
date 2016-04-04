@@ -392,6 +392,22 @@ main .record button {
     font-weight: bold;
 }
 
+<<<<<<< HEAD:www/app/css/old.css.bak
+=======
+main .solo,
+main .mute {
+    float: left;
+    margin-left: 15px;
+    padding: 0;
+}
+
+main .record {
+    float: right;
+    margin-right: 15px;
+    padding: 0;
+}
+
+>>>>>>> d26ca0ad0d27f61660d75aaa4567a9f9bae706e9:www/app/css/styles.css
 main .fader {
     clear: both;
     width: 20px;

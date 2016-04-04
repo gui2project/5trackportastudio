@@ -1217,128 +1217,6 @@ Playback buttons
 
 
 
-<!-- Start www\app\js\recorder.js -->
-## File: www\app\js\recorder.js
-
----
-
-#### Method: writeString()
-
-RIFF identifier
-
-RIFF chunk length
-
----
-
-#### Method: writeString()
-
-RIFF type
-
----
-
-#### Method: writeString()
-
-format chunk identifier
-
-format chunk length
-
-sample format (raw)
-
-channel count
-
-sample rate
-
-byte rate (sample rate * block align)
-
-block align (channel count * bytes per sample)
-
-bits per sample
-
----
-
-#### Method: writeString()
-
-data chunk identifier
-
-data chunk length
-
-<!-- End www\app\js\recorder.js -->
-
-
-
-
-<!-- Start www\app\js\recorderWorker.js -->
-## File: www\app\js\recorderWorker.js
-
----
-
-### Class: recLength
-
-License (MIT)
-
-Copyright © 2013 Matt Diamond
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-documentation files (the "Software"), to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
-to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of
-the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
-CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
-
----
-
-#### Method: writeString()
-
-RIFF identifier
-
-file length
-
----
-
-#### Method: writeString()
-
-RIFF type
-
----
-
-#### Method: writeString()
-
-format chunk identifier
-
-format chunk length
-
-sample format (raw)
-
-channel count
-
-sample rate
-
-byte rate (sample rate * block align)
-
-block align (channel count * bytes per sample)
-
-bits per sample
-
----
-
-#### Method: writeString()
-
-data chunk identifier
-
-data chunk length
-
-<!-- End www\app\js\recorderWorker.js -->
-
-
-
-
 <!-- Start www\app\js\StopWatch.js -->
 ## File: www\app\js\StopWatch.js
 
@@ -1485,59 +1363,27 @@ adjusts the clock to a given time(mod)
 
 
 
-<!-- Start www\app\js\volume-meter.js -->
-## File: www\app\js\volume-meter.js
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Chris Wilson
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
----
-
-### Function: createAudioMeter()
-
-Usage:
-audioNode = createAudioMeter(audioContext,clipLevel,averaging,clipLag);
-
-audioContext: the AudioContext you're using.
-clipLevel: the level (0 to 1) that you would consider "clipping".
-   Defaults to 0.98.
-averaging: how "smoothed" you would like the meter to be over time.
-   Should be between 0 and less than 1.  Defaults to 0.95.
-clipLag: how long you would like the "clipping" indicator to show
-   after clipping has occured, in milliseconds.  Defaults to 750ms.
-
-Access the clipping through node.checkClipping(); use node.shutdown to get rid of it.
-
-<!-- End www\app\js\volume-meter.js -->
-
-
-
-
 <!-- Start www\app\js\webAudioApi.js -->
 ## File: www\app\js\webAudioApi.js
 
+Create all EQ types
+
 ---
 
-### Class: AudioContext
+#### Method: armTrackToggle()
+
+Connects the whole signal chain
+so that you hear you microphone feed
+through your speakers, last step
+before recording process
+
+---
+
+#### Method: grabFromAudioRecorderBuffer()
+
+Callback function for getRecorderBuffer, grabs the buffer
+from the recorder.js and transfers it to a WebAudioApi
+recording buffer.
 
 <!-- End www\app\js\webAudioApi.js -->
 
@@ -1546,36 +1392,6 @@ Access the clipping through node.checkClipping(); use node.shutdown to get rid o
 
 <!-- Start www\app\js\webAudioInterface.js -->
 ## File: www\app\js\webAudioInterface.js
-
----
-
-#### Method: $()
-
-var track = [null,null,null,null]
-
-captureAudio();
-track.forEach(function(index, track){
-     track[index] = new TrackTemplate();
-     track[index].InitTrack()
-});
-
-console.log('armTrackToggle track:'+trackNumber);
-track[trackNumber].armTrackToggle();
-
-console.log('recordToggle track:'+trackNumber);
- thisTrack[tracknumber].recordToggle();
- if(thisTrack[tracknumber].isRecording) {
-     track.forEach(function(index, thisTrack){
-         if (index != tracknumber)
-             track[index].playTrack();
-      });
-  }
-
-track.forEach(function(index, track){
-     track[index].playTrack();
-});
-
-track[index].pan.pan.value = amount;
 
 <!-- End www\app\js\webAudioInterface.js -->
 
