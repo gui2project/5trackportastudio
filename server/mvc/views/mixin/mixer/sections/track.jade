@@ -9,11 +9,9 @@ mixin track(trknum)
     div.col-md-2.col-sm-3.col-xs-3(id='track-'+trknum, class='track')
         +trackname(trknum, 'Track ' + trknum)
         // EQ High
-        +knob(trknum, 'EQ High', 'eq','-','+')
-        // EQ Mid
-        +knob(trknum, 'EQ Mid', 'eq','-','+')
+        +knob(trknum, 'Treble', 'eq','-','+','HIGH')
         // EQ Low
-        +knob(trknum, 'EQ Low', 'eq','-','+')
+        +knob(trknum, 'Bass', 'eq','-','+','LOW')
         // Pan
         +knob(trknum, 'Pan','pan','L','R')
         // Fader Controls

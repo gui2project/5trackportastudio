@@ -399,10 +399,14 @@ main .record button {
 }
 
 main .solo,
-main .mute,
-main .record {
+main .mute{
     float: left;
-    margin: 0;
+    margin-left: 15px;
+    padding: 0;
+}
+main .record {
+    float: right;
+    margin-right: 15px;
     padding: 0;
 }
 

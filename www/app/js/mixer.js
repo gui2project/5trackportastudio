@@ -92,11 +92,9 @@ $(function () {
                 var eqType = $(this)
                     .parent()
                     .parent()
-                    .parent()
-                    .parent()
-                    .attr('class')
-                    .split(' ')[1];
-
+                    .attr('type');
+                    
+                //function to change EQ
                 eq(trackNumber, eqType, knobValue);
 
             } else if ($(this)
