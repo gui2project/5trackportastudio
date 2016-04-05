@@ -231,8 +231,7 @@ gulp.task('git.commit', false, ['git.add'],
 //  Run git pull
 gulp.task('git.pull', 'Gets the latest code base from the repository.', ['git.commit'],
     function () {
-        return gulp.src('./')
-            .pipe(git.pull('origin', 'master', gulpError.git));
+        return git.pull('origin', 'master', gulpError.git);
     },
     ini.opt.git.commit);
 //  Push to master
