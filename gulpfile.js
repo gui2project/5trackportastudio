@@ -238,15 +238,13 @@ gulp.task('git.pull', 'Gets the latest code base from the repository.', ['git.co
 //  Push to master
 gulp.task('git.push.master', false, ['git.pull'],
     function () {
-        return gulp.src('./')
-            .pipe(git.push('origin', 'master', gulpError.git));
+        return git.push('origin', 'master', gulpError.git);
     },
     ini.opt.git.commit);
 //  Push to heroku
 gulp.task('git.push.heroku', false, ['git.push.master'],
     function () {
-        return gulp.src('./')
-            .pipe(git.push('origin', 'master:heroku', gulpError.git));
+        return git.push('origin', 'master:heroku', gulpError.git);
     },
     ini.opt.git.commit);
 //  Store Credentials
