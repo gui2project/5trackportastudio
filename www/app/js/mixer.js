@@ -147,7 +147,7 @@ $(function () {
 
                 muteToggle(trackNumber);
 
-            } else if(!isMuted) {
+            } else if (!isMuted) {
                 // Turn on armed
                 $(this)
                     .attr('data-muted', 1)
