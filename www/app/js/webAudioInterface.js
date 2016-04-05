@@ -32,6 +32,7 @@ function recordToggle(trackNumber) {
         sw.run('START');
     } else {
         sw.run('STOP');
+        sw.run('RESET');
     }
 }
 
@@ -50,7 +51,15 @@ function stop() {
     console.log('stop');
 
     track.forEach(function (item, index) {
-        track[index].stopTrack();
+        if(track[index].isRecording){
+            //stop recording
+            track[index].recordToggle()
+            track[index].armTrackToggle();
+        }
+        else{
+            //stop playing
+            track[index].stopTrack();
+        }
     });
 
     sw.run('STOP');

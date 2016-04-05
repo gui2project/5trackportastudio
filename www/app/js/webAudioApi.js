@@ -212,9 +212,9 @@ function TrackTemplate() {
     };
 
     /*
-     *Callback function for getRecorderBuffer, grabs the buffer
-     *from the recorder.js and transfers it to a WebAudioApi
-     *recording buffer.
+     * Callback function for getRecorderBuffer, grabs the buffer
+     * from the recorder.js and transfers it to a WebAudioApi
+     * recording buffer.
      */
 
     this.grabFromAudioRecorderBuffer = function (buffers) {
