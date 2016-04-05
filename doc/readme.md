@@ -847,9 +847,13 @@ Opens the DropDown menu
 
 ---
 
-#### Method: DropDown.close()
+#### Method: DropDown.close(speed)
 
 Closes the DropDown menu
+
+##### Params:
+
+* **Integer** *speed* THe speed to close the dropdown
 
 ---
 
@@ -946,6 +950,17 @@ Displays or hides a panel from view.
 ##### Params:
 
 * **Boolean** *state* The display state of a panel
+* **String** *toggleClass* The panel class to control
+
+---
+
+#### Method: DropDown.panel.display.toggle(className, toggleClass)
+
+Makes a panel take up space on first view.
+
+##### Params:
+
+* **Boolean** *className* The display state of a panel
 * **String** *toggleClass* The panel class to control
 
 ---
@@ -1222,53 +1237,60 @@ Playback buttons
 
 ---
 
-### Function: StopWatch 
- This is a stopwatch that will be used to create a clock to manage tracks play position
+### Class: StopWatch
 
- modified from https://gist.github.com/electricg/4372563()
+This is a stopwatch that will be used to create a clock to manage tracks play position
+
+ modified from https://gist.github.com/electricg/4372563
 
 ---
 
-#### Method: now 
- Gets current time()
+#### Method: StopWatch.now()
+
+Gets current time
 
 ##### Return:
 
-* current time
+* **String** current time
 
 ---
 
-#### Method: start 
- start the clock()
+#### Method: StopWatch.start()
+
+Starts the clock
 
 ---
 
-#### Method: stop 
- stop the clock()
+#### Method: StopWatch.stop()
+
+Stops the clock
 
 ---
 
-#### Method: reset 
- reset the clock time values()
+#### Method: StopWatch.reset()
+
+Reset the clock time values
 
 ---
 
-#### Method: getTime 
- get the runtime()
+#### Method: StopWatch.getTime()
+
+Get the runtime
 
 ##### Return:
 
-* the runtime
+* **Integer** The runtime
 
 ---
 
-#### Method: pad 
- gives a number formated with leading zeroes(num, size)
+#### Method: StopWatch.pad(num, size)
+
+Gives a number formated with leading zeroes
 
 ##### Params:
 
-* *num* the number to pad
-* *size* how many digits to show
+* **Integer** *num* The number to pad
+* **Integer** *size* How many digits to show
 
 ##### Return:
 
@@ -1276,12 +1298,13 @@ Playback buttons
 
 ---
 
-#### Method: formatTime 
-Formats the time display(time)
+#### Method: StopWatch.formatTime(time)
+
+Formats the time display
 
 ##### Params:
 
-* *time* The timestamp to display
+* **Integer** *time* The timestamp to display
 
 ##### Return:
 
@@ -1289,66 +1312,73 @@ Formats the time display(time)
 
 ---
 
-#### Method: setId 
- sets the id of the element to insert the clock(id)
+#### Method: StopWatch.setId(id)
+
+Sets the id of the element to insert the clock
 
 ##### Params:
 
-* *id* the id of the element
+* **String** *id* The id of the element
 
 ---
 
-#### Method: getId 
- get the Id of the element that has the clock()
+#### Method: StopWatch.getId()
+
+Get the Id of the element that has the clock
 
 ##### Return:
 
-* the id of the clock
+* **String** The id of the clock
 
 ---
 
-#### Method: setClocktimer 
- sets the display interval of the clock, In other words it animates changes in time()
+#### Method: StopWatch.setClocktimer()
+
+Sets the display interval of the clock, In other words it animates changes in time
 
 ---
 
-#### Method: clearClocktimer 
- clears the display interval of the clock, in other words it stops animation()
+#### Method: StopWatch.clearClocktimer()
+
+Clears the display interval of the clock, in other words it stops animation
 
 ---
 
-#### Method: update 
- interval function, writes the time of the clock into the element.()
+#### Method: StopWatch.update()
+
+Interval function, writes the time of the clock into the element.
 
 ---
 
-#### Method: adjust 
-adjusts the clock to a given time(mod)
+#### Method: StopWatch.adjust(mod)
+
+Adjusts the clock to a given time.
 
 ##### Params:
 
-* *mod* the value to adjust the time by
+* **Integet** *mod* The value to adjust the time by.
 
 ##### Return:
 
-* the current laptime
+* **Integer** The current laptime.
 
 ---
 
-#### Method: run 
- This is the command function to the clock, it accepts(action, option)
+#### Method: StopWatch.run(action, option)
+
+This is the command function to the clock, it accepts
 
 ##### Params:
 
-* *action* 'START' - Starts the stopwatch                      'STOP'  -   Stops the stopwatch
-                     'RESET' -   Restarts the stopwatch
-                     'INIT'  -   Initializes the stopwatch
-* *option* Any options that an action requires.          null        no options
-         idString    Required by 'INIT', the idstring of the element that will display the clock
+* **String** *action* 'START' - Starts the stopwatch                          'STOP'  -   Stops the stopwatch
+                         'RESET' -   Restarts the stopwatch
+                         'INIT'  -   Initializes the stopwatch
+* **String** *option* Any options that an action requires.                          null        no options
+                         idString    Required by 'INIT', the idstring of the element that will display the clock
 
 ##### Return:
 
-* The lapTime or RunTime on the stopwatch
+* **Integer|Null** The lapTime or RunTime on the stopwatch
 
 <!-- End www\app\js\StopWatch.js -->
 

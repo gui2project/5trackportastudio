@@ -90,7 +90,7 @@ function DropDown() {
             console.log(_this.history);
 
             if (_this.history.length === 1) {
-                ret = 'INIT';
+                ret = _this.stateHistory.top();
             } else {
                 ret = _this.history.pop();
             }
@@ -148,11 +148,15 @@ function DropDown() {
          *  Closes the DropDown menu
          *
          *  @method   DropDown.close
+         *  @param {Integer} speed THe speed to close the dropdown
          */
-        close: function () {
+        close: function (speed) {
+
+            speed = dVar(speed, _this.speed);
+
             console.log('  Closing "dropdown"');
             $(_this.dropDownId)
-                .slideUp(_this.speed);
+                .slideUp(speed);
             _this.state = false;
         },
 
@@ -210,12 +214,20 @@ function DropDown() {
 
                         //  add items to catalog
                         data.forEach(function (item) {
+
                             var classes = 'col-xs-4 col-sm-3 col-md-2 col-lg-2';
                             var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span>';
-                            var url = item.image ? item.image : '';
-                            var image = '<img class="fx-catalog-panel-item-image" src="' + url + '"/>';
-
+                            var url = item.image ? item.image : '/app/img/favicon-white.png';
+                            var image = '<img class="fx-catalog-panel-item-image" src="' + url + '" class="square-image-centered"/>';
                             var htmlObj = '<div class="square-wrapper ' + classes + '"><div id="effect-item-' + item.title + '" class="square-inner fx-catalog-panel-item">' + image + title + '</div></div>';
+
+                            var label = ['T1', 'T2', 'T3', 'T4'];
+                            var labelClass = 'track-selector col-xs-3 col-sm-12 col-md-12 col-lg-12';
+                            item.actions = '<div class="' + labelClass + '"><button>' + label[0] + '</button></div>';
+                            item.actions += '<div class="' + labelClass + '"><button>' + label[1] + '</button></div>';
+                            item.actions += '<div class="' + labelClass + '"><button>' + label[2] + '</button></div>';
+                            item.actions += '<div class="' + labelClass + '"><button>' + label[3] + '</button></div>';
+
                             //  Add Element
                             $(container)
                                 .append(htmlObj);
@@ -224,17 +236,14 @@ function DropDown() {
                             $('#effect-item-' + item.title)
                                 .on('click', function () {
                                     console.log('#effect-item-' + item.title + ' was clicked');
-                                    console.log(item);
                                     _this.panel.set.information(item);
                                     _this.panel.display.toggle(true, '.information-panel');
                                 })
                                 .mouseover(function () {
                                     console.log('#effect-item-' + item.title + ' was hovered');
-
                                 })
                                 .mouseleave(function () {
                                     console.log('#effect-item-' + item.title + ' was left');
-                                    //_this.panel.display.toggle(false, '.information-panel');
                                 });
 
                         });
@@ -379,9 +388,10 @@ function DropDown() {
                 console.log('dropdown.panel.set.information', obj);
                 $(_this.dropDownId + ' .information-panel .information-title')
                     .html(obj.title);
-                $(_this.dropDownId + ' .information-panel .information-desc')
+                $(_this.dropDownId + ' .information-panel .information-description')
                     .html(obj.desc);
-                //$(_this.dropDownId + ' .information-panel-actions').html(obj.actions);
+                $(_this.dropDownId + ' .information-actions-panel .information-actions')
+                    .html(obj.actions);
             }
         },
 
@@ -413,14 +423,51 @@ function DropDown() {
              *  @param  {Boolean}   state           The display state of a panel
              *  @param  {String}    toggleClass     The panel class to control
              */
-            toggle: function (state, toggleclass) {
-                console.log('  Toggling display of', toggleclass, 'to', state);
+            toggle: function (state, toggleClass) {
+                console.log('  Toggling display of', toggleClass, 'to', state);
+
+                var showSpace = ['.information-panel'];
+
                 if (state) {
-                    $(_this.dropDownId + ' ' + toggleclass)
+
+                    showSpace.forEach(function (className) {
+                        _this.panel.display.spaceHolder(className, toggleClass);
+                    });
+
+                    $(_this.dropDownId + ' ' + toggleClass)
                         .addClass('display');
+
                 } else {
-                    $(_this.dropDownId + ' ' + toggleclass)
+
+                    $(_this.dropDownId + ' ' + toggleClass)
+                        .removeClass('hide-hold-space')
                         .removeClass('display');
+                }
+            },
+            /**
+             *  Makes a panel take up space on first view.
+             *
+             *  @method DropDown.panel.display.toggle
+             *  @param  {Boolean}   className       The display state of a panel
+             *  @param  {String}    toggleClass     The panel class to control
+             */
+            spaceHolder: function (className, toggleClass) {
+                console.log('spaceholder');
+
+                if (toggleClass === className) {
+                    console.log('class match');
+
+                    if (!($(_this.dropDownId + ' ' + toggleClass)
+                            .hasClass('display'))) {
+
+                        console.log('being displayed');
+                        $(_this.dropDownId + ' ' + toggleClass)
+                            .addClass('hide-hold-space');
+
+                    } else {
+                        $(_this.dropDownId + ' ' + toggleClass)
+                            .removeClass('hide-hold-space');
+                    }
                 }
             },
             /**
@@ -444,6 +491,7 @@ function DropDown() {
                 _this.panel.display.toggle(state, '.login-panel');
                 _this.panel.display.toggle(state, '.register-panel');
                 _this.panel.display.toggle(state, '.information-panel');
+                _this.panel.display.toggle(state, '.information-actions-panel');
             },
             /**
              *  Modify the display state of all right side panels
@@ -603,6 +651,9 @@ function DropDown() {
 
         this.panel.display.toggle(false, '.api-panel');
 
+        $('.dropdown .holder')
+            .removeClass('sticky-wrapper');
+
         //  Switching views
         switch (view) {
         case 'ALL':
@@ -640,6 +691,11 @@ function DropDown() {
 
             this.panel.display.all(false);
 
+            $('.dropdown .holder')
+                .addClass('sticky-wrapper');
+
+            this.panel.display.toggle(true, '.information-panel');
+            this.panel.display.toggle(true, '.information-actions-panel');
             this.panel.display.toggle(true, '.fx-catalog-panel');
 
             this.dropdown.open();
@@ -684,13 +740,23 @@ function DropDown() {
 
         case 'RESET':
             this.panel.display.all(false);
-
+            this.panel.set.information({
+                title: '',
+                desc: '',
+                actions: ''
+            });
             this.show(this.stateHistory.top());
             return;
 
         case 'BACK':
             this.stateHistory.pop();
+            this.dropdown.close(0);
             this.show(this.stateHistory.pop());
+            this.panel.set.information({
+                title: '',
+                desc: '',
+                actions: ''
+            });
             return;
         }
     };

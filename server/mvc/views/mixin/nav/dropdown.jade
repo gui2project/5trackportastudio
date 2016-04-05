@@ -18,7 +18,7 @@ mixin dropdown(id)
     .dropdown.col-md-12.col-sm-12.col-xs-12(id=id)
         .holder
             //  Dropdown left
-            .dropdown-left.col-md-3.col-sm-4.col-xs-12
+            .dropdown-left.col-md-3.col-sm-4.col-xs-12.sticky-xs.sticky-sm
                 //  Dropdown left wait
                 .panel.wait-left-panel.wait.col-md-12.col-sm-12.col-xs-12
                 //  Dropdown left panels
@@ -28,7 +28,7 @@ mixin dropdown(id)
                 +information-panel()
                 //- +menu-panel()
             //  Dropdown rigt
-            .dropdown-right.col-md-9.col-sm-8.col-xs-12
+            .dropdown-right.col-md-9.col-sm-8.col-xs-12.not-sticky-xs.not-sticky-sm
                 //  Dropdown right wait
                 .panel.wait-right-panel.wait.col-md-12.col-sm-12.col-xs-12
                 //  Dropdown right panels
