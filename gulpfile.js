@@ -216,7 +216,7 @@ gulp.task('git.prepare', 'Checks, formats, and documents code base', ['code.form
     });
 //  Run git add with -A option
 gulp.task('git.add', false, ['git.prepare', 'git.rm.lock'],
-    function (cb) {
+    function () {
         return gulp.src('./')
             .pipe(git.add(ini.opt.git.add));
     });
@@ -231,19 +231,22 @@ gulp.task('git.commit', false, ['git.add'],
 //  Run git pull
 gulp.task('git.pull', 'Gets the latest code base from the repository.', ['git.commit'],
     function () {
-        return git.pull('origin', 'master', gulpError.git);
+        return gulp.src('./')
+            .pipe(git.pull('origin', 'master', gulpError.git));
     },
     ini.opt.git.commit);
 //  Push to master
 gulp.task('git.push.master', false, ['git.pull'],
     function () {
-        return git.push('origin', 'master', gulpError.git);
+        return gulp.src('./')
+            .pipe(git.push('origin', 'master', gulpError.git));
     },
     ini.opt.git.commit);
 //  Push to heroku
 gulp.task('git.push.heroku', false, ['git.push.master'],
     function () {
-        return git.push('origin', 'master:heroku', gulpError.git);
+        return gulp.src('./')
+            .pipe(git.push('origin', 'master:heroku', gulpError.git));
     },
     ini.opt.git.commit);
 //  Store Credentials
