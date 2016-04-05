@@ -360,7 +360,7 @@ main > .container > .row-container .playback > div {
 }
 
 main > .container > .row-container .playback > div > button {
-    width: 95%;
+    width: 90%;
     height: 40px;
 }
 
@@ -462,6 +462,11 @@ p.response {
     float: left !important;
 }
 
+.square-wrapper > .square-inner > img {
+    width: 100%;
+    height: 100%;
+}
+
 @media only screen and (max-width: 768px) {
     .sticky-wrapper > .not-sticky-xs {
         overflow-y: auto;
@@ -494,5 +499,9 @@ p.response {
     .square-wrapper > .square-inner {
         width: 100px;
         height: 100px;
+    }
+
+    .square-wrapper > button.square-inner {
+        width: 95%;
     }
 }
