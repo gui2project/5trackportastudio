@@ -14,25 +14,25 @@ button,
     background-color: #FAFAFA;
 }
 
-.panel,
-.navbar-default,
+.container,
 .dropdown,
 .dropdown .holder > div,
-.container {
+.navbar-default,
+.panel {
     background-color: #212121;
 }
 
-.stopWatch,
+.data-active,
 .information-image,
 .panel button,
-.data-active {
+.stopWatch {
     background-color: #149BDF;
 }
 
-.fx-catalog-panel-item,
 .error,
-.panel-entry,
+.fx-catalog-panel-item,
 .hover,
+.panel-entry,
 .splash {
     background-color: #333333;
 }
@@ -50,36 +50,37 @@ button,
     color: #333333;
 }
 
-.name input,
-input.editable-text {
+input.editable-text,
+.name input {
     color: #212121;
 }
 
-.panel .title .fa,
-.api-row-options,
 .api-item-url,
-.navbar-brand-label:hover,
-.navbar-right-links > a > span:hover,
+.api-row-options,
 .icon-right .fa,
 .icon-right.pass .fa-check,
 .icon-right.pass .fa-lock,
+.navbar-brand-label:hover,
+.navbar-right-links > a > span:hover,
+.panel .title .fa,
 .splash-label {
     color: #149BDF;
 }
 
-main > .container,
-.panel button,
-.dropdown,
-.navbar-right-links a span,
-.navbar-info-display,
-.navbar-header > a > span,
-.navbar-brand-label,
-.splash-brand-label,
-.navbar-default .navbar-brand,
-.instructions,
-.fx-catalog-panel-item-title,
 .armed,
-.data-active {
+.data-active,
+.dropdown,
+.fx-catalog-panel-item-title,
+.instructions,
+main > .container,
+.navbar-default .navbar-brand,
+.navbar-brand-label,
+.navbar-header > a > span,
+.navbar-info-display,
+.navbar-right-links a span,
+.panel button,
+.splash-brand-label,
+.row {
     color: #FAFAFA;
 }
 

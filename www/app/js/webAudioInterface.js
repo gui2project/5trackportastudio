@@ -99,13 +99,12 @@ function eq(trackNumber, type, amount) {
     }
 }
 
-
 //Reset Project
-function resetMix(){
-track = [null, null, null, null];
+function resetMix() {
+    track = [null, null, null, null];
 
     track.forEach(function (item, index) {
         track[index] = new TrackTemplate();
         track[index].InitTrack();
-    })
-};
+    });
+}
