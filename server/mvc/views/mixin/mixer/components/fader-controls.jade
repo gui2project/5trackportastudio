@@ -1,3 +1,5 @@
+include ../../icon-header.jade
+
 mixin fader-controls(trknum)
     // Fader Controls
     div.row
@@ -7,4 +9,4 @@ mixin fader-controls(trknum)
                     i MUTE
             div.record.col-md-6.col-sm-6.col-xs-6(class='track-fader-record', value=trknum)
                 button
-                    i.fa.fa-circle
+                    +icon-header('record', 'Record', false, false)

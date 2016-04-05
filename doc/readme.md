@@ -25,7 +25,8 @@ This readme holds the documentation for the code in the project, it is dynamical
 	  git.master            Pushes code to master branch. 
 	   --m="message"        Commit message to use.
 	  git.prepare           Checks, formats, and documents code base
-	  git.pull              Gets the latest code base from the repository.
+	  git.pull              Gets the latest code base from the repository. 
+	   --m="message"        Commit message to use.
 	  help                  Display this help text.
 	  mongodb.config        Shows the MongoDB config file in json.
 	  mongodb.create        Creates MongoDB service on windows.

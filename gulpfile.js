@@ -226,22 +226,26 @@ gulp.task('git.commit', false, ['git.add'],
         var message = argv.m ? argv.m : 'Pushing with Gulp.';
         return gulp.src('./')
             .pipe(git.commit(message));
-    }, ini.opt.git.commit);
+    },
+    ini.opt.git.commit);
 //  Run git pull
 gulp.task('git.pull', 'Gets the latest code base from the repository.', ['git.commit'],
     function () {
         return git.pull('origin', 'master', gulpError.git);
-    });
+    },
+    ini.opt.git.commit);
 //  Push to master
 gulp.task('git.push.master', false, ['git.pull'],
     function () {
         return git.push('origin', 'master', gulpError.git);
-    });
+    },
+    ini.opt.git.commit);
 //  Push to heroku
 gulp.task('git.push.heroku', false, ['git.push.master'],
     function () {
         return git.push('origin', 'master:heroku', gulpError.git);
-    });
+    },
+    ini.opt.git.commit);
 //  Store Credentials
 gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
     function (cb) {

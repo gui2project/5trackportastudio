@@ -1,3 +1,5 @@
+include ../../icon-header.jade
+
 include ../components/trackname.jade
 include ../components/StopWatch.jade
 
@@ -14,13 +16,13 @@ mixin master(masterNum)
             div.playback.col-md-124.col-sm-12.col-xs-12
                 div.col-md-3.col-sm-3.col-xs-3
                     button.stop.data-not-active.data-active(value="Stop")
-                        i.fa.fa-stop
+                        +icon-header('stop', 'Stop', false, false)
                 div.col-md-3.col-sm-3.col-xs-3
                     button.play.data-not-active(value="Play")
-                        i.fa.fa-play
+                        +icon-header('play', 'Play', false, false)
                 div.col-md-3.col-sm-3.col-xs-3
                     button.rewind.data-not-active(value="Rewind")
-                        i.fa.fa-backward
+                        +icon-header('rewind', 'Rewind', false, false)
                 div.col-md-3.col-sm-3.col-xs-3
                     button.forward.data-not-active(value="Fast Forward")
-                        i.fa.fa-forward
+                        +icon-header('forward', 'Fast Forward', false, false)
