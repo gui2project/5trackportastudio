@@ -5,52 +5,52 @@
  */
 
 /* BACKGROUND-COLORS*/
+body,
+html,
 button,
 .data-not-active,
 .fx-catalog-label,
-.mix-catalog-label,
-.dropdown button {
+.mix-catalog-label {
     background-color: #FAFAFA;
-}
-
-main > .container {
-    background-color: #212121;
-}
-
-div.stopWatch,
-.information-image,
-.fx-catalog-panel-item,
-.panel button,
-.data-active {
-    background-color: #149BDF;
-}
-
-.error,
-.panel-entry,
-span.hover,
-.splash {
-    background-color: #333;
 }
 
 .panel,
 .navbar-default,
 .dropdown,
-footer {
-    background-color: #181818;
+.dropdown .holder > div,
+.container {
+    background-color: #212121;
 }
+
+.stopWatch,
+.information-image,
+.panel button,
+.data-active {
+    background-color: #149BDF;
+}
+
+.fx-catalog-panel-item,
+.error,
+.panel-entry,
+.hover,
+.splash {
+    background-color: #333333;
+}
+
+button.armed,
+button.exit {
+    background-color: #FF007D;
+}
+
 
 /* FONT COLORS */
+button,
 .data-not-active,
 .stopWatch > .timedisplay {
-    color: #333333 !important;
+    color: #333333;
 }
 
-button,
-.dropdown button {
-    color: #181818;
-}
-
-main .name input,
+.name input,
 input.editable-text {
     color: #212121;
 }
@@ -59,63 +59,51 @@ input.editable-text {
 .api-row-options,
 .api-item-url,
 .navbar-brand-label:hover,
-span.navbar-brand-label:hover,
-div.navbar-right-links > a > span:hover,
-span.icon-right .fa,
+.navbar-right-links > a > span:hover,
+.icon-right .fa,
 .icon-right.pass .fa-check,
 .icon-right.pass .fa-lock,
-.splash-label,
-header > .navbar > .container > .navbar-right-links > a > span:hover {
+.splash-label {
     color: #149BDF;
 }
 
 main > .container,
 .panel button,
 .dropdown,
-div.navbar-right-links a.link-sign-in span,
-div.navbar-right-links a.link-register span,
-div.navbar-right-links a.link-sign-out span,
+.navbar-right-links a span,
 .navbar-info-display,
 .navbar-header > a > span,
 .navbar-brand-label,
 .splash-brand-label,
 .navbar-default .navbar-brand,
 .instructions,
-.fx-catalog-panel-item-title {
+.fx-catalog-panel-item-title,
+.armed,
+.data-active {
     color: #FAFAFA;
 }
 
-.data-active {
-    color: #FAFAFA !important;
-}
-
-main .solo button,
-main .mute button,
-main .record button,
-main .playback button,
+.information-title,
 .api-item-param,
 .api-url-param,
 .icon-right.err .fa-times,
 .icon-right.err .fa-unlock,
-span.hover,
-label.error {
+.hover,
+.error,
+.warning {
     color: #FF007D;
 }
 
-.warning {
-    color: #FF007D !important;
-}
-
 /* BORDER COLORS*/
+.hover,
 .error,
-.panel-entry,
-span.hover {
+.panel-entry {
     border-color: #181818;
 }
 
+.fx-catalog-panel-item,
 .navbar-brand-label:hover,
-span.navbar-brand-label:hover,
-div.navbar-right-links > a > span:hover {
+.navbar-right-links a span:hover {
     border-color: #149BDF;
 }
 
@@ -128,15 +116,15 @@ div.navbar-right-links > a > span:hover {
 }
 
 /*IMAGES*/
-header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label,
+.navbar-brand-label,
 .splash-brand-label {
     background-image: url('/app/img/favicon-white.png');
 }
 
-main > header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label:hover {
+.navbar-brand-label:hover {
     background-image: url('/app/img/favicon-blue.png');
 }
 
-main > .container > .row-container .track-fader-slider .slider-handle {
+.slider-handle {
     background-image: url('/app/img/Fader.png');
 }

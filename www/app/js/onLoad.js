@@ -314,6 +314,16 @@ $(document)
                 dd.show('TOGGLE');
             });
 
+        //  Setup exit of panel
+        $('.link-exit')
+            .on('click', function () {
+                dd.show('BACK');
+            });
+        //  Setup FX click
+        $('.link-fx-box')
+            .on('click', function () {
+                dd.show('FX');
+            });
         // Setup up logout
         $('.link-sign-out')
             .on('click', function () {

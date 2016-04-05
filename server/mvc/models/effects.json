@@ -2,28 +2,140 @@
     {
         "title": "Reverb",
         "desc": "Simulates a large hall",
-        "image": "",
+        "image": "/app/img/effects/reverb.png",
         "function": "track[trackNumber-1].toggleEffect('REVERB')",
         "parameters": ""
     },
     {
         "title": "PingPong",
         "desc": "Creates an \"ping-pong\" echo effect",
-        "image": "",
+        "image": "/app/img/effects/ping_pong.png",
         "function": "track[trackNumber-1].toggleEffect('ECHO')",
         "parameters": ""
     },
     {
         "title": "Chorus",
         "desc": "Makes one instrument sound like multiple instruments",
-        "image": "",
+        "image": "/app/img/effects/chorus.png",
         "function": "track[trackNumber-1].toggleEffect('CHORUS')",
         "parameters": ""
     },
     {
         "title": "WahWah",
         "desc": "Gives your instrument a \"Wah\" sound effect",
-        "image": "",
+        "image": "/app/img/effects/wah_wah.png",
+        "function": "track[trackNumber-1].toggleEffect('WAHWAH')",
+        "parameters": ""
+    },
+    {
+        "title": "Reverb1",
+        "desc": "Simulates a large hall",
+        "image": "/app/img/effects/reverb.png",
+        "function": "track[trackNumber-1].toggleEffect('REVERB')",
+        "parameters": ""
+    },
+    {
+        "title": "PingPong2",
+        "desc": "Creates an \"ping-pong\" echo effect",
+        "image": "/app/img/effects/ping_pong.png",
+        "function": "track[trackNumber-1].toggleEffect('ECHO')",
+        "parameters": ""
+    },
+    {
+        "title": "Chorus3",
+        "desc": "Makes one instrument sound like multiple instruments",
+        "image": "/app/img/effects/chorus.png",
+        "function": "track[trackNumber-1].toggleEffect('CHORUS')",
+        "parameters": ""
+    },
+    {
+        "title": "WahWah4",
+        "desc": "Gives your instrument a \"Wah\" sound effect",
+        "image": "/app/img/effects/wah_wah.png",
+        "function": "track[trackNumber-1].toggleEffect('WAHWAH')",
+        "parameters": ""
+    },
+    {
+        "title": "Reverb5",
+        "desc": "Simulates a large hall",
+        "image": "/app/img/effects/reverb.png",
+        "function": "track[trackNumber-1].toggleEffect('REVERB')",
+        "parameters": ""
+    },
+    {
+        "title": "PingPong6",
+        "desc": "Creates an \"ping-pong\" echo effect",
+        "image": "/app/img/effects/ping_pong.png",
+        "function": "track[trackNumber-1].toggleEffect('ECHO')",
+        "parameters": ""
+    },
+    {
+        "title": "Chorus7",
+        "desc": "Makes one instrument sound like multiple instruments",
+        "image": "/app/img/effects/chorus.png",
+        "function": "track[trackNumber-1].toggleEffect('CHORUS')",
+        "parameters": ""
+    },
+    {
+        "title": "WahWah8",
+        "desc": "Gives your instrument a \"Wah\" sound effect",
+        "image": "/app/img/effects/wah_wah.png",
+        "function": "track[trackNumber-1].toggleEffect('WAHWAH')",
+        "parameters": ""
+    },
+    {
+        "title": "Reverb9",
+        "desc": "Simulates a large hall",
+        "image": "/app/img/effects/reverb.png",
+        "function": "track[trackNumber-1].toggleEffect('REVERB')",
+        "parameters": ""
+    },
+    {
+        "title": "PingPong00",
+        "desc": "Creates an \"ping-pong\" echo effect",
+        "image": "/app/img/effects/ping_pong.png",
+        "function": "track[trackNumber-1].toggleEffect('ECHO')",
+        "parameters": ""
+    },
+    {
+        "title": "Chorus11",
+        "desc": "Makes one instrument sound like multiple instruments",
+        "image": "/app/img/effects/chorus.png",
+        "function": "track[trackNumber-1].toggleEffect('CHORUS')",
+        "parameters": ""
+    },
+    {
+        "title": "WahWah12",
+        "desc": "Gives your instrument a \"Wah\" sound effect",
+        "image": "/app/img/effects/wah_wah.png",
+        "function": "track[trackNumber-1].toggleEffect('WAHWAH')",
+        "parameters": ""
+    },
+    {
+        "title": "Reverb14",
+        "desc": "Simulates a large hall",
+        "image": "/app/img/effects/reverb.png",
+        "function": "track[trackNumber-1].toggleEffect('REVERB')",
+        "parameters": ""
+    },
+    {
+        "title": "PingPong26",
+        "desc": "Creates an \"ping-pong\" echo effect",
+        "image": "/app/img/effects/ping_pong.png",
+        "function": "track[trackNumber-1].toggleEffect('ECHO')",
+        "parameters": ""
+    },
+    {
+        "title": "Chorus46",
+        "desc": "Makes one instrument sound like multiple instruments",
+        "image": "/app/img/effects/chorus.png",
+        "function": "track[trackNumber-1].toggleEffect('CHORUS')",
+        "parameters": ""
+    },
+    {
+        "title": "WahWah36",
+        "desc": "Gives your instrument a \"Wah\" sound effect",
+        "image": "/app/img/effects/wah_wah.png",
         "function": "track[trackNumber-1].toggleEffect('WAHWAH')",
         "parameters": ""
     }

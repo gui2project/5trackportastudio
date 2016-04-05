@@ -18,6 +18,11 @@ body {
 
 /*NAVIGATION*/
 header {
+    z-index: 1000;
+}
+
+/*MENUBAR*/
+header > .navbar {
     border-bottom: 0;
     height: 50px;
     left: 0;
@@ -27,7 +32,6 @@ header {
     z-index: 1001;
 }
 
-/*MENUBAR*/
 header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label {
     height: 40px;
     background-repeat: no-repeat;
@@ -75,19 +79,20 @@ header > .dropdown {
     border-style: outset;
     border-width: 1px;
     display: none;
+    height: 100%;
     left: 0;
     right: 0;
     overflow-y: auto;
     padding: 0;
-    position: absolute;
+    position: fixed;
     top: 50px;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 header > .dropdown > .holder {
-    height: 700px;
-    float: left;
-    width: 100%;
+    padding-bottom: 20px;
+    overflow-y: auto;
+    height: 100%;
 }
 
 header > .dropdown > .holder > .dropdown-left,
@@ -98,6 +103,7 @@ header > .dropdown > .holder > .dropdown-right {
 header > .dropdown > .holder .panel {
     display: none;
     margin-top: 10px;
+    margin-bottom: 0;
 }
 
 header > .dropdown > .holder .panel .title .fa {
@@ -138,16 +144,57 @@ header > .dropdown > .holder .panel .row.title {
 /*FX*/
 .fx-catalog-panel-item {
     margin: 10px 10px 10px 10px;
+    border-width: 1px;
+    border-style: solid;
 }
 
 .fx-catalog-panel-item-title {
-    height: 100%;
     text-align: center;
     width: 100%;
     float: left;
     margin-top: 10px;
 }
 
+.fx-catalog-panel-item-image {
+    height: 100%;
+    width: 100%;
+    padding: 5%;
+}
+
+/*INFO*/
+.information-panel {
+    height: 100px;
+    /*position:absolute;*/
+    ;
+}
+
+.track-selector {
+    float: left;
+    margin: 0;
+    padding: 5px;
+}
+
+.track-selector > button,
+button.exit {
+    width: 100%;
+    line-height: 30px;
+    height: 30px;
+    margin: 15px 0;
+}
+
+.information-exit {
+    padding: 0 0 0 7%;
+}
+
+.information-description {
+    height: 50px;
+}
+
+.information-actions {
+    width: 100%;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
 /*MIXER*/
 main {
     bottom: 0;
@@ -179,28 +226,22 @@ main > .container > .row-container .row:first-child {
     border-top: none;
 }
 
-/*TRACKS*/
-main > .container > .row-container > .track {
+/*SECTIONS*/
+main > .container > .row-container > .track,
+main > .container > .row-container > .master {
     border-width: 1px;
     border-style: outset;
     margin: 0;
-    height: 750px;
     text-align: center;
 }
 
+/*TRACKS*/
 main > .container > .row-container > .track:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
 /*MASTER*/
-main > .container > .row-container > .master {
-    border-width: 1px;
-    border-style: outset;
-    margin: 0;
-    height: 750px;
-}
-
 main > .container > .row-container > .master:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -271,22 +312,34 @@ main > .container > .row-container .track-fader > div > button {
     width: 90%;
     height: 40px;
 }
-
 /*FADER SLIDER*/
+main > .container > .row-container .track-fader-slider {
+    margin-bottom: 30px;
+}
+
 main > .container > .row-container .track-fader-slider .slider-handle {
     width: 20px;
     height: 50px;
-    background: transparent none;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 /*EFFECTS BOX*/
 main > .container > .row-container .fx-box {
-    width: 90%;
     height: 40px;
+    width: 100%;
 }
 
+main > .container > .row-container .fx-box > div {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+main > .container > .row-container .fx-box > div > button {
+    width: 95%;
+    height: 40px;
+}
 /*TIMER*/
 main > .container > .row-container .stopWatch {
     border-width: 1px;
@@ -300,9 +353,15 @@ main > .container > .row-container .stopWatch > .timedisplay {
 }
 
 /*PLAY CONTROLS*/
-main > .container > .row-container .playback button {
-    padding: 10px;
-    width: 100%;
+main > .container > .row-container .playback > div {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+main > .container > .row-container .playback > div > button {
+    width: 95%;
+    height: 40px;
 }
 
 /*SPLASH SCREENS*/
@@ -378,21 +437,62 @@ p.response {
     z-index: 100;
 }
 
-/*SHAPES*/
-.squaring-wrapper {
-    float: left !important;
-}
-
-.square-wrapper > .square-inner {
-    width: 100%;
-    padding-bottom: 100%;
-}
-
 /*OVERRIDES*/
 .display {
     display: block !important;
+    visibility: visible !important;
+}
+
+.hide-hold-space {
+    display: block !important;
+    visibility: hidden !important;
 }
 
 .pointer {
     cursor: pointer;
+}
+
+/* WRAPPERS */
+.sticky-wrapper {
+    position: relative;
+    height: 450px;
+}
+
+.square-wrapper {
+    float: left !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .sticky-wrapper > .not-sticky-xs {
+        overflow-y: auto;
+        height: 100% !important;
+        padding-top: 320px;
+    }
+
+    .sticky-wrapper > .sticky-xs {
+        position: absolute;
+        top: 0;
+        z-index: 1005;
+    }
+
+    .square-wrapper > .square-inner {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .sticky-wrapper > .not-sticky-sm {
+        overflow-y: auto;
+        height: 100%;
+    }
+
+    .sticky-wrapper > .sticky-xs {
+        top: 0;
+        z-index: 1005;
+    }
+
+    .square-wrapper > .square-inner {
+        width: 100px;
+        height: 100px;
+    }
 }

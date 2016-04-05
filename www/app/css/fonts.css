@@ -29,20 +29,14 @@ div.stopWatch > div.timedisplay {
     font-style: italic;
 }
 
-main .solo button,
-main .mute button,
-main .record button {
+button {
     font-weight: bold;
 }
 
-label.error {
-    font-weight: normal;
-}
-
 body,
-.sys-font,
-label {
-    font-weight: 300;
+label,
+.sys-font {
+    font-weight: normal;
 }
 
 .splash-brand-label,
