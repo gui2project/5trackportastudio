@@ -14,8 +14,9 @@ mixin track(trknum)
         +knob(trknum, 'Bass', 'eq','-','+','LOW')
         // Pan
         +knob(trknum, 'Pan','pan','L','R')
+        //Mute,Record
+        +fader-controls(trknum)
         // Fader
         +fader-slider(trknum)
         // FX Box
         +fx-box(trknum)
-        +fader-controls(trknum)

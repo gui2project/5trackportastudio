@@ -143,15 +143,15 @@ $(function () {
                 // Turn off armed
                 $(this)
                     .attr('data-muted', 0)
-                    .addClass('armed');
+                    .removeClass('armed');
 
                 muteToggle(trackNumber);
 
-            } else {
+            } else if(!isMuted) {
                 // Turn on armed
                 $(this)
                     .attr('data-muted', 1)
-                    .removeClass('armed');
+                    .addClass('armed');
 
                 muteToggle(trackNumber);
 
