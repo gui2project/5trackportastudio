@@ -30,14 +30,14 @@ var map = {
         web: '/dep/jquery-ui',
         sys: paths.jqueryui
     }, {
-        web: '/dep/jquery-validation/',
+        web: '/dep/jquery-validation',
         sys: paths.jqueryvalidation
     }, {
-        web: '/dep/js-cookie/',
+        web: '/dep/js-cookie',
         sys: paths.jscookie
     }],
     dynamic: [{
-        web: '/',
+        web: '/mixer',
         sys: path.join(paths.ctrl, 'main'),
         call: 'index'
     }]
