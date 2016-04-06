@@ -289,7 +289,7 @@ function TrackTemplate() {
             break;
         case 'PINGPONG':
             _this.effect.container = pingPong;
-            _this.effect.name = 'ECHO';
+            _this.effect.name = 'PINGPONG';
             break;
         case 'CHORUS':
             _this.effect.container = chorus;
