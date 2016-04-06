@@ -38,6 +38,7 @@ var StopWatch = function () {
      *  start the clock
      */
     this.start = function () {
+               trip.start();
         _this.startAt = _this.startAt ? _this.startAt : _this.now();
     };
 
