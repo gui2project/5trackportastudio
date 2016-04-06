@@ -3,5 +3,6 @@ include ../../icon-header.jade
 mixin fader-slider(trknum)
     // Fader Slider
     div.row
-        div.fader.track-fader-slider(value=trknum)
+        div.col-md-6.fader.track-fader-slider(value=trknum)
             input.slider(type='text')
+        div.col-md-6.meter(data-vol=0)
