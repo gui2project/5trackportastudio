@@ -178,14 +178,11 @@ button.exit {
     width: 100%;
 }
 
-.information-exit {
-    padding: 0 0 0 7%;
-}
-
 .information-description {
     height: 50px;
 }
 
+.information-exit,
 .information-actions {
     margin-bottom: 0;
     margin-left: 10px;

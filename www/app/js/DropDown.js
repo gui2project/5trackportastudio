@@ -138,6 +138,11 @@ function DropDown() {
          */
         open: function () {
             console.log('  Opening "dropdown"');
+            $(_this.dropDownId + ' .dropdown-left')
+                .fadeIn();
+            $(_this.dropDownId + ' .dropdown-right')
+                .fadeIn();
+
             $(_this.dropDownId)
                 .slideDown(_this.speed);
             _this.state = true;
@@ -155,8 +160,15 @@ function DropDown() {
             speed = dVar(speed, _this.speed);
 
             console.log('  Closing "dropdown"');
+            $(_this.dropDownId + ' .dropdown-left')
+                .fadeOut();
+
+            $(_this.dropDownId + ' .dropdown-right')
+                .fadeOut();
+
             $(_this.dropDownId)
                 .slideUp(speed);
+
             _this.state = false;
         },
 
@@ -214,38 +226,71 @@ function DropDown() {
 
                         //  add items to catalog
                         data.forEach(function (item) {
+                            var idString = ('effect-item-' + item.title)
+                                .toLowerCase();
+                            idString = idString.replace(/\s/g, '');
+
+                            console.log(idString);
 
                             var classes = 'col-xs-4 col-sm-3 col-md-2 col-lg-2';
                             var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span>';
                             var url = item.image ? item.image : '/app/img/favicon-white.png';
                             var image = '<img class="fx-catalog-panel-item-image" src="' + url + '" class="square-image-centered"/>';
-                            var htmlObj = '<div class="square-wrapper ' + classes + '"><div id="effect-item-' + item.title + '" class="square-inner fx-catalog-panel-item">' + image + title + '</div></div>';
+                            var htmlObj = '<div class="square-wrapper ' + classes + '"><div id="' + idString + '" class="square-inner fx-catalog-panel-item">' + image + title + '</div></div>';
 
                             var label = ['T1', 'T2', 'T3', 'T4'];
                             var labelClass = 'track-selector col-xs-3 col-sm-12 col-md-12 col-lg-12';
-                            item.actions = '<div class="' + labelClass + '"><button>' + label[0] + '</button></div>';
-                            item.actions += '<div class="' + labelClass + '"><button>' + label[1] + '</button></div>';
-                            item.actions += '<div class="' + labelClass + '"><button>' + label[2] + '</button></div>';
-                            item.actions += '<div class="' + labelClass + '"><button>' + label[3] + '</button></div>';
+
+                            var buttons = [];
+
+                            item.actions = '';
+                            var buttonId = '';
+
+                            for (index = 0; index < 4; ++index) {
+
+                                buttonId = idString + '-select-track-' + index;
+                                buttons.push(buttonId);
+
+                                item.actions += '<div class="' + labelClass + '">';
+                                item.actions += '<button id="' + buttonId + '">' + label[index] + '</button>';
+                                item.actions += '</div>';
+                            }
 
                             //  Add Element
                             $(container)
                                 .append(htmlObj);
 
                             //  Add Handler
-                            $('#effect-item-' + item.title)
+                            $('#' + idString)
                                 .on('click', function () {
-                                    console.log('#effect-item-' + item.title + ' was clicked');
+                                    console.log(idString + ' was clicked');
                                     _this.panel.set.information(item);
                                     _this.panel.display.toggle(true, '.information-panel');
+
+                                    buttons.forEach(function (id, index) {
+                                        console.log(id);
+                                        //  Track Selector Buttons
+                                        $('#' + id)
+                                            .on('click', function () {
+                                                console.log(id + ' was clicked');
+                                                window[item.objArray][index][item.func](item.parameter);
+                                                _this.show('BACK');
+
+                                            })
+                                            .mouseover(function () {
+                                                console.log(id + ' was hovered');
+                                            })
+                                            .mouseleave(function () {
+                                                console.log(id + ' was left');
+                                            });
+                                    });
                                 })
                                 .mouseover(function () {
-                                    console.log('#effect-item-' + item.title + ' was hovered');
+                                    console.log(idString + ' was hovered');
                                 })
                                 .mouseleave(function () {
-                                    console.log('#effect-item-' + item.title + ' was left');
+                                    console.log(idString + ' was left');
                                 });
-
                         });
                     },
                     function () {
@@ -424,7 +469,7 @@ function DropDown() {
              *  @param  {String}    toggleClass     The panel class to control
              */
             toggle: function (state, toggleClass) {
-                console.log('  Toggling display of', toggleClass, 'to', state);
+                //console.log('  Toggling display of', toggleClass, 'to', state);
 
                 var showSpace = ['.information-panel'];
 
@@ -452,15 +497,15 @@ function DropDown() {
              *  @param  {String}    toggleClass     The panel class to control
              */
             spaceHolder: function (className, toggleClass) {
-                console.log('spaceholder');
+                //console.log('spaceholder');
 
                 if (toggleClass === className) {
-                    console.log('class match');
+                    //console.log('class match');
 
                     if (!($(_this.dropDownId + ' ' + toggleClass)
                             .hasClass('display'))) {
 
-                        console.log('being displayed');
+                        //console.log('being displayed');
                         $(_this.dropDownId + ' ' + toggleClass)
                             .addClass('hide-hold-space');
 
@@ -630,6 +675,22 @@ function DropDown() {
     };
 
     /**
+     *  Resets the dropdown, clears set values
+     *
+     *  @method DropDown.reset
+     */
+    this.reset = function () {
+        this.panel.set.information({
+            title: '',
+            desc: '',
+            actions: ''
+        });
+
+        $('.dropdown .holder')
+            .removeClass('sticky-wrapper');
+    };
+
+    /**
      *  Makes the views that the dropdown manages
      *
      *  @method DropDown.show
@@ -657,13 +718,15 @@ function DropDown() {
         //  Switching views
         switch (view) {
         case 'ALL':
+            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(true);
-            this.dropdown.open();
+
             return;
 
         case 'INIT':
+            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(false);
@@ -676,6 +739,7 @@ function DropDown() {
             return;
 
         case 'LOGGED_OUT':
+            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(false);
@@ -687,6 +751,7 @@ function DropDown() {
             return;
 
         case 'FX':
+            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(false);
@@ -698,10 +763,10 @@ function DropDown() {
             this.panel.display.toggle(true, '.information-actions-panel');
             this.panel.display.toggle(true, '.fx-catalog-panel');
 
-            this.dropdown.open();
             return;
 
         case 'MIX':
+            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(false);
@@ -712,15 +777,15 @@ function DropDown() {
             this.panel.display.toggle(true, '.mix-catalog-panel');
             this.panel.display.toggle(true, '.tutorial-panel');
 
-            this.dropdown.open();
             return;
 
         case 'LOGIN':
+            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.left(false);
             this.panel.display.toggle(true, '.login-panel');
-            this.dropdown.open();
+
             return;
 
         case 'REGISTER':
@@ -732,31 +797,24 @@ function DropDown() {
             return;
 
         case 'API':
+            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.toggle(true, '.api-panel');
-            this.dropdown.open();
+
             return;
 
         case 'RESET':
-            this.panel.display.all(false);
-            this.panel.set.information({
-                title: '',
-                desc: '',
-                actions: ''
-            });
+            this.reset();
             this.show(this.stateHistory.top());
             return;
 
         case 'BACK':
+            this.reset();
             this.stateHistory.pop();
             this.dropdown.close(0);
             this.show(this.stateHistory.pop());
-            this.panel.set.information({
-                title: '',
-                desc: '',
-                actions: ''
-            });
+
             return;
         }
     };
