@@ -37,108 +37,108 @@ This readme holds the documentation for the code in the project, it is dynamical
 
 
 
-<!-- Start doc\documentation-gulp-out.md -->
-## File: doc\documentation-gulp-out.md
+<!-- Start doc/documentation-gulp-out.md -->
+## File: doc/documentation-gulp-out.md
 
-<!-- End doc\documentation-gulp-out.md -->
+<!-- End doc/documentation-gulp-out.md -->
 
 
 # JavaScript Documentation
 
 
 
-<!-- Start ini\common\cookie.js -->
-## File: ini\common\cookie.js
+<!-- Start ini/common/cookie.js -->
+## File: ini/common/cookie.js
 
 The configuration file for cookies.
 
-<!-- End ini\common\cookie.js -->
+<!-- End ini/common/cookie.js -->
 
 
 
 
-<!-- Start ini\common\db.js -->
-## File: ini\common\db.js
+<!-- Start ini/common/db.js -->
+## File: ini/common/db.js
 
 The configuration file for mongodb.
 
-<!-- End ini\common\db.js -->
+<!-- End ini/common/db.js -->
 
 
 
 
-<!-- Start ini\common\file.js -->
-## File: ini\common\file.js
+<!-- Start ini/common/file.js -->
+## File: ini/common/file.js
 
 The configuration file for mapping documents.
 
-<!-- End ini\common\file.js -->
+<!-- End ini/common/file.js -->
 
 
 
 
-<!-- Start ini\common\map.js -->
-## File: ini\common\map.js
+<!-- Start ini/common/map.js -->
+## File: ini/common/map.js
 
 The configuration file for web mapping paths.
 
-<!-- End ini\common\map.js -->
+<!-- End ini/common/map.js -->
 
 
 
 
-<!-- Start ini\common\paths.js -->
-## File: ini\common\paths.js
+<!-- Start ini/common/paths.js -->
+## File: ini/common/paths.js
 
 The configuration file for absolute paths.
 
-<!-- End ini\common\paths.js -->
+<!-- End ini/common/paths.js -->
 
 
 
 
-<!-- Start ini\common\security.js -->
-## File: ini\common\security.js
+<!-- Start ini/common/security.js -->
+## File: ini/common/security.js
 
 The configuration file for security settings.
 
-<!-- End ini\common\security.js -->
+<!-- End ini/common/security.js -->
 
 
 
 
-<!-- Start ini\development.js -->
-## File: ini\development.js
+<!-- Start ini/development.js -->
+## File: ini/development.js
 
 The configuration file to use during development. It holds settings for the application.
 
-<!-- End ini\development.js -->
+<!-- End ini/development.js -->
 
 
 
 
-<!-- Start ini\gulp.js -->
-## File: ini\gulp.js
+<!-- Start ini/gulp.js -->
+## File: ini/gulp.js
 
 The configuration file to use during gulp tasks. It holds settings for the gulp taskrunner.
 
-<!-- End ini\gulp.js -->
+<!-- End ini/gulp.js -->
 
 
 
 
-<!-- Start ini\production.js -->
-## File: ini\production.js
+<!-- Start ini/production.js -->
+## File: ini/production.js
 
 The configuration file to use during production.
 
-<!-- End ini\production.js -->
+<!-- End ini/production.js -->
 
 
 
 
-<!-- Start server\mvc\controllers\main.js -->
-## File: server\mvc\controllers\main.js
+<!-- Start server/mvc/controllers/main.js -->
+## File: server/mvc/controllers/main.js
 
 This file holds the GET controller for the main page.
 
@@ -153,13 +153,13 @@ The default page for the application
 * **Object** *req* The request passed by the application
 * **Object** *res* The response passed by the application
 
-<!-- End server\mvc\controllers\main.js -->
+<!-- End server/mvc/controllers/main.js -->
 
 
 
 
-<!-- Start server\lib\Api.js -->
-## File: server\lib\Api.js
+<!-- Start server/lib/Api.js -->
+## File: server/lib/Api.js
 
 The Api handler for the application.
 
@@ -274,13 +274,13 @@ Middle ware to intercept for the Api class
 
 * **Object** An instantiated API object.
 
-<!-- End server\lib\Api.js -->
+<!-- End server/lib/Api.js -->
 
 
 
 
-<!-- Start server\lib\ErrorHandler.js -->
-## File: server\lib\ErrorHandler.js
+<!-- Start server/lib/ErrorHandler.js -->
+## File: server/lib/ErrorHandler.js
 
 This holds the error handlers for the application.
 
@@ -327,13 +327,13 @@ Error handler middle ware intercept function
 
 * **Object** *app* The express application
 
-<!-- End server\lib\ErrorHandler.js -->
+<!-- End server/lib/ErrorHandler.js -->
 
 
 
 
-<!-- Start server\lib\GlobalApplication.js -->
-## File: server\lib\GlobalApplication.js
+<!-- Start server/lib/GlobalApplication.js -->
+## File: server/lib/GlobalApplication.js
 
 Holds the Global application obj, this object determines information about the
  running application and resolves which configuration file to use. It also
@@ -414,13 +414,13 @@ GlobalApplication middle ware intercept function
 * **String** *mode* The ini/(developement|production|gulp).js file to use.
 * **String** *root* The application root directory.
 
-<!-- End server\lib\GlobalApplication.js -->
+<!-- End server/lib/GlobalApplication.js -->
 
 
 
 
-<!-- Start server\lib\Gulp-Error.js -->
-## File: server\lib\Gulp-Error.js
+<!-- Start server/lib/Gulp-Error.js -->
+## File: server/lib/Gulp-Error.js
 
 This holds the error handlers for Gulp.
 
@@ -458,13 +458,13 @@ Handles errors for gulp-exec.
 
 GulpError handler middle ware intercept function
 
-<!-- End server\lib\Gulp-Error.js -->
+<!-- End server/lib/Gulp-Error.js -->
 
 
 
 
-<!-- Start server\lib\Gulp-Scripts.js -->
-## File: server\lib\Gulp-Scripts.js
+<!-- Start server/lib/Gulp-Scripts.js -->
+## File: server/lib/Gulp-Scripts.js
 
 This holds the scripts for Gulp.
 
@@ -581,43 +581,13 @@ Checks syntax of a filetype
 
 * **Obj.GulpScripts** The GulpScripts object
 
-<!-- End server\lib\Gulp-Scripts.js -->
+<!-- End server/lib/Gulp-Scripts.js -->
 
 
 
 
-<!-- Start server\lib\mongodb.js -->
-## File: server\lib\mongodb.js
-
-The database driver wrapper. It processes schema into models and then set up
- connection handlers before attempting to start a connection to the database.
-
----
-
-### Function: middleWare 
- GlobalApplication middle ware intercept function
-
- Examples:
-
-     mdb = {
-         models: {}, //  All the MongoDB models
-         schema: {}, //  All the MongoDB scemas
-         mongoose: require('mongoose')   //  The instance of mongoose to use
-    };()
-
-#### Return:
-
-* **Obj** The Mongo DB connection object, see the example
-
-Waiting for connection
-
-<!-- End server\lib\mongodb.js -->
-
-
-
-
-<!-- Start server\lib\Security.js -->
-## File: server\lib\Security.js
+<!-- Start server/lib/Security.js -->
+## File: server/lib/Security.js
 
 The Security handler for the application.
 
@@ -698,13 +668,43 @@ Middleware to intercept for the Security class
 
 * **Object** An instantiated Security object.
 
-<!-- End server\lib\Security.js -->
+<!-- End server/lib/Security.js -->
 
 
 
 
-<!-- Start server\routes\api.js -->
-## File: server\routes\api.js
+<!-- Start server/lib/mongodb.js -->
+## File: server/lib/mongodb.js
+
+The database driver wrapper. It processes schema into models and then set up
+ connection handlers before attempting to start a connection to the database.
+
+---
+
+### Function: middleWare 
+ GlobalApplication middle ware intercept function
+
+ Examples:
+
+     mdb = {
+         models: {}, //  All the MongoDB models
+         schema: {}, //  All the MongoDB scemas
+         mongoose: require('mongoose')   //  The instance of mongoose to use
+    };()
+
+#### Return:
+
+* **Obj** The Mongo DB connection object, see the example
+
+Waiting for connection
+
+<!-- End server/lib/mongodb.js -->
+
+
+
+
+<!-- Start server/routes/api.js -->
+## File: server/routes/api.js
 
 This is the API routing file it determines the content to be saved
  or served back
@@ -733,13 +733,13 @@ See: /api/get/help For generated methods
 * **Object** *app* The express application reference
 * **Object** *mdb* The mongoDB database object
 
-<!-- End server\routes\api.js -->
+<!-- End server/routes/api.js -->
 
 
 
 
-<!-- Start server\routes\paths.js -->
-## File: server\routes\paths.js
+<!-- Start server/routes/paths.js -->
+## File: server/routes/paths.js
 
 This is the url routing file it determines the controller or file that will
  be served by the node server.
@@ -754,23 +754,13 @@ Sets up static and dynamic routing from the configuration file.
 
 * **Object** *app* The express application reference
 
-<!-- End server\routes\paths.js -->
+<!-- End server/routes/paths.js -->
 
 
 
 
-<!-- Start www\app\js\audio.js -->
-## File: www\app\js\audio.js
-
-This is a research file for web audio api it is not used in the project.
-
-<!-- End www\app\js\audio.js -->
-
-
-
-
-<!-- Start www\app\js\DropDown.js -->
-## File: www\app\js\DropDown.js
+<!-- Start www/app/js/DropDown.js -->
+## File: www/app/js/DropDown.js
 
 Contains the class for the DropDown menu.
 
@@ -1113,161 +1103,13 @@ Makes the views that the dropdown manages
 * **String** *view* The view to display
 * **String** *opt* Options to pass the views
 
-<!-- End www\app\js\DropDown.js -->
+<!-- End www/app/js/DropDown.js -->
 
 
 
 
-<!-- Start www\app\js\init.js -->
-## File: www\app\js\init.js
-
----
-
-### Function: require 
- This is a client side function that emulates the action of require for
- loaded node_modules that are being served through static virtual directory.
-
- It is used to resolve the dependency without modifying the node_module itself
- this is important because any changes to the node_module locally will not
- propogate when being rebuilt.(src)
-
-#### Params:
-
-* *src* The string name being required
-
-#### Return:
-
-* The code being required
-
----
-
-### Function: getCookie 
- Retrieves cookies from the system, this function is necessary
- because artifacts were being passed prepended to the cookie
- value.(name)
-
-#### Params:
-
-* *name* The cookie name to search for
-
-#### Return:
-
-* ret The value of the cookie
-
-<!-- End www\app\js\init.js -->
-
-
-
-
-<!-- Start www\app\js\meter.js -->
-## File: www\app\js\meter.js
-
-Contains the class for the visual volume (peak) meter
-
----
-
-### Class: MeterVolume
-
-This allows you to change the volume distplayed on a
- volume meter.
-
-#### Params:
-
-* *vol* Volume to be displayed on the meter 
- This should be run on load.
-
- Examples of changing volume displayed:
-
-    var meter = $(this).parent().parent().find('.meter');
-    meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
-
-<!-- End www\app\js\meter.js -->
-
-
-
-
-<!-- Start www\app\js\mixer.js -->
-## File: www\app\js\mixer.js
-
----
-
-#### Method: $()
-
----
-
-#### Method: $()
-
-Add data to the mute & record buttons
-
----
-
-#### Method: $()
-
-Set up track names
-
----
-
-#### Method: $()
-
-Set up EQ knobs
-
----
-
-#### Method: $()
-
-Set up pan knobs
-
----
-
-#### Method: $()
-
-Set up volume sliders
-
----
-
-#### Method: $()
-
-Knob function
-
----
-
-#### Method: $()
-
-Slider function
-
----
-
-#### Method: $()
-
-Mute buttons
-
----
-
-#### Method: $()
-
-Recording buttons
-
----
-
-#### Method: $()
-
-Playback buttons
-
-<!-- End www\app\js\mixer.js -->
-
-
-
-
-<!-- Start www\app\js\onLoad.js -->
-## File: www\app\js\onLoad.js
-
-<!-- End www\app\js\onLoad.js -->
-
-
-
-
-<!-- Start www\app\js\StopWatch.js -->
-## File: www\app\js\StopWatch.js
+<!-- Start www/app/js/StopWatch.js -->
+## File: www/app/js/StopWatch.js
 
 ---
 
@@ -1414,21 +1256,179 @@ This is the command function to the clock, it accepts
 
 * **Integer|Null** The lapTime or RunTime on the stopwatch
 
-<!-- End www\app\js\StopWatch.js -->
+<!-- End www/app/js/StopWatch.js -->
 
 
 
 
-<!-- Start www\app\js\track-label.js -->
-## File: www\app\js\track-label.js
+<!-- Start www/app/js/audio.js -->
+## File: www/app/js/audio.js
 
-<!-- End www\app\js\track-label.js -->
+This is a research file for web audio api it is not used in the project.
+
+<!-- End www/app/js/audio.js -->
 
 
 
 
-<!-- Start www\app\js\webAudioApi.js -->
-## File: www\app\js\webAudioApi.js
+<!-- Start www/app/js/init.js -->
+## File: www/app/js/init.js
+
+---
+
+### Function: require 
+ This is a client side function that emulates the action of require for
+ loaded node_modules that are being served through static virtual directory.
+
+ It is used to resolve the dependency without modifying the node_module itself
+ this is important because any changes to the node_module locally will not
+ propogate when being rebuilt.(src)
+
+#### Params:
+
+* *src* The string name being required
+
+#### Return:
+
+* The code being required
+
+---
+
+### Function: getCookie 
+ Retrieves cookies from the system, this function is necessary
+ because artifacts were being passed prepended to the cookie
+ value.(name)
+
+#### Params:
+
+* *name* The cookie name to search for
+
+#### Return:
+
+* ret The value of the cookie
+
+<!-- End www/app/js/init.js -->
+
+
+
+
+<!-- Start www/app/js/meter.js -->
+## File: www/app/js/meter.js
+
+Contains the class for the visual volume (peak) meter
+
+---
+
+### Class: MeterVolume
+
+This allows you to change the volume distplayed on a
+ volume meter.
+
+#### Params:
+
+* *vol* Volume to be displayed on the meter 
+ This should be run on load.
+
+ Examples of changing volume displayed:
+
+    var meter = $(this).parent().parent().find('.meter');
+    meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
+
+<!-- End www/app/js/meter.js -->
+
+
+
+
+<!-- Start www/app/js/mixer.js -->
+## File: www/app/js/mixer.js
+
+---
+
+#### Method: $()
+
+---
+
+#### Method: $()
+
+Add data to the mute & record buttons
+
+---
+
+#### Method: $()
+
+Set up track names
+
+---
+
+#### Method: $()
+
+Set up EQ knobs
+
+---
+
+#### Method: $()
+
+Set up pan knobs
+
+---
+
+#### Method: $()
+
+Set up volume sliders
+
+---
+
+#### Method: $()
+
+Knob function
+
+---
+
+#### Method: $()
+
+Slider function
+
+---
+
+#### Method: $()
+
+Mute buttons
+
+---
+
+#### Method: $()
+
+Recording buttons
+
+---
+
+#### Method: $()
+
+Playback buttons
+
+<!-- End www/app/js/mixer.js -->
+
+
+
+
+<!-- Start www/app/js/onLoad.js -->
+## File: www/app/js/onLoad.js
+
+<!-- End www/app/js/onLoad.js -->
+
+
+
+
+<!-- Start www/app/js/track-label.js -->
+## File: www/app/js/track-label.js
+
+<!-- End www/app/js/track-label.js -->
+
+
+
+
+<!-- Start www/app/js/webAudioApi.js -->
+## File: www/app/js/webAudioApi.js
 
 Create all EQ types
 
@@ -1457,15 +1457,15 @@ ToggleEffect
       Allows user to toggle an effect on or off
       As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
 
-<!-- End www\app\js\webAudioApi.js -->
+<!-- End www/app/js/webAudioApi.js -->
 
 
 
 
-<!-- Start www\app\js\webAudioInterface.js -->
-## File: www\app\js\webAudioInterface.js
+<!-- Start www/app/js/webAudioInterface.js -->
+## File: www/app/js/webAudioInterface.js
 
-<!-- End www\app\js\webAudioInterface.js -->
+<!-- End www/app/js/webAudioInterface.js -->
 
 
 

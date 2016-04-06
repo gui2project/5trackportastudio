@@ -13,7 +13,7 @@
         "image": "/app/img/effects/ping_pong.png",
         "objArray": "track",
         "func": "toggleEffect",
-        "parameter": "ECHO"
+        "parameter": "PINGPONG"
     },
     {
         "title": "Chorus",
