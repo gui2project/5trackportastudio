@@ -4,21 +4,6 @@
  *  @name   meter.js
  */
 
-/**
- *  This allows you to change the volume distplayed on a
- *  volume meter.
- *
- *  @class   MeterVolume
- *  @param   vol    Volume to be displayed on the meter
- * 
- *  This should be run on load.
- *
- *  Examples of changing volume displayed:
- *
- *     var meter = $(this).parent().parent().find('.meter');
- *     meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
-*/
-
 // Set up meters
 $(document)
     .ready(function () {
@@ -121,7 +106,20 @@ $.fn.meter = function (NumOfLEDs) {
         });
 };
 
-// Change volume
+/**
+ *  This allows you to change the volume distplayed on a
+ *  volume meter.
+ *
+ *  @class   MeterVolume
+ *  @param   vol    Volume to be displayed on the meter
+ * 
+ *  This should be run on load.
+ *
+ *  Examples of changing volume displayed:
+ *
+ *     var meter = $(this).parent().parent().find('.meter');
+ *     meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
+ */
 $.fn.MeterVolume = function (vol) {
     // Find out if you have the data-vol data
     var attr = $(this)
