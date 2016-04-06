@@ -31,12 +31,13 @@ $.fn.meter = function (NumOfLEDs) {
     var LEDHTML = '<ul>';
     for (var i = 0; i < numberOfLEDs; i++) {
         // Add colors to LEDs
-        if (i <= 1)
+        if (i <= 1) {
             LEDHTML += '<li class="mixer-led mixer-led-red"></li>';
-        else if (i <= 3)
+        } else if (i <= 3) {
             LEDHTML += '<li class="mixer-led mixer-led-yellow"></li>';
-        else
+        } else {
             LEDHTML += '<li class="mixer-led mixer-led-green"></li>';
+        }
     }
     LEDHTML += '</ul>';
     $(this)
