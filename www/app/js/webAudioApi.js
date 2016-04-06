@@ -227,23 +227,27 @@ function TrackTemplate() {
     };
 
     /*
-     *   ToggleEffect 
-     *       Allows user to toggle an effect on or off
-     *       As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
+     *  Allows user to toggle an effect on or off
+     *  As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
      *
-     *   @effectName: takes a string of of which effect to toggle
-     * 
      *   Functionality Example:
      *
      *       track[0].toggleEffect(REVERB) //Adds reverb to track 1
      *       track[0].toggleEffect(CHORUS) //Replaces reverb with chorus effect
      *       track[0].toggleEffect(CHORUS) //Removes chorus effect from track
+     * 
+     *  @method track.toggleEffect
+     *  @param { String } effectName Name of effect you want to change to or add
+     * 
      */
 
     this.toggleEffect = function (effectName) {
         _this = this;
-        console.log(effectName);
-        if (this.effect.container === null) {
+        if(effectName == 'CLEAR' && this.effect.container === null)
+        {
+            //do nothing
+        }
+        else if (this.effect.container === null) {
             //no effect, so assing effect variable
             switchEffect(effectName);
 
@@ -253,7 +257,7 @@ function TrackTemplate() {
             //insert effect
             this.gain.connect(this.effect.container);
             this.effect.container.connect(this.pan);
-        } else if (this.effect.name === effectName) {
+        } else if (effectName == 'CLEAR') {
             //Same effect passed in, so remove it
             this.gain.disconnect();
             this.effect.container.disconnect();
