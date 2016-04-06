@@ -216,7 +216,7 @@ gulp.task('git.prepare', 'Checks, formats, and documents code base', ['code.form
     });
 //  Run git add with -A option
 gulp.task('git.add', false, ['git.prepare', 'git.rm.lock'],
-    function (cb) {
+    function () {
         return gulp.src('./')
             .pipe(git.add(ini.opt.git.add));
     });
