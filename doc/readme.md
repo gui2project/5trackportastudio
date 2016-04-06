@@ -1159,6 +1159,33 @@ Makes the views that the dropdown manages
 
 
 
+<!-- Start www\app\js\meter.js -->
+## File: www\app\js\meter.js
+
+Contains the class for the visual volume (peak) meter
+
+---
+
+### Class: MeterVolume
+
+This allows you to change the volume distplayed on a
+ volume meter.
+
+#### Params:
+
+* *vol* Volume to be displayed on the meter 
+ This should be run on load.
+
+ Examples of changing volume displayed:
+
+    var meter = $(this).parent().parent().find('.meter');
+    meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
+
+<!-- End www\app\js\meter.js -->
+
+
+
+
 <!-- Start www\app\js\mixer.js -->
 ## File: www\app\js\mixer.js
 
@@ -1421,6 +1448,14 @@ before recording process
 Callback function for getRecorderBuffer, grabs the buffer
 from the recorder.js and transfers it to a WebAudioApi
 recording buffer.
+
+---
+
+#### Method: toggleEffect()
+
+ToggleEffect 
+      Allows user to toggle an effect on or off
+      As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
 
 <!-- End www\app\js\webAudioApi.js -->
 

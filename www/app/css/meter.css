@@ -1,0 +1,41 @@
+/*****************************/
+/*  Name:       meter.css    */
+/*  Author:     Ramon Meza   */
+/*  Created on: 2/11/2016    */
+/*  Updated on: 2/12/2016    */
+/*****************************/
+
+/* Remove padding and margin */
+.mixer-meter ul {
+    width: 15px;
+    padding: 0;
+    margin: auto;
+}
+
+/* No bullets on list */
+.mixer-meter li {
+    list-style-type: none;
+}
+
+/* border-radius: 50% gives a cool circle! */
+.mixer-led {
+    display: block;
+    content: '';
+    width: 15px;
+    height: 15px;
+    margin: 4px;
+    border-radius: 50%;
+    background-color: #000000;
+}
+
+.mixer-led-red {
+    background-color: #900000;
+}
+
+.mixer-led-yellow {
+    background-color: #9b9b00;
+}
+
+.mixer-led-green {
+    background-color: #009b00;
+}
