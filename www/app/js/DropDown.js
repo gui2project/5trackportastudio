@@ -17,8 +17,9 @@ function DropDown() {
     this.dropDownId = null; //  The dropDownId of the DropDown element
     this.navigationId = null; //  The navigationId of the DropDown element
     this.state = false; //  True for open, false for closed
-    this.speed = 600; //  Speed of DropDown animation
+    this.speed = 400; //  Speed of DropDown animation
     this.history = [];
+
     /**
      *  Initializes the DropDown menu, should be run on load.
      *
@@ -40,13 +41,14 @@ function DropDown() {
         // Set values
         _this.dropDownId = dVar(obj.dropDownId, '');
         _this.navigationId = dVar(obj.navigationId, '');
-        _this.speed = dVar(obj.speed, 600);
+        _this.speed = dVar(obj.speed, 400);
 
         _this.panel.set.fxCatalog();
         // Close on external click
         $(document)
             .mouseup(function (e) {
-                if ((!$(_this.dropDownId)
+                if (_this.state &&
+                    (!$(_this.dropDownId)
                         .is(e.target) &&
                         $(_this.dropDownId)
                         .has(e.target)
@@ -55,6 +57,7 @@ function DropDown() {
                         .is(e.target) && $(_this.navigationId)
                         .has(e.target)
                         .length === 0)) {
+                    console.log('closing on external click');
                     _this.dropdown.close();
                 }
             });
@@ -139,13 +142,14 @@ function DropDown() {
         open: function () {
             console.log('  Opening "dropdown"');
             $(_this.dropDownId + ' .dropdown-left')
-                .fadeIn();
+                .fadeIn(_this.speed);
             $(_this.dropDownId + ' .dropdown-right')
-                .fadeIn();
+                .fadeIn(_this.speed);
 
             $(_this.dropDownId)
-                .slideDown(_this.speed);
-            _this.state = true;
+                .slideDown(_this.speed, function () {
+                    _this.state = true;
+                });
 
         },
 
@@ -161,15 +165,16 @@ function DropDown() {
 
             console.log('  Closing "dropdown"');
             $(_this.dropDownId + ' .dropdown-left')
-                .fadeOut();
+                .fadeOut(speed);
 
             $(_this.dropDownId + ' .dropdown-right')
-                .fadeOut();
+                .fadeOut(speed);
 
             $(_this.dropDownId)
-                .slideUp(speed);
+                .slideUp(speed, function () {
+                    _this.state = false;
+                });
 
-            _this.state = false;
         },
 
         /**
@@ -224,6 +229,14 @@ function DropDown() {
                             return 0;
                         });
 
+                        data.unshift({
+                            title: 'Remove',
+                            desc: 'Remove the effect applied to a track.',
+                            image: '/app/img/effects/system-delete.png',
+                            objArray: 'track',
+                            func: 'toggleEffect',
+                            parameter: 'CLEAR'
+                        });
                         //  add items to catalog
                         data.forEach(function (item) {
                             var idString = ('effect-item-' + item.title)
@@ -232,7 +245,7 @@ function DropDown() {
 
                             console.log(idString);
 
-                            var classes = 'col-xs-4 col-sm-3 col-md-2 col-lg-2';
+                            var classes = 'col-xs-4 col-sm-4 col-md-2 col-lg-2';
                             var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span>';
                             var url = item.image ? item.image : '/app/img/favicon-white.png';
                             var image = '<img class="fx-catalog-panel-item-image" src="' + url + '" class="square-image-centered"/>';
@@ -273,7 +286,17 @@ function DropDown() {
                                         $('#' + id)
                                             .on('click', function () {
                                                 console.log(id + ' was clicked');
-                                                window[item.objArray][index][item.func](item.parameter);
+
+                                                var newimage;
+                                                if (item.image === '/app/img/effects/system-delete.png') {
+                                                    newimage = '/app/img/effects/system-add-212121.png';
+                                                } else {
+                                                    window[item.objArray][index][item.func](item.parameter);
+                                                    newimage = item.image.replace('.png', '-212121.png');
+                                                }
+
+                                                $('#track-' + (index + 1) + ' .row .fx-box img')
+                                                    .attr('src', newimage);
                                                 _this.show('BACK');
 
                                             })
@@ -712,13 +735,11 @@ function DropDown() {
 
         this.panel.display.toggle(false, '.api-panel');
 
-        $('.dropdown .holder')
-            .removeClass('sticky-wrapper');
+        this.reset();
 
         //  Switching views
         switch (view) {
         case 'ALL':
-            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(true);
@@ -726,7 +747,6 @@ function DropDown() {
             return;
 
         case 'INIT':
-            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(false);
@@ -739,7 +759,6 @@ function DropDown() {
             return;
 
         case 'LOGGED_OUT':
-            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(false);
@@ -751,7 +770,6 @@ function DropDown() {
             return;
 
         case 'FX':
-            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(false);
@@ -766,7 +784,6 @@ function DropDown() {
             return;
 
         case 'MIX':
-            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.all(false);
@@ -780,24 +797,24 @@ function DropDown() {
             return;
 
         case 'LOGIN':
-            this.reset();
             this.stateHistory.push(view);
 
-            this.panel.display.left(false);
+            this.panel.display.all(false);
             this.panel.display.toggle(true, '.login-panel');
-
+            this.panel.display.toggle(true, '.tutorial-panel');
+            this.panel.display.toggle(true, '.about-panel');
             return;
 
         case 'REGISTER':
             this.stateHistory.push(view);
 
-            this.panel.display.left(false);
+            this.panel.display.all(false);
             this.panel.display.toggle(true, '.register-panel');
-            this.dropdown.open();
+            this.panel.display.toggle(true, '.tutorial-panel');
+            this.panel.display.toggle(true, '.about-panel');
             return;
 
         case 'API':
-            this.reset();
             this.stateHistory.push(view);
 
             this.panel.display.toggle(true, '.api-panel');
@@ -805,15 +822,23 @@ function DropDown() {
             return;
 
         case 'RESET':
-            this.reset();
             this.show(this.stateHistory.top());
             return;
 
         case 'BACK':
-            this.reset();
-            this.stateHistory.pop();
-            this.dropdown.close(0);
-            this.show(this.stateHistory.pop());
+
+            _this.dropdown.toggle();
+            var waitforclose = setInterval(function () {
+                console.log('BACK RUNNING');
+                if (_this.state === false) {
+                    console.log('BACK COMPLETED');
+
+                    _this.reset();
+                    _this.stateHistory.pop();
+                    _this.show(_this.stateHistory.pop());
+                    clearInterval(waitforclose);
+                }
+            }, 10);
 
             return;
         }

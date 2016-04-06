@@ -1,7 +1,12 @@
 include ../../icon-header.jade
 
-mixin fader-slider(trknum)
+mixin fader-slider(trknum, top)
     // Fader Slider
-    div.row
-        div.fader.track-fader-slider(value=trknum)
-            input.slider(type='text')
+    if (top == true)
+        div.row.top-sm-view
+            div.fader.track-fader-slider(value=trknum)
+                input.slider(type='text')
+    else if (top == false)
+        div.row.top-bg-view
+            div.fader.track-fader-slider(value=trknum)
+                input.slider(type='text')

@@ -6,7 +6,7 @@ mixin fader-controls(trknum)
         div.track-fader
             div.mute.col-md-6.col-sm-6.col-xs-6.track-fader-mute(value=trknum)
                 button
-                    i MUTE
+                    +icon-header('mute', 'Mute', false, true)
             div.record.col-md-6.col-sm-6.col-xs-6(class='track-fader-record', value=trknum)
                 button
-                    +icon-header('record', 'Record', false, false)
+                    +icon-header('record', 'Record', false, true)

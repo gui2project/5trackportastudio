@@ -25,7 +25,8 @@ button,
 .data-active,
 .information-image,
 .panel button,
-.stopWatch {
+.stopWatch,
+.track-fader-mute > button.armed {
     background-color: #149BDF;
 }
 
@@ -37,8 +38,8 @@ button,
     background-color: #333333;
 }
 
-button.armed,
-button.exit {
+button.exit,
+.track-fader-record button.armed {
     background-color: #FF007D;
 }
 
@@ -46,7 +47,8 @@ button.exit {
 /* FONT COLORS */
 button,
 .data-not-active,
-.stopWatch > .timedisplay {
+.stopWatch > .timedisplay,
+.timedisplay-label {
     color: #333333;
 }
 
@@ -79,18 +81,20 @@ main > .container,
 .navbar-info-display,
 .navbar-right-links a span,
 .panel button,
+.row,
 .splash-brand-label,
-.row {
+.track-fader-record button.armed {
     color: #FAFAFA;
 }
 
-.information-title,
 .api-item-param,
 .api-url-param,
+.information-title,
 .icon-right.err .fa-times,
 .icon-right.err .fa-unlock,
-.hover,
 .error,
+.hover,
+.track-fader-record button,
 .warning {
     color: #FF007D;
 }

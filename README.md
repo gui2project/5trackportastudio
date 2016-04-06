@@ -65,7 +65,9 @@ trackstudio
 - `TS_COOKIE_SECRET` - Holds the cookie secret value (Security).
 - `TS_SSL_CERT` - Holds the SSL certificate (Future)
 - `TS_SSL_KEY` - Holds the SSL key (Future)
+- `TS_RUN_MODE` - development | production
 - `NODE_ENV` - development | production
+
 
 #### Runtime
 - `Web Audio API` compatible browser, for a full list see

@@ -6,8 +6,15 @@ include ../components/trackname.jade
 
 mixin track(trknum)
     // Track
-    div.col-md-2.col-sm-3.col-xs-3.track(id='track-'+trknum)
+    div.col-md-pull-4.col-md-2.col-sm-3.col-xs-3.track(id='track-'+trknum)
+        // Label
         +trackname(trknum, 'Track ' + trknum)
+        // FX Box
+        +fx-box(trknum)
+        //Mute,Record
+        +fader-controls(trknum)
+        // Fader
+        +fader-slider(trknum, true)
         // EQ High
         +knob(trknum, 'Treble', 'eq','-','+','HIGH')
         // EQ Low
@@ -15,9 +22,8 @@ mixin track(trknum)
         // Pan
         +knob(trknum, 'Pan','pan','L','R')
         // Fader
-        +fader-slider(trknum)
-        // FX Box
-        +fx-box(trknum)
-        //Mute,Record
-        +fader-controls(trknum)
+        +fader-slider(trknum, false)
+
+
+
 

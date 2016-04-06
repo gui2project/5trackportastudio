@@ -311,7 +311,7 @@ $(document)
         // Setup logo
         $('.navbar-brand-label')
             .on('click', function () {
-                dd.close('TOGGLE');
+                dd.show('TOGGLE');
                 var top = dd.stateHistory.top();
                 if (top === 'FX') {
                     dd.show('BACK');

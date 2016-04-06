@@ -97,16 +97,18 @@ var StopWatch = function () {
         h = m = s = ms = 0;
         newTime = '';
 
-        h = Math.floor(time / (60 * 60 * 1000));
-        time = time % (60 * 60 * 1000);
+        //h = Math.floor(time / (60 * 60 * 1000));
+        //time = time % (60 * 60 * 1000);
         m = Math.floor(time / (60 * 1000));
         time = time % (60 * 1000);
         s = Math.floor(time / 1000);
         ms = time % 1000;
 
-        var colon = '<span class="sys-font">:</span>';
-        var period = '<span class="sys-font"> </span>';
-        newTime = _this.pad(h, 2) + period + _this.pad(m, 2) + period + _this.pad(s, 2) + period + _this.pad(ms, 3);
+        var space = function (xs, sm, md, pad) {
+            return '<div class="col-xs-' + xs + ' col-sm-' + sm + ' col-md-' + md + ' sys-font">' + pad + '</div>';
+        };
+
+        newTime = space(1, 3, 1, '') + space(3, 1, 3, _this.pad(m, 3)) + space(1, 1, 1, '') + space(2, 2, 2, _this.pad(s, 2)) + space(1, 1, 1, '') + space(3, 1, 3, _this.pad(ms, 3)) + space(1, 3, 1, '');
         return newTime;
     };
 
