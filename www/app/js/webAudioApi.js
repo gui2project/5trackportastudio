@@ -229,6 +229,7 @@ function TrackTemplate() {
     //Toggle effect
     this.toggleEffect = function (effectName) {
         _this = this;
+        console.log(effectName);
         if (this.effect.container === null) {
             //no effect, so assing effect variable
             switchEffect(effectName);

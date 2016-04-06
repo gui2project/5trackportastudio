@@ -3,28 +3,32 @@
         "title": "Reverb",
         "desc": "Simulates a large hall",
         "image": "/app/img/effects/reverb.png",
-        "function": "track[trackNumber-1].toggleEffect('REVERB')",
-        "parameters": ""
+        "objArray": "track",
+        "func": "toggleEffect",
+        "parameter": "REVERB"
     },
     {
         "title": "PingPong",
         "desc": "Creates an \"ping-pong\" echo effect",
         "image": "/app/img/effects/ping_pong.png",
-        "function": "track[trackNumber-1].toggleEffect('ECHO')",
-        "parameters": ""
+        "objArray": "track",
+        "func": "toggleEffect",
+        "parameter": "ECHO"
     },
     {
         "title": "Chorus",
         "desc": "Makes one instrument sound like multiple instruments",
         "image": "/app/img/effects/chorus.png",
-        "function": "track[trackNumber-1].toggleEffect('CHORUS')",
-        "parameters": ""
+        "objArray": "track",
+        "func": "toggleEffect",
+        "parameter": "CHORUS"
     },
     {
         "title": "WahWah",
         "desc": "Gives your instrument a \"Wah\" sound effect",
         "image": "/app/img/effects/wah_wah.png",
-        "function": "track[trackNumber-1].toggleEffect('WAHWAH')",
-        "parameters": ""
+        "objArray": "track",
+        "func": "toggleEffect",
+        "parameter": "WAHWAH"
     }
 ]

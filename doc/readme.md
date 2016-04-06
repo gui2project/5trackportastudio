@@ -1098,6 +1098,12 @@ Toggle the Logged in view state
 
 ---
 
+#### Method: DropDown.reset()
+
+Resets the dropdown, clears set values
+
+---
+
 #### Method: DropDown.show(view, opt)
 
 Makes the views that the dropdown manages

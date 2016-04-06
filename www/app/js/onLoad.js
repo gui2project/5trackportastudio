@@ -311,7 +311,11 @@ $(document)
         // Setup logo
         $('.navbar-brand-label')
             .on('click', function () {
-                dd.show('TOGGLE');
+                dd.close('TOGGLE');
+                var top = dd.stateHistory.top();
+                if (top === 'FX') {
+                    dd.show('BACK');
+                }
             });
 
         //  Setup exit of panel
@@ -323,6 +327,7 @@ $(document)
         $('.link-fx-box')
             .on('click', function () {
                 dd.show('FX');
+                dd.dropdown.open();
             });
         // Setup up logout
         $('.link-sign-out')
@@ -352,18 +357,21 @@ $(document)
         $('.link-sign-in')
             .on('click', function () {
                 dd.show('LOGIN');
+                dd.dropdown.open();
             });
 
         // Setup up register
         $('.link-register')
             .on('click', function () {
                 dd.show('REGISTER');
+                dd.dropdown.open();
             });
 
         // Setup api link
         $('.link-api')
             .on('click', function () {
                 dd.show('API');
+                dd.dropdown.open();
             });
 
         //  Application Ready
