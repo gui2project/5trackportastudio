@@ -251,7 +251,7 @@ function DropDown() {
                             var image = '<img class="fx-catalog-panel-item-image" src="' + url + '" class="square-image-centered"/>';
                             var htmlObj = '<div class="square-wrapper ' + classes + '"><div id="' + idString + '" class="square-inner fx-catalog-panel-item">' + image + title + '</div></div>';
 
-                            var label = ['T1', 'T2', 'T3', 'T4'];
+                            var label = ['Track 1', 'Track2', 'T3', 'T4'];
                             var labelClass = 'track-selector col-xs-3 col-sm-12 col-md-12 col-lg-12';
 
                             var buttons = [];
@@ -265,7 +265,7 @@ function DropDown() {
                                 buttons.push(buttonId);
 
                                 item.actions += '<div class="' + labelClass + '">';
-                                item.actions += '<button id="' + buttonId + '">' + label[index] + '</button>';
+                                item.actions += '<button id="' + buttonId + '">Add to Track ' + index + '</button>';
                                 item.actions += '</div>';
                             }
 
