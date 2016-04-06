@@ -6,6 +6,16 @@
 /*****************************/
 
 /* Remove padding and margin */
+.mixer-meter {
+    margin-left: -10px;
+    top: -1px;
+    padding: 0;
+}
+
+.track-fader-slider {
+    padding: 0;
+}
+
 .mixer-meter ul {
     width: 15px;
     padding: 0;
@@ -19,23 +29,24 @@
 
 /* border-radius: 50% gives a cool circle! */
 .mixer-led {
-    display: block;
-    content: '';
     width: 15px;
-    height: 15px;
-    margin: 4px;
-    border-radius: 50%;
-    background-color: #000000;
+    height: 3px;
+    margin: 3px 0;
+    background-color: #333333;
+}
+
+.mixer-led:first-child {
+    margin-top: 0;
 }
 
 .mixer-led-red {
-    background-color: #900000;
+    background-color: #FF007D;
 }
 
 .mixer-led-yellow {
-    background-color: #9b9b00;
+    background-color: #c700ff;
 }
 
 .mixer-led-green {
-    background-color: #009b00;
+    background-color: #149BDF;
 }

@@ -8,7 +8,7 @@
 $(document)
     .ready(function () {
         $('.meter')
-            .meter(12);
+            .meter(36);
     });
 
 // Function for making LEDs
@@ -31,9 +31,9 @@ $.fn.meter = function (NumOfLEDs) {
     var LEDHTML = '<ul>';
     for (var i = 0; i < numberOfLEDs; i++) {
         // Add colors to LEDs
-        if (i <= 1) {
+        if (i <= numberOfLEDs / 10) {
             LEDHTML += '<li class="mixer-led mixer-led-red"></li>';
-        } else if (i <= 3) {
+        } else if (i <= numberOfLEDs / 2) {
             LEDHTML += '<li class="mixer-led mixer-led-yellow"></li>';
         } else {
             LEDHTML += '<li class="mixer-led mixer-led-green"></li>';
@@ -66,15 +66,15 @@ $.fn.meter = function (NumOfLEDs) {
                 if ($(val)
                     .hasClass('mixer-led-red')) {
                     $(val)
-                        .css('background-color', 'rgb(255, 0, 0)');
+                        .css('background-color', '#FF007D');
                 } else if ($(val)
                     .hasClass('mixer-led-yellow')) {
                     $(val)
-                        .css('background-color', 'rgb(255, 255, 0)');
+                        .css('background-color', '#C700FF');
                 } else if ($(val)
                     .hasClass('mixer-led-green')) {
                     $(val)
-                        .css('background-color', 'rgb(0, 255, 0)');
+                        .css('background-color', '#149BDF');
                 }
             });
 
@@ -83,15 +83,15 @@ $.fn.meter = function (NumOfLEDs) {
                 if ($(val)
                     .hasClass('mixer-led-red')) {
                     $(val)
-                        .css('background-color', 'rgb(100, 0, 0)');
+                        .css('background-color', '#333333');
                 } else if ($(val)
                     .hasClass('mixer-led-yellow')) {
                     $(val)
-                        .css('background-color', 'rgb(100, 100, 0)');
+                        .css('background-color', '#333333');
                 } else if ($(val)
                     .hasClass('mixer-led-green')) {
                     $(val)
-                        .css('background-color', 'rgb(0, 100, 0)');
+                        .css('background-color', '#333333');
                 }
             });
 
@@ -104,7 +104,7 @@ $.fn.meter = function (NumOfLEDs) {
             }
             if (clipping === true) {
                 ul.find('li:first')
-                    .css('background-color', 'rgb(255, 0, 0)');
+                    .css('background-color', '#FF007D');
             }
         });
 };
@@ -115,7 +115,7 @@ $.fn.meter = function (NumOfLEDs) {
  *
  *  @class   MeterVolume
  *  @param   vol    Volume to be displayed on the meter
- * 
+ *
  *  This should be run on load.
  *
  *  Examples of changing volume displayed:

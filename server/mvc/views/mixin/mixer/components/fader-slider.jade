@@ -4,12 +4,16 @@ mixin fader-slider(trknum, top)
     // Fader Slider
     if (top == true)
         div.row.top-sm-view
-            div.fader.track-fader-slider(value=trknum)
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4
+            div.col-xs-4.col-sm-4.col-md-4.col-lg-4.fader.track-fader-slider(value=trknum)
                 input.slider(type='text')
-            div.col-md-6.meter(data-vol=0)
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4.meter(data-vol=0)
     else if (top == false)
         div.row.top-bg-view
-            div.fader.track-fader-slider(value=trknum)
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4
+            div.col-xs-4.col-sm-4.col-md-4.col-lg-4.fader.track-fader-slider(value=trknum)
                 input.slider(type='text')
-            div.col-md-6.meter(data-vol=0)
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4.meter(data-vol=0)
+
+
 
