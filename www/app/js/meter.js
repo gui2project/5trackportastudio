@@ -1,9 +1,23 @@
-/****************************/
-/*  Name:       meter.js    */
-/*  Author:     Ramon Meza  */
-/*  Created on: 2/11/2016   */
-/*  Updated on: 4/5/2016    */
-/****************************/
+/**
+ *  Contains the class for the visual volume (peak) meter
+ *
+ *  @name   meter.js
+ */
+
+/**
+ *  This allows you to change the volume distplayed on a
+ *  volume meter.
+ *
+ *  @class   MeterVolume
+ *  @param   vol    Volume to be displayed on the meter
+ * 
+ *  This should be run on load.
+ *
+ *  Examples of changing volume displayed:
+ *
+ *     var meter = $(this).parent().parent().find('.meter');
+ *     meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
+*/
 
 // Set up meters
 $(document)

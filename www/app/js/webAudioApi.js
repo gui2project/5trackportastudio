@@ -227,19 +227,19 @@ function TrackTemplate() {
     };
 
     /*
-    *   ToggleEffect 
-    *       Allows user to toggle an effect on or off
-    *       As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
-    *
-    *   @effectName: takes a string of of which effect to toggle
-    * 
-    *   Functionality Example:
-    *
-    *       track[0].toggleEffect(REVERB) //Adds reverb to track 1
-    *       track[0].toggleEffect(CHORUS) //Replaces reverb with chorus effect
-    *       track[0].toggleEffect(CHORUS) //Removes chorus effect from track
-    */
-    
+     *   ToggleEffect 
+     *       Allows user to toggle an effect on or off
+     *       As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
+     *
+     *   @effectName: takes a string of of which effect to toggle
+     * 
+     *   Functionality Example:
+     *
+     *       track[0].toggleEffect(REVERB) //Adds reverb to track 1
+     *       track[0].toggleEffect(CHORUS) //Replaces reverb with chorus effect
+     *       track[0].toggleEffect(CHORUS) //Removes chorus effect from track
+     */
+
     this.toggleEffect = function (effectName) {
         _this = this;
         console.log(effectName);
