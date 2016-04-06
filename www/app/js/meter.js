@@ -63,34 +63,24 @@ $.fn.meter = function (NumOfLEDs) {
 
             // Change color of LEDS that are on
             onLEDs.each(function (index, val) {
-                if ($(val)
-                    .hasClass('mixer-led-red'))
-                    $(val)
-                    .css('background-color', 'rgb(255, 0, 0)');
-                else if ($(val)
-                    .hasClass('mixer-led-yellow'))
-                    $(val)
-                    .css('background-color', 'rgb(255, 255, 0)');
-                else if ($(val)
-                    .hasClass('mixer-led-green'))
-                    $(val)
-                    .css('background-color', 'rgb(0, 255, 0)');
+                if ($(val).hasClass('mixer-led-red')) {
+                    $(val).css('background-color', 'rgb(255, 0, 0)');
+                } else if ($(val).hasClass('mixer-led-yellow')) {
+                    $(val).css('background-color', 'rgb(255, 255, 0)');
+                } else if ($(val).hasClass('mixer-led-green')) {
+                    $(val).css('background-color', 'rgb(0, 255, 0)');
+                }    
             });
 
             // Change color of LEDS that are off
             offLEDs.each(function (index, val) {
-                if ($(val)
-                    .hasClass('mixer-led-red'))
-                    $(val)
-                    .css('background-color', 'rgb(100, 0, 0)');
-                else if ($(val)
-                    .hasClass('mixer-led-yellow'))
-                    $(val)
-                    .css('background-color', 'rgb(100, 100, 0)');
-                else if ($(val)
-                    .hasClass('mixer-led-green'))
-                    $(val)
-                    .css('background-color', 'rgb(0, 100, 0)');
+                if ($(val).hasClass('mixer-led-red')) {
+                    $(val).css('background-color', 'rgb(100, 0, 0)');
+                } else if ($(val).hasClass('mixer-led-yellow')) {
+                    $(val).css('background-color', 'rgb(100, 100, 0)');
+                } else if ($(val).hasClass('mixer-led-green')) {
+                    $(val).css('background-color', 'rgb(0, 100, 0)');
+                }
             });
 
             // Set the clipping LED to stay on for a second longer
@@ -101,8 +91,7 @@ $.fn.meter = function (NumOfLEDs) {
                 }, 1000);
             }
             if (clipping == true) {
-                ul.find('li:first')
-                    .css('background-color', 'rgb(255, 0, 0)');
+                ul.find('li:first').css('background-color', 'rgb(255, 0, 0)');
             }
         });
 };
@@ -123,14 +112,11 @@ $.fn.meter = function (NumOfLEDs) {
  */
 $.fn.MeterVolume = function (vol) {
     // Find out if you have the data-vol data
-    var attr = $(this)
-        .attr('data-vol');
+    var attr = $(this).attr('data-vol');
 
     // Check if you have the attr or not
     if (typeof attr !== typeof undefined && attr !== false) {
         // Set new value for data-vol and trigger event
-        $(this)
-            .attr('data-vol', vol)
-            .trigger('volumeChange');
+        $(this).attr('data-vol', vol).trigger('volumeChange');
     }
 }
