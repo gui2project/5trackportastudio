@@ -3,21 +3,25 @@
  *
  *  Contains application wide styles.
  */
-
 * {
+    border: 0;
     margin: 0;
     padding: 0;
-    border: 0;
 }
 
 html,
 body {
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
 
 /*NAVIGATION*/
+
 header {
+    z-index: 1000;
+}
+
+header > .navbar {
     border-bottom: 0;
     height: 50px;
     left: 0;
@@ -27,20 +31,19 @@ header {
     z-index: 1001;
 }
 
-/*MENUBAR*/
 header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label {
-    height: 40px;
-    background-repeat: no-repeat;
     background-position: left 0;
-    padding-left: 26px;
+    background-repeat: no-repeat;
     background-size: 22px 22px;
+    height: 40px;
     margin-left: 5px;
+    padding-left: 26px;
 }
 
 header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label:hover {
-    text-decoration: none;
-    border-width: 0 0 1px 0;
     border-style: solid;
+    border-width: 0 0 1px 0;
+    text-decoration: none;
 }
 
 header > .navbar > .container > .navbar-right-links {
@@ -68,26 +71,26 @@ header > .navbar > .container > .navbar-right-links > a > span:hover {
     text-decoration: none;
 }
 
-/*DROPDOWN*/
 header > .dropdown {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-style: outset;
     border-width: 1px;
     display: none;
+    height: 100%;
     left: 0;
-    right: 0;
     overflow-y: auto;
     padding: 0;
-    position: absolute;
+    position: fixed;
+    right: 0;
     top: 50px;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 header > .dropdown > .holder {
-    height: 700px;
-    float: left;
-    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 20px;
 }
 
 header > .dropdown > .holder > .dropdown-left,
@@ -97,6 +100,7 @@ header > .dropdown > .holder > .dropdown-right {
 
 header > .dropdown > .holder .panel {
     display: none;
+    margin-bottom: 0;
     margin-top: 10px;
 }
 
@@ -106,8 +110,8 @@ header > .dropdown > .holder .panel .title .fa {
 }
 
 header > .dropdown > .holder .panel button {
-    line-height: 30px;
     height: 30px;
+    line-height: 30px;
 }
 
 header > .dropdown > .holder .panel .row {
@@ -122,9 +126,9 @@ header > .dropdown > .holder .panel .row.title {
 
 /*API*/
 .api-item-param {
+    display: inline-block;
     margin-right: 25px;
     width: 40px;
-    display: inline-block;
 }
 
 .api-row-tabbed {
@@ -135,28 +139,66 @@ header > .dropdown > .holder .panel .row.title {
     margin-left: 90px;
 }
 
-/*FX*/
+/*FX-CATALOG*/
 .fx-catalog-panel-item {
+    border-style: solid;
+    border-width: 1px;
     margin: 10px 10px 10px 10px;
 }
 
 .fx-catalog-panel-item-title {
-    height: 100%;
-    text-align: center;
-    width: 100%;
     float: left;
     margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.fx-catalog-panel-item-image {
+    height: 100%;
+    padding: 5%;
+    width: 100%;
+}
+
+/*INFORMATION-PANEL*/
+.information-panel {
+    height: 100px;
+}
+
+.track-selector {
+    float: left;
+    margin: 0;
+    padding: 5px;
+}
+
+.track-selector > button,
+button.exit {
+    height: 30px;
+    line-height: 30px;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.information-description {
+    height: 50px;
+}
+
+.information-exit,
+.information-actions {
+    margin-bottom: 0;
+    margin-left: 10px;
+    width: 100%;
 }
 
 /*MIXER*/
+
 main {
     bottom: 0;
     left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: fixed;
     right: 0;
     top: 50px;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 main > .container {
@@ -165,10 +207,10 @@ main > .container {
 }
 
 main > .container > .row-container {
-    padding: 0;
     margin: 0;
-    margin-right: -15px;
     margin-left: -15px;
+    margin-right: -15px;
+    padding: 0;
 }
 
 main > .container > .row-container .row {
@@ -179,31 +221,48 @@ main > .container > .row-container .row:first-child {
     border-top: none;
 }
 
-/*TRACKS*/
-main > .container > .row-container > .track {
-    border-width: 1px;
+main > .container > .row-container > .track,
+main > .container > .row-container > .master {
     border-style: outset;
+    border-width: 1px;
     margin: 0;
-    height: 750px;
     text-align: center;
 }
 
-main > .container > .row-container > .track:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+main > .container > .row-container > .master {
+    padding: 0;
+}
+/*TRACKS*/
+@media only screen and (max-width: 991px) {
+    main > .container > .row-container > .track:nth-child(2) {
+        border-bottom-left-radius: 10px;
+    }
+
+    main > .container > .row-container > .track:last-child {
+        border-bottom-right-radius: 10px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    main > .container > .row-container > .track:nth-child(2) {
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+    }
 }
 
 /*MASTER*/
-main > .container > .row-container > .master {
-    border-width: 1px;
-    border-style: outset;
-    margin: 0;
-    height: 750px;
+@media only screen and (max-width: 991px) {
+    main > .container > .row-container > .master {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
 }
 
-main > .container > .row-container > .master:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+@media only screen and (min-width: 992px) {
+    main > .container > .row-container > .master {
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+    }
 }
 
 /*COMPONENTS*/
@@ -215,9 +274,9 @@ main > .container > .row-container .track-name {
 }
 
 main > .container > .row-container .track-name > .track-label {
+    cursor: text;
     margin: auto;
     text-align: center;
-    cursor: text;
 }
 
 main > .container > .row-container .track-name > .master-label {
@@ -225,40 +284,40 @@ main > .container > .row-container .track-name > .master-label {
 }
 
 main > .container > .row-container .track-name > .track-label > .editable-text {
+    float: none;
     margin: auto;
     text-align: center;
-    float: none;
 }
 
-/*KNOBS*/
+/*KNOB*/
 main > .container > .row-container .track-knob-eq {
-    width: 98px;
     height: 80px;
     margin: auto;
     position: relative;
+    width: 98px;
 }
 
 main > .container > .row-container .track-knob-eq > label {
+    bottom: 25px;
+    height: 20px;
+    left: 27px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
     text-align: center;
     width: 40px;
-    height: 20px;
-    position: absolute;
-    left: 27px;
-    bottom: 25px;
-    padding: 0;
-    margin: 0;
 }
 
 main > .container > .row-container .track-knob-eq > span {
-    width: 20px;
     margin: auto;
+    width: 20px;
 }
 
-/*FADER BUTTONS*/
+/*FADER CONTROLS*/
 main > .container > .row-container .track-fader {
     clear: both;
-    width: 100%;
     margin: auto;
+    width: 100%;
 }
 
 main > .container > .row-container .track-fader > div {
@@ -268,79 +327,119 @@ main > .container > .row-container .track-fader > div {
 }
 
 main > .container > .row-container .track-fader > div > button {
-    width: 90%;
     height: 40px;
+    width: 90%;
 }
 
 /*FADER SLIDER*/
-main > .container > .row-container .track-fader-slider .slider-handle {
-    width: 20px;
-    height: 50px;
-    background: transparent none;
-    background-size: cover;
-    background-repeat: no-repeat;
+main > .container > .row-container .track-fader-slider {
+    margin-bottom: 30px;
 }
 
-/*EFFECTS BOX*/
+main > .container > .row-container .track-fader-slider .slider-handle {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 20px;
+}
+
+/*FX BOX*/
 main > .container > .row-container .fx-box {
-    width: 90%;
     height: 40px;
+    width: 100%;
+}
+
+main > .container > .row-container .fx-box > div {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+main > .container > .row-container .fx-box > div > button {
+    width: 95%;
 }
 
 /*TIMER*/
 main > .container > .row-container .stopWatch {
-    border-width: 1px;
     border-style: inset;
+    border-width: 1px;
+    height: 78px;
+    margin: 0 .5%;
+    width: 99%;
 }
 
 main > .container > .row-container .stopWatch > .timedisplay {
-    text-align: center;
-    border-width: 1px;
     border-style: inset;
+    border-width: 1px;
+    line-height: 78px;
+    padding: 0;
+    text-align: center;
 }
 
-/*PLAY CONTROLS*/
-main > .container > .row-container .playback button {
-    padding: 10px;
-    width: 100%;
+main > .container > .row-container .stopWatch > .timedisplay > div {
+    padding: 0;
+}
+
+main > .container > .row-container .stopWatch > .timedisplay-label-wrapper {
+    bottom: 25px;
+    margin-bottom: -25px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+
+main > .container > .row-container .stopWatch > .timedisplay-label-wrapper > div {
+    padding: 0;
+}
+
+/*MASTER CONTROLS*/
+main > .container > .row-container .playback > div {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+main > .container > .row-container .playback > div > button {
+    height: 40px;
+    width: 95%;
 }
 
 /*SPLASH SCREENS*/
 .splash {
-    position: fixed;
-    top: 0;
     bottom: 0;
     left: 0;
+    position: fixed;
     right: 0;
+    top: 0;
     z-index: 2000;
 }
 
 .splash-brand {
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
 
 .splash-brand-label {
+    background-position: left 11px;
     background-repeat: no-repeat;
+    background-size: 40px 40px;
+    height: 80px;
+    left: 50%;
+    margin-left: 6px;
+    padding-left: 50px;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    height: 80px;
-    background-position: left 11px;
-    padding-left: 50px;
-    background-size: 40px 40px;
-    margin-left: 6px;
 }
 
 p.response {
-    margin-left: 45px;
     float: left;
+    margin-left: 45px;
 }
 
 .instructions ol.panel {
-    margin-left: 30px;
     float: left;
+    margin-left: 30px;
 }
 
 .left {
@@ -378,21 +477,93 @@ p.response {
     z-index: 100;
 }
 
-/*SHAPES*/
-.squaring-wrapper {
-    float: left !important;
-}
-
-.square-wrapper > .square-inner {
-    width: 100%;
-    padding-bottom: 100%;
-}
-
 /*OVERRIDES*/
 .display {
     display: block !important;
+    visibility: visible !important;
+}
+
+.hide-hold-space {
+    display: block !important;
+    visibility: hidden !important;
 }
 
 .pointer {
     cursor: pointer;
+}
+
+/*WRAPPERS*/
+.sticky-wrapper {
+    height: 450px;
+    position: relative;
+}
+
+.square-wrapper {
+    float: left !important;
+}
+
+.square-wrapper > .square-inner > img {
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .sticky-wrapper > .not-sticky-xs {
+        height: 100% !important;
+        overflow-y: auto;
+        padding-top: 320px;
+    }
+
+    .sticky-wrapper > .sticky-xs {
+        position: absolute;
+        top: 0;
+        z-index: 1005;
+    }
+
+    .square-wrapper > .square-inner > img {
+        padding: 25%;
+    }
+
+    .square-wrapper > div.square-inner {
+        width: 100%;
+    }
+
+    .row.top-bg-view {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .sticky-wrapper > .not-sticky-sm {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .sticky-wrapper > .sticky-xs {
+        top: 0;
+        z-index: 1005;
+    }
+
+    .square-wrapper > .square-inner > img {
+        padding: 5%;
+    }
+
+    .square-wrapper > div.square-inner {
+        height: 100px;
+        width: 100px;
+    }
+
+    .square-wrapper > button.square-inner {
+        height: 80px;
+        width: 100%;
+    }
+
+    .square-wrapper > button.square-inner > img {
+        height: 80px;
+        width: 80px;
+    }
+
+    .row.top-sm-view {
+        display: none;
+    }
 }

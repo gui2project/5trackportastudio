@@ -1,7 +1,7 @@
 mixin knob(trknum, label, myclass, low, high, eqType)
     div.row
         div(class=myclass + " track-knob-eq", value=trknum type=eqType)
-            label(class="col-md-12")=label
+            label.col-md-12=label
             span=low
             input(type='text')
             span=high

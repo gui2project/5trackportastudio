@@ -129,40 +129,32 @@ $(function () {
     /* Mute buttons */
     $('.mute button')
         .on('click', function () {
-            // Get track number and value of the knob
+            // Get track number and value of the button
             var trackNumber = parseInt($(this)
                 .parent()
                 .attr('value'));
-            console.log(this);
+
             // Check variables
             var isMuted = parseInt($(this)
                 .attr('data-muted'));
 
             // Toggle armed
-            if (parseInt(isMuted)) {
+            if (isMuted) {
                 // Turn off armed
                 $(this)
-                    .attr('data-muted', 0);
+                    .attr('data-muted', 0)
+                    .removeClass('armed');
 
                 muteToggle(trackNumber);
 
-                // Change color
-                $(this)
-                    .css('background-color', '#fafafa');
-                $(this)
-                    .css('color', 'red');
-            } else {
+            } else if (!isMuted) {
                 // Turn on armed
                 $(this)
-                    .attr('data-muted', 1);
+                    .attr('data-muted', 1)
+                    .addClass('armed');
 
                 muteToggle(trackNumber);
 
-                // Change color
-                $(this)
-                    .css('background-color', '#149bdf');
-                $(this)
-                    .css('color', '#fafafa');
             }
         });
 
@@ -182,29 +174,21 @@ $(function () {
             if (isArmed) {
                 // Turn off armed
                 $(this)
-                    .attr('data-armed', 0);
+                    .attr('data-armed', 0)
+                    .removeClass('armed');
 
                 recordToggle(trackNumber);
                 armTrackToggle(trackNumber);
 
-                // Change color
-                $(this)
-                    .css('background-color', '#fafafa');
-                $(this)
-                    .css('color', 'red');
             } else {
                 // Turn on armed
                 $(this)
-                    .attr('data-armed', 1);
+                    .attr('data-armed', 1)
+                    .addClass('armed');
 
                 armTrackToggle(trackNumber);
                 recordToggle(trackNumber);
 
-                // Change color
-                $(this)
-                    .css('background-color', 'red');
-                $(this)
-                    .css('color', '#fafafa');
             }
         });
 

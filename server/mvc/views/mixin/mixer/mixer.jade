@@ -1,3 +1,4 @@
+include ../icon-header.jade
 include ./sections/track.jade
 include ./sections/master.jade
 
@@ -6,8 +7,9 @@ mixin mixer()
     main
         div.container
             div.row-container
+                // Master section
+                +master(1)
                 // Tracks section
                 each i in [1,2,3,4]
                      +track(i)
-                // Master section
-                +master(1)
+

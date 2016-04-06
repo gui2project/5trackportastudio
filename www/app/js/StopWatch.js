@@ -5,11 +5,11 @@
  */
 
 /**
- *  @name   StopWatch
- *
  *  This is a stopwatch that will be used to create a clock to manage tracks play position
  *
  *  modified from https://gist.github.com/electricg/4372563
+ *
+ *  @class   StopWatch
  */
 var StopWatch = function () {
 
@@ -21,11 +21,10 @@ var StopWatch = function () {
     this.clocktimer = null; //   setinterval holder
 
     /**
-     *  @name       now
-     *
      *  Gets current time
      *
-     *  @return      current time
+     *  @method     StopWatch.now
+     *  @return     {String} current time
      */
     this.now = function () {
         return (new Date())
@@ -33,9 +32,9 @@ var StopWatch = function () {
     };
 
     /**
-     *  @name       start
+     *  Starts the clock
      *
-     *  start the clock
+     *  @method     StopWatch.start
      */
     this.start = function () {
                trip.start();
@@ -43,9 +42,9 @@ var StopWatch = function () {
     };
 
     /**
-     *  @name        stop
+     *  Stops the clock
      *
-     *  stop the clock
+     *  @method     StopWatch.stop
      */
     this.stop = function () {
         // If running, update elapsed time otherwise keep it
@@ -54,9 +53,9 @@ var StopWatch = function () {
     };
 
     /**
-     *  @name       reset
+     *  Reset the clock time values
      *
-     *  reset the clock time values
+     *  @method     StopWatch.reset
      */
     this.reset = function () {
         _this.lapTime = 0;
@@ -64,24 +63,21 @@ var StopWatch = function () {
     };
 
     /**
-     *  @name   getTime
+     *  Get the runtime
      *
-     *  get the runtime
-     *
-     *  @return     the runtime
+     *  @method     StopWatch.getTime
+     *  @return {Integer}    The runtime
      */
     this.getTime = function () {
         return _this.lapTime + (_this.startAt ? _this.now() - _this.startAt : 0);
     };
 
     /**
-     *  @name   pad
+     *  Gives a number formated with leading zeroes
      *
-     *  gives a number formated with leading zeroes
-     *
-     *  @param  num     the number to pad
-     *  @param  size    how many digits to show
-     *
+     *  @method     StopWatch.pad
+     *  @param  {Integer} num     The number to pad
+     *  @param  {Integer} size    How many digits to show
      *  @return {STRING}    formated number
      */
     this.pad = function (num, size) {
@@ -90,13 +86,11 @@ var StopWatch = function () {
     };
 
     /**
-     * @name    formatTime
+     *  Formats the time display
      *
-     * Formats the time display
-     *
-     * @param   time    The timestamp to display
-     *
-     * @return  the new time string to display
+     *  @method     StopWatch.formatTime
+     *  @param   {Integer}   time    The timestamp to display
+     *  @return  the new time string to display
      */
     this.formatTime = function (time) {
         var h, m, s, ms, newTime;
@@ -104,63 +98,63 @@ var StopWatch = function () {
         h = m = s = ms = 0;
         newTime = '';
 
-        h = Math.floor(time / (60 * 60 * 1000));
-        time = time % (60 * 60 * 1000);
+        //h = Math.floor(time / (60 * 60 * 1000));
+        //time = time % (60 * 60 * 1000);
         m = Math.floor(time / (60 * 1000));
         time = time % (60 * 1000);
         s = Math.floor(time / 1000);
         ms = time % 1000;
 
-        var colon = '<span class="sys-font">:</span>';
-        var period = '<span class="sys-font"> </span>';
-        newTime = _this.pad(h, 2) + period + _this.pad(m, 2) + period + _this.pad(s, 2) + period + _this.pad(ms, 3);
+        var space = function (xs, sm, md, pad) {
+            return '<div class="col-xs-' + xs + ' col-sm-' + sm + ' col-md-' + md + ' sys-font">' + pad + '</div>';
+        };
+
+        newTime = space(1, 3, 1, '') + space(3, 1, 3, _this.pad(m, 3)) + space(1, 1, 1, '') + space(2, 2, 2, _this.pad(s, 2)) + space(1, 1, 1, '') + space(3, 1, 3, _this.pad(ms, 3)) + space(1, 3, 1, '');
         return newTime;
     };
 
     /**
-     *  @name    setId
+     *  Sets the id of the element to insert the clock
      *
-     *  sets the id of the element to insert the clock
-     *
-     *  @param  id      the id of the element
+     *  @method StopWatch.setId
+     *  @param  {String} id      The id of the element
      */
     this.setId = function (id) {
         _this.id = id;
     };
 
     /**
-     *  @name   getId
+     *  Get the Id of the element that has the clock
      *
-     *  get the Id of the element that has the clock
-     *
-     *  @return         the id of the clock
+     *  @method     StopWatch.getId
+     *  @return     {String}    The id of the clock
      */
     this.getId = function () {
         return _this.id;
     };
 
     /**
-     *  @name   setClocktimer
+     *  Sets the display interval of the clock, In other words it animates changes in time
      *
-     *  sets the display interval of the clock, In other words it animates changes in time
+     *  @method StopWatch.setClocktimer
      */
     this.setClocktimer = function () {
         setInterval(_this.update, 1);
     };
 
     /**
-     *  @name   clearClocktimer
+     *  Clears the display interval of the clock, in other words it stops animation
      *
-     *  clears the display interval of the clock, in other words it stops animation
+     *  @method StopWatch.clearClocktimer
      */
     this.clearClocktimer = function () {
         clearInterval(_this.clocktimer);
     };
 
     /**
-     *  @name   update
+     *  Interval function, writes the time of the clock into the element.
      *
-     *  interval function, writes the time of the clock into the element.
+     *  @method StopWatch.update
      */
     this.update = function () {
         $(_this.getId())
@@ -168,13 +162,11 @@ var StopWatch = function () {
     };
 
     /**
-     *  @name   adjust
+     *  Adjusts the clock to a given time.
      *
-     * adjusts the clock to a given time
-     *
-     *  @param  mod     the value to adjust the time by
-     *
-     *  @return         the current laptime
+     *  @method StopWatch.adjust
+     *  @param  {Integet}   mod     The value to adjust the time by.
+     *  @return {Integer}   The current laptime.
      */
     this.adjust = function (mod) {
         _this.run('STOP');
@@ -189,19 +181,18 @@ var StopWatch = function () {
     };
 
     /**
-     *  @name   run
-     *
      *  This is the command function to the clock, it accepts
      *
-     *  @param  action      'START' -   Starts the stopwatch
-     *                      'STOP'  -   Stops the stopwatch
-     *                      'RESET' -   Restarts the stopwatch
-     *                      'INIT'  -   Initializes the stopwatch
-     * @param   option      Any options that an action requires.
-     *          null        no options
-     *          idString    Required by 'INIT', the idstring of the element that will display the clock
+     *  @method StopWatch.run
+     *  @param  {String} action 'START' -   Starts the stopwatch
+     *                          'STOP'  -   Stops the stopwatch
+     *                          'RESET' -   Restarts the stopwatch
+     *                          'INIT'  -   Initializes the stopwatch
+     * @param   {String} option  Any options that an action requires.
+     *                          null        no options
+     *                          idString    Required by 'INIT', the idstring of the element that will display the clock
      *
-     * @return              The lapTime or RunTime on the stopwatch
+     * @return  {Integer| Null} The lapTime or RunTime on the stopwatch
      */
     this.run = function (action, option) {
         switch (action) {
@@ -233,11 +224,3 @@ var StopWatch = function () {
         }
     };
 };
-
-// var sw = new StopWatch();
-
-// sw.run('INIT', 'time');
-//  STARTTIME = sw.run('START');
-//  STOPTIME = sw.run('STOP');
-//  NEW POSITION = SW.RUN('ADJUST', 1000)
-//  0 = sw.run('RESET');

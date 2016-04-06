@@ -9,6 +9,18 @@ $(function () {
         track[index].InitTrack();
     });
 
+    setInterval(
+        function () {
+            $('#track-1 > .row > .meter')
+                .MeterVolume(track[0].meter.volume * 250);
+            $('#track-2 > .row > .meter')
+                .MeterVolume(track[1].meter.volume * 250);
+            $('#track-3 > .row > .meter')
+                .MeterVolume(track[2].meter.volume * 250);
+            $('#track-4 > .row > .meter')
+                .MeterVolume(track[3].meter.volume * 250);
+        }, 1);
+
 }); //end document ready
 
 function armTrackToggle(trackNumber) {
@@ -32,6 +44,7 @@ function recordToggle(trackNumber) {
         sw.run('START');
     } else {
         sw.run('STOP');
+        sw.run('RESET');
     }
 }
 
@@ -50,7 +63,14 @@ function stop() {
     console.log('stop');
 
     track.forEach(function (item, index) {
-        track[index].stopTrack();
+        if (track[index].isRecording) {
+            //stop recording
+            track[index].recordToggle();
+            track[index].armTrackToggle();
+        } else {
+            //stop playing
+            track[index].stopTrack();
+        }
     });
 
     sw.run('STOP');
@@ -91,7 +111,12 @@ function eq(trackNumber, type, amount) {
     }
 }
 
-function downloadProject() {
-    //record whole project into recording buffer
-    //download blob
+//Reset Project
+function resetMix() {
+    track = [null, null, null, null];
+
+    track.forEach(function (item, index) {
+        track[index] = new TrackTemplate();
+        track[index].InitTrack();
+    });
 }

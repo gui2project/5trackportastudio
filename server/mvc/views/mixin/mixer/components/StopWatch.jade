@@ -1,4 +1,12 @@
 mixin StopWatch(clckNum)
     //  Stopwatch
-    div.stopWatch(id='stopWatch-' + clckNum)
-        div.timedisplay HH MM SS.ms
+    .stopWatch(id='stopWatch-' + clckNum)
+        .timedisplay.col-md-12.col-sm-12.col-xs-12.col-xs-12
+        .timedisplay-label-wrapper.col-md-12.col-sm-12.col-xs-12.col-xs-12
+            .col-xs-1.col-sm-3.col-md-1
+            .col-xs-3.col-sm-1.col-md-3.timedisplay-label.min MIN
+            .col-xs-1.col-sm-1.col-md-1
+            .col-xs-2.col-sm-2.col-md-2.timedisplay-label.sec SEC
+            .col-xs-1.col-sm-1.col-md-1
+            .col-xs-3.col-sm-1.col-md-3.timedisplay-label.ms MS
+            .col-xs-1.col-sm-3.col-md-1

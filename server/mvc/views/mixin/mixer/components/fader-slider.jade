@@ -1,5 +1,19 @@
-mixin fader-slider(trknum)
+include ../../icon-header.jade
+
+mixin fader-slider(trknum, top)
     // Fader Slider
-    div.row
-        div.fader(class='track-fader-slider', value=trknum)
-            input.slider(type='text')
+    if (top == true)
+        div.row.top-sm-view
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4
+            div.col-xs-4.col-sm-4.col-md-4.col-lg-4.fader.track-fader-slider(value=trknum)
+                input.slider(type='text')
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4.meter(data-vol=0)
+    else if (top == false)
+        div.row.top-bg-view
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4
+            div.col-xs-4.col-sm-4.col-md-4.col-lg-4.fader.track-fader-slider(value=trknum)
+                input.slider(type='text')
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4.meter(data-vol=0)
+
+
+

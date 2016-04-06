@@ -25,7 +25,8 @@ This readme holds the documentation for the code in the project, it is dynamical
 	  git.master            Pushes code to master branch. 
 	   --m="message"        Commit message to use.
 	  git.prepare           Checks, formats, and documents code base
-	  git.pull              Gets the latest code base from the repository.
+	  git.pull              Gets the latest code base from the repository. 
+	   --m="message"        Commit message to use.
 	  help                  Display this help text.
 	  mongodb.config        Shows the MongoDB config file in json.
 	  mongodb.create        Creates MongoDB service on windows.
@@ -36,108 +37,108 @@ This readme holds the documentation for the code in the project, it is dynamical
 
 
 
-<!-- Start doc\documentation-gulp-out.md -->
-## File: doc\documentation-gulp-out.md
+<!-- Start doc/documentation-gulp-out.md -->
+## File: doc/documentation-gulp-out.md
 
-<!-- End doc\documentation-gulp-out.md -->
+<!-- End doc/documentation-gulp-out.md -->
 
 
 # JavaScript Documentation
 
 
 
-<!-- Start ini\common\cookie.js -->
-## File: ini\common\cookie.js
+<!-- Start ini/common/cookie.js -->
+## File: ini/common/cookie.js
 
 The configuration file for cookies.
 
-<!-- End ini\common\cookie.js -->
+<!-- End ini/common/cookie.js -->
 
 
 
 
-<!-- Start ini\common\db.js -->
-## File: ini\common\db.js
+<!-- Start ini/common/db.js -->
+## File: ini/common/db.js
 
 The configuration file for mongodb.
 
-<!-- End ini\common\db.js -->
+<!-- End ini/common/db.js -->
 
 
 
 
-<!-- Start ini\common\file.js -->
-## File: ini\common\file.js
+<!-- Start ini/common/file.js -->
+## File: ini/common/file.js
 
 The configuration file for mapping documents.
 
-<!-- End ini\common\file.js -->
+<!-- End ini/common/file.js -->
 
 
 
 
-<!-- Start ini\common\map.js -->
-## File: ini\common\map.js
+<!-- Start ini/common/map.js -->
+## File: ini/common/map.js
 
 The configuration file for web mapping paths.
 
-<!-- End ini\common\map.js -->
+<!-- End ini/common/map.js -->
 
 
 
 
-<!-- Start ini\common\paths.js -->
-## File: ini\common\paths.js
+<!-- Start ini/common/paths.js -->
+## File: ini/common/paths.js
 
 The configuration file for absolute paths.
 
-<!-- End ini\common\paths.js -->
+<!-- End ini/common/paths.js -->
 
 
 
 
-<!-- Start ini\common\security.js -->
-## File: ini\common\security.js
+<!-- Start ini/common/security.js -->
+## File: ini/common/security.js
 
 The configuration file for security settings.
 
-<!-- End ini\common\security.js -->
+<!-- End ini/common/security.js -->
 
 
 
 
-<!-- Start ini\development.js -->
-## File: ini\development.js
+<!-- Start ini/development.js -->
+## File: ini/development.js
 
 The configuration file to use during development. It holds settings for the application.
 
-<!-- End ini\development.js -->
+<!-- End ini/development.js -->
 
 
 
 
-<!-- Start ini\gulp.js -->
-## File: ini\gulp.js
+<!-- Start ini/gulp.js -->
+## File: ini/gulp.js
 
 The configuration file to use during gulp tasks. It holds settings for the gulp taskrunner.
 
-<!-- End ini\gulp.js -->
+<!-- End ini/gulp.js -->
 
 
 
 
-<!-- Start ini\production.js -->
-## File: ini\production.js
+<!-- Start ini/production.js -->
+## File: ini/production.js
 
 The configuration file to use during production.
 
-<!-- End ini\production.js -->
+<!-- End ini/production.js -->
 
 
 
 
-<!-- Start server\mvc\controllers\main.js -->
-## File: server\mvc\controllers\main.js
+<!-- Start server/mvc/controllers/main.js -->
+## File: server/mvc/controllers/main.js
 
 This file holds the GET controller for the main page.
 
@@ -152,13 +153,13 @@ The default page for the application
 * **Object** *req* The request passed by the application
 * **Object** *res* The response passed by the application
 
-<!-- End server\mvc\controllers\main.js -->
+<!-- End server/mvc/controllers/main.js -->
 
 
 
 
-<!-- Start server\lib\Api.js -->
-## File: server\lib\Api.js
+<!-- Start server/lib/Api.js -->
+## File: server/lib/Api.js
 
 The Api handler for the application.
 
@@ -273,13 +274,13 @@ Middle ware to intercept for the Api class
 
 * **Object** An instantiated API object.
 
-<!-- End server\lib\Api.js -->
+<!-- End server/lib/Api.js -->
 
 
 
 
-<!-- Start server\lib\ErrorHandler.js -->
-## File: server\lib\ErrorHandler.js
+<!-- Start server/lib/ErrorHandler.js -->
+## File: server/lib/ErrorHandler.js
 
 This holds the error handlers for the application.
 
@@ -326,13 +327,13 @@ Error handler middle ware intercept function
 
 * **Object** *app* The express application
 
-<!-- End server\lib\ErrorHandler.js -->
+<!-- End server/lib/ErrorHandler.js -->
 
 
 
 
-<!-- Start server\lib\GlobalApplication.js -->
-## File: server\lib\GlobalApplication.js
+<!-- Start server/lib/GlobalApplication.js -->
+## File: server/lib/GlobalApplication.js
 
 Holds the Global application obj, this object determines information about the
  running application and resolves which configuration file to use. It also
@@ -413,13 +414,13 @@ GlobalApplication middle ware intercept function
 * **String** *mode* The ini/(developement|production|gulp).js file to use.
 * **String** *root* The application root directory.
 
-<!-- End server\lib\GlobalApplication.js -->
+<!-- End server/lib/GlobalApplication.js -->
 
 
 
 
-<!-- Start server\lib\Gulp-Error.js -->
-## File: server\lib\Gulp-Error.js
+<!-- Start server/lib/Gulp-Error.js -->
+## File: server/lib/Gulp-Error.js
 
 This holds the error handlers for Gulp.
 
@@ -457,13 +458,13 @@ Handles errors for gulp-exec.
 
 GulpError handler middle ware intercept function
 
-<!-- End server\lib\Gulp-Error.js -->
+<!-- End server/lib/Gulp-Error.js -->
 
 
 
 
-<!-- Start server\lib\Gulp-Scripts.js -->
-## File: server\lib\Gulp-Scripts.js
+<!-- Start server/lib/Gulp-Scripts.js -->
+## File: server/lib/Gulp-Scripts.js
 
 This holds the scripts for Gulp.
 
@@ -580,43 +581,13 @@ Checks syntax of a filetype
 
 * **Obj.GulpScripts** The GulpScripts object
 
-<!-- End server\lib\Gulp-Scripts.js -->
+<!-- End server/lib/Gulp-Scripts.js -->
 
 
 
 
-<!-- Start server\lib\mongodb.js -->
-## File: server\lib\mongodb.js
-
-The database driver wrapper. It processes schema into models and then set up
- connection handlers before attempting to start a connection to the database.
-
----
-
-### Function: middleWare 
- GlobalApplication middle ware intercept function
-
- Examples:
-
-     mdb = {
-         models: {}, //  All the MongoDB models
-         schema: {}, //  All the MongoDB scemas
-         mongoose: require('mongoose')   //  The instance of mongoose to use
-    };()
-
-#### Return:
-
-* **Obj** The Mongo DB connection object, see the example
-
-Waiting for connection
-
-<!-- End server\lib\mongodb.js -->
-
-
-
-
-<!-- Start server\lib\Security.js -->
-## File: server\lib\Security.js
+<!-- Start server/lib/Security.js -->
+## File: server/lib/Security.js
 
 The Security handler for the application.
 
@@ -697,13 +668,43 @@ Middleware to intercept for the Security class
 
 * **Object** An instantiated Security object.
 
-<!-- End server\lib\Security.js -->
+<!-- End server/lib/Security.js -->
 
 
 
 
-<!-- Start server\routes\api.js -->
-## File: server\routes\api.js
+<!-- Start server/lib/mongodb.js -->
+## File: server/lib/mongodb.js
+
+The database driver wrapper. It processes schema into models and then set up
+ connection handlers before attempting to start a connection to the database.
+
+---
+
+### Function: middleWare 
+ GlobalApplication middle ware intercept function
+
+ Examples:
+
+     mdb = {
+         models: {}, //  All the MongoDB models
+         schema: {}, //  All the MongoDB scemas
+         mongoose: require('mongoose')   //  The instance of mongoose to use
+    };()
+
+#### Return:
+
+* **Obj** The Mongo DB connection object, see the example
+
+Waiting for connection
+
+<!-- End server/lib/mongodb.js -->
+
+
+
+
+<!-- Start server/routes/api.js -->
+## File: server/routes/api.js
 
 This is the API routing file it determines the content to be saved
  or served back
@@ -732,13 +733,13 @@ See: /api/get/help For generated methods
 * **Object** *app* The express application reference
 * **Object** *mdb* The mongoDB database object
 
-<!-- End server\routes\api.js -->
+<!-- End server/routes/api.js -->
 
 
 
 
-<!-- Start server\routes\paths.js -->
-## File: server\routes\paths.js
+<!-- Start server/routes/paths.js -->
+## File: server/routes/paths.js
 
 This is the url routing file it determines the controller or file that will
  be served by the node server.
@@ -753,23 +754,13 @@ Sets up static and dynamic routing from the configuration file.
 
 * **Object** *app* The express application reference
 
-<!-- End server\routes\paths.js -->
+<!-- End server/routes/paths.js -->
 
 
 
 
-<!-- Start www\app\js\audio.js -->
-## File: www\app\js\audio.js
-
-This is a research file for web audio api it is not used in the project.
-
-<!-- End www\app\js\audio.js -->
-
-
-
-
-<!-- Start www\app\js\DropDown.js -->
-## File: www\app\js\DropDown.js
+<!-- Start www/app/js/DropDown.js -->
+## File: www/app/js/DropDown.js
 
 Contains the class for the DropDown menu.
 
@@ -847,9 +838,13 @@ Opens the DropDown menu
 
 ---
 
-#### Method: DropDown.close()
+#### Method: DropDown.close(speed)
 
 Closes the DropDown menu
+
+##### Params:
+
+* **Integer** *speed* THe speed to close the dropdown
 
 ---
 
@@ -946,6 +941,17 @@ Displays or hides a panel from view.
 ##### Params:
 
 * **Boolean** *state* The display state of a panel
+* **String** *toggleClass* The panel class to control
+
+---
+
+#### Method: DropDown.panel.display.toggle(className, toggleClass)
+
+Makes a panel take up space on first view.
+
+##### Params:
+
+* **Boolean** *className* The display state of a panel
 * **String** *toggleClass* The panel class to control
 
 ---
@@ -1082,6 +1088,12 @@ Toggle the Logged in view state
 
 ---
 
+#### Method: DropDown.reset()
+
+Resets the dropdown, clears set values
+
+---
+
 #### Method: DropDown.show(view, opt)
 
 Makes the views that the dropdown manages
@@ -1091,13 +1103,176 @@ Makes the views that the dropdown manages
 * **String** *view* The view to display
 * **String** *opt* Options to pass the views
 
-<!-- End www\app\js\DropDown.js -->
+<!-- End www/app/js/DropDown.js -->
 
 
 
 
-<!-- Start www\app\js\init.js -->
-## File: www\app\js\init.js
+<!-- Start www/app/js/StopWatch.js -->
+## File: www/app/js/StopWatch.js
+
+---
+
+### Class: StopWatch
+
+This is a stopwatch that will be used to create a clock to manage tracks play position
+
+ modified from https://gist.github.com/electricg/4372563
+
+---
+
+#### Method: StopWatch.now()
+
+Gets current time
+
+##### Return:
+
+* **String** current time
+
+---
+
+#### Method: StopWatch.start()
+
+Starts the clock
+
+---
+
+#### Method: StopWatch.stop()
+
+Stops the clock
+
+---
+
+#### Method: StopWatch.reset()
+
+Reset the clock time values
+
+---
+
+#### Method: StopWatch.getTime()
+
+Get the runtime
+
+##### Return:
+
+* **Integer** The runtime
+
+---
+
+#### Method: StopWatch.pad(num, size)
+
+Gives a number formated with leading zeroes
+
+##### Params:
+
+* **Integer** *num* The number to pad
+* **Integer** *size* How many digits to show
+
+##### Return:
+
+* **STRING** formated number
+
+---
+
+#### Method: StopWatch.formatTime(time)
+
+Formats the time display
+
+##### Params:
+
+* **Integer** *time* The timestamp to display
+
+##### Return:
+
+* the new time string to display
+
+---
+
+#### Method: StopWatch.setId(id)
+
+Sets the id of the element to insert the clock
+
+##### Params:
+
+* **String** *id* The id of the element
+
+---
+
+#### Method: StopWatch.getId()
+
+Get the Id of the element that has the clock
+
+##### Return:
+
+* **String** The id of the clock
+
+---
+
+#### Method: StopWatch.setClocktimer()
+
+Sets the display interval of the clock, In other words it animates changes in time
+
+---
+
+#### Method: StopWatch.clearClocktimer()
+
+Clears the display interval of the clock, in other words it stops animation
+
+---
+
+#### Method: StopWatch.update()
+
+Interval function, writes the time of the clock into the element.
+
+---
+
+#### Method: StopWatch.adjust(mod)
+
+Adjusts the clock to a given time.
+
+##### Params:
+
+* **Integet** *mod* The value to adjust the time by.
+
+##### Return:
+
+* **Integer** The current laptime.
+
+---
+
+#### Method: StopWatch.run(action, option)
+
+This is the command function to the clock, it accepts
+
+##### Params:
+
+* **String** *action* 'START' - Starts the stopwatch                          'STOP'  -   Stops the stopwatch
+                         'RESET' -   Restarts the stopwatch
+                         'INIT'  -   Initializes the stopwatch
+* **String** *option* Any options that an action requires.                          null        no options
+                         idString    Required by 'INIT', the idstring of the element that will display the clock
+
+##### Return:
+
+* **Integer|Null** The lapTime or RunTime on the stopwatch
+
+<!-- End www/app/js/StopWatch.js -->
+
+
+
+
+<!-- Start www/app/js/audio.js -->
+## File: www/app/js/audio.js
+
+This is a research file for web audio api it is not used in the project.
+
+<!-- End www/app/js/audio.js -->
+
+
+
+
+<!-- Start www/app/js/init.js -->
+## File: www/app/js/init.js
 
 ---
 
@@ -1132,13 +1307,40 @@ Makes the views that the dropdown manages
 
 * ret The value of the cookie
 
-<!-- End www\app\js\init.js -->
+<!-- End www/app/js/init.js -->
 
 
 
 
-<!-- Start www\app\js\mixer.js -->
-## File: www\app\js\mixer.js
+<!-- Start www/app/js/meter.js -->
+## File: www/app/js/meter.js
+
+Contains the class for the visual volume (peak) meter
+
+---
+
+### Class: MeterVolume
+
+This allows you to change the volume distplayed on a
+ volume meter.
+
+#### Params:
+
+* *vol* Volume to be displayed on the meter 
+ This should be run on load.
+
+ Examples of changing volume displayed:
+
+    var meter = $(this).parent().parent().find('.meter');
+    meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
+
+<!-- End www/app/js/meter.js -->
+
+
+
+
+<!-- Start www/app/js/mixer.js -->
+## File: www/app/js/mixer.js
 
 ---
 
@@ -1204,167 +1406,29 @@ Recording buttons
 
 Playback buttons
 
-<!-- End www\app\js\mixer.js -->
+<!-- End www/app/js/mixer.js -->
 
 
 
 
-<!-- Start www\app\js\onLoad.js -->
-## File: www\app\js\onLoad.js
+<!-- Start www/app/js/onLoad.js -->
+## File: www/app/js/onLoad.js
 
-<!-- End www\app\js\onLoad.js -->
+<!-- End www/app/js/onLoad.js -->
 
 
 
 
-<!-- Start www\app\js\StopWatch.js -->
-## File: www\app\js\StopWatch.js
+<!-- Start www/app/js/track-label.js -->
+## File: www/app/js/track-label.js
 
----
+<!-- End www/app/js/track-label.js -->
 
-### Function: StopWatch 
- This is a stopwatch that will be used to create a clock to manage tracks play position
 
- modified from https://gist.github.com/electricg/4372563()
 
----
 
-#### Method: now 
- Gets current time()
-
-##### Return:
-
-* current time
-
----
-
-#### Method: start 
- start the clock()
-
----
-
-#### Method: stop 
- stop the clock()
-
----
-
-#### Method: reset 
- reset the clock time values()
-
----
-
-#### Method: getTime 
- get the runtime()
-
-##### Return:
-
-* the runtime
-
----
-
-#### Method: pad 
- gives a number formated with leading zeroes(num, size)
-
-##### Params:
-
-* *num* the number to pad
-* *size* how many digits to show
-
-##### Return:
-
-* **STRING** formated number
-
----
-
-#### Method: formatTime 
-Formats the time display(time)
-
-##### Params:
-
-* *time* The timestamp to display
-
-##### Return:
-
-* the new time string to display
-
----
-
-#### Method: setId 
- sets the id of the element to insert the clock(id)
-
-##### Params:
-
-* *id* the id of the element
-
----
-
-#### Method: getId 
- get the Id of the element that has the clock()
-
-##### Return:
-
-* the id of the clock
-
----
-
-#### Method: setClocktimer 
- sets the display interval of the clock, In other words it animates changes in time()
-
----
-
-#### Method: clearClocktimer 
- clears the display interval of the clock, in other words it stops animation()
-
----
-
-#### Method: update 
- interval function, writes the time of the clock into the element.()
-
----
-
-#### Method: adjust 
-adjusts the clock to a given time(mod)
-
-##### Params:
-
-* *mod* the value to adjust the time by
-
-##### Return:
-
-* the current laptime
-
----
-
-#### Method: run 
- This is the command function to the clock, it accepts(action, option)
-
-##### Params:
-
-* *action* 'START' - Starts the stopwatch                      'STOP'  -   Stops the stopwatch
-                     'RESET' -   Restarts the stopwatch
-                     'INIT'  -   Initializes the stopwatch
-* *option* Any options that an action requires.          null        no options
-         idString    Required by 'INIT', the idstring of the element that will display the clock
-
-##### Return:
-
-* The lapTime or RunTime on the stopwatch
-
-<!-- End www\app\js\StopWatch.js -->
-
-
-
-
-<!-- Start www\app\js\track-label.js -->
-## File: www\app\js\track-label.js
-
-<!-- End www\app\js\track-label.js -->
-
-
-
-
-<!-- Start www\app\js\webAudioApi.js -->
-## File: www\app\js\webAudioApi.js
+<!-- Start www/app/js/webAudioApi.js -->
+## File: www/app/js/webAudioApi.js
 
 Create all EQ types
 
@@ -1385,15 +1449,23 @@ Callback function for getRecorderBuffer, grabs the buffer
 from the recorder.js and transfers it to a WebAudioApi
 recording buffer.
 
-<!-- End www\app\js\webAudioApi.js -->
+---
+
+#### Method: toggleEffect()
+
+ToggleEffect 
+      Allows user to toggle an effect on or off
+      As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
+
+<!-- End www/app/js/webAudioApi.js -->
 
 
 
 
-<!-- Start www\app\js\webAudioInterface.js -->
-## File: www\app\js\webAudioInterface.js
+<!-- Start www/app/js/webAudioInterface.js -->
+## File: www/app/js/webAudioInterface.js
 
-<!-- End www\app\js\webAudioInterface.js -->
+<!-- End www/app/js/webAudioInterface.js -->
 
 
 

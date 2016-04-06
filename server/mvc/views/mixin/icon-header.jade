@@ -36,11 +36,25 @@ mixin icon-header(title, label, displayName, hoverEnabled)
         i.fa.fa-shield
     else if (title == 'information')
         i.fa.fa-info
-    //-Determine name
+    else if (title == 'tasks')
+        i.fa.fa-tasks
+    else if (title == 'record')
+        i.fa.fa-circle
+    else if (title == 'mute')
+        i.fa.fa-volume-off
+    else if (title == 'stop')
+        i.fa.fa-stop
+    else if (title == 'play')
+        i.fa.fa-play
+    else if (title == 'rewind')
+        i.fa.fa-backward
+    else if (title == 'forward')
+        i.fa.fa-forward
+    // Determine name
     if (displayName)
         //  Icon label
         span.sys-font=label
-    //-Determine tooltop
+    // Determine tooltop
     if (false && hoverEnabled)
         //  Tooltip
         span.hover=label

@@ -17,8 +17,9 @@ function DropDown() {
     this.dropDownId = null; //  The dropDownId of the DropDown element
     this.navigationId = null; //  The navigationId of the DropDown element
     this.state = false; //  True for open, false for closed
-    this.speed = 600; //  Speed of DropDown animation
+    this.speed = 400; //  Speed of DropDown animation
     this.history = [];
+
     /**
      *  Initializes the DropDown menu, should be run on load.
      *
@@ -40,13 +41,14 @@ function DropDown() {
         // Set values
         _this.dropDownId = dVar(obj.dropDownId, '');
         _this.navigationId = dVar(obj.navigationId, '');
-        _this.speed = dVar(obj.speed, 600);
+        _this.speed = dVar(obj.speed, 400);
 
         _this.panel.set.fxCatalog();
         // Close on external click
         $(document)
             .mouseup(function (e) {
-                if ((!$(_this.dropDownId)
+                if (_this.state &&
+                    (!$(_this.dropDownId)
                         .is(e.target) &&
                         $(_this.dropDownId)
                         .has(e.target)
@@ -55,6 +57,7 @@ function DropDown() {
                         .is(e.target) && $(_this.navigationId)
                         .has(e.target)
                         .length === 0)) {
+                    console.log('closing on external click');
                     _this.dropdown.close();
                 }
             });
@@ -90,7 +93,7 @@ function DropDown() {
             console.log(_this.history);
 
             if (_this.history.length === 1) {
-                ret = 'INIT';
+                ret = _this.stateHistory.top();
             } else {
                 ret = _this.history.pop();
             }
@@ -138,9 +141,15 @@ function DropDown() {
          */
         open: function () {
             console.log('  Opening "dropdown"');
+            $(_this.dropDownId + ' .dropdown-left')
+                .fadeIn(_this.speed);
+            $(_this.dropDownId + ' .dropdown-right')
+                .fadeIn(_this.speed);
+
             $(_this.dropDownId)
-                .slideDown(_this.speed);
-            _this.state = true;
+                .slideDown(_this.speed, function () {
+                    _this.state = true;
+                });
 
         },
 
@@ -148,12 +157,24 @@ function DropDown() {
          *  Closes the DropDown menu
          *
          *  @method   DropDown.close
+         *  @param {Integer} speed THe speed to close the dropdown
          */
-        close: function () {
+        close: function (speed) {
+
+            speed = dVar(speed, _this.speed);
+
             console.log('  Closing "dropdown"');
+            $(_this.dropDownId + ' .dropdown-left')
+                .fadeOut(speed);
+
+            $(_this.dropDownId + ' .dropdown-right')
+                .fadeOut(speed);
+
             $(_this.dropDownId)
-                .slideUp(_this.speed);
-            _this.state = false;
+                .slideUp(speed, function () {
+                    _this.state = false;
+                });
+
         },
 
         /**
@@ -208,35 +229,91 @@ function DropDown() {
                             return 0;
                         });
 
+                        data.unshift({
+                            title: 'Remove',
+                            desc: 'Remove the effect applied to a track.',
+                            image: '/app/img/effects/system-delete.png',
+                            objArray: 'track',
+                            func: 'toggleEffect',
+                            parameter: 'CLEAR'
+                        });
                         //  add items to catalog
                         data.forEach(function (item) {
-                            var classes = 'col-xs-4 col-sm-3 col-md-2 col-lg-2';
-                            var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span>';
-                            var url = item.image ? item.image : '';
-                            var image = '<img class="fx-catalog-panel-item-image" src="' + url + '"/>';
+                            var idString = ('effect-item-' + item.title)
+                                .toLowerCase();
+                            idString = idString.replace(/\s/g, '');
 
-                            var htmlObj = '<div class="square-wrapper ' + classes + '"><div id="effect-item-' + item.title + '" class="square-inner fx-catalog-panel-item">' + image + title + '</div></div>';
+                            console.log(idString);
+
+                            var classes = 'col-xs-4 col-sm-4 col-md-2 col-lg-2';
+                            var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span>';
+                            var url = item.image ? item.image : '/app/img/favicon-white.png';
+                            var image = '<img class="fx-catalog-panel-item-image" src="' + url + '" class="square-image-centered"/>';
+                            var htmlObj = '<div class="square-wrapper ' + classes + '"><div id="' + idString + '" class="square-inner fx-catalog-panel-item">' + image + title + '</div></div>';
+
+                            var label = ['Track 1', 'Track2', 'T3', 'T4'];
+                            var labelClass = 'track-selector col-xs-3 col-sm-12 col-md-12 col-lg-12';
+
+                            var buttons = [];
+
+                            item.actions = '';
+                            var buttonId = '';
+
+                            for (index = 0; index < 4; ++index) {
+
+                                buttonId = idString + '-select-track-' + index;
+                                buttons.push(buttonId);
+
+                                item.actions += '<div class="' + labelClass + '">';
+                                item.actions += '<button id="' + buttonId + '">Add to Track ' + index + '</button>';
+                                item.actions += '</div>';
+                            }
+
                             //  Add Element
                             $(container)
                                 .append(htmlObj);
 
                             //  Add Handler
-                            $('#effect-item-' + item.title)
+                            $('#' + idString)
                                 .on('click', function () {
-                                    console.log('#effect-item-' + item.title + ' was clicked');
-                                    console.log(item);
+                                    console.log(idString + ' was clicked');
                                     _this.panel.set.information(item);
                                     _this.panel.display.toggle(true, '.information-panel');
+
+                                    buttons.forEach(function (id, index) {
+                                        console.log(id);
+                                        //  Track Selector Buttons
+                                        $('#' + id)
+                                            .on('click', function () {
+                                                console.log(id + ' was clicked');
+
+                                                var newimage;
+                                                if (item.image === '/app/img/effects/system-delete.png') {
+                                                    newimage = '/app/img/effects/system-add-212121.png';
+                                                } else {
+                                                    window[item.objArray][index][item.func](item.parameter);
+                                                    newimage = item.image.replace('.png', '-212121.png');
+                                                }
+
+                                                $('#track-' + (index + 1) + ' .row .fx-box img')
+                                                    .attr('src', newimage);
+                                                _this.show('BACK');
+
+                                            })
+                                            .mouseover(function () {
+                                                console.log(id + ' was hovered');
+                                            })
+                                            .mouseleave(function () {
+                                                console.log(id + ' was left');
+                                            });
+                                    });
                                 })
                                 .mouseover(function () {
-                                    console.log('#effect-item-' + item.title + ' was hovered');
-
+                                    console.log(idString + ' was hovered');
                                 })
                                 .mouseleave(function () {
-                                    console.log('#effect-item-' + item.title + ' was left');
-                                    //_this.panel.display.toggle(false, '.information-panel');
+                                    console.log(idString + ' was left');
                                 });
-
                         });
                     },
                     function () {
@@ -379,9 +456,10 @@ function DropDown() {
                 console.log('dropdown.panel.set.information', obj);
                 $(_this.dropDownId + ' .information-panel .information-title')
                     .html(obj.title);
-                $(_this.dropDownId + ' .information-panel .information-desc')
+                $(_this.dropDownId + ' .information-panel .information-description')
                     .html(obj.desc);
-                //$(_this.dropDownId + ' .information-panel-actions').html(obj.actions);
+                $(_this.dropDownId + ' .information-actions-panel .information-actions')
+                    .html(obj.actions);
             }
         },
 
@@ -413,14 +491,51 @@ function DropDown() {
              *  @param  {Boolean}   state           The display state of a panel
              *  @param  {String}    toggleClass     The panel class to control
              */
-            toggle: function (state, toggleclass) {
-                console.log('  Toggling display of', toggleclass, 'to', state);
+            toggle: function (state, toggleClass) {
+                //console.log('  Toggling display of', toggleClass, 'to', state);
+
+                var showSpace = ['.information-panel'];
+
                 if (state) {
-                    $(_this.dropDownId + ' ' + toggleclass)
+
+                    showSpace.forEach(function (className) {
+                        _this.panel.display.spaceHolder(className, toggleClass);
+                    });
+
+                    $(_this.dropDownId + ' ' + toggleClass)
                         .addClass('display');
+
                 } else {
-                    $(_this.dropDownId + ' ' + toggleclass)
+
+                    $(_this.dropDownId + ' ' + toggleClass)
+                        .removeClass('hide-hold-space')
                         .removeClass('display');
+                }
+            },
+            /**
+             *  Makes a panel take up space on first view.
+             *
+             *  @method DropDown.panel.display.toggle
+             *  @param  {Boolean}   className       The display state of a panel
+             *  @param  {String}    toggleClass     The panel class to control
+             */
+            spaceHolder: function (className, toggleClass) {
+                //console.log('spaceholder');
+
+                if (toggleClass === className) {
+                    //console.log('class match');
+
+                    if (!($(_this.dropDownId + ' ' + toggleClass)
+                            .hasClass('display'))) {
+
+                        //console.log('being displayed');
+                        $(_this.dropDownId + ' ' + toggleClass)
+                            .addClass('hide-hold-space');
+
+                    } else {
+                        $(_this.dropDownId + ' ' + toggleClass)
+                            .removeClass('hide-hold-space');
+                    }
                 }
             },
             /**
@@ -444,6 +559,7 @@ function DropDown() {
                 _this.panel.display.toggle(state, '.login-panel');
                 _this.panel.display.toggle(state, '.register-panel');
                 _this.panel.display.toggle(state, '.information-panel');
+                _this.panel.display.toggle(state, '.information-actions-panel');
             },
             /**
              *  Modify the display state of all right side panels
@@ -582,6 +698,22 @@ function DropDown() {
     };
 
     /**
+     *  Resets the dropdown, clears set values
+     *
+     *  @method DropDown.reset
+     */
+    this.reset = function () {
+        this.panel.set.information({
+            title: '',
+            desc: '',
+            actions: ''
+        });
+
+        $('.dropdown .holder')
+            .removeClass('sticky-wrapper');
+    };
+
+    /**
      *  Makes the views that the dropdown manages
      *
      *  @method DropDown.show
@@ -603,13 +735,15 @@ function DropDown() {
 
         this.panel.display.toggle(false, '.api-panel');
 
+        this.reset();
+
         //  Switching views
         switch (view) {
         case 'ALL':
             this.stateHistory.push(view);
 
             this.panel.display.all(true);
-            this.dropdown.open();
+
             return;
 
         case 'INIT':
@@ -640,9 +774,13 @@ function DropDown() {
 
             this.panel.display.all(false);
 
+            $('.dropdown .holder')
+                .addClass('sticky-wrapper');
+
+            this.panel.display.toggle(true, '.information-panel');
+            this.panel.display.toggle(true, '.information-actions-panel');
             this.panel.display.toggle(true, '.fx-catalog-panel');
 
-            this.dropdown.open();
             return;
 
         case 'MIX':
@@ -656,41 +794,52 @@ function DropDown() {
             this.panel.display.toggle(true, '.mix-catalog-panel');
             this.panel.display.toggle(true, '.tutorial-panel');
 
-            this.dropdown.open();
             return;
 
         case 'LOGIN':
             this.stateHistory.push(view);
 
-            this.panel.display.left(false);
+            this.panel.display.all(false);
             this.panel.display.toggle(true, '.login-panel');
-            this.dropdown.open();
+            this.panel.display.toggle(true, '.tutorial-panel');
+            this.panel.display.toggle(true, '.about-panel');
             return;
 
         case 'REGISTER':
             this.stateHistory.push(view);
 
-            this.panel.display.left(false);
+            this.panel.display.all(false);
             this.panel.display.toggle(true, '.register-panel');
-            this.dropdown.open();
+            this.panel.display.toggle(true, '.tutorial-panel');
+            this.panel.display.toggle(true, '.about-panel');
             return;
 
         case 'API':
             this.stateHistory.push(view);
 
             this.panel.display.toggle(true, '.api-panel');
-            this.dropdown.open();
+
             return;
 
         case 'RESET':
-            this.panel.display.all(false);
-
             this.show(this.stateHistory.top());
             return;
 
         case 'BACK':
-            this.stateHistory.pop();
-            this.show(this.stateHistory.pop());
+
+            _this.dropdown.toggle();
+            var waitforclose = setInterval(function () {
+                console.log('BACK RUNNING');
+                if (_this.state === false) {
+                    console.log('BACK COMPLETED');
+
+                    _this.reset();
+                    _this.stateHistory.pop();
+                    _this.show(_this.stateHistory.pop());
+                    clearInterval(waitforclose);
+                }
+            }, 10);
+
             return;
         }
     };
