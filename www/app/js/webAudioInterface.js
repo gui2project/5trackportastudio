@@ -9,7 +9,17 @@ $(function () {
         track[index].InitTrack();
     });
 
+    setInterval(
+        function(){
+    $("#track-1 > .row > .meter").MeterVolume(track[0].meter.volume*250);
+    $("#track-2 > .row > .meter").MeterVolume(track[1].meter.volume*250);
+    $("#track-3 > .row > .meter").MeterVolume(track[2].meter.volume*250);
+    $("#track-4 > .row > .meter").MeterVolume(track[3].meter.volume*250);
+    }, 1);
+
 }); //end document ready
+       
+
 
 function armTrackToggle(trackNumber) {
     console.log('armTrackToggle track:' + trackNumber);
