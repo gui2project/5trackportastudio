@@ -179,6 +179,11 @@ $(function () {
 
                 recordToggle(trackNumber);
                 armTrackToggle(trackNumber);
+                
+                $('button.stop').prop("disabled",false).removeClass('disabledButton');
+                $('button.play').prop("disabled",false).removeClass('disabledButton');
+                $('button.forward').prop("disabled",false).removeClass('disabledButton');
+                $('button.rewind').prop("disabled",false).removeClass('disabledButton');
 
             } else {
                 // Turn on armed
@@ -188,6 +193,11 @@ $(function () {
 
                 armTrackToggle(trackNumber);
                 recordToggle(trackNumber);
+                
+                $('button.stop').prop("disabled",true).addClass('disabledButton');
+                $('button.play').prop("disabled",true).addClass('disabledButton');
+                $('button.forward').prop("disabled",true).addClass('disabledButton');
+                $('button.rewind').prop("disabled",true).addClass('disabledButton');
 
             }
         });
