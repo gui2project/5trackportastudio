@@ -244,9 +244,8 @@ function TrackTemplate() {
      *       track[0].toggleEffect(REVERB) //Adds reverb to track 1
      *       track[0].toggleEffect(CHORUS) //Replaces reverb with chorus effect
      *       track[0].toggleEffect(CHORUS) //Removes chorus effect from track
-     * 
+     *
      *  @method track.toggleEffect
-     * 
      */
 
     this.toggleEffect = function (effectName) {

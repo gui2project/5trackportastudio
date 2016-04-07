@@ -212,6 +212,12 @@ main > .container {
     }
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    main .master .row .content-box > div {
+        margin-top: 0;
+    }
+}
+
 main > .container > .row-container {
     margin: 0;
     margin-left: -15px;
@@ -402,12 +408,15 @@ main > .container > .row-container .stopWatch > .timedisplay-label-wrapper > div
 }
 
 /*MASTER CONTROLS*/
+<<<<<<< HEAD
 @media only screen and (max-width: 991px) {
     .master .row .content-box div.playback {
         margin-top: 10px;
     }
 }
 
+=======
+>>>>>>> cb90e7a107af9740ba7a3c666afdb58e6da989c7
 main > .container > .row-container .playback > div {
     float: left;
     margin: 0;
@@ -441,6 +450,13 @@ main > .container > .row-container .playback > div > button {
     padding-left: 0;
 }
 
+<<<<<<< HEAD
+=======
+.master .row .content-box > div {
+    margin-top: 10px;
+}
+
+>>>>>>> cb90e7a107af9740ba7a3c666afdb58e6da989c7
 .section-label {
     border-width: 1px 0 1px 1px;
     border-color: #149BDF;
@@ -547,6 +563,9 @@ p.response {
 .display {
     display: block !important;
     visibility: visible !important;
+    background: transparent;
+    border: 0 solid transparent;
+    box-shadow: none;
 }
 
 .hide-hold-space {
@@ -574,6 +593,7 @@ p.response {
 }
 
 @media only screen and (max-width: 768px) {
+
     .sticky-wrapper > .not-sticky-xs {
         height: 100% !important;
         overflow-y: auto;
@@ -625,11 +645,12 @@ p.response {
     }
 
     .square-wrapper > button.square-inner > img {
-        height: 80px;
-        width: 80px;
+        height: 48px;
+        width: 48px;
     }
 
     .row.top-sm-view {
         display: none;
     }
 }
+button.tutorial {height: 80px;}

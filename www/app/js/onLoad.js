@@ -19,7 +19,6 @@ $(document)
             console.log('microphone-enabled: success');
             $('.splash.cover')
                 .fadeOut(1000);
-            //trip.start();
 
         }, function (err) { // Microphone Enabled Error
             console.log('microphone-browser-compatible: success');
@@ -50,6 +49,99 @@ $(document)
                 .fadeOut(300);
         });
 
+        //  INIT COMPONENTS
+        
+        console.log("initialize trip");
+       // var options = {};
+        var trip = new Trip([
+  
+            {
+                position:'screen-center',
+                content : 'Hey there! Welcome to TrackStudio, would you like us to show you around? Click next for a simple tutorial.',
+                showNavigation : true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay : -1,
+                
+            },
+            {
+                position:'screen-center',
+                content : 'Before we move on, we recommend that you grab a pair of headphones/earbuds and plug them in.',
+                showNavigation : true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            },
+            {
+                sel : $('#track-1 > .row .track-fader > .track-fader-record > button'),
+                content : 'Begin by recording a simple track to get started.',
+                showNavigation : false,
+                delay :-1,
+                position : 'n',
+                nextClickSelector:$('#track-1 > .row .track-fader > .track-fader-record > button')
+            },
+            {
+                sel : $('#track-1 > .row .track-fader > .track-fader-record > button'),
+                content : 'Click again to stop recording.',
+                showNavigation : false,
+                delay :-1,
+                position : 'n',
+                nextClickSelector:$('#track-1 > .row .track-fader > .track-fader-record > button')
+            },
+             {
+                sel : $('#master-1 > .row .playback > div > .play '),
+                content : 'Congrats, you’ve recorded your first track! Let’s hear what we’ve got so far.',
+                showNavigation : false,
+                delay :-1,
+                position : 'n',
+                nextClickSelector:$('#master-1 > .row .playback > div > .play')
+            },
+              { 
+               sel : $('#master-1 > .row .playback > div > .stop'),
+                content : 'Awesome! Let’s stop it, and add some special effects.',
+                showNavigation : false,
+                delay :-1,
+                position : 'n',
+                nextClickSelector:$('#master-1 > .row .playback > div > .stop')
+              },
+                { 
+                  sel : $('#track-1 > .row .fx-box > div > .link-fx-box'),
+                  content : 'Click here to get started with effects.',
+                  showNavigation : false,
+                  delay :-1,
+                  position : 'n',
+                  nextClickSelector:$('#track-1 > .row .fx-box > div > .link-fx-box')
+                }, 
+                { 
+                  position :'screen-center',
+                  content : 'Here you can choose from an array of effects, let’s start with Reverb.',
+                  showNavigation : true,
+                  nextLabel: 'Next',
+                  delay : -1,
+                        onTripEnd: function(tripIndex) {
+                        DropDown.open;
+                        console.log('onTripEnd : ', tripIndex);
+                 }
+                },
+                { 
+                  //sel : $('#partial > .holder > .dropdown-right > .fx-catalog-panel > .row > .square-wrapper > #effect-item-reverb'),
+                  sel : $('#effect-item-reverb'),
+                  content : 'Click here to select the reverb.',
+                 // showNavigation : false,
+                  delay :-1,
+                  position : 's',
+                  //nextClickSelector:$('#effect-item-reverb-select-track-1')
+                }
+            ],
+            //global config options
+            {
+                tripTheme: 'yeti',
+                finishLabel: 'Finish tutorial',
+                showCloseBox : true,
+                animation: 'none'     
+            }
+       );
+        
         dd = new DropDown();
         sw = new StopWatch();
         ac = new AudioContext();
@@ -374,10 +466,13 @@ $(document)
                 dd.dropdown.open();
             });
 
-        //console.log('start trip run');
-        //trip.start();
-        //       trip.next();
-        //    trip.next();
-        //  trip.stop();   
+
+        // Start tutorial
+        $('button.tutorial')
+            .on('click', function () {
+                console.log('start trip run');
+                trip.start();
+            });
+
 
     });

@@ -37,6 +37,7 @@ var StopWatch = function () {
      *  @method     StopWatch.start
      */
     this.start = function () {
+
         _this.startAt = _this.startAt ? _this.startAt : _this.now();
     };
 
