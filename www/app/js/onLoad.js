@@ -22,6 +22,7 @@ $(document)
               trip.start();
             //Kick off doms code
 
+
         }, function (err) { // Microphone Enabled Error
             console.log('microphone-browser-compatible: success');
             console.log('microphone-enabled: failure: ' + err);
@@ -51,6 +52,7 @@ $(document)
                 .fadeOut(300);
         });
 
+<<<<<<< HEAD
         //  INIT COMPONENTS
         
         console.log("initialize trip");
@@ -468,7 +470,15 @@ $(document)
                 dd.dropdown.open();
             });
 
- //console.log('start trip run');
-   //     trip.start();
+        // Start tutorial
+        $('button.tutorial')
+            .on('click', function () {
+                console.log('start trip run');
+        //trip.start();
+        //       trip.next();
+        //    trip.next();
+        //  trip.stop();
+            });
+
 
     });

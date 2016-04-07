@@ -26,6 +26,7 @@ button,
 .information-image,
 .panel button,
 .stopWatch,
+.timedisplay,
 .track-fader-mute > button.armed {
     background-color: #149BDF;
 }
@@ -34,11 +35,14 @@ button,
 .fx-catalog-panel-item,
 .hover,
 .panel-entry,
-.splash {
+.splash,
+.disabledButton {
     background-color: #333333;
 }
 
+.icon-white,
 button.exit,
+button.tutorial,
 .track-fader-record button.armed {
     background-color: #FF007D;
 }
@@ -56,7 +60,8 @@ input.editable-text,
 .name input {
     color: #212121;
 }
-
+.bottom{position: relative;
+    top: 509px;}
 .api-item-url,
 .api-row-options,
 .icon-right .fa,
@@ -83,7 +88,10 @@ main > .container,
 .panel button,
 .row,
 .splash-brand-label,
-.track-fader-record button.armed {
+.track-fader-record button.armed,
+.disabledButton,
+.icon-white,
+.pre-text {
     color: #FAFAFA;
 }
 
@@ -132,4 +140,21 @@ main > .container,
 
 .slider-handle {
     background-image: url('/app/img/Fader.png');
+}
+.pre-text{
+    font-size: 24px;
+    padding: 5px;
+    vertical-align: middle;
+}
+.icon-white{
+        background-image: url('/app/img/favicon-white.png');
+    background-size: 16px 16px;
+    height: 32px;
+    width: 32px;
+    vertical-align: middle;
+    padding-left: 38px;
+    font-size: 24px;
+    /* background-position: 0px 17px; */
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
 }

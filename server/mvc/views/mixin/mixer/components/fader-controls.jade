@@ -1,12 +1,16 @@
 include ../../icon-header.jade
+include ./section-label.jade
 
 mixin fader-controls(trknum)
     // Fader Controls
-    div.row
-        div.track-fader
-            div.mute.col-md-6.col-sm-6.col-xs-6.track-fader-mute(value=trknum)
-                button
-                    +icon-header('mute', 'Mute', false, true)
-            div.record.col-md-6.col-sm-6.col-xs-6(class='track-fader-record', value=trknum)
-                button
-                    +icon-header('record', 'Record', false, true)
+    .row
+        .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            +section-label('Controls')
+        .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+            div.track-fader
+                div.mute.col-md-6.col-sm-6.col-xs-6.track-fader-mute(value=trknum)
+                    button
+                        +icon-header('mute', 'Mute', false, true)
+                div.record.col-md-6.col-sm-6.col-xs-6(class='track-fader-record', value=trknum)
+                    button
+                        +icon-header('record', 'Record', false, true)

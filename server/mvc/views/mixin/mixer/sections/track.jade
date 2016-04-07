@@ -4,6 +4,7 @@ include ../components/fx-box.jade
 include ../components/knob.jade
 include ../components/meter.jade
 include ../components/trackname.jade
+include ../components/section-label.jade
 
 mixin track(trknum)
     // Track
@@ -16,12 +17,20 @@ mixin track(trknum)
         +fader-controls(trknum)
         // Fader
         +fader-slider(trknum, true)
-        // EQ High
-        +knob(trknum, 'Treble', 'eq','-','+','HIGH')
-        // EQ Low
-        +knob(trknum, 'Bass', 'eq','-','+','LOW')
-        // Pan
-        +knob(trknum, 'Pan','pan','L','R')
+        .row
+            .col-xs-1.col-sm-1.col-md-1.col-lg-1
+                +section-label('Equalizer')
+            .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+                // EQ High
+                +knob(trknum, 'Treble', 'eq','-','+','HIGH')
+                // EQ Low
+                +knob(trknum, 'Bass', 'eq','-','+','LOW')
+        .row
+            .col-xs-1.col-sm-1.col-md-1.col-lg-1
+                +section-label('Stereo')
+            .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+                // Pan
+                +knob(trknum, 'Pan','pan','L','R')
         // Fader
         +fader-slider(trknum, false)
 

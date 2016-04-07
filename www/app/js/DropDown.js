@@ -265,7 +265,7 @@ function DropDown() {
                                 buttons.push(buttonId);
 
                                 item.actions += '<div class="' + labelClass + '">';
-                                item.actions += '<button id="' + buttonId + '">Add to Track ' + index + '</button>';
+                                item.actions += '<button id="' + buttonId + '">Add to Track ' + (1 + index) + '</button>';
                                 item.actions += '</div>';
                             }
 
@@ -293,7 +293,7 @@ function DropDown() {
                                                 } else {
                                                     newimage = item.image.replace('.png', '-212121.png');
                                                 }
-                                                    window[item.objArray][index][item.func](item.parameter);
+                                                window[item.objArray][index][item.func](item.parameter);
 
                                                 $('#track-' + (index + 1) + ' .row .fx-box img')
                                                     .attr('src', newimage);
@@ -754,7 +754,7 @@ function DropDown() {
             this.panel.display.toggle(true, '.register-panel');
             this.panel.display.toggle(true, '.login-panel');
 
-            this.panel.display.toggle(true, '.tutorial-panel');
+             //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -765,7 +765,7 @@ function DropDown() {
 
             this.panel.display.toggle(true, '.login-panel');
 
-            this.panel.display.toggle(true, '.tutorial-panel');
+             //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -792,7 +792,7 @@ function DropDown() {
 
             this.panel.display.toggle(true, '.account-panel');
             this.panel.display.toggle(true, '.mix-catalog-panel');
-            this.panel.display.toggle(true, '.tutorial-panel');
+             //this.panel.display.toggle(true, '.tutorial-panel');
 
             return;
 
@@ -801,7 +801,7 @@ function DropDown() {
 
             this.panel.display.all(false);
             this.panel.display.toggle(true, '.login-panel');
-            this.panel.display.toggle(true, '.tutorial-panel');
+             //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -810,7 +810,7 @@ function DropDown() {
 
             this.panel.display.all(false);
             this.panel.display.toggle(true, '.register-panel');
-            this.panel.display.toggle(true, '.tutorial-panel');
+             //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
