@@ -19,7 +19,7 @@ $(document)
             console.log('microphone-enabled: success');
             $('.splash.cover')
                 .fadeOut(1000);
-              trip.start();
+             // trip.start();
             //Kick off doms code
 
 
@@ -473,10 +473,7 @@ $(document)
         $('button.tutorial')
             .on('click', function () {
                 console.log('start trip run');
-        //trip.start();
-        //       trip.next();
-        //    trip.next();
-        //  trip.stop();
+                trip.start();
             });
 
 
