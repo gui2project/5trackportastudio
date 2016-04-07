@@ -24,7 +24,8 @@ $(function () {
             angleOffset: -125,
             angleArc: 250,
             cursor: 20,
-            displayInput: false
+            displayInput: false,
+            fgColor: '#149BDF'
         });
     $('.eq input')
         .val(0)
@@ -41,7 +42,8 @@ $(function () {
             angleOffset: -125,
             angleArc: 250,
             cursor: 20,
-            displayInput: false
+            displayInput: false,
+            fgColor: '#149BDF'
         });
     $('.pan input')
         .val(0)
@@ -179,11 +181,19 @@ $(function () {
 
                 recordToggle(trackNumber);
                 armTrackToggle(trackNumber);
-                
-                $('button.stop').prop("disabled",false).removeClass('disabledButton');
-                $('button.play').prop("disabled",false).removeClass('disabledButton');
-                $('button.forward').prop("disabled",false).removeClass('disabledButton');
-                $('button.rewind').prop("disabled",false).removeClass('disabledButton');
+
+                $('button.stop')
+                    .prop('disabled ', false)
+                    .removeClass('disabledButton');
+                $('button.play')
+                    .prop('disabled ', false)
+                    .removeClass('disabledButton');
+                $('button.forward')
+                    .prop('disabled ', false)
+                    .removeClass('disabledButton');
+                $('button.rewind')
+                    .prop('disabled ', false)
+                    .removeClass('disabledButton');
 
             } else {
                 // Turn on armed
@@ -193,11 +203,19 @@ $(function () {
 
                 armTrackToggle(trackNumber);
                 recordToggle(trackNumber);
-                
-                $('button.stop').prop("disabled",true).addClass('disabledButton');
-                $('button.play').prop("disabled",true).addClass('disabledButton');
-                $('button.forward').prop("disabled",true).addClass('disabledButton');
-                $('button.rewind').prop("disabled",true).addClass('disabledButton');
+
+                $('button.stop')
+                    .prop('disabled ', true)
+                    .addClass('disabledButton');
+                $('button.play')
+                    .prop('disabled ', true)
+                    .addClass('disabledButton');
+                $('button.forward')
+                    .prop('disabled ', true)
+                    .addClass('disabledButton');
+                $('button.rewind')
+                    .prop('disabled ', true)
+                    .addClass('disabledButton');
 
             }
         });

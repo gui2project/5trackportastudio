@@ -43,8 +43,15 @@ $.fn.tracklabel = function () {
             }
 
             // Save last name
-            original = $(this)
-                .text();
+            if ($(this)
+                .text() === '') {
+                $(this)
+                    .attr('last-name');
+            } else {
+                $(this)
+                    .attr('last-name', $(this)
+                        .text());
+            }
 
             // Check if you're in edit mode
             if (!$(this)
@@ -61,7 +68,8 @@ $.fn.tracklabel = function () {
                 $(this)
                     .html('');
                 $(this)
-                    .append('<input class="editable-text col-md-11 col-sm-11 col-xs-11" type="text" placeholder="' + text + '"></input>');
+                    .append('<input class="editable-text col-md-11 col-sm-11 col-xs-11" last-name="' + $(this)
+                        .attr('last-name') + '" type="text" placeholder="' + text + '"></input>');
 
                 // Focus onto the field
                 $(this)
@@ -94,21 +102,18 @@ $.fn.tracklabel = function () {
             }
 
             // Check if input is empty
-            $(this)
-                .remove('input');
+
             if (text === '') {
                 $(this)
-                    .text(original);
+                    .text($(this)
+                        .attr('last-name'));
             } else {
                 $(this)
                     .text(text);
             }
 
-            if ($(this)
-                .text() === '') {
-                $(this)
-                    .text('Track');
-            }
+            $(this)
+                .remove('input');
         });
 
     // Detect key releases

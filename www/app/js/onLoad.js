@@ -19,7 +19,7 @@ $(document)
             console.log('microphone-enabled: success');
             $('.splash.cover')
                 .fadeOut(1000);
-                //trip.start();
+            //trip.start();
 
         }, function (err) { // Microphone Enabled Error
             console.log('microphone-browser-compatible: success');
@@ -50,7 +50,6 @@ $(document)
                 .fadeOut(300);
         });
 
-        
         dd = new DropDown();
         sw = new StopWatch();
         ac = new AudioContext();
@@ -375,11 +374,10 @@ $(document)
                 dd.dropdown.open();
             });
 
- //console.log('start trip run');
+        //console.log('start trip run');
         //trip.start();
- //       trip.next();
-    //    trip.next();
-      //  trip.stop();   
-
+        //       trip.next();
+        //    trip.next();
+        //  trip.stop();   
 
     });

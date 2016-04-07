@@ -205,16 +205,19 @@ main > .container {
     border-radius: 10px;
     margin-top: 5px;
 }
+
 @media only screen and (min-width: 992px) {
     main > .container >.row-container {
-        overflow:hidden;
+        overflow: hidden;
     }
 }
+
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     main .master .row .content-box > div {
-        margin-top: 0px;
+        margin-top: 0;
     }
 }
+
 main > .container > .row-container {
     margin: 0;
     margin-left: -15px;
@@ -239,7 +242,7 @@ main > .container > .row-container > .master {
 }
 
 main > .container > .row-container > .master {
- padding-right:0;
+    padding-right: 0;
 }
 /*TRACKS*/
 @media only screen and (max-width: 991px) {
@@ -271,9 +274,9 @@ main > .container > .row-container > .master {
     main > .container > .row-container > .master {
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
-        margin-bottom:-1000px;
-        padding-bottom:1000px;
-        border-right-style:none;
+        margin-bottom: -1000px;
+        padding-bottom: 1000px;
+        border-right-style: none;
     }
 }
 
@@ -419,27 +422,31 @@ main > .container > .row-container .playback > div > button {
     padding-right: 0;
 }
 
-.track, .master{
-    padding-bottom:10px;
+.track, .master {
+    padding-bottom: 10px;
 }
+
 .track .row,
-.master .row{
+.master .row {
     overflow-y: hidden;
 }
+
 .master .row .content-box,
-.track .row .content-box{float: right;}
+.track .row .content-box {
+    float: right;
+}
 
 .master .row .content-box,
 .master .row .content-box div {
     padding-left: 0;
- }
+}
 
 .master .row .content-box > div {
     margin-top: 10px;
 }
 
-.section-label{
-    border-width: 1px 0px 1px 1px;
+.section-label {
+    border-width: 1px 0 1px 1px;
     border-color: #149BDF;
     border-style: solid;
     /* border-top-width: 1px; */
@@ -447,6 +454,7 @@ main > .container > .row-container .playback > div > button {
     margin-bottom: -1000px;
     padding-bottom: 1000px;
 }
+
 .section-label > .title {
     top: 27px;
     left: -31px;
@@ -543,6 +551,9 @@ p.response {
 .display {
     display: block !important;
     visibility: visible !important;
+    background: transparent;
+    border: 0 solid transparent;
+    box-shadow: none;
 }
 
 .hide-hold-space {
@@ -622,8 +633,8 @@ p.response {
     }
 
     .square-wrapper > button.square-inner > img {
-        height: 80px;
-        width: 80px;
+        height: 48px;
+        width: 48px;
     }
 
     .row.top-sm-view {
