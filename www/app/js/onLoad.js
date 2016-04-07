@@ -19,8 +19,6 @@ $(document)
             console.log('microphone-enabled: success');
             $('.splash.cover')
                 .fadeOut(1000);
-            //Kick off doms code
-
 
         }, function (err) { // Microphone Enabled Error
             console.log('microphone-browser-compatible: success');
