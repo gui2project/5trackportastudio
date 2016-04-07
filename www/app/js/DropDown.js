@@ -293,7 +293,7 @@ function DropDown() {
                                                 } else {
                                                     newimage = item.image.replace('.png', '-212121.png');
                                                 }
-                                                    window[item.objArray][index][item.func](item.parameter);
+                                                window[item.objArray][index][item.func](item.parameter);
 
                                                 $('#track-' + (index + 1) + ' .row .fx-box img')
                                                     .attr('src', newimage);

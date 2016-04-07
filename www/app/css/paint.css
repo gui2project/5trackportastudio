@@ -36,7 +36,7 @@ button,
 .hover,
 .panel-entry,
 .splash,
-.disabledButton{
+.disabledButton {
     background-color: #333333;
 }
 
@@ -86,7 +86,7 @@ main > .container,
 .row,
 .splash-brand-label,
 .track-fader-record button.armed,
-.disabledButton{
+.disabledButton {
     color: #FAFAFA;
 }
 

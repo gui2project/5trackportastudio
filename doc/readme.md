@@ -1307,6 +1307,41 @@ This is a research file for web audio api it is not used in the project.
 
 * ret The value of the cookie
 
+---
+
+### Function: validateSession 
+ Validates a session and sets up the ts object, handles initial views(callSession, callNoSession)
+
+#### Params:
+
+* *callSession* The function to call on success
+* *callNoSession* The function to call on failure
+
+---
+
+### Function: dVar 
+ Gets the default parameter if one was not given(param, def)
+
+#### Params:
+
+* *param* The value to test
+* *def* The default value
+
+#### Return:
+
+* The default paramater
+
+---
+
+### Function: getMicrophone 
+ Detects the microphone and sets up callbacks(micSuccess, micFailure, browserFailure)
+
+#### Params:
+
+* *micSuccess* The microphone success callback
+* *micFailure* The microphone failure callback
+* *browserFailure* The browser incompatibility callback
+
 <!-- End www/app/js/init.js -->
 
 
@@ -1451,11 +1486,16 @@ recording buffer.
 
 ---
 
-#### Method: toggleEffect()
+#### Method: track.toggleEffect()
 
-ToggleEffect 
-      Allows user to toggle an effect on or off
-      As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
+Allows user to toggle an effect on or off
+ As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
+
+  Functionality Example:
+
+      track[0].toggleEffect(REVERB) //Adds reverb to track 1
+      track[0].toggleEffect(CHORUS) //Replaces reverb with chorus effect
+      track[0].toggleEffect(CHORUS) //Removes chorus effect from track
 
 <!-- End www/app/js/webAudioApi.js -->
 

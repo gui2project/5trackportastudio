@@ -147,7 +147,7 @@ function TrackTemplate() {
             bufferSource.buffer = this.buffer;
             bufferSource.connect(this.eqHigh);
             bufferSource.start(0);
-            
+
             //Only user meter when playing because it's inefficent 
             this.meter = createAudioMeter(audioContext);
             this.gain.connect(this.meter);
@@ -159,7 +159,7 @@ function TrackTemplate() {
             bufferSource.stop();
             this.gain.disconnect(this.meter);
             this.meter.shutdown();
-            this.meter.volume = 0;            
+            this.meter.volume = 0;
         }
     };
 
@@ -246,17 +246,15 @@ function TrackTemplate() {
      *       track[0].toggleEffect(CHORUS) //Removes chorus effect from track
      * 
      *  @method track.toggleEffect
-     *  @param { String } effectName Name of effect you want to change to or add
      * 
      */
 
     this.toggleEffect = function (effectName) {
         _this = this;
-        if(effectName == 'CLEAR' && this.effect.container === null)
-        {
+        if (effectName === 'CLEAR' && this.effect.container === null) {
             //do nothing
-        }
-        else if (this.effect.container === null) {
+            console.log('Effect is already empty');
+        } else if (this.effect.container === null) {
             //no effect, so assing effect variable
             switchEffect(effectName);
 
@@ -266,7 +264,7 @@ function TrackTemplate() {
             //insert effect
             this.gain.connect(this.effect.container);
             this.effect.container.connect(this.pan);
-        } else if (effectName == 'CLEAR') {
+        } else if (effectName === 'CLEAR') {
             //Same effect passed in, so remove it
             this.gain.disconnect();
             this.effect.container.disconnect();
