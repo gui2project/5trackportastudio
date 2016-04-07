@@ -50,3 +50,80 @@
 .mixer-led-green {
     background-color: #149BDF;
 }
+
+
+ul.scale{
+ white-space: nowrap;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: -17px;
+    top: -5px;
+}
+ul.scale li {
+    text-decoration: none;
+    height: 11px;
+    width: 12px;
+    background-size: 49px 11px;
+    background-image: url('/app/img/scale.png');
+}
+li.scale-5L-top {
+    background-position: 12px 0px;
+}
+li.scale-5L-bottom{
+    background-position: 24px 0px;
+}
+li.scale-5L-middle {
+    background-position: 12px 0px;
+}
+li.scale-5S{
+    background-position: 36px 0px;
+}
+li.scale-10{
+    background-position: 0px 0px;
+}
+li.scale-zero{
+    background-image: none !important;
+}
+
+label.db,
+label.vu{
+    color: #149bdf;
+    font-size: 8px;
+    position: relative;
+    width: 40px;
+    height: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+label.db{
+    top: -13px;
+    left: 1px;
+    text-align: left;
+}
+label.db.alone{
+    left: 13px;
+}
+
+label.vu{
+    left: -15px;
+    text-align: right;
+    top: -13px;
+}
+
+li.scale-5L-top label.db {
+    right: -12px;
+    top: -17px;
+}
+li.scale-5L-top label.vu {
+    left: -15px;
+    top: -17px;
+}
+li.scale-5L-top label.db ,
+li.scale-5L-top label.vu {
+    font-size: 8px;
+    position: relative;
+    color:#FAFAFA;
+}
