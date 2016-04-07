@@ -69,7 +69,7 @@ $.fn.tracklabel = function () {
                     .html('');
                 $(this)
                     .append('<input class="editable-text col-md-11 col-sm-11 col-xs-11" last-name="' + $(this)
-                        .attr('last-name') + '" type="text" placeholder="' + text + '" valuue="' + text + '"></input>');
+                        .attr('last-name') + '" type="text" placeholder="' + text + '" value="' + text + '"></input>');
 
                 // Focus onto the field
                 $(this)

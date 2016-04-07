@@ -47,16 +47,25 @@ function DropDown() {
         // Close on external click
         $(document)
             .mouseup(function (e) {
+
+                if($(e.target).hasClass('trip-content')||
+                    $(e.target).hasClass('trip-next')||
+                    $(e.target).hasClass('trip-back')){
+                        console.log(e.target);
+                    return;
+                }
                 if (_this.state &&
                     (!$(_this.dropDownId)
                         .is(e.target) &&
                         $(_this.dropDownId)
-                        .has(e.target)
-                        .length === 0) &&
+                            .has(e.target)
+                            .length === 0) &&
                     (!$(_this.navigationId)
-                        .is(e.target) && $(_this.navigationId)
-                        .has(e.target)
-                        .length === 0)) {
+                        .is(e.target) &&
+                        $(_this.navigationId)
+                            .has(e.target)
+                            .length === 0)){
+
                     console.log('closing on external click');
                     _this.dropdown.close();
                 }

@@ -19,7 +19,6 @@ $(document)
             console.log('microphone-enabled: success');
             $('.splash.cover')
                 .fadeOut(1000);
-              trip.start();
             //Kick off doms code
 
 
@@ -52,13 +51,11 @@ $(document)
                 .fadeOut(300);
         });
 
-<<<<<<< HEAD
         //  INIT COMPONENTS
-        
+
         console.log("initialize trip");
        // var options = {};
         var trip = new Trip([
-  
             {
                 position:'screen-center',
                 content : 'Hey there! Welcome to TrackStudio, would you like us to show you around? Click next for a simple tutorial.',
@@ -66,7 +63,7 @@ $(document)
                 prevLabel: 'Back',
                 nextLabel: 'Next',
                 delay : -1,
-                
+
             },
             {
                 position:'screen-center',
@@ -92,7 +89,7 @@ $(document)
                 position : 'n',
                 nextClickSelector:$('#track-1 > .row .track-fader > .track-fader-record > button')
             },
-             {
+            {
                 sel : $('#master-1 > .row .playback > div > .play '),
                 content : 'Congrats, you’ve recorded your first track! Let’s hear what we’ve got so far.',
                 showNavigation : false,
@@ -100,52 +97,85 @@ $(document)
                 position : 'n',
                 nextClickSelector:$('#master-1 > .row .playback > div > .play')
             },
-              { 
+            {
                sel : $('#master-1 > .row .playback > div > .stop'),
                 content : 'Awesome! Let’s stop it, and add some special effects.',
                 showNavigation : false,
                 delay :-1,
                 position : 'n',
                 nextClickSelector:$('#master-1 > .row .playback > div > .stop')
-              },
-                { 
+            },
+            {
                   sel : $('#track-1 > .row .fx-box > div > .link-fx-box'),
                   content : 'Click here to get started with effects.',
                   showNavigation : false,
                   delay :-1,
                   position : 'n',
                   nextClickSelector:$('#track-1 > .row .fx-box > div > .link-fx-box')
-                }, 
-                { 
-                  position :'screen-center',
-                  content : 'Here you can choose from an array of effects, let’s start with Reverb.',
+            },
+            {
+                position:'screen-center',
+                content : 'Here you can choose from an array of effects.',
+                showNavigation : true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay : -1
+            },
+            {
+                sel : $('#partial .fx-catalog-panel'),
+                content : 'This is the effects catalog.',
+                showNavigation : true,
+                position: 's',
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            },
+            {
+                  sel : $('#effect-item-reverb fx-catalog-panel-item-image'),
+                  content : 'Select reverb.',
                   showNavigation : true,
-                  nextLabel: 'Next',
-                  delay : -1,
-                        onTripEnd: function(tripIndex) {
-                        DropDown.open;
-                        console.log('onTripEnd : ', tripIndex);
-                 }
-                },
-                { 
-                  //sel : $('#partial > .holder > .dropdown-right > .fx-catalog-panel > .row > .square-wrapper > #effect-item-reverb'),
-                  sel : $('#effect-item-reverb'),
-                  content : 'Click here to select the reverb.',
-                 // showNavigation : false,
                   delay :-1,
                   position : 's',
-                  //nextClickSelector:$('#effect-item-reverb-select-track-1')
-                }
+                 prevLabel: 'Back',
+                nextLabel: 'Next',
+            },
+            {
+                sel : $('#partial .information-panel'),
+                content : 'This is the information panel.',
+                showNavigation : true,
+                position: 'n',
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            },
+            {
+                  sel : $('#effect-item-reverb-select-track-1'),
+                  content : 'Click here to select the reverb for Track 1.',
+                  showNavigation : false,
+                  delay :-1,
+                  position : 'w',
+                  nextClickSelector:$('#effect-item-reverb-select-track-1')
+            },
+
+            {
+                sel : $('#master-1 > .row .playback > div > .play '),
+                content : 'Now listen to your track with the effect.',
+                showNavigation : false,
+                delay :-1,
+                position : 'n',
+                nextClickSelector:$('#master-1 > .row .playback > div > .play')
+            }
+
             ],
             //global config options
             {
                 tripTheme: 'yeti',
                 finishLabel: 'Finish tutorial',
                 showCloseBox : true,
-                animation: 'none'     
+                animation: 'none'
             }
        );
-        
+
         dd = new DropDown();
         sw = new StopWatch();
         ac = new AudioContext();
@@ -474,10 +504,7 @@ $(document)
         $('button.tutorial')
             .on('click', function () {
                 console.log('start trip run');
-        //trip.start();
-        //       trip.next();
-        //    trip.next();
-        //  trip.stop();
+                trip.start();
             });
 
 
