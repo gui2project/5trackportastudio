@@ -139,9 +139,6 @@ function TrackTemplate() {
         this.eqLow.connect(this.gain);
         this.gain.connect(this.pan);
         this.pan.connect(audioContext.destination);
-
-        //Connect gain to VU Meter
-        this.gain.connect(this.meter);
     };
 
     this.playTrack = function () {
@@ -150,12 +147,19 @@ function TrackTemplate() {
             bufferSource.buffer = this.buffer;
             bufferSource.connect(this.eqHigh);
             bufferSource.start(0);
+            
+            //Only user meter when playing because it's inefficent 
+            this.meter = createAudioMeter(audioContext);
+            this.gain.connect(this.meter);
         }
     };
 
     this.stopTrack = function () {
         if (this.buffer !== null) {
             bufferSource.stop();
+            this.gain.disconnect(this.meter);
+            this.meter.shutdown();
+            this.meter.volume = 0;            
         }
     };
 
@@ -196,10 +200,15 @@ function TrackTemplate() {
                 audioRecorder.clear();
                 audioRecorder.record();
                 this.isRecording = true;
+                this.meter = createAudioMeter(audioContext);
+                this.gain.connect(this.meter);
             } else {
                 audioRecorder.stop();
                 this.isRecording = false;
                 this.getRecorderBuffer();
+                this.gain.disconnect(this.meter);
+                this.meter.shutdown();
+                this.meter.volume = 0;
             }
         } else {
             console.log('Track must be armed to record');
