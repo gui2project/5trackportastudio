@@ -52,7 +52,6 @@ $(document)
                 .fadeOut(300);
         });
 
-<<<<<<< HEAD
         //  INIT COMPONENTS
         
         console.log("initialize trip");
