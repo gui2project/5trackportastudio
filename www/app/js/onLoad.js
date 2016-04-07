@@ -373,11 +373,15 @@ $(document)
                 dd.show('API');
                 dd.dropdown.open();
             });
-
-        //console.log('start trip run');
+        // Start tutorial
+        $('button.tutorial')
+            .on('click', function () {
+                console.log('start trip run');
         //trip.start();
         //       trip.next();
         //    trip.next();
-        //  trip.stop();   
+        //  trip.stop();
+            });
+
 
     });

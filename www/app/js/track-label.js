@@ -69,7 +69,7 @@ $.fn.tracklabel = function () {
                     .html('');
                 $(this)
                     .append('<input class="editable-text col-md-11 col-sm-11 col-xs-11" last-name="' + $(this)
-                        .attr('last-name') + '" type="text" placeholder="' + text + '"></input>');
+                        .attr('last-name') + '" type="text" placeholder="' + text + '" valuue="' + text + '"></input>');
 
                 // Focus onto the field
                 $(this)
@@ -99,6 +99,11 @@ $.fn.tracklabel = function () {
                 text = $(this)
                     .find('input')
                     .val();
+
+                if (text.length > 14){
+                    text = text.substring(0, 12) + '...';
+                }
+
             }
 
             // Check if input is empty
