@@ -35,7 +35,8 @@ button,
 .fx-catalog-panel-item,
 .hover,
 .panel-entry,
-.splash {
+.splash,
+.disabledButton{
     background-color: #333333;
 }
 
@@ -84,7 +85,8 @@ main > .container,
 .panel button,
 .row,
 .splash-brand-label,
-.track-fader-record button.armed {
+.track-fader-record button.armed,
+.disabledButton{
     color: #FAFAFA;
 }
 

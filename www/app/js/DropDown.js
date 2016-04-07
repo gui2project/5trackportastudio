@@ -291,9 +291,9 @@ function DropDown() {
                                                 if (item.image === '/app/img/effects/system-delete.png') {
                                                     newimage = '/app/img/effects/system-add-212121.png';
                                                 } else {
-                                                    window[item.objArray][index][item.func](item.parameter);
                                                     newimage = item.image.replace('.png', '-212121.png');
                                                 }
+                                                    window[item.objArray][index][item.func](item.parameter);
 
                                                 $('#track-' + (index + 1) + ' .row .fx-box img')
                                                     .attr('src', newimage);

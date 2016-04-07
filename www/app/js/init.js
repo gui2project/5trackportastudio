@@ -6,6 +6,7 @@
 
 //  CONTEXT DETERMINATIONS
 
+
 // Redirect user to https except when coming from a developement machine
 if (window.location.protocol === 'http:' &&
     !window.location.host.toLowerCase()
@@ -26,7 +27,11 @@ navigator.getUserMedia = (navigator.getUserMedia ||
     navigator.mozGetUserMedia ||
     navigator.msGetUserMedia);
 
+
+
 //  VARIABLE DECLARATIONS
+var options = {}; 
+var trip = null;
 
 var ac = null; //  Audio Context
 var sw = null; //  Stop watch
