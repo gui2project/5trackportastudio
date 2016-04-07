@@ -26,6 +26,7 @@ button,
 .information-image,
 .panel button,
 .stopWatch,
+.timedisplay,
 .track-fader-mute > button.armed {
     background-color: #149BDF;
 }

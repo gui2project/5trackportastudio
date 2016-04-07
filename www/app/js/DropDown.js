@@ -265,7 +265,7 @@ function DropDown() {
                                 buttons.push(buttonId);
 
                                 item.actions += '<div class="' + labelClass + '">';
-                                item.actions += '<button id="' + buttonId + '">Add to Track ' + index + '</button>';
+                                item.actions += '<button id="' + buttonId + '">Add to Track ' + (1 + index) + '</button>';
                                 item.actions += '</div>';
                             }
 
