@@ -19,8 +19,7 @@ $(document)
             console.log('microphone-enabled: success');
             $('.splash.cover')
                 .fadeOut(1000);
-                trip.start();
-            //Kick off doms code
+                //trip.start();
 
         }, function (err) { // Microphone Enabled Error
             console.log('microphone-browser-compatible: success');
@@ -51,59 +50,6 @@ $(document)
                 .fadeOut(300);
         });
 
-        //  INIT COMPONENTS
-        
-        console.log("initialize trip");
-
-        trip = new Trip([
-        
-        
-        {
-            sel : $('#track-1'),
-            content : 'This column is track 1'
-        },
-                {
-            sel : $('#track-2'),
-            content : 'This column is track 2'
-        },
-                {
-            sel : $('#track-3'),
-            content : 'This one is track 3'
-        },
-        {
-            sel : $('#track-4'),
-            content : 'And lastly, track 4'
-            
-        },
-        
-        { 
-            //sel : $('.track-fader-slider'),
-            sel : $('.name.mixer-editable.track-label'),
-            content : 'This is a name mixer-editable track-label'
-            //content : 'This is a track fader slider'
-        },
-        {
-            sel : $('.track-fader'),
-            content : 'This is a trackk fader'
-        },
-                { 
-            sel : $('.fxbox'),
-            content : 'This is fxbox'
-        },
-        {
-            sel : $('.track-fader'),
-            content : 'This is a trackk fader'
-        },
-                { 
-            sel : $('#master-1'),
-            content : 'This is master-1'
-        },
-                { 
-            sel : $('.track-name'),
-            content : 'This is track-name'
-
-        }
-    ], options);
         
         dd = new DropDown();
         sw = new StopWatch();

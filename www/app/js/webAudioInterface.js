@@ -11,13 +11,13 @@ $(function () {
 
     setInterval(
         function () {
-            $('#track-1 > .row > .meter')
+            $('#track-1 > .row > .content-box >.meter')
                 .MeterVolume(track[0].meter.volume * 250);
-            $('#track-2 > .row > .meter')
+            $('#track-2 > .row > .content-box  > .meter')
                 .MeterVolume(track[1].meter.volume * 250);
-            $('#track-3 > .row > .meter')
+            $('#track-3 > .row > .content-box  > .meter')
                 .MeterVolume(track[2].meter.volume * 250);
-            $('#track-4 > .row > .meter')
+            $('#track-4 > .row > .content-box  > .meter')
                 .MeterVolume(track[3].meter.volume * 250);
         }, 1);
 

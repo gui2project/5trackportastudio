@@ -37,7 +37,6 @@ var StopWatch = function () {
      *  @method     StopWatch.start
      */
     this.start = function () {
-               trip.start();
         _this.startAt = _this.startAt ? _this.startAt : _this.now();
     };
 
