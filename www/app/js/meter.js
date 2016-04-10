@@ -32,11 +32,11 @@ $.fn.meter = function (NumOfLEDs) {
     for (var i = 0; i < numberOfLEDs; i++) {
         // Add colors to LEDs
         if (i <= numberOfLEDs / 10) {
-            LEDHTML += '<li class="mixer-led mixer-led-red"></li>';
+            LEDHTML += '<li class="mixer-led mixer-led-danger"></li>';
         } else if (i <= numberOfLEDs / 2) {
-            LEDHTML += '<li class="mixer-led mixer-led-yellow"></li>';
+            LEDHTML += '<li class="mixer-led mixer-led-warn"></li>';
         } else {
-            LEDHTML += '<li class="mixer-led mixer-led-green"></li>';
+            LEDHTML += '<li class="mixer-led mixer-led-normal"></li>';
         }
     }
     LEDHTML += '</ul>';
@@ -64,15 +64,15 @@ $.fn.meter = function (NumOfLEDs) {
             // Change color of LEDS that are on
             onLEDs.each(function (index, val) {
                 if ($(val)
-                    .hasClass('mixer-led-red')) {
+                    .hasClass('mixer-led-danger')) {
                     $(val)
                         .css('background-color', '#FF007D');
                 } else if ($(val)
-                    .hasClass('mixer-led-yellow')) {
+                    .hasClass('mixer-led-warn')) {
                     $(val)
                         .css('background-color', '#C700FF');
                 } else if ($(val)
-                    .hasClass('mixer-led-green')) {
+                    .hasClass('mixer-led-normal')) {
                     $(val)
                         .css('background-color', '#149BDF');
                 }
@@ -81,15 +81,15 @@ $.fn.meter = function (NumOfLEDs) {
             // Change color of LEDS that are off
             offLEDs.each(function (index, val) {
                 if ($(val)
-                    .hasClass('mixer-led-red')) {
+                    .hasClass('mixer-led-danger')) {
                     $(val)
                         .css('background-color', '#333333');
                 } else if ($(val)
-                    .hasClass('mixer-led-yellow')) {
+                    .hasClass('mixer-led-warn')) {
                     $(val)
                         .css('background-color', '#333333');
                 } else if ($(val)
-                    .hasClass('mixer-led-green')) {
+                    .hasClass('mixer-led-normal')) {
                     $(val)
                         .css('background-color', '#333333');
                 }

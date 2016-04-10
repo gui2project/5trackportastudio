@@ -1303,46 +1303,7 @@ Stops the clock
 
 #### Method: StopWatch.reset()
 
-<<<<<<< HEAD
----
-
-### Function: validateSession 
- Validates a session and sets up the ts object, handles initial views(callSession, callNoSession)
-
-#### Params:
-
-* *callSession* The function to call on success
-* *callNoSession* The function to call on failure
-
----
-
-### Function: dVar 
- Gets the default parameter if one was not given(param, def)
-
-#### Params:
-
-* *param* The value to test
-* *def* The default value
-
-#### Return:
-
-* The default paramater
-
----
-
-### Function: getMicrophone 
- Detects the microphone and sets up callbacks(micSuccess, micFailure, browserFailure)
-
-#### Params:
-
-* *micSuccess* The microphone success callback
-* *micFailure* The microphone failure callback
-* *browserFailure* The browser incompatibility callback
-
-<!-- End www/app/js/init.js -->
-=======
 Reset the clock time values
->>>>>>> cb90e7a107af9740ba7a3c666afdb58e6da989c7
 
 ---
 
@@ -1490,31 +1451,16 @@ recording buffer.
 
 ---
 
-<<<<<<< HEAD
 #### Method: track.toggleEffect()
-=======
-#### Method: track.toggleEffect(effectName)
->>>>>>> cb90e7a107af9740ba7a3c666afdb58e6da989c7
 
 Allows user to toggle an effect on or off
  As of now available effects are CHORUS, REVERB, WAHWAH, PINGPONG
 
   Functionality Example:
-<<<<<<< HEAD
 
       track[0].toggleEffect(REVERB) //Adds reverb to track 1
       track[0].toggleEffect(CHORUS) //Replaces reverb with chorus effect
       track[0].toggleEffect(CHORUS) //Removes chorus effect from track
-=======
-
-      track[0].toggleEffect(REVERB) //Adds reverb to track 1
-      track[0].toggleEffect(CHORUS) //Replaces reverb with chorus effect
-      track[0].toggleEffect(CHORUS) //Removes chorus effect from track
-
-##### Params:
-
-* **String** *effectName* Name of effect you want to change to or add
->>>>>>> cb90e7a107af9740ba7a3c666afdb58e6da989c7
 
 <!-- End www\app\js\webAudioApi.js -->
 

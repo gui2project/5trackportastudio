@@ -17,8 +17,8 @@ $(function () {
     /* Set up EQ knobs */
     $('.eq input')
         .knob({
-            width: 75,
-            height: 75,
+            width: 60,
+            height: 60,
             min: -12,
             max: 12,
             angleOffset: -125,
@@ -34,8 +34,8 @@ $(function () {
     /* Set up pan knobs */
     $('.pan input')
         .knob({
-            width: 75,
-            height: 75,
+            width: 60,
+            height: 60,
             min: -1,
             max: 1,
             step: 0.1,

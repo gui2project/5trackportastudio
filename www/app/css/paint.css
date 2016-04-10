@@ -14,11 +14,22 @@ button,
     background-color: #FAFAFA;
 }
 
+.error,
+.fx-catalog-panel-item,
+.hover,
+.panel-entry,
+.splash,
+.disabledButton,
+.mixer-meter .mixer-led {
+    background-color: #333333;
+}
+
 .container,
 .dropdown,
 .dropdown .holder > div,
 .navbar-default,
-.panel {
+.panel,
+.section-label > .title > span {
     background-color: #212121;
 }
 
@@ -27,53 +38,23 @@ button,
 .panel button,
 .stopWatch,
 .timedisplay,
-.track-fader-mute > button.armed {
+.track-fader-mute > button.armed,
+.mixer-meter .mixer-led-normal {
     background-color: #149BDF;
 }
 
-.error,
-.fx-catalog-panel-item,
-.hover,
-.panel-entry,
-.splash,
-.disabledButton {
-    background-color: #333333;
-}
-
-.icon-white,
 button.exit,
 button.tutorial,
-.track-fader-record button.armed {
+.track-fader-record button.armed,
+.mixer-meter .mixer-led-danger {
     background-color: #FF007D;
 }
 
+.mixer-meter .mixer-led-warn {
+    background-color: #C700FF;
+}
 
 /* FONT COLORS */
-button,
-.data-not-active,
-.stopWatch > .timedisplay,
-.timedisplay-label {
-    color: #333333;
-}
-
-input.editable-text,
-.name input {
-    color: #212121;
-}
-.bottom{position: relative;
-    top: 509px;}
-.api-item-url,
-.api-row-options,
-.icon-right .fa,
-.icon-right.pass .fa-check,
-.icon-right.pass .fa-lock,
-.navbar-brand-label:hover,
-.navbar-right-links > a > span:hover,
-.panel .title .fa,
-.splash-label {
-    color: #149BDF;
-}
-
 .armed,
 .data-active,
 .dropdown,
@@ -91,8 +72,38 @@ main > .container,
 .track-fader-record button.armed,
 .disabledButton,
 .icon-white,
-.pre-text {
+.pre-text,
+.section-label > .title > span,
+main > .container > .row-container li.scale-5L-top label.db ,
+main > .container > .row-container li.scale-5L-top label.vu {
     color: #FAFAFA;
+}
+
+button,
+.data-not-active,
+.stopWatch > .timedisplay,
+.timedisplay-label {
+    color: #333333;
+}
+
+input.editable-text,
+.name input {
+    color: #212121;
+}
+
+.api-item-url,
+.api-row-options,
+.icon-right .fa,
+.icon-right.pass .fa-check,
+.icon-right.pass .fa-lock,
+.navbar-brand-label:hover,
+.navbar-right-links > a > span:hover,
+.panel .title .fa,
+.splash-label,
+.section-label,
+main > .container > .row-container label.db,
+main > .container > .row-container label.vu {
+    color: #149BDF;
 }
 
 .api-item-param,
@@ -108,6 +119,22 @@ main > .container,
 }
 
 /* BORDER COLORS*/
+main > .container > .row-container .track .track-name > .track-label:hover {
+    border-color: #555555;
+}
+
+.stopWatch,
+.stopWatch > .timedisplay,
+.dropdown,
+.track,
+.master {
+    border-color: #333333;
+}
+
+main > .container > .row-container .track-name > .track-label {
+    border-color: #212121;
+}
+
 .hover,
 .error,
 .panel-entry {
@@ -120,41 +147,21 @@ main > .container,
     border-color: #149BDF;
 }
 
-.stopWatch,
-.stopWatch > .timedisplay,
-.dropdown,
-.track,
-.master {
-    border-color: #333333;
-}
-
 /*IMAGES*/
-.navbar-brand-label,
-.splash-brand-label {
-    background-image: url('/app/img/favicon-white.png');
+.slider-handle {
+    background-image: url('/app/img/Fader.png');
 }
 
 .navbar-brand-label:hover {
     background-image: url('/app/img/favicon-blue.png');
 }
 
-.slider-handle {
-    background-image: url('/app/img/Fader.png');
+.icon-white,
+.navbar-brand-label,
+.splash-brand-label {
+    background-image: url('/app/img/favicon-white.png');
 }
-.pre-text{
-    font-size: 24px;
-    padding: 5px;
-    vertical-align: middle;
-}
-.icon-white{
-        background-image: url('/app/img/favicon-white.png');
-    background-size: 16px 16px;
-    height: 32px;
-    width: 32px;
-    vertical-align: middle;
-    padding-left: 38px;
-    font-size: 24px;
-    /* background-position: 0px 17px; */
-    background-repeat: no-repeat;
-    background-size: 32px 32px;
+
+main > .container > .row-container ul.scale li {
+    background-image: url('/app/img/scale.png');
 }

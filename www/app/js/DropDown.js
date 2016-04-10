@@ -48,23 +48,26 @@ function DropDown() {
         $(document)
             .mouseup(function (e) {
 
-                if($(e.target).hasClass('trip-content')||
-                    $(e.target).hasClass('trip-next')||
-                    $(e.target).hasClass('trip-back')){
-                        console.log(e.target);
+                if ($(e.target)
+                    .hasClass('trip-content') ||
+                    $(e.target)
+                    .hasClass('trip-next') ||
+                    $(e.target)
+                    .hasClass('trip-back')) {
+                    console.log(e.target);
                     return;
                 }
                 if (_this.state &&
                     (!$(_this.dropDownId)
                         .is(e.target) &&
                         $(_this.dropDownId)
-                            .has(e.target)
-                            .length === 0) &&
+                        .has(e.target)
+                        .length === 0) &&
                     (!$(_this.navigationId)
                         .is(e.target) &&
                         $(_this.navigationId)
-                            .has(e.target)
-                            .length === 0)){
+                        .has(e.target)
+                        .length === 0)) {
 
                     console.log('closing on external click');
                     _this.dropdown.close();
@@ -763,7 +766,7 @@ function DropDown() {
             this.panel.display.toggle(true, '.register-panel');
             this.panel.display.toggle(true, '.login-panel');
 
-             //this.panel.display.toggle(true, '.tutorial-panel');
+            //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -774,7 +777,7 @@ function DropDown() {
 
             this.panel.display.toggle(true, '.login-panel');
 
-             //this.panel.display.toggle(true, '.tutorial-panel');
+            //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -801,7 +804,7 @@ function DropDown() {
 
             this.panel.display.toggle(true, '.account-panel');
             this.panel.display.toggle(true, '.mix-catalog-panel');
-             //this.panel.display.toggle(true, '.tutorial-panel');
+            //this.panel.display.toggle(true, '.tutorial-panel');
 
             return;
 
@@ -810,7 +813,7 @@ function DropDown() {
 
             this.panel.display.all(false);
             this.panel.display.toggle(true, '.login-panel');
-             //this.panel.display.toggle(true, '.tutorial-panel');
+            //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -819,7 +822,7 @@ function DropDown() {
 
             this.panel.display.all(false);
             this.panel.display.toggle(true, '.register-panel');
-             //this.panel.display.toggle(true, '.tutorial-panel');
+            //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
