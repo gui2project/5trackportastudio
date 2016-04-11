@@ -122,12 +122,12 @@ $.fn.tracklabel = function () {
             $(this)
                 .find('span.edit-icon')
                 .css({
-                    'display': 'block'
+                    'display': ''
                 });
             $(this)
                 .children('span.text')
                 .css({
-                    'overflow': 'hidden'
+                    'overflow': ''
                 });
 
             // Check if input is empty

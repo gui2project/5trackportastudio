@@ -487,7 +487,7 @@ $(document)
             });
 
         // Start tutorial
-        $('button.tutorial')
+        $('.lnk-tutorial')
             .on('click', function () {
                 console.log('start trip run');
                 trip.start();

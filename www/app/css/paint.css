@@ -19,8 +19,11 @@ button,
 .hover,
 .panel-entry,
 .splash,
-.disabledButton,
-.mixer-meter .mixer-led {
+.mixer-meter .mixer-led,
+.slider-track-low,
+.slider-track-high,
+.slider-selection,
+.disabledButton {
     background-color: #333333;
 }
 
@@ -54,6 +57,11 @@ button.tutorial,
     background-color: #C700FF;
 }
 
+main > .container > .row-container .track-fader-slider .slider-handle,
+.display {
+    background-color: transparent;
+}
+
 /* FONT COLORS */
 .armed,
 .data-active,
@@ -70,13 +78,21 @@ main > .container,
 .row,
 .splash-brand-label,
 .track-fader-record button.armed,
-.disabledButton,
 .icon-white,
 .pre-text,
 .section-label > .title > span,
 main > .container > .row-container li.scale-5L-top label.db ,
-main > .container > .row-container li.scale-5L-top label.vu {
+main > .container > .row-container li.scale-5L-top label.vu,
+main > .container > .row-container li.scale-5L-top label.vu,
+main > .container > .row-container li.scale-5L-top label.vu i,
+main > .container > .row-container li.scale-5L-top label.db,
+main > .container > .row-container li.scale-5L-top label.db i,
+.disabledButton {
     color: #FAFAFA;
+}
+
+.data-active {
+    color: #FAFAFA !important;
 }
 
 button,
@@ -127,7 +143,10 @@ main > .container > .row-container .track .track-name > .track-label:hover {
 .stopWatch > .timedisplay,
 .dropdown,
 .track,
-.master {
+.master,
+.slider-track-low,
+.slider-track-high,
+.slider-selection {
     border-color: #333333;
 }
 
@@ -147,6 +166,9 @@ main > .container > .row-container .track-name > .track-label {
     border-color: #149BDF;
 }
 
+.display {
+    border-color: transparent;
+}
 /*IMAGES*/
 .slider-handle {
     background-image: url('/app/img/Fader.png');
@@ -164,4 +186,14 @@ main > .container > .row-container .track-name > .track-label {
 
 main > .container > .row-container ul.scale li {
     background-image: url('/app/img/scale.png');
+}
+
+.slider-track-low,
+.slider-track-high,
+.slider-selection {
+    background-image: none;
+}
+
+main > .container > .row-container li.scale-zero {
+    background-image: none !important;
 }

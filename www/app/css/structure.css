@@ -230,7 +230,7 @@ main > .container > .row-container .row {
 
 main > .container > .row-container .row.bottom {
     position: relative;
-    top: 417px;
+    top: 443px;
 }
 
 main > .container > .row-container .row:first-child {
@@ -280,6 +280,7 @@ main > .container > .row-container button {
 main > .container > .row-container .track-name {
     margin: auto;
     text-align: center;
+    width: 95%;
 }
 
 main > .container > .row-container .track-name > .track-label {
@@ -322,8 +323,8 @@ main > .container > .row-container .track .track-label span.text {
 }
 
 main > .container > .row-container .master .master-label span.text {
-    height: 45px;
-    line-height: 45px;
+    height: 43px;
+    line-height: 44px;
 }
 
 main > .container > .row-container .track .track-label .editable-text:focus span.edit-icon {
@@ -335,17 +336,13 @@ main > .container > .row-container .track .track-label:hover span.edit-icon {
 }
 
 main > .container > .row-container .track .track-label span.edit-icon {
-    display: block;
+    display: none;
     margin: 0;
     padding: 0;
     position: relative;
     top: -1px;
     right: 3px;
     text-align: right;
-}
-
-main > .container > .row-container .track .track-label span.edit-icon .fa {
-    font-size: 12px;
 }
 
 /*KNOB*/
@@ -402,18 +399,41 @@ main > .container > .row-container .track-fader > div > button {
 /*FADER SLIDER*/
 main > .container > .row-container .track-fader-slider {
     padding: 0;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.slider.slider-vertical .slider-track {
+    width: 3px;
+    height: 100%;
+    margin-left: 1px;
+    left: 50%;
+    top: 0;
+}
+
+.slider-track-low,
+.slider-track-high,
+.slider-selection {
+    border-width: 1px;
+    border-style: solid;
 }
 
 main > .container > .row-container .track-fader-slider .slider-handle {
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 50px;
-    width: 20px;
+    background-size: 30px 40px;
+    height: 40px;
+    left: -4px;
+    margin-left: -10px;
+    margin-top: -20px;
+    width: 30px;
 }
 
+main > .container > .row-container .track-fader-slider .slider-handle.round {
+    border-radius: 5px;
+}
 /* MIXER METER */
 main > .container > .row-container .mixer-meter {
-    top: -1px;
+    top: 18px;
     padding: 0;
 }
 
@@ -439,17 +459,18 @@ main > .container > .row-container .mixer-meter .mixer-led:first-child {
 
 /*METER SCALE*/
 main > .container > .row-container ul.scale {
-    left: -7px;
+    left: -13px;
     list-style-type: none;
     margin: 0;
     padding: 0;
     position: relative;
     white-space: nowrap;
+    margin-top: 15px;
 }
 
 main > .container > .row-container ul.scale li {
     background-size: 49px 11px;
-    height: 11px;
+    height: 10.75px;
     text-decoration: none;
     width: 12px;
 }
@@ -475,7 +496,6 @@ main > .container > .row-container li.scale-10 {
 }
 
 main > .container > .row-container li.scale-zero {
-    background-image: none !important;
     height: 0 !important;
 }
 
@@ -511,12 +531,12 @@ main > .container > .row-container li.scale-5L-top label.vu {
 
 main > .container > .row-container li.scale-5L-top label.db {
     right: -12px;
-    top: -17px;
+    top: -20px;
 }
 
 main > .container > .row-container li.scale-5L-top label.vu {
     left: -15px;
-    top: -17px;
+    top: -20px;
 }
 /*FX BOX*/
 main > .container > .row-container .fx-box {
@@ -609,7 +629,6 @@ main > .container > .row-container .section-label > .title {
 
 main > .container > .row-container .section-label > .title > span {
     float: right;
-    font-size: 12px;
     padding: 0 2px 0 2px;
 }
 
@@ -712,8 +731,8 @@ form .error {
 
 /*OVERRIDES*/
 .display {
-    background: transparent;
-    border: 0 solid transparent;
+    border-width: 0;
+    border-style: solid;
     box-shadow: none;
     display: block !important;
     visibility: visible !important;
@@ -725,7 +744,6 @@ form .error {
 }
 
 .pre-text {
-    font-size: 24px;
     padding: 5px;
     vertical-align: middle;
 }

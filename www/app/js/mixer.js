@@ -4,11 +4,74 @@
  *  description
  */
 $(function () {
+    var enableButton = function (arr, state) {
+        arr.forEach(function (elem) {
+            if (state) {
+                $(elem)
+                    .prop('disabled', state)
+                    .addClass('disabledButton')
+                    .removeClass('data-active');
+
+            } else {
+                $(elem)
+                    .prop('disabled', state)
+                    .removeClass('disabledButton');
+            }
+        });
+    };
+
+    var mixerbutton = function (arr, state) {
+        arr.forEach(function (elem) {
+            if (state) {
+                console.log('adding data-active:' + elem);
+                $(elem)
+                    .addClass('data-active');
+
+            } else {
+                $(elem)
+                    .prop('disabled', state)
+                    .removeClass('data-active');
+            }
+        });
+    };
+
+    var playback = function (buttonVal) {
+
+        mixerbutton(['button.stop', 'button.rewind', 'button.forward', 'button.play'], false);
+
+        // Switch for button functions
+        switch (buttonVal) {
+        case 'Stop':
+            stop();
+            mixerbutton(['button.stop'], true);
+            setTimeout(function () {
+                $('button.stop')
+                    .removeClass('data-active');
+            }, 600);
+            break;
+        case 'Play':
+            play();
+            mixerbutton(['button.play'], true);
+            break;
+        case 'Rewind':
+            mixerbutton(['button.rewind'], true);
+            break;
+        case 'Fast Forward':
+            mixerbutton(['button.forward'], true);
+            break;
+        }
+    };
+
     /* Add data to the mute & record buttons */
     $('.mute button')
-        .attr('data-muted', 0);
+        .attr('data-muted', 0)
+        .find('.fa-volume-off')
+        .css('display', 'none');
+
     $('.record button')
-        .attr('data-armed', 0);
+        .attr('data-armed', 0)
+        .find('.fa-stop')
+        .css('display', 'none');
 
     /* Set up track names */
     $('.name')
@@ -16,6 +79,8 @@ $(function () {
 
     /* Set up EQ knobs */
     $('.eq input')
+        .val(0)
+        .trigger('change')
         .knob({
             width: 60,
             height: 60,
@@ -27,12 +92,11 @@ $(function () {
             displayInput: false,
             fgColor: '#149BDF'
         });
-    $('.eq input')
-        .val(0)
-        .trigger('change');
 
     /* Set up pan knobs */
     $('.pan input')
+        .val(0)
+        .trigger('change')
         .knob({
             width: 60,
             height: 60,
@@ -45,9 +109,6 @@ $(function () {
             displayInput: false,
             fgColor: '#149BDF'
         });
-    $('.pan input')
-        .val(0)
-        .trigger('change');
 
     /* Set up volume sliders */
     $('.slider')
@@ -107,6 +168,7 @@ $(function () {
                 pan(trackNumber, knobValue);
             }
         });
+
     $(document)
         .on('mouseup', function () {
             // Remove changing
@@ -145,19 +207,34 @@ $(function () {
                 // Turn off armed
                 $(this)
                     .attr('data-muted', 0)
-                    .removeClass('armed');
+                    .removeClass('armed')
+                    .find('.fa-volume-up')
+                    .css('display', 'block')
+                    .end()
+                    .find('.fa-volume-off')
+                    .css('display', 'none');
 
                 muteToggle(trackNumber);
-
             } else if (!isMuted) {
                 // Turn on armed
                 $(this)
                     .attr('data-muted', 1)
-                    .addClass('armed');
+                    .addClass('armed')
+                    .find('.fa-volume-off')
+                    .css('display', 'block')
+                    .end()
+                    .find('.fa-volume-up')
+                    .css('display', 'none');
 
                 muteToggle(trackNumber);
-
             }
+        });
+
+    /* Playback buttons */
+    $('.playback button')
+        .on('click', function () {
+            playback($(this)
+                .attr('value'));
         });
 
     /* Recording buttons */
@@ -177,84 +254,42 @@ $(function () {
                 // Turn off armed
                 $(this)
                     .attr('data-armed', 0)
-                    .removeClass('armed');
+                    .removeClass('armed')
+                    .find('.fa-stop')
+                    .css('display', 'none')
+                    .end()
+                    .find('.fa-circle')
+                    .css('display', 'block')
+                    .end();
 
                 recordToggle(trackNumber);
                 armTrackToggle(trackNumber);
 
-                $('button.stop')
-                    .prop('disabled', false)
-                    .removeClass('disabledButton');
-                $('button.play')
-                    .prop('disabled', false)
-                    .removeClass('disabledButton');
-                $('button.forward')
-                    .prop('disabled', false)
-                    .removeClass('disabledButton');
-                $('button.rewind')
-                    .prop('disabled', false)
-                    .removeClass('disabledButton');
+                enableButton(['button.stop', 'button.play', 'button.forward', 'button.rewind', '.record button'], false);
 
+                $(this)
+                    .prop('disabled', 0);
             } else {
                 // Turn on armed
                 $(this)
                     .attr('data-armed', 1)
-                    .addClass('armed');
+                    .addClass('armed')
+                    .find('.fa-stop')
+                    .css('display', 'block')
+                    .end()
+                    .find('.fa-circle')
+                    .css('display', 'none')
+                    .end();
 
                 armTrackToggle(trackNumber);
                 recordToggle(trackNumber);
 
-                $('button.stop')
-                    .prop('disabled', true)
-                    .addClass('disabledButton');
-                $('button.play')
-                    .prop('disabled', true)
-                    .addClass('disabledButton');
-                $('button.forward')
-                    .prop('disabled', true)
-                    .addClass('disabledButton');
-                $('button.rewind')
-                    .prop('disabled', true)
-                    .addClass('disabledButton');
+                enableButton(['button.stop', 'button.play', 'button.forward', 'button.rewind', '.record button'], true);
 
-            }
-        });
+                $(this)
+                    .prop('disabled', 0);
 
-    var mixerbutton = function (element) {
-        $('button.stop')
-            .removeClass('data-active');
-        $('button.rewind')
-            .removeClass('data-active');
-        $('button.forward')
-            .removeClass('data-active');
-        $('button.play')
-            .removeClass('data-active');
-        element.addClass('data-active');
-    };
-
-    /* Playback buttons */
-    $('.playback button')
-        .on('click', function () {
-            // Get the button type
-            var buttonVal = $(this)
-                .attr('value');
-
-            // Switch for button functions
-            switch (buttonVal) {
-            case 'Stop':
-                stop();
-                mixerbutton($('button.stop'));
-                break;
-            case 'Play':
-                play();
-                mixerbutton($('button.play'));
-                break;
-            case 'Rewind':
-                mixerbutton($('button.rewind'));
-                break;
-            case 'Fast Forward':
-                mixerbutton($('button.forward'));
-                break;
+                mixerbutton(['button.stop'], false);
             }
         });
 });

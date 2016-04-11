@@ -19,14 +19,6 @@ $.fn.meter = function (NumOfLEDs) {
     // Tell whether we're clipping or not
     var clipping = false;
 
-    // Add mixer-meter class
-    $(this)
-        .addClass('mixer-meter');
-
-    // Add data value to div tag
-    $(this)
-        .attr('data-vol', 0);
-
     // Add LEDs to meter
     var LEDHTML = '<ul>';
     for (var i = 0; i < numberOfLEDs; i++) {
@@ -40,11 +32,11 @@ $.fn.meter = function (NumOfLEDs) {
         }
     }
     LEDHTML += '</ul>';
-    $(this)
-        .html(LEDHTML);
 
-    // Check if data-vol has changed
     $(this)
+        .addClass('mixer-meter')
+        .attr('data-vol', 0)
+        .html(LEDHTML)
         .on('volumeChange', function () {
             // Get <ul> from div
             var ul = $(this)

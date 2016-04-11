@@ -1245,13 +1245,13 @@ Mute buttons
 
 #### Method: $()
 
-Recording buttons
+Playback buttons
 
 ---
 
 #### Method: $()
 
-Playback buttons
+Recording buttons
 
 <!-- End www\app\js\mixer.js -->
 

@@ -47,7 +47,8 @@ div.stopWatch > div.timedisplay {
     font-size: 40px;
 }
 
-.icon-white {
+.icon-white,
+.pre-text {
     font-size: 24px;
 }
 
@@ -67,6 +68,10 @@ main .name {
     font-size: 14px;
 }
 
+main > .container > li.scale-5L-top .row-container label.db,
+main > .container > li.scale-5L-top .row-container label.vu,
+main > .container > .row-container .track .track-label span.edit-icon .fa,
+main > .container > .row-container .section-label > .title > span,
 main .eq label,
 main .pan label {
     font-size: 12px;
@@ -74,6 +79,13 @@ main .pan label {
 
 label.error {
     font-size: 11px;
+}
+
+main > .container > .row-container li.scale-5L-top label.vu,
+main > .container > .row-container li.scale-5L-top label.vu i,
+main > .container > .row-container li.scale-5L-top label.db,
+main > .container > .row-container li.scale-5L-top label.db i {
+    font-size: 10px;
 }
 
 main > .container > .row-container label.db,

@@ -421,11 +421,21 @@
 				sliderMinHandle.setAttribute('aria-valuemin', this.options.min);
 				sliderMinHandle.setAttribute('aria-valuemax', this.options.max);
 
+                //ADDED BY JOSE FLORES
+                sliderMinHandleImage = document.createElement("span");
+                sliderMinHandleImage.className = 'slider-image-min';
+                sliderMinHandle.appendChild(sliderMinHandleImage);
+
 				sliderMaxHandle = document.createElement("div");
 				sliderMaxHandle.className = "slider-handle max-slider-handle";
 				sliderMaxHandle.setAttribute('role', 'slider');
 				sliderMaxHandle.setAttribute('aria-valuemin', this.options.min);
 				sliderMaxHandle.setAttribute('aria-valuemax', this.options.max);
+
+                //ADDED BY JOSE FLORES
+                sliderMaxHandleImage = document.createElement("span");
+                sliderMaxHandleImage.className = 'slider-image-max';
+                sliderMaxHandle.appendChild(sliderMaxHandleImage);
 
 				sliderTrack.appendChild(sliderTrackLow);
 				sliderTrack.appendChild(sliderTrackSelection);
