@@ -81,13 +81,13 @@ main > .container,
 .icon-white,
 .pre-text,
 .section-label > .title > span,
+.record button.armed:not(.disabled),
 main > .container > .row-container li.scale-5L-top label.db ,
 main > .container > .row-container li.scale-5L-top label.vu,
 main > .container > .row-container li.scale-5L-top label.vu,
 main > .container > .row-container li.scale-5L-top label.vu i,
 main > .container > .row-container li.scale-5L-top label.db,
-main > .container > .row-container li.scale-5L-top label.db i,
-.disabledButton {
+main > .container > .row-container li.scale-5L-top label.db i {
     color: #FAFAFA;
 }
 
@@ -103,7 +103,15 @@ button,
 }
 
 input.editable-text,
-.name input {
+.name input,
+.record button.disabledButton,
+.disabledButton,
+.disabledButton.armed,
+.disabledButton.play,
+.disabledButton.stop,
+.disabledButton.forward,
+.disabledButton.rewind,
+.disabledButton.record {
     color: #212121;
 }
 
@@ -129,7 +137,8 @@ main > .container > .row-container label.vu {
 .icon-right.err .fa-unlock,
 .error,
 .hover,
-.track-fader-record button,
+.record button:not(.disabledButton),
+
 .warning {
     color: #FF007D;
 }
