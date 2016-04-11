@@ -119,18 +119,27 @@ $(document)
                   nextLabel: 'Next',
                   delay : -1,
                         onTripEnd: function(tripIndex) {
-                        DropDown.open;
+                        //DropDown.open;
                         console.log('onTripEnd : ', tripIndex);
                  }
                 },
                 { 
                   //sel : $('#partial > .holder > .dropdown-right > .fx-catalog-panel > .row > .square-wrapper > #effect-item-reverb'),
-                  sel : $('#effect-item-reverb'),
-                  content : 'Click here to select the reverb.',
-                 // showNavigation : false,
+                  //sel : $('#effect-item-reverb'),
+                  position : 'screen-center',
+                  content : 'Now click the Reverb button to add a reverb effect.',
+                  showNavigation : true,
                   delay :-1,
-                  position : 's',
-                  //nextClickSelector:$('#effect-item-reverb-select-track-1')
+                  nextLabel: 'Next',
+                  canGoNext: true,
+                },
+                                { 
+                  position : 'screen-center',
+                  content : 'Now click Track 1 to add the reverb effect to track 1',
+                  showNavigation : true,
+                  delay :-1,
+                  nextLabel: 'Next',
+                  canGoNext: true,
                 }
             ],
             //global config options

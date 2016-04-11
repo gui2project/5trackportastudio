@@ -58,7 +58,7 @@ function DropDown() {
                         .has(e.target)
                         .length === 0)) {
                     console.log('closing on external click');
-                    _this.dropdown.close();
+                    //_this.dropdown.close();
                 }
             });
     };
@@ -79,7 +79,6 @@ function DropDown() {
             } else {
                 _this.history.push(view);
             }
-
             console.log(_this.history);
         },
 
