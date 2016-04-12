@@ -75,12 +75,13 @@ $(document)
                 position: 'n',
                 nextClickSelector: $('#track-1 .mute > button')
             }, {
+                //index 3
                 sel: $('#track-1 .record > button'),
                 content: 'Next lets record a simple track to get started.',
                 showNavigation: false,
                 delay: -1,
                 position: 'n',
-                nextClickSelector: $('#track-1 > record > button')
+                nextClickSelector: $('#track-1 .record > button')
             }, {
                 position: 'screen-center',
                 content: 'At this point lets make some music. When you are done click next.',
@@ -132,11 +133,12 @@ $(document)
                 nextLabel: 'Next',
                 delay: -1
             }, {
-                sel: $('#effect-item-reverb fx-catalog-panel-item-image'),
-                content: 'Select reverb.',
+                //index 11
+                // cant find id: sel: $('#effect-item-reverb fx-catalog-panel-item-image'),
+                position: 'screen-center',
+                content: 'Find the reverb effect and select it.',
                 showNavigation: true,
                 delay: -1,
-                position: 's',
                 prevLabel: 'Back',
                 nextLabel: 'Next',
             }, {
@@ -148,6 +150,7 @@ $(document)
                 nextLabel: 'Next',
                 delay: -1
             }, {
+                //index 13
                 sel: $('#effect-item-reverb-select-track-1'),
                 content: 'Click here to select the reverb for Track 1.',
                 showNavigation: false,
