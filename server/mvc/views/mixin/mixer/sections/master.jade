@@ -9,8 +9,8 @@ mixin master(masterNum)
     // Master Track
     div.col-md-push-8.col-md-4.col-sm-12.col-xs-12.master(id="master-" + masterNum, data-track-length='0')
         +trackname(-1, 'Master')
-        +timeDisplay()
         +playback()
+        +timeDisplay()
         +statistics()
         // Features
         .row.bottom

@@ -1196,6 +1196,63 @@ This allows you to change the volume distplayed on a
 
 ---
 
+### Function: enableButton(arr)
+
+Enables a button.
+
+#### Params:
+
+* **Array** *arr* An array of selectors to enable.
+
+---
+
+### Function: disableButton(arr)
+
+Disables a button.
+
+#### Params:
+
+* **Array** *arr* An array of selectors to disable.
+
+---
+
+### Function: toggleButtonState(arr, state)
+
+Toggles a button state
+
+#### Params:
+
+* **Array** *arr* An array of selectors
+* **Boolean** *state* The state to place the button in
+
+---
+
+### Function: $.fn.disableButton(arr, state)
+
+Disables a button state in a jQuery Chain
+
+See: disableButton
+
+#### Params:
+
+* **Array** *arr* An array of selectors
+* **Boolean** *state* The state to place the button in
+
+---
+
+### Function: $.fn.enableButton(arr, state)
+
+Enables a button state in a jQuery Chain
+
+See: enableButton
+
+#### Params:
+
+* **Array** *arr* An array of selectors
+* **Boolean** *state* The state to place the button in
+
+---
+
 #### Method: $()
 
 Set up track names
@@ -1255,6 +1312,58 @@ Recording buttons
 
 <!-- Start www\app\js\onLoad.js -->
 ## File: www\app\js\onLoad.js
+
+{
+                position: 'screen-center',
+                content: 'Hey there! Welcome to TrackStudio, would you like us to show you around? Click next for a simple tutorial.',
+                showNavigation: true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1,
+            }, {
+                position: 'screen-center',
+                content: 'Before we move on, we recommend that you grab a pair of headphones/earbuds and plug them in.',
+                showNavigation: true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            }, {
+                sel: $('#track-1 .mute > button'),
+                content: 'Begin by toggling speaker output.<br/> This prevents feedback.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#track-1 .mute > button')
+            }, {
+                //index 3
+                sel: $('#track-1 .record > button'),
+                content: 'Next lets record a simple track to get started.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#track-1 .record > button')
+            }, {
+                position: 'screen-center',
+                content: 'At this point lets make some music. When you are done click next.',
+                showNavigation: true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1,
+            }, {
+                sel: $('#track-1 > .row .track-fader > .track-fader-record > button'),
+                content: 'Click again to stop recording.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#track-1 > .row .track-fader > .track-fader-record > button')
+            }, {
+                sel: $('#master-1 > .row .playback > div > .play '),
+                content: 'Congrats, you’ve recorded your first track! Let’s hear what we’ve got so far.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#master-1 > .row .playback > div > .play')
+            },
 
 <!-- End www\app\js\onLoad.js -->
 

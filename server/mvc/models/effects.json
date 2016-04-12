@@ -2,7 +2,7 @@
     {
         "title": "Reverb",
         "desc": "Simulates a large hall",
-        "image": "/app/img/effects/reverb.png",
+        "image": "/app/img/effects/reverb-212121.png",
         "objArray": "track",
         "func": "toggleEffect",
         "parameter": "REVERB"
@@ -10,7 +10,7 @@
     {
         "title": "PingPong",
         "desc": "Creates an \"ping-pong\" echo effect",
-        "image": "/app/img/effects/ping_pong.png",
+        "image": "/app/img/effects/ping_pong-212121.png",
         "objArray": "track",
         "func": "toggleEffect",
         "parameter": "PINGPONG"
@@ -18,7 +18,7 @@
     {
         "title": "Chorus",
         "desc": "Makes one instrument sound like multiple instruments",
-        "image": "/app/img/effects/chorus.png",
+        "image": "/app/img/effects/chorus-212121.png",
         "objArray": "track",
         "func": "toggleEffect",
         "parameter": "CHORUS"
@@ -26,7 +26,7 @@
     {
         "title": "WahWah",
         "desc": "Gives your instrument a \"Wah\" sound effect",
-        "image": "/app/img/effects/wah_wah.png",
+        "image": "/app/img/effects/wah_wah-212121.png",
         "objArray": "track",
         "func": "toggleEffect",
         "parameter": "WAHWAH"

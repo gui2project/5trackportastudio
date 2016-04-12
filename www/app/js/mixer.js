@@ -4,64 +4,76 @@
  *  description
  */
 $(function () {
-    var enableButton = function (arr, state) {
+
+    /**
+     *  Enables a button.
+     *
+     *  @function enableButton
+     *  @param {Array} arr An array of selectors to enable.
+     */
+    var enableButton = function (arr) {
+        toggleButtonState(arr, true);
+    };
+
+    /**
+     *  Disables a button.
+     *
+     *  @function disableButton
+     *  @param {Array} arr An array of selectors to disable.
+     */
+    var disableButton = function (arr) {
+        toggleButtonState(arr, false);
+    };
+
+    /**
+     *  Toggles a button state
+     *
+     *  @function toggleButtonState
+     *  @param {Array} arr An array of selectors
+     *  @param {Boolean} state The state to place the button in
+     */
+    var toggleButtonState = function (arr, state) {
         arr.forEach(function (elem) {
-            if (state) {
+            if (!state) {
                 $(elem)
-                    .prop('disabled', state)
+                    .prop('disabled', 1)
                     .addClass('disabledButton')
                     .removeClass('data-active');
 
             } else {
                 $(elem)
-                    .prop('disabled', state)
+                    .prop('disabled', 0)
                     .removeClass('disabledButton');
             }
         });
     };
 
-    var mixerbutton = function (arr, state) {
-        arr.forEach(function (elem) {
-            if (state) {
-                console.log('adding data-active:' + elem);
-                $(elem)
-                    .addClass('data-active');
-
-            } else {
-                $(elem)
-                    .prop('disabled', state)
-                    .removeClass('data-active');
-            }
-        });
+    /**
+     *  Disables a button state in a jQuery Chain
+     *
+     *  @function $.fn.disableButton
+     *  @see disableButton
+     *  @param {Array} arr An array of selectors
+     *  @param {Boolean} state The state to place the button in
+     */
+    $.fn.disableButton = function () {
+        disableButton([this]);
+        return this;
+    };
+    /**
+     *  Enables a button state in a jQuery Chain
+     *
+     *  @function $.fn.enableButton
+     *  @see enableButton
+     *  @param {Array} arr An array of selectors
+     *  @param {Boolean} state The state to place the button in
+     */
+    $.fn.enableButton = function () {
+        enableButton([this]);
+        return this;
     };
 
-    var playback = function (buttonVal) {
-
-        mixerbutton(['button.stop', 'button.rewind', 'button.forward', 'button.play'], false);
-
-        // Switch for button functions
-        switch (buttonVal) {
-        case 'Stop':
-            stop();
-            mixerbutton(['button.stop'], true);
-            setTimeout(function () {
-                $('button.stop')
-                    .removeClass('data-active');
-            }, 600);
-            break;
-        case 'Play':
-            play();
-            mixerbutton(['button.play'], true);
-            break;
-        case 'Rewind':
-            mixerbutton(['button.rewind'], true);
-            break;
-        case 'Fast Forward':
-            mixerbutton(['button.forward'], true);
-            break;
-        }
-    };
-
+    //  Mixer component initializations
     $('.track')
         .attr('data-track-length', 0)
         .on('datachange', function () {
@@ -140,6 +152,9 @@ $(function () {
             tooltip_position: 'left'
         });
 
+    //  METER
+    $('.meter')
+        .meter(36);
     /* Knob function */
     $('canvas')
         .on('mousedown', function () {
@@ -252,10 +267,33 @@ $(function () {
         });
 
     /* Playback buttons */
-    $('.playback button')
+    $('button.stop')
+        .disableButton()
         .on('click', function () {
-            playback($(this)
-                .attr('value'));
+            enableButton(['button.play', 'button.rewind', 'button.forward', '.record button']);
+            disableButton(['button.stop']);
+            stop();
+
+        });
+    $('button.play')
+        .disableButton()
+        .on('click', function () {
+            enableButton(['button.stop']);
+            disableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
+
+            play();
+        });
+    $('button.forward')
+        .disableButton()
+        .on('click', function () {
+            enableButton(['button.stop']);
+            disableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
+        });
+    $('button.rewind')
+        .disableButton()
+        .on('click', function () {
+            enableButton(['button.stop']);
+            disableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
         });
 
     /* Recording buttons */
@@ -302,7 +340,7 @@ $(function () {
 
                 clearInterval(trackClear[trackId]);
 
-                enableButton(['button.stop', 'button.play', 'button.forward', 'button.rewind', '.record button'], false);
+                enableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
 
                 $(this)
                     .prop('disabled', 0);
@@ -329,12 +367,10 @@ $(function () {
                     sw.setTrack(trackId, trackTime);
                 }, 1);
 
-                enableButton(['button.stop', 'button.play', 'button.forward', 'button.rewind', '.record button'], true);
+                disableButton(['button.stop', 'button.play', 'button.forward', 'button.rewind', '.record button']);
 
                 $(this)
                     .prop('disabled', 0);
-
-                mixerbutton(['button.stop'], false);
             }
         });
 });

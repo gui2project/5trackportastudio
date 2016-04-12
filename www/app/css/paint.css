@@ -15,7 +15,6 @@ button,
 }
 
 .error,
-.fx-catalog-panel-item,
 .hover,
 .panel-entry,
 .splash,
@@ -38,11 +37,12 @@ button,
 
 .data-active,
 .information-image,
-.panel button,
 .stopWatch,
 .timedisplay,
 .track-fader-mute > button.armed,
-.mixer-meter .mixer-led-normal.on {
+.mixer-meter .mixer-led-normal.on,
+main > .container > .row-container .statistics ,
+.panel button.accept {
     background-color: #149BDF;
 }
 
@@ -66,7 +66,6 @@ main > .container > .row-container .track-fader-slider .slider-handle,
 .armed,
 .data-active,
 .dropdown,
-.fx-catalog-panel-item-title,
 .instructions,
 main > .container,
 .navbar-default .navbar-brand,
@@ -74,7 +73,8 @@ main > .container,
 .navbar-header > a > span,
 .navbar-info-display,
 .navbar-right-links a span,
-.panel button,
+.panel button.exit,
+.panel button.accept,
 .row,
 .splash-brand-label,
 .track-fader-record button.armed,
@@ -111,7 +111,8 @@ input.editable-text,
 .disabledButton.stop,
 .disabledButton.forward,
 .disabledButton.rewind,
-.disabledButton.record {
+.disabledButton.record,
+main > .container > .row-container .statistics {
     color: #212121;
 }
 
@@ -154,11 +155,16 @@ main > .container > .row-container .track .track-name > .track-label:hover {
 .master,
 .slider-track-low,
 .slider-track-high,
-.slider-selection {
+.slider-selection,
+.panel .track-selector > button,
+.panel button.exit,
+.panel button.accept,
+.panel .fx-catalog-panel-item {
     border-color: #333333;
 }
 
-main > .container > .row-container .track-name > .track-label {
+main > .container > .row-container .track-name > .track-label,
+main > .container > .row-container .statistics {
     border-color: #212121;
 }
 
@@ -168,7 +174,6 @@ main > .container > .row-container .track-name > .track-label {
     border-color: #181818;
 }
 
-.fx-catalog-panel-item,
 .navbar-brand-label:hover,
 .navbar-right-links a span:hover {
     border-color: #149BDF;
@@ -177,6 +182,7 @@ main > .container > .row-container .track-name > .track-label {
 .display {
     border-color: transparent;
 }
+
 /*IMAGES*/
 .slider-handle {
     background-image: url('/app/img/Fader.png');

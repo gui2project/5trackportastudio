@@ -243,15 +243,17 @@ function DropDown() {
                         data.unshift({
                             title: 'Remove',
                             desc: 'Remove the effect applied to a track.',
-                            image: '/app/img/effects/system-delete.png',
+                            image: '/app/img/effects/system-delete-212121.png',
                             objArray: 'track',
                             func: 'toggleEffect',
                             parameter: 'CLEAR'
                         });
+
                         //  add items to catalog
                         data.forEach(function (item) {
                             var idString = ('effect-item-' + item.title)
                                 .toLowerCase();
+
                             idString = idString.replace(/\s/g, '');
 
                             console.log(idString);
@@ -260,25 +262,7 @@ function DropDown() {
                             var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span>';
                             var url = item.image ? item.image : '/app/img/favicon-white.png';
                             var image = '<img class="fx-catalog-panel-item-image" src="' + url + '" class="square-image-centered"/>';
-                            var htmlObj = '<div class="square-wrapper ' + classes + '"><div id="' + idString + '" class="square-inner fx-catalog-panel-item">' + image + title + '</div></div>';
-
-                            var label = ['Track 1', 'Track2', 'T3', 'T4'];
-                            var labelClass = 'track-selector col-xs-3 col-sm-12 col-md-12 col-lg-12';
-
-                            var buttons = [];
-
-                            item.actions = '';
-                            var buttonId = '';
-
-                            for (index = 0; index < 4; ++index) {
-
-                                buttonId = idString + '-select-track-' + index;
-                                buttons.push(buttonId);
-
-                                item.actions += '<div class="' + labelClass + '">';
-                                item.actions += '<button id="' + buttonId + '">Add to Track ' + (1 + index) + '</button>';
-                                item.actions += '</div>';
-                            }
+                            var htmlObj = '<div class=" col-md-12 col-sm-12 col-xs-12 square-wrapper ' + classes + '"><button id="' + idString + '" class="square-inner fx-catalog-panel-item">' + image + '<br>' + title + '</button></div>';
 
                             //  Add Element
                             $(container)
@@ -288,39 +272,30 @@ function DropDown() {
                             $('#' + idString)
                                 .on('click', function () {
                                     console.log(idString + ' was clicked');
-                                    _this.panel.set.information(item);
-                                    _this.panel.display.toggle(true, '.information-panel');
+                                    trackNumber = parseInt($('main')
+                                        .attr('data-effect-switch'));
 
-                                    buttons.forEach(function (id, index) {
-                                        console.log(id);
-                                        //  Track Selector Buttons
-                                        $('#' + id)
-                                            .on('click', function () {
-                                                console.log(id + ' was clicked');
+                                    var newimage;
+                                    if (item.image === '/app/img/effects/system-delete-212121.png') {
+                                        newimage = '/app/img/effects/system-add-212121.png';
+                                    } else {
+                                        newimage = item.image;
+                                    }
 
-                                                var newimage;
-                                                if (item.image === '/app/img/effects/system-delete.png') {
-                                                    newimage = '/app/img/effects/system-add-212121.png';
-                                                } else {
-                                                    newimage = item.image.replace('.png', '-212121.png');
-                                                }
-                                                window[item.objArray][index][item.func](item.parameter);
+                                    window[item.objArray][trackNumber][item.func](item.parameter);
 
-                                                $('#track-' + (index + 1) + ' .row .fx-box img')
-                                                    .attr('src', newimage);
-                                                _this.show('BACK');
+                                    console.log($('#track-' + (1 + trackNumber) + ' .row .fx-box img'));
+                                    $('#track-' + (1 + trackNumber) + ' .row .fx-box img')
+                                        .attr('src', newimage);
+                                    _this.show('BACK');
 
-                                            })
-                                            .mouseover(function () {
-                                                console.log(id + ' was hovered');
-                                            })
-                                            .mouseleave(function () {
-                                                console.log(id + ' was left');
-                                            });
-                                    });
                                 })
                                 .mouseover(function () {
                                     console.log(idString + ' was hovered');
+
+                                    _this.panel.set.information(item);
+                                    _this.panel.display.toggle(true, '.information-panel');
+
                                 })
                                 .mouseleave(function () {
                                     console.log(idString + ' was left');
@@ -469,8 +444,8 @@ function DropDown() {
                     .html(obj.title);
                 $(_this.dropDownId + ' .information-panel .information-description')
                     .html(obj.desc);
-                $(_this.dropDownId + ' .information-actions-panel .information-actions')
-                    .html(obj.actions);
+                //$(_this.dropDownId + ' .information-actions-panel .information-actions')
+                //  .html(obj.actions);
             }
         },
 
