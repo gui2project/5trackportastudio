@@ -1,0 +1,17 @@
+include ./trackStat.jade
+
+mixin statistics()
+    //  Statistics
+    .row
+        .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            +section-label('Information')
+        .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+            table.statistics.col-xs-12.col-sm-12.col-md-12.col-lg-12
+                thead
+                    tr
+                        th Name
+                        th Length
+                tbody
+                    each i in [0,1,2,3,'master']
+                        +trackStat(i)
+
