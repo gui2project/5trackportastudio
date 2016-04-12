@@ -62,16 +62,33 @@ $(function () {
         }
     };
 
-    /* Add data to the mute & record buttons */
-    $('.mute button')
-        .attr('data-muted', 0)
-        .find('.fa-volume-off')
-        .css('display', 'none');
+    $('.track')
+        .attr('data-track-length', 0)
+        .on('datachange', function () {
+            var arr = [];
+            var count = 0;
+            console.log('track is updating');
+            $('.track')
+                .each(function () {
+                    arr.push(parseInt($(this)
+                        .attr('data-track-length')));
+                    console.log(arr, count);
+                    if (++count >= 3) {
 
-    $('.record button')
-        .attr('data-armed', 0)
-        .find('.fa-stop')
-        .css('display', 'none');
+                        console.log(Math.max.apply(null, arr));
+                        $('.master')
+                            .attr('data-track-length', Math.max.apply(null, arr))
+                            .trigger('update');
+                    }
+                });
+        });
+
+    $('.master')
+        .on('update', function () {
+            console.log('master is updating');
+            sw.setTrack('master', $('.master')
+                .attr('data-track-length'));
+        });
 
     /* Set up track names */
     $('.name')
@@ -192,6 +209,10 @@ $(function () {
 
     /* Mute buttons */
     $('.mute button')
+        .attr('data-muted', 0)
+        .find('.fa-volume-off')
+        .css('display', 'none')
+        .end()
         .on('click', function () {
             // Get track number and value of the button
             var trackNumber = parseInt($(this)
@@ -239,7 +260,21 @@ $(function () {
 
     /* Recording buttons */
     $('.record button')
+        .attr('data-armed', 0)
+        .find('.fa-stop')
+        .css('display', 'none')
+        .end()
         .on('click', function () {
+
+            var trackId = $(this)
+                .closest('.track')
+                .attr('id')
+                .substr(6) - 1;
+            var trackSelector = '#track-' + (1 + trackId);
+            console.log(trackId);
+
+            var _this = this;
+
             // Get track number and value of the knob
             var trackNumber = parseInt($(this)
                 .parent()
@@ -265,6 +300,8 @@ $(function () {
                 recordToggle(trackNumber);
                 armTrackToggle(trackNumber);
 
+                clearInterval(trackClear[trackId]);
+
                 enableButton(['button.stop', 'button.play', 'button.forward', 'button.rewind', '.record button'], false);
 
                 $(this)
@@ -283,6 +320,14 @@ $(function () {
 
                 armTrackToggle(trackNumber);
                 recordToggle(trackNumber);
+
+                trackClear[trackId] = setInterval(function () {
+                    var trackTime = sw.getTime();
+                    $(trackSelector)
+                        .attr('data-track-length', trackTime)
+                        .trigger('datachange');
+                    sw.setTrack(trackId, trackTime);
+                }, 1);
 
                 enableButton(['button.stop', 'button.play', 'button.forward', 'button.rewind', '.record button'], true);
 

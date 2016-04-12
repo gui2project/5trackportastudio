@@ -13,6 +13,7 @@ $(document)
 
 // Function for making LEDs
 $.fn.meter = function (NumOfLEDs) {
+    var i, classValue;
     // Save number of LEDs for later use
     var numberOfLEDs = NumOfLEDs;
 
@@ -20,24 +21,29 @@ $.fn.meter = function (NumOfLEDs) {
     var clipping = false;
 
     // Add LEDs to meter
-    var LEDHTML = '<ul>';
-    for (var i = 0; i < numberOfLEDs; i++) {
+    var ledHtml = '<ul>';
+    for (i = 0; i < numberOfLEDs; ++i) {
+
         // Add colors to LEDs
         if (i <= numberOfLEDs / 10) {
-            LEDHTML += '<li class="mixer-led mixer-led-danger"></li>';
+            classValue = 'mixer-led-danger';
         } else if (i <= numberOfLEDs / 2) {
-            LEDHTML += '<li class="mixer-led mixer-led-warn"></li>';
+            classValue = 'mixer-led-warn';
         } else {
-            LEDHTML += '<li class="mixer-led mixer-led-normal"></li>';
+            classValue = 'mixer-led-normal';
         }
+
+        ledHtml += '<li class="mixer-led ' + classValue + '"></li>';
     }
-    LEDHTML += '</ul>';
+    ledHtml += '</ul>';
 
     $(this)
         .addClass('mixer-meter')
         .attr('data-vol', 0)
-        .html(LEDHTML)
+        .html(ledHtml)
         .on('volumeChange', function () {
+            var onLeds;
+
             // Get <ul> from div
             var ul = $(this)
                 .children(0);
@@ -50,41 +56,24 @@ $.fn.meter = function (NumOfLEDs) {
             var lightUp = Math.ceil((volume / 100) * numberOfLEDs);
 
             // Find elements you need to light up
-            var onLEDs = ((numberOfLEDs - lightUp) < 0) ? ul.find('li:gt(' + (numberOfLEDs - lightUp) + ')') : ul.children();
-            var offLEDs = ul.find('li:lt(' + (numberOfLEDs - lightUp) + ')');
+            var offLeds = (numberOfLEDs - lightUp);
+            if (offLeds < 0) {
+                onLEDs = ul.find('li:gt(' + offLeds + ')');
+            } else {
+                onLEDs = ul.children();
+            }
+            offLeds = ul.find('li:lt(' + offLeds + ')');
 
             // Change color of LEDS that are on
             onLEDs.each(function (index, val) {
-                if ($(val)
-                    .hasClass('mixer-led-danger')) {
-                    $(val)
-                        .css('background-color', '#FF007D');
-                } else if ($(val)
-                    .hasClass('mixer-led-warn')) {
-                    $(val)
-                        .css('background-color', '#C700FF');
-                } else if ($(val)
-                    .hasClass('mixer-led-normal')) {
-                    $(val)
-                        .css('background-color', '#149BDF');
-                }
+                $(val)
+                    .addClass('on');
             });
 
             // Change color of LEDS that are off
-            offLEDs.each(function (index, val) {
-                if ($(val)
-                    .hasClass('mixer-led-danger')) {
-                    $(val)
-                        .css('background-color', '#333333');
-                } else if ($(val)
-                    .hasClass('mixer-led-warn')) {
-                    $(val)
-                        .css('background-color', '#333333');
-                } else if ($(val)
-                    .hasClass('mixer-led-normal')) {
-                    $(val)
-                        .css('background-color', '#333333');
-                }
+            offLeds.each(function (index, val) {
+                $(val)
+                    .removeClass('on');
             });
 
             // Set the clipping LED to stay on for a second longer
@@ -94,9 +83,10 @@ $.fn.meter = function (NumOfLEDs) {
                     clipping = false;
                 }, 1000);
             }
+
             if (clipping === true) {
                 ul.find('li:first')
-                    .css('background-color', '#FF007D');
+                    .addClass('on');
             }
         });
 };
@@ -105,15 +95,15 @@ $.fn.meter = function (NumOfLEDs) {
  *  This allows you to change the volume distplayed on a
  *  volume meter.
  *
- *  @class   MeterVolume
- *  @param   vol    Volume to be displayed on the meter
- *
  *  This should be run on load.
  *
  *  Examples of changing volume displayed:
  *
  *     var meter = $(this).parent().parent().find('.meter');
  *     meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
+ *
+ *  @function   MeterVolume
+ *  @param   {Number}  vol    Volume to be displayed on the meter
  */
 $.fn.MeterVolume = function (vol) {
     // Find out if you have the data-vol data
@@ -121,7 +111,8 @@ $.fn.MeterVolume = function (vol) {
         .attr('data-vol');
 
     // Check if you have the attr or not
-    if (typeof attr !== typeof undefined && attr !== false) {
+    if (typeof attr !== typeof undefined &&
+        attr !== false) {
         // Set new value for data-vol and trigger event
         $(this)
             .attr('data-vol', vol)

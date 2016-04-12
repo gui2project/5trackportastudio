@@ -7,7 +7,8 @@
  */
 // Function for creating editable text
 $.fn.tracklabel = function () {
-
+    var trackId, trackSelector, trackLabelDisplay;
+    //track-name-display-3
     // Add mixer-editable class
     $(this)
         .addClass('mixer-editable');
@@ -31,65 +32,74 @@ $.fn.tracklabel = function () {
     };
 
     this.each(function () {
+        if ($(this)
+            .closest('.track')
+            .attr('id')) {
+            trackId = $(this)
+                .closest('.track')
+                .attr('id')
+                .substr(6) - 1;
+        } else {
+            trackId = 'master';
+        }
+        trackLabelDisplay = '#track-name-display-' + trackId;
+
         labelType(this);
+
+        $(this)
+            .attr('data-stat-label', trackLabelDisplay)
+            .attr('last-name', $(this)
+                .text());
+
+        var originalText = $(this)
+            .children('span.text')
+            .html();
+
+        $(trackLabelDisplay)
+            .html(originalText);
     });
 
     // Check if you were clicked on
     $(this)
         .on('click', function () {
 
-            var textElement = $(this)
-                .find('span.text');
-
             if ($(this)
                 .hasClass('master-label')) {
                 return;
             }
 
-            // Save last name
-            if (textElement
-                .text() === '') {
-                textElement
-                    .attr('last-name');
-            } else {
-                textElement
-                    .attr('last-name', $(this)
-                        .text());
-            }
-
             // Check if you're in edit mode
             if (!$(this)
                 .hasClass('mixer-enabled')) {
-                // Change to editable
-                $(this)
-                    .addClass('mixer-enabled');
+
+                var textElement = $(this)
+                    .find('span.text');
 
                 // Save track name
                 var text = textElement
                     .text();
 
-                // Add input field
-                textElement
-                    .html('')
-                    .append('<input class="editable-text" last-name="' +
-                        textElement.attr('last-name') +
-                        '" type="text" placeholder="' + text +
-                        '" value="' + text + '"></input>');
-                console.log($(this));
-
+                // Change to editable
                 //  Styling to remove hover edit button
-                textElement
-                    .css({
-                        'overflow': 'visible'
-                    });
                 $(this)
-                    .children('span.edit-icon')
+                    // Take out of edit mode
+                    .find('span.edit-icon')
                     .css({
                         'display': 'none'
                     });
 
-                // Focus onto the field
+                // Add input field
                 textElement
+                    .html('')
+                    .css({
+                        'overflow': 'visible'
+                    })
+                    .append('<input class="editable-text" last-name="' +
+                        $(this)
+                        .attr('last-name') +
+                        '" type="text" placeholder="' + text +
+                        '" value="' + text + '"></input>')
+                    .end()
                     .find('input')
                     .focus();
             }
@@ -99,6 +109,8 @@ $.fn.tracklabel = function () {
     $(this)
         .on('focusout enterKey escapeKey', function (e) {
             var text;
+            var lastName = $(this)
+                .attr('last-name');
 
             if ($(this)
                 .hasClass('master-label')) {
@@ -107,42 +119,39 @@ $.fn.tracklabel = function () {
 
             // Take out of edit mode
             $(this)
-                .removeClass('mixer-enabled');
+                .removeClass('mixer-enabled')
+                .find('span.edit-icon')
+                .css({
+                    'display': ''
+                })
+                .end()
+                .children('span.text')
+                .css({
+                    'overflow': ''
+                });
 
             // Get text from the input field
-            if (e.type === 'escapeKey') {
-                text = '';
+            if (text === '') {
+                text = lastName;
             } else {
                 text = $(this)
                     .find('input')
                     .val();
             }
 
-            //  Styling to add back hover edit button
-            $(this)
-                .find('span.edit-icon')
-                .css({
-                    'display': ''
-                });
-            $(this)
-                .children('span.text')
-                .css({
-                    'overflow': ''
-                });
-
-            // Check if input is empty
             if (text === '') {
-                $(this)
-                    .find('span.text')
-                    .text($(this)
-                        .attr('last-name'));
-            } else {
-                $(this)
-                    .find('span.text')
-                    .text(text);
+                text = lastName;
             }
 
+            $($(this)
+                    .attr('data-stat-label'))
+                .html(text);
+
             $(this)
+                .find('span.text')
+                .text(text)
+                .attr('last-name', text)
+                .end()
                 .remove('input');
         });
 

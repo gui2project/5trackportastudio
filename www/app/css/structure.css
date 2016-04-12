@@ -71,7 +71,7 @@ header > .navbar > .container > .navbar-right-links > a {
 header > .navbar > .container > .navbar-right-links > a > span {
     float: right;
     height: 38px;
-    line-height: 55px;
+    line-height: 53px;
 }
 
 header > .navbar > .container > .navbar-right-links > a > span:hover {
@@ -230,7 +230,7 @@ main > .container > .row-container .row {
 
 main > .container > .row-container .row.bottom {
     position: relative;
-    top: 443px;
+    top: 300px;
 }
 
 main > .container > .row-container .row:first-child {
@@ -582,6 +582,33 @@ main > .container > .row-container .stopWatch > .timedisplay-label-wrapper {
 main > .container > .row-container .stopWatch > .timedisplay-label-wrapper > div {
     padding: 0;
 }
+
+/*STATISTICS*/
+
+main > .container > .row-container .statistics {
+    width: 95%;
+    background-color: #149bdf;
+    color: #212121;
+    border: 1px inset #212121;
+}
+
+main > .container > .row-container .statistics div,
+main > .container > .row-container .statistics tr,
+main > .container > .row-container .statistics td,
+main > .container > .row-container .statistics td div,
+main > .container > .row-container .statistics th {
+    margin: 0;
+    padding: 0;
+}
+
+main > .container > .row-container .statistics td {
+    text-align: left;
+}
+
+main > .container > .row-container .statistics td:last-child {
+    font-family: 'Segment7Standard';
+}
+
 
 /*MASTER CONTROLS*/
 main > .container > .row-container .playback > div {

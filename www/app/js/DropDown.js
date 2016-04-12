@@ -682,6 +682,7 @@ function DropDown() {
             secured: function (state) {
                 console.log('  Toggling display of "auth" to', state);
                 _this.navigation.display.toggle(state, '.link-sign-out');
+                _this.navigation.display.toggle(true, '.link-tutorial');
             },
             /**
              *  Toggle the display of all unsecured view navbar elements
@@ -694,6 +695,7 @@ function DropDown() {
                 console.log('  Toggling display of "anon" to', state);
                 _this.navigation.display.toggle(state, '.link-sign-in');
                 _this.navigation.display.toggle(state, '.link-register');
+                _this.navigation.display.toggle(true, '.link-tutorial');
             },
             /**
              *  Toggle the Logged in view state

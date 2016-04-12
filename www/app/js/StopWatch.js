@@ -19,6 +19,8 @@ var StopWatch = function () {
     this.lapTime = 0; //  run time
     this.id = ''; //   Id name
     this.clocktimer = null; //   setinterval holder
+    this.clocktimerBool = false; // if the interval has been started
+    this.maxRunTime = 0;
 
     /**
      *  Gets current time
@@ -139,7 +141,10 @@ var StopWatch = function () {
      *  @method StopWatch.setClocktimer
      */
     this.setClocktimer = function () {
-        setInterval(_this.update, 1);
+        if (_this.clocktimerBool === false) {
+            _this.clocktimerBool = true;
+            _this.clocktimer = setInterval(_this.update, 1);
+        }
     };
 
     /**
@@ -148,7 +153,11 @@ var StopWatch = function () {
      *  @method StopWatch.clearClocktimer
      */
     this.clearClocktimer = function () {
-        clearInterval(_this.clocktimer);
+        if (_this.clocktimerBool) {
+            clearInterval(_this.clocktimer);
+            _this.clocktimerBool = false;
+        }
+
     };
 
     /**
@@ -157,8 +166,17 @@ var StopWatch = function () {
      *  @method StopWatch.update
      */
     this.update = function () {
+        var time = _this.getTime();
+
         $(_this.getId())
-            .html(_this.formatTime(_this.getTime()));
+            .html(_this.formatTime(time));
+
+        //  Terminate at max time
+        if (_this.maxRunTime !== -1 && time >= _this.maxRunTime && _this.clocktimerBool) {
+            $('.playback button.stop')
+                .trigger('click');
+            _this.clearClocktimer();
+        }
     };
 
     /**
@@ -179,11 +197,24 @@ var StopWatch = function () {
 
         return _this.laptime;
     };
-
+    /**
+     *  Sets track or masters individual play length.
+     *
+     *  @method StopWatch.setTrack
+     *
+     *  @param {String} trackNumber Accepts the track designating value
+     *  @param {Integer} value The time elapsed for the track.
+     */
+    this.setTrack = function (trackNumber, value) {
+        console.log('#track-time-display-' + trackNumber, value);
+        $('#track-time-display-' + trackNumber)
+            .html(_this.formatTime(value));
+    };
     /**
      *  This is the command function to the clock, it accepts
      *
      *  @method StopWatch.run
+     *
      *  @param  {String} action 'START' -   Starts the stopwatch
      *                          'STOP'  -   Stops the stopwatch
      *                          'RESET' -   Restarts the stopwatch
@@ -202,6 +233,8 @@ var StopWatch = function () {
             return _this.laptime;
 
         case 'START':
+            _this.maxRunTime = dVar(option, parseInt($('.master')
+                .attr('data-track-length')));
             _this.setClocktimer();
             _this.start();
             return _this.laptime;

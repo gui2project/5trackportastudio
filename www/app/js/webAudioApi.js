@@ -148,14 +148,16 @@ function TrackTemplate() {
             bufferSource.connect(this.eqHigh);
             bufferSource.start(0);
 
-            //Only user meter when playing because it's inefficent 
+            //Only user meter when playing because it's inefficent
             this.meter = createAudioMeter(audioContext);
             this.gain.connect(this.meter);
         }
     };
 
     this.stopTrack = function () {
-        if (this.buffer !== null) {
+        console.log('stop');
+        if (!($('button.stop')
+                .hasClass('data-not-active')) && this.buffer !== null) {
             bufferSource.stop();
             this.gain.disconnect(this.meter);
             this.meter.shutdown();

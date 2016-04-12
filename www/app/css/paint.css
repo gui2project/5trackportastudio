@@ -42,18 +42,18 @@ button,
 .stopWatch,
 .timedisplay,
 .track-fader-mute > button.armed,
-.mixer-meter .mixer-led-normal {
+.mixer-meter .mixer-led-normal.on {
     background-color: #149BDF;
 }
 
 button.exit,
 button.tutorial,
 .track-fader-record button.armed,
-.mixer-meter .mixer-led-danger {
+.mixer-meter .mixer-led-danger.on {
     background-color: #FF007D;
 }
 
-.mixer-meter .mixer-led-warn {
+.mixer-meter .mixer-led-warn.on {
     background-color: #C700FF;
 }
 
@@ -138,7 +138,6 @@ main > .container > .row-container label.vu {
 .error,
 .hover,
 .record button:not(.disabledButton),
-
 .warning {
     color: #FF007D;
 }
@@ -205,4 +204,15 @@ main > .container > .row-container ul.scale li {
 
 main > .container > .row-container li.scale-zero {
     background-image: none !important;
+}
+
+.pointer.link-tutorial.display {
+    background-color: #FF007D !important;
+    color: #FAFAFA !important;
+}
+
+.pointer.link-tutorial.display:hover,
+.pointer.link-tutorial.display span:hover {
+    color: #FAFAFA !important;
+    border-color: #fafafa !important;
 }

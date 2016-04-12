@@ -52,114 +52,119 @@ $(document)
         //  INIT COMPONENTS
         console.log('initialize trip');
         // var options = {};
-        var trip = new Trip([{
-                    position: 'screen-center',
-                    content: 'Hey there! Welcome to TrackStudio, would you like us to show you around? Click next for a simple tutorial.',
-                    showNavigation: true,
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                    delay: -1,
-
-                }, {
-                    position: 'screen-center',
-                    content: 'Before we move on, we recommend that you grab a pair of headphones/earbuds and plug them in.',
-                    showNavigation: true,
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                    delay: -1
-                }, {
-                    sel: $('#track-1 > .row .track-fader > .track-fader-record > button'),
-                    content: 'Begin by recording a simple track to get started.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#track-1 > .row .track-fader > .track-fader-record > button')
-                }, {
-                    sel: $('#track-1 > .row .track-fader > .track-fader-record > button'),
-                    content: 'Click again to stop recording.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#track-1 > .row .track-fader > .track-fader-record > button')
-                }, {
-                    sel: $('#master-1 > .row .playback > div > .play '),
-                    content: 'Congrats, you’ve recorded your first track! Let’s hear what we’ve got so far.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#master-1 > .row .playback > div > .play')
-                }, {
-                    sel: $('#master-1 > .row .playback > div > .stop'),
-                    content: 'Awesome! Let’s stop it, and add some special effects.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#master-1 > .row .playback > div > .stop')
-                }, {
-                    sel: $('#track-1 > .row .fx-box > div > .link-fx-box'),
-                    content: 'Click here to get started with effects.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#track-1 > .row .fx-box > div > .link-fx-box')
-                }, {
-                    position: 'screen-center',
-                    content: 'Here you can choose from an array of effects.',
-                    showNavigation: true,
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                    delay: -1
-                }, {
-                    sel: $('#partial .fx-catalog-panel'),
-                    content: 'This is the effects catalog.',
-                    showNavigation: true,
-                    position: 's',
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                    delay: -1
-                }, {
-                    sel: $('#effect-item-reverb fx-catalog-panel-item-image'),
-                    content: 'Select reverb.',
-                    showNavigation: true,
-                    delay: -1,
-                    position: 's',
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                }, {
-                    sel: $('#partial .information-panel'),
-                    content: 'This is the information panel.',
-                    showNavigation: true,
-                    position: 'n',
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                    delay: -1
-                }, {
-                    sel: $('#effect-item-reverb-select-track-1'),
-                    content: 'Click here to select the reverb for Track 1.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'w',
-                    nextClickSelector: $('#effect-item-reverb-select-track-1')
-                },
-
-                {
-                    sel: $('#master-1 > .row .playback > div > .play '),
-                    content: 'Now listen to your track with the effect.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#master-1 > .row .playback > div > .play')
-                }
-
-            ],
-            //global config options
-            {
-                tripTheme: 'yeti',
-                finishLabel: 'Finish tutorial',
-                showCloseBox: true,
-                animation: 'none'
-            }
-        );
+        trip.journey.push(new Trip(
+            [{
+                position: 'screen-center',
+                content: 'Hey there! Welcome to TrackStudio, would you like us to show you around? Click next for a simple tutorial.',
+                showNavigation: true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1,
+            }, {
+                position: 'screen-center',
+                content: 'Before we move on, we recommend that you grab a pair of headphones/earbuds and plug them in.',
+                showNavigation: true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            }, {
+                sel: $('#track-1 .mute > button'),
+                content: 'Begin by toggling speaker output.<br/> This prevents feedback.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#track-1 .mute > button')
+            }, {
+                sel: $('#track-1 .record > button'),
+                content: 'Next lets record a simple track to get started.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#track-1 > record > button')
+            }, {
+                position: 'screen-center',
+                content: 'At this point lets make some music. When you are done click next.',
+                showNavigation: true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1,
+            }, {
+                sel: $('#track-1 > .row .track-fader > .track-fader-record > button'),
+                content: 'Click again to stop recording.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#track-1 > .row .track-fader > .track-fader-record > button')
+            }, {
+                sel: $('#master-1 > .row .playback > div > .play '),
+                content: 'Congrats, you’ve recorded your first track! Let’s hear what we’ve got so far.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#master-1 > .row .playback > div > .play')
+            }, {
+                sel: $('#master-1 > .row .playback > div > .stop'),
+                content: 'Awesome! Let’s stop it, and add some special effects.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#master-1 > .row .playback > div > .stop')
+            }, {
+                sel: $('#track-1 > .row .fx-box > div > .link-fx-box'),
+                content: 'Click here to get started with effects.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#track-1 > .row .fx-box > div > .link-fx-box')
+            }, {
+                position: 'screen-center',
+                content: 'Here you can choose from an array of effects.',
+                showNavigation: true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            }, {
+                sel: $('#partial .fx-catalog-panel'),
+                content: 'This is the effects catalog.',
+                showNavigation: true,
+                position: 's',
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            }, {
+                sel: $('#effect-item-reverb fx-catalog-panel-item-image'),
+                content: 'Select reverb.',
+                showNavigation: true,
+                delay: -1,
+                position: 's',
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+            }, {
+                sel: $('#partial .information-panel'),
+                content: 'This is the information panel.',
+                showNavigation: true,
+                position: 'n',
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            }, {
+                sel: $('#effect-item-reverb-select-track-1'),
+                content: 'Click here to select the reverb for Track 1.',
+                showNavigation: false,
+                delay: -1,
+                position: 'w',
+                nextClickSelector: $('#effect-item-reverb-select-track-1')
+            }, {
+                sel: $('#master-1 > .row .playback > div > .play '),
+                content: 'Now listen to your track with the effect.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#master-1 > .row .playback > div > .play')
+            }],
+            //  global config options
+            trip.options
+        ));
 
         dd = new DropDown();
         sw = new StopWatch();
@@ -423,8 +428,7 @@ $(document)
         $('.navbar-brand-label')
             .on('click', function () {
                 dd.show('TOGGLE');
-                var top = dd.stateHistory.top();
-                if (top === 'FX') {
+                if (dd.stateHistory.top() === 'FX') {
                     dd.show('BACK');
                 }
             });
@@ -486,10 +490,10 @@ $(document)
             });
 
         // Start tutorial
-        $('.lnk-tutorial')
+        $('.link-tutorial')
             .on('click', function () {
                 console.log('start trip run');
-                trip.start();
+                trip.journey[0].start();
             });
 
     });

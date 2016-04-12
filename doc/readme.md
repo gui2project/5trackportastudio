@@ -1166,20 +1166,21 @@ Contains the class for the visual volume (peak) meter
 
 ---
 
-### Class: MeterVolume
+### Function: MeterVolume(vol)
 
 This allows you to change the volume distplayed on a
  volume meter.
 
-#### Params:
-
-* *vol* Volume to be displayed on the meter 
  This should be run on load.
 
  Examples of changing volume displayed:
 
     var meter = $(this).parent().parent().find('.meter');
     meter.MeterVolume(vol * 100); // Where volume is expressed as a floating point number between 0.0 and 1.0
+
+#### Params:
+
+* **Number** *vol* Volume to be displayed on the meter
 
 <!-- End www\app\js\meter.js -->
 
@@ -1192,12 +1193,6 @@ This allows you to change the volume distplayed on a
 ---
 
 #### Method: $()
-
----
-
-#### Method: $()
-
-Add data to the mute & record buttons
 
 ---
 
@@ -1395,6 +1390,17 @@ Adjusts the clock to a given time.
 ##### Return:
 
 * **Integer** The current laptime.
+
+---
+
+#### Method: StopWatch.setTrack(trackNumber, value)
+
+Sets track or masters individual play length.
+
+##### Params:
+
+* **String** *trackNumber* Accepts the track designating value
+* **Integer** *value* The time elapsed for the track.
 
 ---
 

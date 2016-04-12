@@ -1,0 +1,10 @@
+include ./StopWatch.jade
+
+mixin timeDisplay()
+    // Time display
+    .row
+        .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            +section-label('Timer')
+        .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+            div.col-md-12.col-sm-12.col-xs-12
+                +StopWatch(1)
