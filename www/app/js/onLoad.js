@@ -134,29 +134,31 @@ $(document)
                 delay: -1
             }, {
                 //index 11
-                // cant find id: sel: $('#effect-item-reverb fx-catalog-panel-item-image'),
-                position: 'screen-center',
-                content: 'Find the reverb effect and select it.',
-                showNavigation: true,
+                sel: '#effect-item-reverb .fx-catalog-panel-item-image',
+                position: 's',
+                content: 'Select the reverb effect.',
+                showNavigation: false,
                 delay: -1,
-                prevLabel: 'Back',
-                nextLabel: 'Next',
+                nextClickSelector: '#effect-item-reverb .fx-catalog-panel-item-image'
             }, {
-                sel: $('#partial .information-panel'),
+                sel: '#partial > .holder > .dropdown-left > .information-panel .information-title',
+                //BUG: This box appears next to the wrong element at first, but moves to the right place
+                // after zooming out and then back in.
+                //sel: '#partial .information-panel',
                 content: 'This is the information panel.',
                 showNavigation: true,
-                position: 'n',
+                position: 'e',
                 prevLabel: 'Back',
                 nextLabel: 'Next',
                 delay: -1
             }, {
                 //index 13
-                sel: $('#effect-item-reverb-select-track-1'),
-                content: 'Click here to select the reverb for Track 1.',
+                sel: '#effect-item-reverb-select-track-0',
+                content: 'Click here to add the reverb effect to Track 1.',
                 showNavigation: false,
                 delay: -1,
-                position: 'w',
-                nextClickSelector: $('#effect-item-reverb-select-track-1')
+                position: 'e',
+                nextClickSelector: '#effect-item-reverb-select-track-0'
             }, {
                 sel: $('#master-1 > .row .playback > div > .play '),
                 content: 'Now listen to your track with the effect.',
