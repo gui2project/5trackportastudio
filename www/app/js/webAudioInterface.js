@@ -11,13 +11,13 @@ $(function () {
 
     setInterval(
         function () {
-            $('#track-1 > .row > .content-box >.meter')
+            $('#track-1 .meter')
                 .MeterVolume(track[0].meter.volume * 250);
-            $('#track-2 > .row > .content-box  > .meter')
+            $('#track-2 .meter')
                 .MeterVolume(track[1].meter.volume * 250);
-            $('#track-3 > .row > .content-box  > .meter')
+            $('#track-3 .meter')
                 .MeterVolume(track[2].meter.volume * 250);
-            $('#track-4 > .row > .content-box  > .meter')
+            $('#track-4 .meter')
                 .MeterVolume(track[3].meter.volume * 250);
         }, 1);
 
@@ -41,7 +41,7 @@ function recordToggle(trackNumber) {
                 track[index].playTrack();
             }
         });
-        sw.run('START');
+        sw.run('START', -1);
     } else {
         sw.run('STOP');
         sw.run('RESET');
@@ -73,7 +73,6 @@ function stop() {
         }
     });
 
-    sw.run('STOP');
     sw.run('RESET');
 }
 

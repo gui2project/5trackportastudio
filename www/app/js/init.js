@@ -27,8 +27,15 @@ navigator.getUserMedia = (navigator.getUserMedia ||
     navigator.msGetUserMedia);
 
 //  VARIABLE DECLARATIONS
-var options = {};
-var trip = null;
+var trip = {
+    journey: [],
+    options: {
+        tripTheme: 'yeti',
+        finishLabel: 'Finish tutorial',
+        showCloseBox: true,
+        animation: 'none'
+    }
+};
 
 var ac = null; //  Audio Context
 var sw = null; //  Stop watch
@@ -38,6 +45,8 @@ var ts = { //  trackstudio cookies
     user_session: null, //  session hash
     session: false //  session state
 };
+
+var trackClear = [0, 0, 0, 0]; // Holds Clear interval functions for each track
 
 //  APPLICATION FUNCTIONS
 

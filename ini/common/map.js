@@ -37,7 +37,7 @@ var map = {
         sys: paths.jscookie
     }],
     dynamic: [{
-        web: '/mixer',
+        web: '/',
         sys: path.join(paths.ctrl, 'main'),
         call: 'index'
     }]
