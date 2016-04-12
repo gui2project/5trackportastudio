@@ -37,18 +37,22 @@ $.fn.tracklabel = function () {
     // Check if you were clicked on
     $(this)
         .on('click', function () {
+
+            var textElement = $(this)
+                .find('span.text');
+
             if ($(this)
                 .hasClass('master-label')) {
                 return;
             }
 
             // Save last name
-            if ($(this)
+            if (textElement
                 .text() === '') {
-                $(this)
+                textElement
                     .attr('last-name');
             } else {
-                $(this)
+                textElement
                     .attr('last-name', $(this)
                         .text());
             }
@@ -61,18 +65,31 @@ $.fn.tracklabel = function () {
                     .addClass('mixer-enabled');
 
                 // Save track name
-                var text = $(this)
+                var text = textElement
                     .text();
 
                 // Add input field
+                textElement
+                    .html('')
+                    .append('<input class="editable-text" last-name="' +
+                        textElement.attr('last-name') +
+                        '" type="text" placeholder="' + text +
+                        '" value="' + text + '"></input>');
+                console.log($(this));
+
+                //  Styling to remove hover edit button
+                textElement
+                    .css({
+                        'overflow': 'visible'
+                    });
                 $(this)
-                    .html('');
-                $(this)
-                    .append('<input class="editable-text col-md-11 col-sm-11 col-xs-11" last-name="' + $(this)
-                        .attr('last-name') + '" type="text" placeholder="' + text + '" valuue="' + text + '"></input>');
+                    .children('span.edit-icon')
+                    .css({
+                        'display': 'none'
+                    });
 
                 // Focus onto the field
-                $(this)
+                textElement
                     .find('input')
                     .focus();
             }
@@ -99,21 +116,29 @@ $.fn.tracklabel = function () {
                 text = $(this)
                     .find('input')
                     .val();
-
-                if (text.length > 14){
-                    text = text.substring(0, 12) + '...';
-                }
-
             }
 
-            // Check if input is empty
+            //  Styling to add back hover edit button
+            $(this)
+                .find('span.edit-icon')
+                .css({
+                    'display': ''
+                });
+            $(this)
+                .children('span.text')
+                .css({
+                    'overflow': ''
+                });
 
+            // Check if input is empty
             if (text === '') {
                 $(this)
+                    .find('span.text')
                     .text($(this)
                         .attr('last-name'));
             } else {
                 $(this)
+                    .find('span.text')
                     .text(text);
             }
 

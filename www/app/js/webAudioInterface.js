@@ -80,13 +80,11 @@ function stop() {
 function muteToggle(trackNumber) {
     console.log('MuteToggle track:' + trackNumber);
     track[trackNumber - 1].muteTrackToggle();
-
 }
 
 function pan(trackNumber, amount) {
     console.log('pan:' + amount + ' track:' + trackNumber);
     track[trackNumber - 1].pan.pan.value = amount;
-
 }
 
 function gain(trackNumber, amount) {

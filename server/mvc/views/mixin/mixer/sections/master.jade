@@ -6,7 +6,7 @@ include ../components/StopWatch.jade
 mixin master(masterNum)
     // Master Track
     div.col-md-push-8.col-md-4.col-sm-12.col-xs-12.master(id="master-" + masterNum)
-        +trackname(i, 'Master')
+        +trackname(-1, 'Master')
         // Time display
         .row
             .col-xs-1.col-sm-1.col-md-1.col-lg-1
@@ -21,24 +21,19 @@ mixin master(masterNum)
             .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
                 div.playback.col-md-12.col-sm-12.col-xs-12
                     div.col-md-3.col-sm-3.col-xs-3
-                        button.stop.data-not-active.data-active(value="Stop")
+                        button.stop.data-not-active(value="Stop")
                             +icon-header('stop', 'Stop', false, false)
                     div.col-md-3.col-sm-3.col-xs-3
                         button.play.data-not-active(value="Play")
                             +icon-header('play', 'Play', false, false)
                     div.col-md-3.col-sm-3.col-xs-3
-                        //button.rewind.data-not-active(value="Rewind")
+                        button.rewind.data-not-active(value="Rewind")
                             +icon-header('rewind', 'Rewind', false, false)
                     div.col-md-3.col-sm-3.col-xs-3
-                        //button.forward.data-not-active(value="Fast Forward")
+                        button.forward.data-not-active(value="Fast Forward")
                             +icon-header('forward', 'Fast Forward', false, false)
         // Features
         .row.bottom
-            .col-xs-1.col-sm-1.col-md-1.col-lg-1
-                +section-label('Tutorial')
-            .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+            .col-xs-0.col-sm-12.col-md-12.col-lg-12
                 div.col-md-12.col-sm-12.col-xs-12
-                    button.tutorial.data-not-active.col-md-12.col-sm-12.col-xs-12
-                        div
-                            span.pre-text Learn
-                            span.icon-white trackstudio
+                    span.icon-white trackstudio
