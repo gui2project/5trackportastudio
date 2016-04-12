@@ -156,8 +156,7 @@ function TrackTemplate() {
 
     this.stopTrack = function () {
         console.log('stop');
-        if (!($('button.stop')
-                .hasClass('data-not-active')) && this.buffer !== null) {
+        if (this.buffer !== null) {
             bufferSource.stop();
             this.gain.disconnect(this.meter);
             this.meter.shutdown();
