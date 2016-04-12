@@ -54,7 +54,7 @@ $(document)
         // var options = {};
         trip.journey.push(new Trip(
             [
-                /*{
+             {
                 position: 'screen-center',
                 content: 'Hey there! Welcome to TrackStudio, would you like us to show you around? Click next for a simple tutorial.',
                 showNavigation: true,
@@ -104,71 +104,71 @@ $(document)
                 delay: -1,
                 position: 'n',
                 nextClickSelector: $('#master-1 > .row .playback > div > .play')
-            }, */
-                {
-                    sel: $('#master-1 > .row .playback > div > .stop'),
-                    content: 'Awesome! Let’s stop it, and add some special effects.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#master-1 > .row .playback > div > .stop')
-                }, {
-                    sel: $('#track-1 > .row .fx-box > div > .link-fx-box'),
-                    content: 'Click here to get started with effects.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#track-1 > .row .fx-box > div > .link-fx-box')
-                }, {
-                    position: 'screen-center',
-                    content: 'Here you can choose from an array of effects.',
-                    showNavigation: true,
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                    delay: -1
-                }, {
-                    sel: $('#partial .fx-catalog-panel'),
-                    content: 'This is the effects catalog.',
-                    showNavigation: true,
-                    position: 's',
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                    delay: -1
-                }, {
-                    //index 11
-                    // cant find id: sel: $('#effect-item-reverb fx-catalog-panel-item-image'),
-                    content: 'Find the reverb effect and select it.',
-                    sel: '#effect-item-reverb',
 
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: '#effect-item-reverb'
-                }, {
-                    sel: $('#partial .information-panel'),
-                    content: 'This is the information panel.',
-                    showNavigation: true,
-                    position: 'n',
-                    prevLabel: 'Back',
-                    nextLabel: 'Next',
-                    delay: -1
-                }, {
-                    //index 13
-                    sel: $('#effect-item-reverb-select-track-1'),
-                    content: 'Click here to select the reverb for Track 1.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'w',
-                    nextClickSelector: $('#effect-item-reverb-select-track-1')
-                }, {
-                    sel: $('#master-1 > .row .playback > div > .play '),
-                    content: 'Now listen to your track with the effect.',
-                    showNavigation: false,
-                    delay: -1,
-                    position: 'n',
-                    nextClickSelector: $('#master-1 > .row .playback > div > .play')
-                }
-            ],
+            }, {
+                sel: $('#master-1 > .row .playback > div > .stop'),
+                content: 'Awesome! Let’s stop it, and add some special effects.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#master-1 > .row .playback > div > .stop')
+            }, {
+                sel: $('#track-1 > .row .fx-box > div > .link-fx-box'),
+                content: 'Click here to get started with effects.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#track-1 > .row .fx-box > div > .link-fx-box')
+            }, {
+                position: 'screen-center',
+                content: 'Here you can choose from an array of effects.',
+                showNavigation: true,
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            }, {
+                sel: $('#partial .fx-catalog-panel'),
+                content: 'This is the effects catalog.',
+                showNavigation: true,
+                position: 's',
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            }, {
+                //index 11
+                sel: '#effect-item-reverb .fx-catalog-panel-item-image',
+                position: 's',
+                content: 'Select the reverb effect.',
+                showNavigation: false,
+                delay: -1,
+                nextClickSelector: '#effect-item-reverb .fx-catalog-panel-item-image'
+            }, {
+                sel: '#partial > .holder > .dropdown-left > .information-panel .information-title',
+                //BUG: This box appears next to the wrong element at first, but moves to the right place
+                // after zooming out and then back in.
+                //sel: '#partial .information-panel',
+                content: 'This is the information panel.',
+                showNavigation: true,
+                position: 'e',
+                prevLabel: 'Back',
+                nextLabel: 'Next',
+                delay: -1
+            }, {
+                //index 13
+                sel: '#effect-item-reverb-select-track-0',
+                content: 'Click here to add the reverb effect to Track 1.',
+                showNavigation: false,
+                delay: -1,
+                position: 'e',
+                nextClickSelector: '#effect-item-reverb-select-track-0'
+            }, {
+                sel: $('#master-1 > .row .playback > div > .play '),
+                content: 'Now listen to your track with the effect.',
+                showNavigation: false,
+                delay: -1,
+                position: 'n',
+                nextClickSelector: $('#master-1 > .row .playback > div > .play')
+            }],
             //  global config options
             trip.options
         ));
