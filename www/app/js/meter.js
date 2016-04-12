@@ -4,13 +4,6 @@
  *  @name   meter.js
  */
 
-// Set up meters
-$(document)
-    .ready(function () {
-        $('.meter')
-            .meter(36);
-    });
-
 // Function for making LEDs
 $.fn.meter = function (NumOfLEDs) {
     var i, classValue;
