@@ -63,14 +63,7 @@ function stop() {
     console.log('stop');
 
     track.forEach(function (item, index) {
-        if (track[index].isRecording) {
-            //stop recording
-            track[index].recordToggle();
-            track[index].armTrackToggle();
-        } else {
-            //stop playing
             track[index].stopTrack();
-        }
     });
 
     sw.run('RESET');
