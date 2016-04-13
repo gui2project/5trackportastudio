@@ -5,43 +5,42 @@
  *  it is for the master track
  *
  */
+$.fn.genParent = genParent;
+
 // Function for creating editable text
 $.fn.tracklabel = function () {
-    var trackId, trackSelector, trackLabelDisplay;
-    //track-name-display-3
+    var trackId,
+        trackLabelDisplay,
+        labelType = function (id) {
+            if ($(id)
+                .genParent(3)
+                .hasClass('master')) {
+                $(id)
+                    .addClass('master-label');
+            } else {
+                $(id)
+                    .addClass('track-label');
+            }
+        };
+
     // Add mixer-editable class
     $(this)
         .addClass('mixer-editable');
-
-    // Variable to hold track original name
-    var original = $(this)
-        .html();
-
-    var labelType = function (id) {
-        if ($(id)
-            .parent()
-            .parent()
-            .parent()
-            .hasClass('master')) {
-            $(id)
-                .addClass('master-label');
-        } else {
-            $(id)
-                .addClass('track-label');
-        }
-    };
 
     this.each(function () {
         if ($(this)
             .closest('.track')
             .attr('id')) {
+
             trackId = $(this)
                 .closest('.track')
                 .attr('id')
                 .substr(6) - 1;
+
         } else {
             trackId = 'master';
         }
+
         trackLabelDisplay = '#track-name-display-' + trackId;
 
         labelType(this);
@@ -51,17 +50,18 @@ $.fn.tracklabel = function () {
             .attr('last-name', $(this)
                 .text());
 
-        var originalText = $(this)
-            .children('span.text')
-            .html();
-
         $(trackLabelDisplay)
-            .html(originalText);
+            .html($(this)
+                .find('span.text')
+                .html());
     });
 
     // Check if you were clicked on
     $(this)
         .on('click', function () {
+            var textElement,
+                text,
+                lastName;
 
             if ($(this)
                 .hasClass('master-label')) {
@@ -72,33 +72,32 @@ $.fn.tracklabel = function () {
             if (!$(this)
                 .hasClass('mixer-enabled')) {
 
-                var textElement = $(this)
-                    .find('span.text');
-
                 // Save track name
-                var text = textElement
+                text = $(this)
+                    .find('span.text')
                     .text();
 
+                lastName = $(this)
+                    .attr('last-name');
+
                 // Change to editable
-                //  Styling to remove hover edit button
                 $(this)
-                    // Take out of edit mode
                     .find('span.edit-icon')
                     .css({
                         'display': 'none'
-                    });
-
-                // Add input field
-                textElement
-                    .html('')
+                    })
+                    .end()
+                    .find('span.text')
                     .css({
                         'overflow': 'visible'
                     })
-                    .append('<input class="editable-text" last-name="' +
-                        $(this)
-                        .attr('last-name') +
-                        '" type="text" placeholder="' + text +
-                        '" value="' + text + '"></input>')
+                    .html('')
+                    .append($('<input></input>')
+                        .addClass('editable-text')
+                        .attr('last-name', lastName)
+                        .attr('type', 'text')
+                        .attr('placeholder', text)
+                        .val(text))
                     .end()
                     .find('input')
                     .focus();
@@ -108,14 +107,16 @@ $.fn.tracklabel = function () {
     // When you lose focus
     $(this)
         .on('focusout enterKey escapeKey', function (e) {
-            var text;
-            var lastName = $(this)
-                .attr('last-name');
+            var text,
+                lastName;
 
             if ($(this)
                 .hasClass('master-label')) {
                 return;
             }
+
+            lastName = $(this)
+                .attr('last-name');
 
             // Take out of edit mode
             $(this)
@@ -125,19 +126,15 @@ $.fn.tracklabel = function () {
                     'display': ''
                 })
                 .end()
-                .children('span.text')
+                .find('span.text')
                 .css({
                     'overflow': ''
                 });
 
             // Get text from the input field
-            if (text === '') {
-                text = lastName;
-            } else {
-                text = $(this)
-                    .find('input')
-                    .val();
-            }
+            text = $(this)
+                .find('input')
+                .val();
 
             if (text === '') {
                 text = lastName;

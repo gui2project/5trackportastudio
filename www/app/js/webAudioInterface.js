@@ -36,7 +36,7 @@ function recordToggle(trackNumber) {
 
     if (track[trackNumber - 1].isRecording) {
         track.forEach(function (item, index) {
-            //play tracks that arnt recording
+            //play tracks that are not recording
             if (index !== trackNumber - 1) {
                 track[index].playTrack();
             }
@@ -56,7 +56,6 @@ function play() {
     });
 
     sw.run('START');
-
 }
 
 function stop() {
@@ -71,16 +70,19 @@ function stop() {
 
 function muteToggle(trackNumber) {
     console.log('MuteToggle track:' + trackNumber);
+
     track[trackNumber - 1].muteTrackToggle();
 }
 
 function pan(trackNumber, amount) {
     console.log('pan:' + amount + ' track:' + trackNumber);
+
     track[trackNumber - 1].pan.pan.value = amount;
 }
 
 function gain(trackNumber, amount) {
     console.log('Changed Gain of track:' + trackNumber + ' to ' + amount);
+
     track[trackNumber - 1].gain.gain.value = amount;
 
 }
@@ -90,13 +92,9 @@ function eq(trackNumber, type, amount) {
 
     if (type === 'HIGH') {
         track[trackNumber - 1].eqHigh.gain.value = amount;
-    }
-
-    if (type === 'MID') {
+    } else if (type === 'MID') {
         track[trackNumber - 1].eqMid.gain.value = amount;
-    }
-
-    if (type === 'LOW') {
+    } else if (type === 'LOW') {
         track[trackNumber - 1].eqLow.gain.value = amount;
     }
 }

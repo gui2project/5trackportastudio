@@ -6,55 +6,50 @@
 
 // Function for making LEDs
 $.fn.meter = function (NumOfLEDs) {
-    var i, classValue;
-    // Save number of LEDs for later use
-    var numberOfLEDs = NumOfLEDs;
-
-    // Tell whether we're clipping or not
-    var clipping = false;
+    var i,
+        numberOfLEDs = NumOfLEDs, // Save number of LEDs for later use
+        clipping = false; // Tell whether we're clipping or not
 
     // Add LEDs to meter
-    var ledHtml = '<ul>';
+    var ledHtml = $('<ul></ul>');
+
     for (i = 0; i < numberOfLEDs; ++i) {
+        var li = $('<li></li>')
+            .addClass('mixer-led');
 
         // Add colors to LEDs
         if (i <= numberOfLEDs / 10) {
-            classValue = 'mixer-led-danger';
+            li.addClass('mixer-led-danger');
         } else if (i <= numberOfLEDs / 2) {
-            classValue = 'mixer-led-warn';
+            li.addClass('mixer-led-warn');
         } else {
-            classValue = 'mixer-led-normal';
+            li.addClass('mixer-led-normal');
         }
 
-        ledHtml += '<li class="mixer-led ' + classValue + '"></li>';
+        $(ledHtml)
+            .append(li);
     }
-    ledHtml += '</ul>';
 
     $(this)
         .addClass('mixer-meter')
         .attr('data-vol', 0)
-        .html(ledHtml)
+        .append(ledHtml)
         .on('volumeChange', function () {
-            var onLeds;
+            var onLeds,
+                ul = $(this) // Get <ul> from div
+                .children(0),
+                volume = parseInt($(this) // Get data-vol value
+                    .attr('data-vol')),
+                lightUp = Math // How many LEDs to light up
+                .ceil((volume / 100) * numberOfLEDs),
+                offLeds = (numberOfLEDs - lightUp); // How many LEDs to turn off
 
-            // Get <ul> from div
-            var ul = $(this)
-                .children(0);
-
-            // Get data-vol value
-            var volume = parseInt($(this)
-                .attr('data-vol'));
-
-            // How many LEDs to light up
-            var lightUp = Math.ceil((volume / 100) * numberOfLEDs);
-
-            // Find elements you need to light up
-            var offLeds = (numberOfLEDs - lightUp);
             if (offLeds < 0) {
                 onLEDs = ul.find('li:gt(' + offLeds + ')');
             } else {
                 onLEDs = ul.children();
             }
+
             offLeds = ul.find('li:lt(' + offLeds + ')');
 
             // Change color of LEDS that are on

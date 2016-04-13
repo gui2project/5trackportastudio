@@ -265,6 +265,7 @@ var getBrowser = function () {
         return ret;
     })();
 };
+
 /**
  *  Positions the Display needle
  *
@@ -272,10 +273,25 @@ var getBrowser = function () {
  *  @param {Integer} time The time in milliseconds to display
  */
 var positionNeedle = function (time) {
-    var percent = 0;
-    var master = $('#master-1')
-        .attr('data-track-length');
-    var evaluation = time / master;
+    var evaluation,
+        percent = 0,
+        offset = -1,
+        master = $('#master-1')
+        .attr('data-track-length'),
+        needle = function (position) {
+            $('.graph-clock')
+                .find('.graph-clock-needle')
+                .css({
+                    'left': position + '%'
+                });
+        };
+
+    if (master === 0) {
+        needle(offset);
+        return;
+    }
+
+    evaluation = time / master;
 
     if (evaluation >= 1) {
         percent = 100;
@@ -283,8 +299,30 @@ var positionNeedle = function (time) {
         percent = evaluation * 100;
     }
 
-    $('.graph-clock .graph-clock-needle')
-        .css({
-            'left': (percent - 1) + '%'
-        });
+    needle(percent + offset);
+};
+
+/**
+ *  Function to be used to extend jQuery to allow for grand parent searching by integer.
+ *
+ *  Example:
+ *      $.fn.genParent = genParent;
+ *      $(id).genParent(3) === $(id).parent().parent().parent(); // true
+ *
+ *  @function genParent
+ *  @param  {Integer} genBack   How many parents to go back
+ *  @return {Object.jQuery}     The selector
+ */
+genParent = function (genBack) {
+    var ret;
+
+    if (genBack === 0) {
+        return this;
+    }
+
+    for (ret = $(this); genBack > 0; --genBack) {
+        ret = ret.parent();
+    }
+
+    return ret;
 };

@@ -17,41 +17,64 @@ $(document)
         var mic = getMicrophone(function (stream) { // Microphone Success
             console.log('microphone-browser-compatible: success');
             console.log('microphone-enabled: success');
+
             $('.splash.cover')
                 .fadeOut(1000);
 
         }, function (err) { // Microphone Enabled Error
             console.log('microphone-browser-compatible: success');
             console.log('microphone-enabled: failure: ' + err);
+
             $('.splash.microphone')
                 .toggleClass('hide');
+
             $('.splash.cover')
                 .fadeOut(300);
 
             // Show Browser Microphone instructions
             console.log('Displaying Microphone Instructions');
-            $('.splash.microphone .instructions')
+
+            $('.splash.microphone')
+                .find('.instructions')
                 .removeClass('display');
 
             if ($.inArray(userAgent.browser, ['Chrome', 'IE', 'Opera', 'Safari'])) {
-                $('.splash.microphone .instructions.' + userAgent.browser)
+                $('.splash.microphone')
+                    .find('.instructions.' + userAgent.browser)
                     .addClass('display');
             } else {
-                $('.splash.microphone .instructions.other')
+                $('.splash.microphone')
+                    .find('.instructions.other')
                     .addClass('display');
             }
 
         }, function () { // Browser Support Error
             console.log('microphone-browser-compatible: failure');
+
             $('.splash.browser')
                 .toggleClass('hide');
+
             $('.splash.cover')
                 .fadeOut(300);
         });
 
         //  INIT COMPONENTS
-        console.log('initialize trip');
-        // var options = {};
+        console.log('Init: DropDown');
+        dd = new DropDown();
+        dd.init({
+            dropDownId: '#partial',
+            navigationId: '#navigation',
+            speed: 800
+        });
+
+        console.log('Init: StopWatch');
+        sw = new StopWatch();
+        sw.run('INIT', '#stopWatch-1 div.timedisplay');
+
+        console.log('Init: AudioContext');
+        ac = new AudioContext();
+
+        console.log('Init: TripJS');
         trip.journey.push(new Trip(
             [{
                 position: 'screen-center',
@@ -172,17 +195,7 @@ $(document)
             trip.options
         ));
 
-        dd = new DropDown();
-        sw = new StopWatch();
-        ac = new AudioContext();
-
-        dd.init({
-            dropDownId: '#partial',
-            navigationId: '#navigation',
-            speed: 800
-        });
-        sw.run('INIT', '#stopWatch-1 div.timedisplay');
-
+        console.log('Validating Session');
         //  Determine if session is valid and prepare panels
         validateSession(function () {
             console.log('initial setup - session');
@@ -194,6 +207,7 @@ $(document)
 
         //  FORM VALIDATION
 
+        console.log('Setting up forms');
         // Setup form validation on the #register-form element
         var registerValidator = $('#register-form')
             .validate({
@@ -270,38 +284,46 @@ $(document)
                             validateSession(function () {
                                 console.log('User registered');
                                 dd.show('MIX');
-                                $('#register-form')
+                                $(this)
                                     .closest('form')
-                                    .find('input[type=text], input[type=password], input[type=email], textarea')
-                                    .val('');
-                                $('#register-form .icon-right')
-                                    .removeClass('err');
-                                $('#register-form .icon-right')
+                                    .find(['input[type=text]', 'input[type=password]', 'input[type=email]', 'textarea'].join(', '))
+                                    .val('')
+                                    .end()
+                                    .find('.icon-right')
+                                    .removeClass('err')
+                                    .end()
+                                    .find('.icon-right')
                                     .removeClass('pass');
 
                             }, function () {
                                 console.log('registration-failed: Check your cookies.');
-                                $('#register-form')
+
+                                $(this)
                                     .closest('form')
                                     .find('input[type=password]')
                                     .val('');
+
                                 registerValidator.showErrors(regCheck.cookie);
                             });
                         })
                         .fail(function (data) {
                             validateSession(function () {
                                 console.log('registration-failed: There was an error processing the form.');
-                                $('#register-form')
+
+                                $(this)
                                     .closest('form')
                                     .find('input[type=password]')
                                     .val('');
+
                                 registerValidator.showErrors(regCheck.server);
                             }, function () {
                                 console.log('registration-failed: user is registered');
-                                $('#register-form')
+
+                                $(this)
                                     .closest('form')
                                     .find('input[type=password]')
                                     .val('');
+
                                 registerValidator.showErrors(regCheck.registered);
                             });
                         });
@@ -353,6 +375,7 @@ $(document)
 
                 submitHandler: function (form) {
                     var credCheck = {};
+
                     credCheck.fail = {
                         'login-password': 'Invalid credentials.'
                     };
@@ -376,54 +399,58 @@ $(document)
                         .done(function () {
                             validateSession(function () {
                                 console.log('user logged in');
-                                $('#login-form')
+
+                                $(this)
                                     .closest('form')
                                     .find('input[type=text], input[type=password], input[type=email], textarea')
-                                    .val('');
-                                $('#login-form .icon-right')
-                                    .removeClass('err');
-                                $('#login-form .icon-right')
-                                    .removeClass('pass');
+                                    .val('')
+                                    .end()
+                                    .find('.icon-right')
+                                    .removeClass(['err', 'pass'].join(' '));
+
                                 dd.show('MIX');
                             }, function () {
                                 console.log('login-failed: Check your cookies.');
-                                $('#login-form')
+
+                                $(this)
                                     .closest('form')
                                     .find('input[type=password]')
                                     .val('');
+
                                 loginValidator.showErrors(credCheck.cookie);
                             });
                         })
                         .fail(function () {
                             validateSession(function () {
                                 console.log('login-failed: There was an error processing the form.');
-                                $('#login-form')
+
+                                $(this)
                                     .closest('form')
                                     .find('input[type=password]')
                                     .val('');
+
                                 loginValidator.showErrors(credCheck.server);
                             }, function () {
                                 console.log('login-failed: invalid credentials.');
-                                $('#login-form')
+
+                                $(this)
                                     .closest('form')
                                     .find('input[type=password]')
                                     .val('');
+
                                 loginValidator.showErrors(credCheck.fail);
                             });
                         });
                 },
 
                 highlight: function (element, errorClass, validClass) {
-                    console.log(element.id);
                     $('.icon-right.' + element.id)
-                        .addClass('err');
-                    $('.icon-right.' + element.id)
+                        .addClass('err')
                         .removeClass('pass');
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     $('.icon-right.' + element.id)
-                        .addClass('pass');
-                    $('.icon-right.' + element.id)
+                        .addClass('pass')
                         .removeClass('err');
                 }
             });
@@ -454,9 +481,6 @@ $(document)
 
                 $('main')
                     .attr('data-effect-switch', parseInt(trackId));
-
-                console.log(trackId, $('main')
-                    .attr('data-effect-switch'));
 
                 dd.show('FX');
                 dd.dropdown.open();

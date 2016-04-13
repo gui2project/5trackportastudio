@@ -95,24 +95,30 @@ var StopWatch = function () {
      *  @return  the new time string to display
      */
     this.formatTime = function (time) {
-        var h, m, s, ms, newTime;
+        var minutes,
+            seconds,
+            milliseconds,
+            section = function (xs, sm, md, pad) {
+                return $('<div></div>')
+                    .addClass(['col-xs-' + xs, 'col-sm-' + sm, 'col-md-' + md, 'sys-font'].join(' '))
+                    .html(pad);
+            };
 
-        h = m = s = ms = 0;
-        newTime = '';
+        //  Calculate time
+        minutes = Math.floor(time / (60 * 1000));
+        time %= (60 * 1000);
+        seconds = Math.floor(time / 1000);
+        time %= 1000;
+        milliseconds = time;
 
-        //h = Math.floor(time / (60 * 60 * 1000));
-        //time = time % (60 * 60 * 1000);
-        m = Math.floor(time / (60 * 1000));
-        time = time % (60 * 1000);
-        s = Math.floor(time / 1000);
-        ms = time % 1000;
-
-        var space = function (xs, sm, md, pad) {
-            return '<div class="col-xs-' + xs + ' col-sm-' + sm + ' col-md-' + md + ' sys-font">' + pad + '</div>';
-        };
-
-        newTime = space(1, 3, 1, '') + space(3, 1, 3, _this.pad(m, 3)) + space(1, 1, 1, '') + space(2, 2, 2, _this.pad(s, 2)) + space(1, 1, 1, '') + space(3, 1, 3, _this.pad(ms, 3)) + space(1, 3, 1, '');
-        return newTime;
+        return $('<div></div>')
+            .append(section(1, 3, 1, ''))
+            .append(section(3, 1, 3, _this.pad(minutes, 3)))
+            .append(section(1, 1, 1, ''))
+            .append(section(2, 2, 2, _this.pad(seconds, 2)))
+            .append(section(1, 1, 1, ''))
+            .append(section(3, 1, 3, _this.pad(milliseconds, 3)))
+            .append(section(1, 3, 1, ''));
     };
 
     /**
@@ -168,14 +174,16 @@ var StopWatch = function () {
     this.update = function () {
         var time = _this.getTime();
 
-        //$(_this.getId())
-        // .html(_this.formatTime(time));
-
         positionNeedle(time);
+
         //  Terminate at max time
-        if (_this.maxRunTime !== -1 && time >= _this.maxRunTime && _this.clocktimerBool) {
-            $('.playback button.stop')
+        if (_this.maxRunTime !== -1 &&
+            time >= _this.maxRunTime &&
+            _this.clocktimerBool) {
+
+            $('button.stop')
                 .trigger('click');
+
             _this.clearClocktimer();
         }
     };
@@ -184,16 +192,16 @@ var StopWatch = function () {
      *  Adjusts the clock to a given time.
      *
      *  @method StopWatch.adjust
-     *  @param  {Integet}   mod     The value to adjust the time by.
+     *  @param  {Integet}   offset     The value to adjust the time by.
      *  @return {Integer}   The current laptime.
      */
-    this.adjust = function (mod) {
+    this.adjust = function (offset) {
         _this.run('STOP');
 
-        if (_this.laptime + mod <= 0) {
+        if ((_this.laptime + offset) <= 0) {
             _this.run('RESET');
         } else {
-            _this.laptime += mod;
+            _this.laptime += offset;
         }
 
         return _this.laptime;
@@ -230,18 +238,22 @@ var StopWatch = function () {
         case 'INIT': // requires option IdString
             _this.setId(option);
             _this.update();
+
             return _this.laptime;
 
         case 'START':
             _this.maxRunTime = dVar(option, parseInt($('.master')
                 .attr('data-track-length')));
+
             _this.setClocktimer();
             _this.start();
+
             return _this.laptime;
 
         case 'STOP':
             _this.stop();
             _this.clearClocktimer();
+
             return _this.laptime;
 
         case 'RESET':
@@ -249,10 +261,14 @@ var StopWatch = function () {
             _this.clearClocktimer();
             _this.reset();
             _this.update();
+
             return _this.laptime;
 
         case 'ADJUST': //needs a value from option
+            option = dVar(option, 500);
+
             _this.adjust(option);
+
             return _this.laptime;
         }
     };

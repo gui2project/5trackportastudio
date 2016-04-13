@@ -106,11 +106,10 @@ $(function () {
 
                         //  UPDATE THE PERCENT BAR
                         for (i = 0; i < values.length; ++i) {
-                            var selector = '.graph-clock > .graph-clock-wrapper:nth-child(' +
-                                parseInt(1 + i) + ') .graph-clock-bar';
-
-                            console.log(selector);
-                            $(selector)
+                            $('.graph-clock')
+                                .find('.graph-clock-wrapper:nth-child(' +
+                                    parseInt(1 + i) + ')')
+                                .find('.graph-clock-bar')
                                 .css({
                                     'width': values[i] + '%'
                                 });
@@ -121,7 +120,7 @@ $(function () {
 
     $('.master')
         .on('update', function () {
-            sw.setTrack('master', $('.master')
+            sw.setTrack('master', $(this)
                 .attr('data-track-length'));
         });
 
@@ -185,6 +184,10 @@ $(function () {
                 .addClass('changing');
         })
         .on('mousemove', function () {
+            var trackNumber,
+                knobValue,
+                eqType;
+
             // Check if dragging
             if (!$(this)
                 .hasClass('changing')) {
@@ -192,32 +195,30 @@ $(function () {
             }
 
             // Get track number and value of the knob
-            var trackNumber = parseInt($(this)
-                .parent()
-                .parent()
+            trackNumber = parseInt($(this)
+                .genParent(2)
                 .attr('value'));
-            var knobValue = parseFloat($(this)
+
+            knobValue = parseFloat($(this)
                 .parent()
                 .find('input')
                 .val());
 
             // Check which knob you are (EQ or pan)
             if ($(this)
-                .parent()
-                .parent()
+                .genParent(2)
                 .hasClass('eq')) {
+
                 // Get EQ type (high, mid, low)
-                var eqType = $(this)
-                    .parent()
-                    .parent()
+                eqType = $(this)
+                    .genParent(2)
                     .attr('type');
 
                 //function to change EQ
                 eq(trackNumber, eqType, knobValue);
 
             } else if ($(this)
-                .parent()
-                .parent()
+                .genParent(2)
                 .hasClass('pan')) {
 
                 pan(trackNumber, knobValue);
@@ -234,12 +235,17 @@ $(function () {
     /* Slider function */
     $('.slider')
         .on('change', function () {
+            var trackNumber,
+                sliderVal;
+
             // Get track number and value of the slider
-            var trackNumber = parseInt($(this)
+            trackNumber = parseInt($(this)
                 .parent()
                 .attr('value'));
-            var sliderVal = parseFloat($(this)
+
+            sliderVal = parseFloat($(this)
                 .val());
+
             if (!isNaN(sliderVal)) {
                 gain(trackNumber, sliderVal);
             }
@@ -252,13 +258,16 @@ $(function () {
         .css('display', 'none')
         .end()
         .on('click', function () {
+            var trackNumber,
+                isMuted;
+
             // Get track number and value of the button
-            var trackNumber = parseInt($(this)
+            trackNumber = parseInt($(this)
                 .parent()
                 .attr('value'));
 
             // Check variables
-            var isMuted = parseInt($(this)
+            isMuted = parseInt($(this)
                 .attr('data-muted'));
 
             // Toggle armed
@@ -326,22 +335,22 @@ $(function () {
         .css('display', 'none')
         .end()
         .on('click', function () {
+            var trackId,
+                trackNumber,
+                isArmed;
 
-            var trackId = $(this)
+            trackId = $(this)
                 .closest('.track')
                 .attr('id')
                 .substr(6) - 1;
-            var trackSelector = '#track-' + (1 + trackId);
-
-            var _this = this;
 
             // Get track number and value of the knob
-            var trackNumber = parseInt($(this)
+            trackNumber = parseInt($(this)
                 .parent()
                 .attr('value'));
 
             // Check variables
-            var isArmed = parseInt($(this)
+            isArmed = parseInt($(this)
                 .attr('data-armed'));
 
             // Toggle armed
@@ -383,9 +392,11 @@ $(function () {
 
                 trackClear[trackId] = setInterval(function () {
                     var trackTime = sw.getTime();
-                    $(trackSelector)
+
+                    $('#track-' + (1 + trackId))
                         .attr('data-track-length', trackTime)
                         .trigger('datachange');
+
                     sw.setTrack(trackId, trackTime);
                 }, 1);
 

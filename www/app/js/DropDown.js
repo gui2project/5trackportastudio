@@ -298,7 +298,6 @@ function DropDown() {
 
                         //  add items to catalog
                         data.forEach(function (item) {
-                            var img, label, button, effect;
 
                             //  Build effect button
                             item.id = ('effect-item-' + item.title)
@@ -307,28 +306,20 @@ function DropDown() {
 
                             item.src = item.image ? item.image : '/app/img/favicon-black.png';
 
-                            img = $('<img/>')
-                                .addClass(['fx-catalog-panel-item-image', 'square-image-centered'].join(' '))
-                                .attr('src', item.src);
-
-                            label = $('<span></span>')
-                                .addClass(['fx-catalog-panel-item-title'].join(' '))
-                                .html(item.title);
-
-                            button = $('<button></button>')
-                                .addClass(['square-inner', 'fx-catalog-panel-item'].join(' '))
-                                .attr('id', item.id)
-                                .append(img)
-                                .append('<br/>')
-                                .append(label);
-
-                            effect = $('<div></div>')
-                                .addClass(['col-lg-2', 'col-md-2', 'col-sm-4', 'col-xs-4', 'square-wrapper'].join(' '))
-                                .append(button);
-
                             //  Add effect button
                             $(container)
-                                .append(effect);
+                                .append($('<div></div>')
+                                    .addClass(['col-lg-2', 'col-md-2', 'col-sm-4', 'col-xs-4', 'square-wrapper'].join(' '))
+                                    .append($('<button></button>')
+                                        .addClass(['square-inner', 'fx-catalog-panel-item'].join(' '))
+                                        .attr('id', item.id)
+                                        .append($('<img/>')
+                                            .addClass(['fx-catalog-panel-item-image', 'square-image-centered'].join(' '))
+                                            .attr('src', item.src))
+                                        .append('<br/>')
+                                        .append($('<span></span>')
+                                            .addClass('fx-catalog-panel-item-title')
+                                            .html(item.title))));
 
                             //  Add Handler
                             $('#' + item.id)
@@ -336,6 +327,10 @@ function DropDown() {
 
                                     trackNumber = parseInt($('main')
                                         .attr('data-effect-switch'));
+
+                                    if (item.title === 'Remove') {
+                                        item.src = '/app/img/effects/system-add-212121.png';
+                                    }
 
                                     //Turn on effect
                                     window[item.objArray][trackNumber][item.func](item.parameter);
@@ -909,9 +904,9 @@ function DropDown() {
 
             _this.dropdown.toggle();
             var waitforclose = setInterval(function () {
-                console.log('BACK RUNNING');
+                console.log('BACKING UP A VIEW');
                 if (_this.state === false) {
-                    console.log('BACK COMPLETED');
+                    console.log('BACKING UP COMPLETED');
 
                     _this.reset();
                     _this.stateHistory.pop();

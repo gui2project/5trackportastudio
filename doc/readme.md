@@ -1452,13 +1452,13 @@ Interval function, writes the time of the clock into the element.
 
 ---
 
-#### Method: StopWatch.adjust(mod)
+#### Method: StopWatch.adjust(offset)
 
 Adjusts the clock to a given time.
 
 ##### Params:
 
-* **Integet** *mod* The value to adjust the time by.
+* **Integet** *offset* The value to adjust the time by.
 
 ##### Return:
 
@@ -1500,6 +1500,10 @@ This is the command function to the clock, it accepts
 
 <!-- Start www\app\js\track-label.js -->
 ## File: www\app\js\track-label.js
+
+---
+
+### Class: genParent
 
 <!-- End www\app\js\track-label.js -->
 
