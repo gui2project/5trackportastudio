@@ -197,10 +197,9 @@ var dVar = function (param, def) {
 };
 
 /**
- *  @name   getMicrophone
- *
  *  Detects the microphone and sets up callbacks
  *
+ *  @function   getMicrophone
  *  @param  micSuccess     The microphone success callback
  *  @param  micFailure     The microphone failure callback
  *  @param  browserFailure The browser incompatibility callback
@@ -215,7 +214,18 @@ var getMicrophone = function (micSuccess, micFailure, browserFailure) {
     }
 };
 
-//http://stackoverflow.com/questions/2400935/browser-detection-in-javascript
+/**
+ *  Determines which browser and version are being used, this was modified from the link.
+ *
+ *  Example
+ *      userAgent = getBrowser();
+ *
+ *      console.log('Browser ', userAgent.browser, ' V', userAgent.version);
+ *
+ *  @function getBrowser
+ *  @see http://stackoverflow.com/questions/2400935/browser-detection-in-javascript
+ *  @return {Object} returns an object with a property browser and version
+ */
 var getBrowser = function () {
     return (function () {
         var ua = navigator.userAgent;
@@ -254,4 +264,27 @@ var getBrowser = function () {
 
         return ret;
     })();
+};
+/**
+ *  Positions the Display needle
+ *
+ *  @function positionNeedle
+ *  @param {Integer} time The time in milliseconds to display
+ */
+var positionNeedle = function (time) {
+    var percent = 0;
+    var master = $('#master-1')
+        .attr('data-track-length');
+    var evaluation = time / master;
+
+    if (evaluation >= 1) {
+        percent = 100;
+    } else if (master > 0) {
+        percent = evaluation * 100;
+    }
+
+    $('.graph-clock .graph-clock-needle')
+        .css({
+            'left': (percent - 1) + '%'
+        });
 };

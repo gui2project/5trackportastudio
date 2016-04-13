@@ -37,8 +37,8 @@ button,
 
 .data-active,
 .information-image,
-.stopWatch,
-.timedisplay,
+/*.stopWatch,
+.timedisplay,*/
 .track-fader-mute > button.armed,
 .mixer-meter .mixer-led-normal.on,
 main > .container > .row-container .statistics ,
@@ -96,9 +96,7 @@ main > .container > .row-container li.scale-5L-top label.db i {
 }
 
 button,
-.data-not-active,
-.stopWatch > .timedisplay,
-.timedisplay-label {
+.data-not-active {
     color: #333333;
 }
 
@@ -112,7 +110,12 @@ input.editable-text,
 .disabledButton.forward,
 .disabledButton.rewind,
 .disabledButton.record,
-main > .container > .row-container .statistics {
+.graph-clock-length-label,
+.statistics,
+.timedisplay,
+.timedisplay-label,
+main > .container > .row-container .graph-clock .graph-clock-track,
+main > .container > .row-container .graph-clock .graph-clock-bar-label div {
     color: #212121;
 }
 
@@ -175,8 +178,13 @@ main > .container > .row-container .statistics {
 }
 
 .navbar-brand-label:hover,
-.navbar-right-links a span:hover {
+.navbar-right-links a span:hover,
+.glass {
     border-color: #149BDF;
+}
+
+main > .container > .row-container .graph-clock .graph-clock-bar-wrapper {
+    border-color: #1275A7;
 }
 
 .display {
@@ -184,6 +192,14 @@ main > .container > .row-container .statistics {
 }
 
 /*IMAGES*/
+main > .container > .row-container .graph-clock .graph-clock-needle {
+    background: url('/app/img/marker.png');
+}
+
+main > .container > .row-container .graph-clock .graph-clock-bar {
+    background-image: url('/app/img/pixels.png');
+}
+
 .slider-handle {
     background-image: url('/app/img/Fader.png');
 }
@@ -221,4 +237,12 @@ main > .container > .row-container li.scale-zero {
 .pointer.link-tutorial.display span:hover {
     color: #FAFAFA !important;
     border-color: #fafafa !important;
+}
+
+.glass {
+    background-image: linear-gradient(#149bdf,#1C90CA);
+}
+
+.glass:after {
+    background: linear-gradient(-45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
 }

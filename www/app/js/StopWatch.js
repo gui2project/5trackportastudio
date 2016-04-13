@@ -168,9 +168,10 @@ var StopWatch = function () {
     this.update = function () {
         var time = _this.getTime();
 
-        $(_this.getId())
-            .html(_this.formatTime(time));
+        //$(_this.getId())
+        // .html(_this.formatTime(time));
 
+        positionNeedle(time);
         //  Terminate at max time
         if (_this.maxRunTime !== -1 && time >= _this.maxRunTime && _this.clocktimerBool) {
             $('.playback button.stop')
@@ -206,7 +207,6 @@ var StopWatch = function () {
      *  @param {Integer} value The time elapsed for the track.
      */
     this.setTrack = function (trackNumber, value) {
-        console.log('#track-time-display-' + trackNumber, value);
         $('#track-time-display-' + trackNumber)
             .html(_this.formatTime(value));
     };

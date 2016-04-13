@@ -1,0 +1,35 @@
+mixin graphClock(clckNum)
+    //  graphClock
+    .graph-clock
+        each i in [0,1,2,3]
+            .graph-clock-wrapper.col-xs-12.col-sm-12.col-md-12.col-lg-12
+                .graph-clock-track.col-xs-1.col-sm-1.col-md-1.col-lg-1=('T'+i)
+                .graph-clock-bar-wrapper.col-xs-7.col-sm-7.col-md-7.col-lg-7
+                    .graph-clock-bar
+                .graph-clock-length-label.col-xs-4.col-sm-4.col-md-4.col-lg-4(id='track-time-display-'+i)
+                    .col-xs-1.col-sm-3.col-md-1
+                    .col-xs-3.col-sm-1.col-md-3  000
+                    .col-xs-1.col-sm-1.col-md-1
+                    .col-xs-2.col-sm-2.col-md-2  00
+                    .col-xs-1.col-sm-1.col-md-1
+                    .col-xs-3.col-sm-1.col-md-3  000
+                    .col-xs-1.col-sm-3.col-md-1
+        .graph-clock-wrapper.col-xs-12.col-sm-12.col-md-12.col-lg-12
+            .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            .graph-clock-bar-needle-wrapper.col-xs-7.col-sm-7.col-md-7.col-lg-7
+                .graph-clock-needle
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4
+        .graph-clock-bar-label.col-xs-12.col-sm-12.col-md-12.col-lg-12
+            .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            .col-xs-7.col-sm-7.col-md-7.col-lg-7
+                .text-left.col-xs-1.col-sm-1.col-md-1.col-lg-1 0
+                .text-center.col-xs-10.col-sm-10.col-md-10.col-lg-10 Percent
+                .text-right.col-xs-1.col-sm-1.col-md-1.col-lg-1 100
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4
+                .col-xs-1.col-sm-3.col-md-1
+                .text-center.col-xs-3.col-sm-1.col-md-3.timedisplay-label.min MIN
+                .col-xs-1.col-sm-1.col-md-1
+                .text-center.col-xs-2.col-sm-2.col-md-2.timedisplay-label.sec SEC
+                .col-xs-1.col-sm-1.col-md-1
+                .text-center.col-xs-3.col-sm-1.col-md-3.timedisplay-label.ms MS
+                .col-xs-1.col-sm-3.col-md-1

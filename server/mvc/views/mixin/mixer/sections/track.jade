@@ -17,6 +17,7 @@ mixin track(trknum)
         +fx-box(trknum)
         // Fader
         +fader-slider(trknum, true)
+        // Equalizer
         .row
             .col-xs-1.col-sm-1.col-md-1.col-lg-1
                 +section-label('Equalizer')
@@ -25,6 +26,7 @@ mixin track(trknum)
                 +knob(trknum, 'Treble', 'eq','-','+','HIGH')
                 // EQ Low
                 +knob(trknum, 'Bass', 'eq','-','+','LOW')
+        // Stereo
         .row
             .col-xs-1.col-sm-1.col-md-1.col-lg-1
                 +section-label('Stereo')

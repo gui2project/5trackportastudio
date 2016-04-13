@@ -79,25 +79,48 @@ $(function () {
         .on('datachange', function () {
             var arr = [];
             var count = 0;
-            console.log('track is updating');
+
             $('.track')
                 .each(function () {
+
+                    //  Record all track lengths
                     arr.push(parseInt($(this)
                         .attr('data-track-length')));
-                    console.log(arr, count);
-                    if (++count >= 3) {
 
-                        console.log(Math.max.apply(null, arr));
+                    //  when all tracks are recorded
+                    if (++count >= 3) {
+                        var max = Math.max.apply(null, arr);
+                        var values = [0, 0, 0, 0];
+
+                        //  check for maximum track
+                        if (max !== 0) {
+                            values = arr.map(function (dividend) {
+                                return (dividend / max) * 100;
+                            });
+                        }
+
+                        //  update master track length
                         $('.master')
-                            .attr('data-track-length', Math.max.apply(null, arr))
+                            .attr('data-track-length', max)
                             .trigger('update');
+
+                        //  UPDATE THE PERCENT BAR
+                        for (i = 0; i < values.length; ++i) {
+                            var selector = '.graph-clock > .graph-clock-wrapper:nth-child(' +
+                                parseInt(1 + i) + ') .graph-clock-bar';
+
+                            console.log(selector);
+                            $(selector)
+                                .css({
+                                    'width': values[i] + '%'
+                                });
+                        }
                     }
                 });
         });
 
     $('.master')
         .on('update', function () {
-            console.log('master is updating');
             sw.setTrack('master', $('.master')
                 .attr('data-track-length'));
         });
@@ -177,7 +200,7 @@ $(function () {
                 .parent()
                 .find('input')
                 .val());
-            console.log(this);
+
             // Check which knob you are (EQ or pan)
             if ($(this)
                 .parent()
@@ -309,7 +332,6 @@ $(function () {
                 .attr('id')
                 .substr(6) - 1;
             var trackSelector = '#track-' + (1 + trackId);
-            console.log(trackId);
 
             var _this = this;
 

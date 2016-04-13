@@ -214,7 +214,7 @@ main > .container > .row-container .row {
 
 main > .container > .row-container .row.bottom {
     position: relative;
-    top: 300px;
+    top: 415px;
 }
 
 main > .container > .row-container .row:first-child {
@@ -522,6 +522,7 @@ main > .container > .row-container li.scale-5L-top label.vu {
     left: -15px;
     top: -20px;
 }
+
 /*FX BOX*/
 main > .container > .row-container .fx-box {
     height: 40px;
@@ -538,15 +539,20 @@ main > .container > .row-container .fx-box > div {
 main > .container > .row-container .stopWatch {
     border-style: inset;
     border-width: 1px;
-    height: 78px;
     margin: 0 .5%;
     width: 99%;
+    overflow: hidden;
+}
+
+main > .container > .row-container .stopWatch,
+main > .container > .row-container .stopWatch > .timedisplay {
+    height: 112px;
 }
 
 main > .container > .row-container .stopWatch > .timedisplay {
     border-style: inset;
     border-width: 1px;
-    line-height: 78px;
+    line-height: 50px;
     padding: 0;
     text-align: center;
 }
@@ -556,7 +562,7 @@ main > .container > .row-container .stopWatch > .timedisplay > div {
 }
 
 main > .container > .row-container .stopWatch > .timedisplay-label-wrapper {
-    bottom: 25px;
+    bottom: 125px;
     margin-bottom: -25px;
     padding: 0;
     position: relative;
@@ -566,6 +572,49 @@ main > .container > .row-container .stopWatch > .timedisplay-label-wrapper {
 main > .container > .row-container .stopWatch > .timedisplay-label-wrapper > div {
     padding: 0;
 }
+
+/*GRAPH-CLOCK*/
+
+main > .container > .row-container .graph-clock {
+    position: relative;
+    top: -100px;
+    padding: 0 10px;
+}
+
+main > .container > .row-container .graph-clock div {
+    padding: 0;
+    margin: 0;
+}
+
+main > .container > .row-container .graph-clock .graph-clock-bar-wrapper {
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-style: dotted;
+}
+
+main > .container > .row-container .graph-clock .graph-clock-track {
+    text-align: left;
+}
+
+main > .container > .row-container .graph-clock .graph-clock-bar {
+    width: 0;
+    height: 10px;
+    background-repeat: repeat;
+    margin: 5px 0;
+}
+
+main > .container > .row-container .graph-clock .graph-clock-needle {
+    width: 7px;
+    height: 85px;
+    position: relative;
+    top: -84px;
+    left: -1%;
+}
+
+main > .container > .row-container .graph-clock .graph-clock-bar-label {
+    top: -85px;
+}
+
 
 /*STATISTICS*/
 
@@ -587,11 +636,6 @@ main > .container > .row-container .statistics th {
 main > .container > .row-container .statistics td {
     text-align: left;
 }
-
-main > .container > .row-container .statistics td:last-child {
-    font-family: 'Segment7Standard';
-}
-
 
 /*MASTER CONTROLS*/
 main > .container > .row-container .playback > div {
@@ -737,6 +781,18 @@ form .error {
     float: left;
 }
 
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -767,4 +823,15 @@ form .error {
     padding-left: 38px;
     width: 32px;
     vertical-align: middle;
+}
+
+.glass {
+    display: inline-block;
+}
+
+.glass:after {
+    content: '';
+    position: relative;
+    width: 100%;
+    height: 100%;
 }

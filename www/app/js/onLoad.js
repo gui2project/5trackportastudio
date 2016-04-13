@@ -53,8 +53,7 @@ $(document)
         console.log('initialize trip');
         // var options = {};
         trip.journey.push(new Trip(
-            [
-             {
+            [{
                 position: 'screen-center',
                 content: 'Hey there! Welcome to TrackStudio, would you like us to show you around? Click next for a simple tutorial.',
                 showNavigation: true,
