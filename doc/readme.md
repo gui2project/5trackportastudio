@@ -842,9 +842,13 @@ Gets all the stored states, where the index corresponds to the order.
 
 ---
 
-#### Method: DropDown.open()
+#### Method: DropDown.open(speed)
 
 Opens the DropDown menu
+
+##### Params:
+
+* **Integer** *speed* The speed to open the dropdown.
 
 ---
 
@@ -854,7 +858,7 @@ Closes the DropDown menu
 
 ##### Params:
 
-* **Integer** *speed* THe speed to close the dropdown
+* **Integer** *speed* The speed to close the dropdown
 
 ---
 
@@ -907,6 +911,18 @@ Sets the account panel information
      var dropDown = new DropDown();
      ...
      dropDown.panel.set.account();
+
+---
+
+#### Method: DropDown.panel.set.api()
+
+Sets the api panel information
+
+ Examples:
+
+     var dropDown = new DropDown();
+     ...
+     dropDown.panel.set.api();
 
 ---
 

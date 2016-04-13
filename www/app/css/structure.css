@@ -21,7 +21,7 @@ header {
     z-index: 1000;
 }
 
-header > .navbar {
+header .navbar {
     border-bottom: 0;
     height: 50px;
     left: 0;
@@ -31,16 +31,16 @@ header > .navbar {
     z-index: 1001;
 }
 
-header > .navbar > .container > .navbar-header,
-header > .navbar > .container > .navbar-header > button {
+header .navbar > .container > .navbar-header,
+header .navbar > .container > .navbar-header > button {
     height: 50px;
 }
 
-header > .navbar > .container > .navbar-header button.tutorial {
+header .navbar > .container > .navbar-header button.tutorial {
     height: 50px;
 }
 
-header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label {
+header .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label {
     background-position: left 0;
     background-repeat: no-repeat;
     background-size: 22px 22px;
@@ -49,18 +49,18 @@ header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-l
     padding-left: 26px;
 }
 
-header > .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label:hover {
+header .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label:hover {
     border-style: solid;
     border-width: 0 0 1px 0;
     text-decoration: none;
 }
 
-header > .navbar > .container > .navbar-right-links {
+header .navbar > .container > .navbar-right-links {
     float: right;
     text-align: right;
 }
 
-header > .navbar > .container > .navbar-right-links > a {
+header .navbar > .container > .navbar-right-links > a {
     display: none;
     float: right;
     height: 50px;
@@ -68,15 +68,31 @@ header > .navbar > .container > .navbar-right-links > a {
     padding: 0 10px;
 }
 
-header > .navbar > .container > .navbar-right-links > a > span {
+header .navbar > .container > .navbar-right-links > a > span {
     float: right;
     height: 38px;
     line-height: 53px;
+    margin: auto;
+    padding: 0;
+    text-align: left;
 }
 
-header > .navbar > .container > .navbar-right-links > a > span:hover {
+header .navbar > .container > .navbar-right-links > a.link-register > span,
+header .navbar > .container > .navbar-right-links > a.link-sign-out > span {
+    text-align: right;
+}
+
+header .navbar > .container > .navbar-right-links > a.link-sign-in > span {
+    text-align: left;
+}
+
+header .navbar > .container > .navbar-right-links > a.link-tutorial > span {
+    text-align: center;
+}
+
+header .navbar > .container > .navbar-right-links > a > span:hover {
     border-style: solid;
-    border-width: 0 0 1px 0;
+    border-width: 0;
     text-decoration: none;
 }
 
@@ -834,4 +850,13 @@ form .error {
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+.cleared {
+    margin: 0;
+    padding: 0;
+}
+
+canvas:hover {
+    cursor: pointer;
 }

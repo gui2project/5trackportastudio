@@ -63,7 +63,7 @@ function stop() {
     console.log('stop');
 
     track.forEach(function (item, index) {
-            track[index].stopTrack();
+        track[index].stopTrack();
     });
 
     sw.run('RESET');

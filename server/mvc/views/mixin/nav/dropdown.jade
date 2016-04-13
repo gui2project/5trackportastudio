@@ -9,7 +9,6 @@ include ./panels/mix-catalog-panel.jade
 include ./panels/about-panel.jade
 include ./panels/contact-panel.jade
 include ./panels/api-panel.jade
-include ./panels/tutorial-panel.jade
 
 mixin dropdown(id)
     //  Dropdown
@@ -30,9 +29,8 @@ mixin dropdown(id)
                 //  Dropdown right wait
                 .panel.wait-right-panel.wait.col-md-12.col-sm-12.col-xs-12
                 //  Dropdown right panels
-                +fx-catalog-panel()
                 +mix-catalog-panel()
+                +fx-catalog-panel()
                 +about-panel()
                 +contact-panel()
                 +api-panel()
-                +tutorial-panel()

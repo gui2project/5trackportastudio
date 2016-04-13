@@ -49,14 +49,16 @@ function DropDown() {
             .mouseup(function (e) {
 
                 if ($(e.target)
-                    .hasClass('trip-content') ||
-                    $(e.target)
-                    .hasClass('trip-next') ||
-                    $(e.target)
-                    .hasClass('trip-back')) {
+                    .is(['.trip-content',
+                        '.trip-block',
+                        '.trip-next',
+                        '.trip-prev',
+                        '.trip-close'
+                    ].join(', '))) {
                     console.log(e.target);
                     return;
                 }
+
                 if (_this.state &&
                     (!$(_this.dropDownId)
                         .is(e.target) &&
@@ -70,7 +72,7 @@ function DropDown() {
                         .length === 0)) {
 
                     console.log('closing on external click');
-                    //_this.dropdown.close();
+                    _this.dropdown.close();
                 }
             });
     };
@@ -84,14 +86,12 @@ function DropDown() {
          *  @param  {String}    State to add
          */
         push: function (view) {
-            console.log(_this.history);
 
             if (_this.history[_this.history.length - 1] === view) {
-                console.log('Not pushing dupplicate');
-            } else {
-                _this.history.push(view);
+                return;
             }
-            console.log(_this.history);
+
+            _this.history.push(view);
         },
 
         /**
@@ -101,17 +101,12 @@ function DropDown() {
          *  @return {String}    The last state
          */
         pop: function () {
-            console.log(_this.history);
 
             if (_this.history.length === 1) {
-                ret = _this.stateHistory.top();
-            } else {
-                ret = _this.history.pop();
+                return _this.stateHistory.top();
             }
 
-            console.log(_this.history);
-
-            return ret;
+            return _this.history.pop();
         },
 
         /**
@@ -121,14 +116,9 @@ function DropDown() {
          *  @return {String}    The current state.
          */
         top: function () {
-            var popped;
+            var popped = _this.history.pop();
 
-            console.log(_this.history);
-
-            popped = _this.history.pop();
             _this.history.push(popped);
-
-            console.log(_this.history);
 
             return popped;
         },
@@ -149,43 +139,99 @@ function DropDown() {
          *  Opens the DropDown menu
          *
          *  @method   DropDown.open
+         *  @param  {Integer} speed The speed to open the dropdown.
          */
-        open: function () {
+        open: function (speed) {
+            var cssScroll = {
+                hidden: {
+                    'overflow': 'hidden'
+                },
+                on: {
+                    'overflow': ''
+                }
+            };
+
+            speed = dVar(speed, _this.speed);
+
             console.log('  Opening "dropdown"');
-            $(_this.dropDownId + ' .dropdown-left')
-                .fadeIn(_this.speed);
-            $(_this.dropDownId + ' .dropdown-right')
-                .fadeIn(_this.speed);
 
             $(_this.dropDownId)
-                .slideDown(_this.speed, function () {
+                .find('.holder')
+                .css(cssScroll.hidden)
+                .end()
+                .find('.dropdown-left')
+                .css(cssScroll.hidden)
+                .fadeIn(speed)
+                .end()
+                .find('.dropdown-right')
+                .css(cssScroll.hidden)
+                .fadeIn(speed)
+                .end()
+                .slideDown(speed, function () {
                     _this.state = true;
+                    setTimeout(function () {
+                        $(_this.dropDownId)
+                            .find('.holder')
+                            .css(cssScroll.on)
+                            .end()
+                            .find('.dropdown-left')
+                            .css(cssScroll.on)
+                            .end()
+                            .find('.dropdown-right')
+                            .css(cssScroll.on)
+                            .end();
+                    }, speed);
                 });
-
         },
 
         /**
          *  Closes the DropDown menu
          *
          *  @method   DropDown.close
-         *  @param {Integer} speed THe speed to close the dropdown
+         *  @param {Integer} speed The speed to close the dropdown
          */
         close: function (speed) {
+            var cssScroll = {
+                hidden: {
+                    'overflow': 'hidden'
+                },
+                on: {
+                    'overflow': ''
+                }
+            };
 
             speed = dVar(speed, _this.speed);
 
             console.log('  Closing "dropdown"');
-            $(_this.dropDownId + ' .dropdown-left')
-                .fadeOut(speed);
-
-            $(_this.dropDownId + ' .dropdown-right')
-                .fadeOut(speed);
 
             $(_this.dropDownId)
+                .find('.holder')
+                .css(cssScroll.hidden)
+                .end()
+                .find('.dropdown-left')
+                .css(cssScroll.hidden)
+                .fadeOut(speed)
+                .end()
+                .find('.dropdown-right')
+                .css(cssScroll.hidden)
+                .fadeOut(speed)
+                .end()
                 .slideUp(speed, function () {
                     _this.state = false;
-                });
+                    setTimeout(function () {
+                        $(_this.dropDownId)
+                            .find('.holder')
+                            .css(cssScroll.on)
+                            .end()
+                            .find('.dropdown-left')
+                            .css(cssScroll.on)
+                            .end()
+                            .find('.dropdown-right')
+                            .css(cssScroll.on)
+                            .end();
 
+                    }, speed);
+                });
         },
 
         /**
@@ -196,9 +242,9 @@ function DropDown() {
         toggle: function () {
             if (_this.state) {
                 _this.dropdown.close();
-            } else {
-                _this.dropdown.open();
+                return;
             }
+            _this.dropdown.open();
         }
     };
 
@@ -240,6 +286,7 @@ function DropDown() {
                             return 0;
                         });
 
+                        //  Add remove item to begining
                         data.unshift({
                             title: 'Remove',
                             desc: 'Remove the effect applied to a track.',
@@ -251,62 +298,66 @@ function DropDown() {
 
                         //  add items to catalog
                         data.forEach(function (item) {
-                            var idString = ('effect-item-' + item.title)
-                                .toLowerCase();
+                            var img, label, button, effect;
 
-                            idString = idString.replace(/\s/g, '');
+                            //  Build effect button
+                            item.id = ('effect-item-' + item.title)
+                                .toLowerCase()
+                                .replace(/\s/g, '');
 
-                            console.log(idString);
+                            item.src = item.image ? item.image : '/app/img/favicon-black.png';
 
-                            var classes = 'col-xs-4 col-sm-4 col-md-2 col-lg-2';
-                            var title = '<span class="fx-catalog-panel-item-title">' + item.title + '</span>';
-                            var url = item.image ? item.image : '/app/img/favicon-white.png';
-                            var image = '<img class="fx-catalog-panel-item-image" src="' + url + '" class="square-image-centered"/>';
-                            var htmlObj = '<div class=" col-md-12 col-sm-12 col-xs-12 square-wrapper ' + classes + '"><button id="' + idString + '" class="square-inner fx-catalog-panel-item">' + image + '<br>' + title + '</button></div>';
+                            img = $('<img/>')
+                                .addClass(['fx-catalog-panel-item-image', 'square-image-centered'].join(' '))
+                                .attr('src', item.src);
 
-                            //  Add Element
+                            label = $('<span></span>')
+                                .addClass(['fx-catalog-panel-item-title'].join(' '))
+                                .html(item.title);
+
+                            button = $('<button></button>')
+                                .addClass(['square-inner', 'fx-catalog-panel-item'].join(' '))
+                                .attr('id', item.id)
+                                .append(img)
+                                .append('<br/>')
+                                .append(label);
+
+                            effect = $('<div></div>')
+                                .addClass(['col-lg-2', 'col-md-2', 'col-sm-4', 'col-xs-4', 'square-wrapper'].join(' '))
+                                .append(button);
+
+                            //  Add effect button
                             $(container)
-                                .append(htmlObj);
+                                .append(effect);
 
                             //  Add Handler
-                            $('#' + idString)
+                            $('#' + item.id)
                                 .on('click', function () {
-                                    console.log(idString + ' was clicked');
+
                                     trackNumber = parseInt($('main')
                                         .attr('data-effect-switch'));
 
-                                    var newimage;
-                                    if (item.image === '/app/img/effects/system-delete-212121.png') {
-                                        newimage = '/app/img/effects/system-add-212121.png';
-                                    } else {
-                                        newimage = item.image;
-                                    }
-
+                                    //Turn on effect
                                     window[item.objArray][trackNumber][item.func](item.parameter);
 
-                                    console.log($('#track-' + (1 + trackNumber) + ' .row .fx-box img'));
-                                    $('#track-' + (1 + trackNumber) + ' .row .fx-box img')
-                                        .attr('src', newimage);
+                                    //  Update effect image on track
+                                    $('#track-' + (1 + trackNumber))
+                                        .find('.fx-box img')
+                                        .attr('src', item.src);
+
                                     _this.show('BACK');
 
                                 })
                                 .mouseover(function () {
-                                    console.log(idString + ' was hovered');
-
                                     _this.panel.set.information(item);
                                     _this.panel.display.toggle(true, '.information-panel');
-
-                                })
-                                .mouseleave(function () {
-                                    console.log(idString + ' was left');
                                 });
                         });
                     },
                     function () {
-                        var html = 'There was a problem loading the FX-Catalog.';
-
+                        console.log('dropdown.panel.set.fxCatalog: Error');
                         $(container)
-                            .html(html);
+                            .html('There was a problem loading the FX-Catalog.');
                     });
             },
 
@@ -330,6 +381,7 @@ function DropDown() {
              */
             mixCatalog: function (json) {
                 console.log('dropdown.panel.set.mixCatalog');
+
                 //sort mix catalog by name
                 json.sort(function (a, b) {
                     if (a.date < b.date) {
@@ -343,9 +395,10 @@ function DropDown() {
 
                 // add items to catalog
                 json.forEach(function (item) {
-                    var htmlObj = item;
-                    $(_this.dropDownId + ' .mix-catalog-panel')
-                        .append(htmlObj);
+
+                    $(_this.dropDownId)
+                        .find('.mix-catalog-panel')
+                        .append(item);
                 });
             },
 
@@ -370,18 +423,37 @@ function DropDown() {
                 }, function () {
                     console.log('MIX', ts);
                 }, function (data) {
-                    $(_this.dropDownId + ' .account-user-name')
-                        .html(data.name);
-                    $(_this.dropDownId + ' .account-user-email')
+
+                    $(_this.dropDownId)
+                        .find('.account-user-name')
+                        .html(data.name)
+                        .end()
+                        .find('.account-user-email')
                         .html(data.email);
+
                 }, function (data) {
-                    $(_this.dropDownId + ' .account-user-name')
-                        .html('Unknown user name');
-                    $(_this.dropDownId + ' .account-user-email')
+
+                    $(_this.dropDownId)
+                        .find('.account-user-name')
+                        .html('Unknown user name')
+                        .end()
+                        .find('.account-user-email')
                         .html('Unknown user email');
+
                 });
             },
 
+            /**
+             *  Sets the api panel information
+             *
+             *  Examples:
+             *
+             *      var dropDown = new DropDown();
+             *      ...
+             *      dropDown.panel.set.api();
+             *
+             *  @method DropDown.panel.set.api
+             */
             api: function () {
                 _this.panel.load({
                     url: '/api/get/help/'
@@ -390,33 +462,50 @@ function DropDown() {
                         .html('');
                 }, function (data) {
                     data.forEach(function (item) {
-                        var opt, params, desc, url, pn, pd, po;
-                        pn = pd = po = params = desc = '';
+                        var params = '',
+                            paramOptions = '';
 
                         item.param.forEach(function (param) {
                             for (var key in param) {
-                                pn = key;
-                                pd = param[key].desc;
-                                po = '';
-                                po = param[key].opt.join(' | ');
+                                paramOptions = param[key].opt.join(' | ');
 
-                                item.url = item.url.replace(key, '<span class="api-url-param">' + key + '</span>');
+                                item.url = item.url.replace(key,
+                                    '<span class="api-url-param">' + key + '</span>');
 
-                                params += '<div class="api-row-tabbed"><span class="api-item-param">' +
-                                    pn + '</span><span class="api-item-param-description">' +
-                                    pd + '</span></div>';
-                                if (po) {
-                                    params += '<div class="api-row-options"><span class="api-item-param-options">' + po + '</span></div>';
+                                params = $('<div></div>')
+                                    .append($('<div></div>')
+                                        .addClass('api-row-tabbed')
+                                        .append($('<span></span>')
+                                            .addClass('api-item-param')
+                                            .html(key))
+                                        .append($('<span></span>')
+                                            .addClass('api-item-param-description')
+                                            .html(param[key].desc)));
+
+                                if (paramOptions) {
+                                    params = params.append($('<div></div>')
+                                        .addClass('api-row-options')
+                                        .append($('<span></span>')
+                                            .addClass('api-item-param-options')
+                                            .html(paramOptions)));
                                 }
                             }
                         });
 
-                        url = '<div class="api-row"><span class="api-item-url">' + item.url + '</span></div>';
-                        desc = '<div class="api-row-tabbed"><span class="api-item">' + item.desc + '</span></div>';
-                        html = '<div class="panel-entry row form-group col-md-12 col-sm-12 col-xs-12">' + url + params + desc + '</div>';
-
                         $('#api')
-                            .append(html);
+                            .append($('<div></div>')
+                                .addClass(['panel-entry', 'row', 'form-group', 'col-md-12', 'col-sm-12', 'col-xs-12'].join(' '))
+                                .append($('<div></div>')
+                                    .addClass('api-row')
+                                    .append($('<span></span>')
+                                        .addClass('api-item-url')
+                                        .html(item.url)))
+                                .append(params)
+                                .append($('<div></div>')
+                                    .addClass('api-row-tabbed')
+                                    .append($('<span></span>')
+                                        .addClass('api-item')
+                                        .html(item.desc))));
                     });
                 }, function () {
                     console.log('api-failed');
@@ -440,12 +529,15 @@ function DropDown() {
              */
             information: function (obj) {
                 console.log('dropdown.panel.set.information', obj);
-                $(_this.dropDownId + ' .information-panel .information-title')
-                    .html(obj.title);
-                $(_this.dropDownId + ' .information-panel .information-description')
+
+                $(_this.dropDownId)
+                    .find('.information-panel')
+                    .find('.information-title')
+                    .html(obj.title)
+                    .end()
+                    .find('.information-panel')
+                    .find('.information-description')
                     .html(obj.desc);
-                //$(_this.dropDownId + ' .information-actions-panel .information-actions')
-                //  .html(obj.actions);
             }
         },
 
@@ -478,8 +570,6 @@ function DropDown() {
              *  @param  {String}    toggleClass     The panel class to control
              */
             toggle: function (state, toggleClass) {
-                //console.log('  Toggling display of', toggleClass, 'to', state);
-
                 var showSpace = ['.information-panel'];
 
                 if (state) {
@@ -488,15 +578,17 @@ function DropDown() {
                         _this.panel.display.spaceHolder(className, toggleClass);
                     });
 
-                    $(_this.dropDownId + ' ' + toggleClass)
+                    $(_this.dropDownId)
+                        .find(toggleClass)
                         .addClass('display');
 
-                } else {
-
-                    $(_this.dropDownId + ' ' + toggleClass)
-                        .removeClass('hide-hold-space')
-                        .removeClass('display');
+                    return;
                 }
+
+                $(_this.dropDownId)
+                    .find(toggleClass)
+                    .removeClass('hide-hold-space')
+                    .removeClass('display');
             },
             /**
              *  Makes a panel take up space on first view.
@@ -506,22 +598,23 @@ function DropDown() {
              *  @param  {String}    toggleClass     The panel class to control
              */
             spaceHolder: function (className, toggleClass) {
-                //console.log('spaceholder');
 
                 if (toggleClass === className) {
-                    //console.log('class match');
 
-                    if (!($(_this.dropDownId + ' ' + toggleClass)
+                    if (!($(_this.dropDownId)
+                            .find(toggleClass)
                             .hasClass('display'))) {
 
-                        //console.log('being displayed');
-                        $(_this.dropDownId + ' ' + toggleClass)
+                        $(_this.dropDownId)
+                            .find(toggleClass)
                             .addClass('hide-hold-space');
 
-                    } else {
-                        $(_this.dropDownId + ' ' + toggleClass)
-                            .removeClass('hide-hold-space');
+                        return;
                     }
+
+                    $(_this.dropDownId)
+                        .find(toggleClass)
+                        .removeClass('hide-hold-space');
                 }
             },
             /**
@@ -628,14 +721,19 @@ function DropDown() {
              *  @param  {String}    toggleClass The class of the navbar element to modify
              */
             toggle: function (state, toggleclass) {
-                var selector = _this.navigationId + ' .container .navbar-right-links ' + toggleclass;
+
                 if (state) {
-                    $(selector)
+                    $(_this.navigationId)
+                        .find('.navbar-right-links')
+                        .find(toggleclass)
                         .addClass('display');
-                } else {
-                    $(selector)
-                        .removeClass('display');
+                    return;
                 }
+
+                $(_this.navigationId)
+                    .find('.navbar-right-links')
+                    .find(toggleclass)
+                    .removeClass('display');
             },
             /**
              *  Toggle the display of all navbar elements
@@ -697,7 +795,8 @@ function DropDown() {
             actions: ''
         });
 
-        $('.dropdown .holder')
+        $('.dropdown')
+            .find('.holder')
             .removeClass('sticky-wrapper');
     };
 
@@ -741,8 +840,6 @@ function DropDown() {
 
             this.panel.display.toggle(true, '.register-panel');
             this.panel.display.toggle(true, '.login-panel');
-
-            //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -752,8 +849,6 @@ function DropDown() {
             this.panel.display.all(false);
 
             this.panel.display.toggle(true, '.login-panel');
-
-            //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -780,7 +875,6 @@ function DropDown() {
 
             this.panel.display.toggle(true, '.account-panel');
             this.panel.display.toggle(true, '.mix-catalog-panel');
-            //this.panel.display.toggle(true, '.tutorial-panel');
 
             return;
 
@@ -789,7 +883,6 @@ function DropDown() {
 
             this.panel.display.all(false);
             this.panel.display.toggle(true, '.login-panel');
-            //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 
@@ -798,7 +891,6 @@ function DropDown() {
 
             this.panel.display.all(false);
             this.panel.display.toggle(true, '.register-panel');
-            //this.panel.display.toggle(true, '.tutorial-panel');
             this.panel.display.toggle(true, '.about-panel');
             return;
 

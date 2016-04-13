@@ -172,7 +172,7 @@ $(function () {
             step: 0.01,
             value: 0.70,
             orientation: 'vertical',
-            tooltip_position: 'left'
+            tooltip_position: 'hidden'
         });
 
     //  METER
