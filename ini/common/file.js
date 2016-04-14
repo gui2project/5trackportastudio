@@ -20,7 +20,7 @@ var files = {
         alias: 'memo',
         ext: 'pdf',
         mime: 'application/pdf',
-        sys: path.join(paths.documents, 'Memo-trackstudio-Anderson-Cabrall-Flores-Meza.pdf')
+        sys: path.join(paths.documents, 'memo','Memo-trackstudio-Anderson-Cabrall-Flores-Meza.pdf')
     }, {
         alias: 'readme',
         ext: 'md',
@@ -30,7 +30,7 @@ var files = {
         alias: 'proposal',
         ext: 'pdf',
         mime: 'application/pdf',
-        sys: path.join(paths.documents, 'Proposal-trackstudio-Anderson-Cabrall-Flores-Meza.pdf')
+        sys: path.join(paths.documents, 'proposal','Proposal-trackstudio-Anderson-Cabrall-Flores-Meza.pdf')
     }, {
         alias: 'fx-catalog',
         ext: 'json',
