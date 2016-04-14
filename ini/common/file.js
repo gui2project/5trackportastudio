@@ -41,7 +41,25 @@ var files = {
         alias: 'usability-report',
         ext: 'pdf',
         mime: 'application/pdf',
-        sys: path.join(paths.documents, 'usability', 'usability-report-2.pdf')
+        sys: path.join(paths.documents, 'usability', 'usability-report.pdf')
+    },
+    {
+        alias: 'usability-user-survey',
+        ext: 'pdf',
+        mime: 'application/pdf',
+        sys: path.join(paths.documents, 'usability', 'usability-user-survey.pdf')
+    },
+    {
+        alias: 'usability-user-demographic',
+        ext: 'pdf',
+        mime: 'application/pdf',
+        sys: path.join(paths.documents, 'usability', 'usability-user-demographic.pdf')
+    },
+    {
+        alias: 'usability-proctor-script',
+        ext: 'pdf',
+        mime: 'application/pdf',
+        sys: path.join(paths.documents, 'usability', 'usability-proctor-script.pdf')
     }],
     favicon: path.join(paths.images, 'favicon-black.ico')
 };
