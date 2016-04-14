@@ -141,12 +141,12 @@ function TrackTemplate() {
         this.pan.connect(audioContext.destination);
     };
 
-    this.playTrack = function () {
+    this.playTrack = function (where=0) {
         if (this.buffer !== null) {
             bufferSource = audioContext.createBufferSource(2, this.buffer, audioContext.sampleRate);
             bufferSource.buffer = this.buffer;
             bufferSource.connect(this.eqHigh);
-            bufferSource.start(0);
+            bufferSource.start(0,where);
 
             //Only user meter when playing because it's inefficent
             this.meter = createAudioMeter(audioContext);
