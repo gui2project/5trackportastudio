@@ -91,12 +91,15 @@ $(function () {
                     if (++count >= 3) {
                         var max = Math.max.apply(null, arr);
                         var values = [0, 0, 0, 0];
+                        var maxIndex;
 
                         //  check for maximum track
                         if (max !== 0) {
                             values = arr.map(function (dividend) {
                                 return (dividend / max) * 100;
                             });
+                            maxIndex = arr.indexOf(max);
+                            console.log(maxIndex);
                         }
 
                         //  update master track length
@@ -109,10 +112,18 @@ $(function () {
                             $('.graph-clock')
                                 .find('.graph-clock-wrapper:nth-child(' +
                                     parseInt(1 + i) + ')')
+                                .removeClass('longest')
                                 .find('.graph-clock-bar')
                                 .css({
                                     'width': values[i] + '%'
                                 });
+
+                            if (i === maxIndex) {
+                                $('.graph-clock')
+                                    .find('.graph-clock-wrapper:nth-child(' +
+                                        parseInt(1 + i) + ')')
+                                    .addClass('longest');
+                            }
                         }
                     }
                 });
@@ -366,6 +377,12 @@ $(function () {
                     .css('display', 'block')
                     .end();
 
+                $('.graph-clock')
+                    .find('.graph-clock-wrapper:nth-child(' +
+                        parseInt(1 + trackId) + ')')
+                    //.find('.graph-clock-track')
+                    .removeClass('recording');
+
                 recordToggle(trackNumber);
                 armTrackToggle(trackNumber);
 
@@ -399,6 +416,12 @@ $(function () {
 
                     sw.setTrack(trackId, trackTime);
                 }, 1);
+
+                $('.graph-clock')
+                    .find('.graph-clock-wrapper:nth-child(' +
+                        parseInt(1 + trackId) + ')')
+                    //.find('.graph-clock-track')
+                    .addClass('recording');
 
                 disableButton(['button.stop', 'button.play', 'button.forward', 'button.rewind', '.record button']);
 

@@ -1,22 +1,27 @@
 include ../../icon-header.jade
 
 mixin login-panel()
+    //  Login Panel
     .panel.login-panel.col-md-12.col-sm-12.col-xs-12
         form(id="login-form", action="", method="post", novalidate="novalidate")
             .row.title.col-md-12.col-sm-12.col-xs-12
                 +icon-header('sign-in', 'sign in form', true, false)
+            //  Login Form
             .row.form-group.content.col-md-12.col-sm-12.col-xs-12
+                //  Email
                 .row.form-group.col-md-12.col-sm-12.col-xs-12
                     label(for="login-email") email
                     span.icon-right.login-email
                         +icon-header('x', '', false, false)
                         +icon-header('check', '', false, false)
                     input.col-md-11.col-sm-11.col-xs.11.form-control(type="email", id="login-email", name="login-email")
+                //  Password
                 .row.form-group.col-md-12.col-sm-12.col-xs-12
                     label(for="login-password") password
                     span.icon-right.login-password
                         +icon-header('x', '', false, false)
                         +icon-header('check', '', false, false)
                     input.col-md-11.col-sm-11.col-xs.11.form-control(type="password", id="login-password", name="login-password")
+                //  Controls
                 .row.col-md-12.col-sm-12.col-xs-12
                     button.accept.col-md-12.col-sm-12.col-xs-12(id="dropdown-button-login") sign in

@@ -203,7 +203,9 @@ main > .container > .row-container .graph-clock .graph-clock-bar {
     background-image: url('/app/img/Fader.png');
 }
 
-.navbar-brand-label:hover {
+.navbar-brand-label:hover,
+.jade-error .link-tutorial:hover,
+.jade-error .icon-white:hover {
     background-image: url('/app/img/favicon-blue.png');
 }
 
@@ -244,4 +246,24 @@ main > .container > .row-container li.scale-zero {
 
 .glass:after {
     background-image: linear-gradient(#149bdf,rgba(28, 144, 202, 0.87));
+}
+
+.jade-error .link-tutorial:hover,
+.jade-error .icon-white:hover {
+    color: #149bdf !important;
+    border-bottom: 1px solid #149bdf;
+}
+
+.jade-error pre {
+    border-color: #FF007D;
+    background-color: #212121;
+    color: #fafafa;
+}
+
+.longest {
+    background-color: #1275A7;
+}
+
+.recording {
+    background-color: #FF007D;
 }

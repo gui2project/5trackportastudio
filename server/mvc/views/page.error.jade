@@ -1,0 +1,14 @@
+extends ./template/index-error.jade
+
+block content
+    //  Server Error
+    main
+        div.jade-error
+           .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                div.col-md-12.col-sm-12.col-xs-12
+                    span.icon-white.link-tutorial.pointer(onclick='window.location ="/"') trackstudio
+            div.left
+                h1= title
+                p= message
+                h2= error.status
+                pre= error.stack
