@@ -36,6 +36,12 @@ var files = {
         ext: 'json',
         mime: 'application/json',
         sys: path.join(paths.models, 'effects.json')
+    },
+    {
+        alias: 'usability-report',
+        ext: 'pdf',
+        mime: 'application/pdf',
+        sys: path.join(paths.models, 'usability', 'Usability-report.pdf')
     }],
     favicon: path.join(paths.images, 'favicon-black.ico')
 };
