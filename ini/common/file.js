@@ -41,7 +41,7 @@ var files = {
         alias: 'usability-report',
         ext: 'pdf',
         mime: 'application/pdf',
-        sys: path.join(paths.models, 'usability', 'Usability-report.pdf')
+        sys: path.join(paths.documents, 'usability', 'usability-report-2.pdf')
     }],
     favicon: path.join(paths.images, 'favicon-black.ico')
 };
