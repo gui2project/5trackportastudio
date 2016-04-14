@@ -176,6 +176,9 @@ var StopWatch = function () {
 
         positionNeedle(time);
 
+        $('#runTime')
+            .html(_this.formatTime(time));
+
         //  Terminate at max time
         if (_this.maxRunTime !== -1 &&
             time >= _this.maxRunTime &&

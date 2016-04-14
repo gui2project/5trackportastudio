@@ -18,7 +18,7 @@ var ini = require(global.app.ini());
  *  @param  {Object}    res     The response passed by the application
  */
 var index = function (req, res) {
-    res.render(path.join(ini.path.views, 'content', 'page.mixer.jade'), {
+    res.render(path.join(ini.path.views, 'page.mixer.jade'), {
         title: 'trackstudio'
     });
 };

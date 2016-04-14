@@ -28,11 +28,15 @@ var ErrorHandler = function () {
      *  @param  {Object}    res     The response passed by the application
      *  @param  {Function}  next    The function to the next express item
      */
-    this.notFound = function (req, res, next) {
-        var err = new Error('Not Found');
-        err.status = 404;
-        next(err);
+    this.notFound = function (req, res) {
+        res.status(400);
+        res.render(path.join(ini.path.views, 'page.error.jade'), {
+            title: '404: File Not Found',
+            message: '',
+            error: {}
+        });
     };
+
     /**
      *  Processes a 500 server error
      *
@@ -48,17 +52,12 @@ var ErrorHandler = function () {
      */
     this.server = function (err, req, res, next) {
         res.status(err.status || 500);
-        if (ini.mode === 'dev') {
-            res.render(path.join(ini.path.mixin, 'error'), {
-                message: err.message,
-                error: err
-            });
-        } else {
-            res.render(path.join(ini.path.mixin, 'error'), {
-                message: err.message,
-                error: {}
-            });
-        }
+
+        res.render(path.join(ini.path.views, 'page.error.jade'), {
+            title: '500: Internal Server Error',
+            message: 'There was an error in our system, sorry for the inconvenience.',
+            error: (ini.mode === 'dev' ? error : {})
+        });
     };
 
 };

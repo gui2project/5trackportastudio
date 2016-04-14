@@ -3,7 +3,6 @@ include ../../icon-header.jade
 include ../components/trackname.jade
 include ../components/timeDisplay.jade
 include ../components/playback.jade
-include ../components/statistics.jade
 
 mixin master(masterNum)
     // Master Track
@@ -11,7 +10,6 @@ mixin master(masterNum)
         +trackname(-1, 'Master')
         +playback()
         +timeDisplay()
-        //-+statistics()
         // Brand Label
         .row.bottom
             .col-xs-0.col-sm-12.col-md-12.col-lg-12

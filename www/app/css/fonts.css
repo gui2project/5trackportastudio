@@ -25,7 +25,8 @@ body {
 
 main > .container > .row-container .statistics td:last-child,
 div.stopWatch > div.timedisplay,
-.graph-clock-length-label {
+.graph-clock-length-label,
+.sys-font {
     font-family: 'Segment7Standard';
 }
 
@@ -76,6 +77,7 @@ main > .container > .row-container .track .track-label span.edit-icon .fa,
 main > .container > .row-container .section-label > .title > span,
 main .eq label,
 main .pan label,
+.sys-font,
 main > .container > .row-container .graph-clock .graph-clock-track {
     font-size: 12px;
 }

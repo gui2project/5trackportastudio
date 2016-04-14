@@ -5,6 +5,7 @@ include ./scale.jade
 mixin fader-slider(trknum, top)
     // Fader Slider
     if (top == true)
+        // To Display Slider on top during xs views
         .row.top-sm-view
             .col-xs-1.col-sm-1.col-md-1.col-lg-1
                 +section-label('Volume')
@@ -15,6 +16,7 @@ mixin fader-slider(trknum, top)
                     +scale()
                 .col-xs-4.col-sm-4.col-md-4.col-lg-4.meter(data-vol=0)
     else if (top == false)
+        // To Display Slider on bottom during > sm views
         .row.top-bg-view
             .col-xs-1.col-sm-1.col-md-1.col-lg-1
                 +section-label('Volume')

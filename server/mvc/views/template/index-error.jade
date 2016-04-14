@@ -1,0 +1,20 @@
+//- @file   index.jade
+//- This file is the master error page template for the application
+
+//- Include components
+include ../mixin/head/stylesheets.jade
+
+doctype html
+html(lang="en")
+    head
+        // Meta Information
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible'   content='IE=edge')
+        meta(name='viewport'                content='width=device-width, initial-scale=1')
+        meta(name='description',            content='trackstudio')
+        meta(name='keywords',               content='4,track,studio,recording,trackstudio')
+        //  Page Title
+        title=title
+        +stylesheet()
+    body
+        block content

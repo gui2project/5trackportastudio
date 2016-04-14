@@ -860,3 +860,33 @@ form .error {
 canvas:hover {
     cursor: pointer;
 }
+
+.jade-error {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #212121;
+    color: #fafafa;
+}
+
+.jade-error .link-tutorial {
+    font-size: 20px;
+    line-height: 50px;
+    height: 40px;
+    background-size: 24px 24px;
+    background-position: 0;
+    /* width: 100px; */
+    padding-left: 30px;
+}
+
+.jade-error .left {
+    padding: 0 30px;
+    width: 100%;
+}
+
+.text-center.sys-font {
+    top: 2px;
+    font-size: 12px;
+}
