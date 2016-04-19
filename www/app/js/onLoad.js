@@ -542,7 +542,8 @@ $(document)
         Tipped.create('.mute', 'Mute button', { position: 'left' });
         Tipped.create('.record', 'Record button', { position: 'right' });
         Tipped.create('.fx-box', 'FX box', { position: 'right' });
-        Tipped.create('.eq', 'EQ knob', { position: 'right' });
+        Tipped.create('.eq[type=HIGH]', 'Treble EQ knob', { position: 'right' });
+        Tipped.create('.eq[type=LOW]', 'Bass EQ knob', { position: 'right' });
         Tipped.create('.pan', 'Pan knob', { position: 'right' });
         Tipped.create('.fader', 'Volume slider', { position: 'left' });
         Tipped.create('.stop', 'Stop', { position: 'bottom' });
