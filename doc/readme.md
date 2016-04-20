@@ -137,27 +137,6 @@ The configuration file to use during production.
 
 
 
-<!-- Start server\mvc\controllers\main.js -->
-## File: server\mvc\controllers\main.js
-
-This file holds the GET controller for the main page.
-
----
-
-### Function: index(req, res)
-
-The default page for the application
-
-#### Params:
-
-* **Object** *req* The request passed by the application
-* **Object** *res* The response passed by the application
-
-<!-- End server\mvc\controllers\main.js -->
-
-
-
-
 <!-- Start server\lib\Api.js -->
 ## File: server\lib\Api.js
 
@@ -759,6 +738,27 @@ Sets up static and dynamic routing from the configuration file.
 
 
 
+<!-- Start server\mvc\controllers\main.js -->
+## File: server\mvc\controllers\main.js
+
+This file holds the GET controller for the main page.
+
+---
+
+### Function: index(req, res)
+
+The default page for the application
+
+#### Params:
+
+* **Object** *req* The request passed by the application
+* **Object** *res* The response passed by the application
+
+<!-- End server\mvc\controllers\main.js -->
+
+
+
+
 <!-- Start www\app\js\audio.js -->
 ## File: www\app\js\audio.js
 
@@ -1296,12 +1296,6 @@ Set up volume sliders
 #### Method: $()
 
 Knob function
-
----
-
-#### Method: $()
-
-Slider function
 
 ---
 

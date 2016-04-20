@@ -19,14 +19,14 @@
 }
 
 /*Font stylings*/
-body {
+body,
+.sys-font {
     font-family: 'Open Sans', sans-serif;
 }
 
 main > .container > .row-container .statistics td:last-child,
 div.stopWatch > div.timedisplay,
-.graph-clock-length-label,
-.sys-font {
+.graph-clock-length-label {
     font-family: 'Segment7Standard';
 }
 

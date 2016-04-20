@@ -99,7 +99,7 @@ $(function () {
                                 return (dividend / max) * 100;
                             });
                             maxIndex = arr.indexOf(max);
-                            console.log(maxIndex);
+
                         }
 
                         //  update master track length
@@ -183,6 +183,22 @@ $(function () {
             value: 0.70,
             orientation: 'vertical',
             tooltip_position: 'hidden'
+        })
+        .on('change', function () {
+            var trackNumber,
+                sliderVal;
+
+            // Get track number and value of the slider
+            trackNumber = parseInt($(this)
+                .parent()
+                .attr('value'));
+
+            sliderVal = parseFloat($(this)
+                .val());
+
+            if (!isNaN(sliderVal)) {
+                gain(trackNumber, sliderVal);
+            }
         });
 
     //  METER
@@ -243,25 +259,6 @@ $(function () {
                 .removeClass('changing');
         });
 
-    /* Slider function */
-    $('.slider')
-        .on('change', function () {
-            var trackNumber,
-                sliderVal;
-
-            // Get track number and value of the slider
-            trackNumber = parseInt($(this)
-                .parent()
-                .attr('value'));
-
-            sliderVal = parseFloat($(this)
-                .val());
-
-            if (!isNaN(sliderVal)) {
-                gain(trackNumber, sliderVal);
-            }
-        });
-
     /* Mute buttons */
     $('.mute button')
         .attr('data-muted', 0)
@@ -316,22 +313,17 @@ $(function () {
             enableButton(['button.play', 'button.rewind', 'button.forward', '.record button']);
             disableButton(['button.stop']);
             stop();
-
         });
     $('button.play')
         .disableButton()
         .on('click', function () {
             enableButton(['button.stop']);
             disableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
-
             play();
         });
     $('button.forward')
         .disableButton()
-        .on('click', function () {
-            enableButton(['button.stop']);
-            disableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
-        });
+        .on('click', function () {});
     $('button.rewind')
         .disableButton()
         .on('click', function () {

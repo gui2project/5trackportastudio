@@ -3,13 +3,14 @@ include ./dropdown.jade
 mixin header()
     // Navigation bar
     header
-        nav.navbar.navbar-default.navbar-static-top(id="navigation")
-            div.container.col-md-12.col-sm-12.col-xs-12
-                div.navbar-header.col-md-3.col-sm-3.col-xs-4
+        nav.cleared.navbar.navbar-default.navbar-static-top(id="navigation")
+            div.cleared.container.col-md-12.col-sm-12.col-xs-12
+                div.navbar-header.cleared.col-md-3.col-sm-3.col-xs-6
                      span.navbar-brand.col-md-12.col-sm-12.col-xs-12
                         span.pointer.navbar-brand-label trackstudio
+                            span.drop-arrow.down
                 //  Navbar Controls
-                div.navbar-right-links.col-md-3.col-sm-5.col-xs-8
+                div.cleared.navbar-right-links.col-md-3.col-sm-5.col-xs-6
                      a.pointer.link-sign-in.col-xs-4.col-sm-4.col-md-4.col-lg-4
                         span.col-xs-12.col-sm-12.col-md-12.col-lg-12 sign in
                      a.pointer.link-register.col-xs-4.col-sm-4.col-md-4.col-lg-4

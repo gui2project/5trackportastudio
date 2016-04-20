@@ -50,12 +50,22 @@ function DropDown() {
 
                 if ($(e.target)
                     .is(['.trip-content',
+                        '.trip-content p',
                         '.trip-block',
                         '.trip-next',
                         '.trip-prev',
-                        '.trip-close'
+                        '.trip-close',
+                        '.trip-next a',
+                        '.trip-prev a',
+                        '.trip-close a',
+                        '.trip-next span',
+                        '.trip-prev span',
+                        '.trip-close span',
+                        'trip-header',
+                        'trip-progress-wrapper',
+                        'trip-overlay'
                     ].join(', '))) {
-                    console.log(e.target);
+                    //console.log(e.target);
                     return;
                 }
 
@@ -155,6 +165,11 @@ function DropDown() {
 
             console.log('  Opening "dropdown"');
 
+            $(_this.navigationId)
+                .find('.drop-arrow')
+                .removeClass('down')
+                .addClass('up');
+
             $(_this.dropDownId)
                 .find('.holder')
                 .css(cssScroll.hidden)
@@ -203,6 +218,11 @@ function DropDown() {
             speed = dVar(speed, _this.speed);
 
             console.log('  Closing "dropdown"');
+
+            $(_this.navigationId)
+                .find('.drop-arrow')
+                .removeClass('up')
+                .addClass('down');
 
             $(_this.dropDownId)
                 .find('.holder')
@@ -268,7 +288,7 @@ function DropDown() {
                 var container = _this.dropDownId + ' .fx-catalog-panel .content';
 
                 _this.panel.load({
-                        url: '/api/get/doc/fx-catalog'
+                        url: '/api/get/doc/json-effects'
                     }, function () {
                         //  Clear catalog
                         $(container)
@@ -304,7 +324,7 @@ function DropDown() {
                                 .toLowerCase()
                                 .replace(/\s/g, '');
 
-                            item.src = item.image ? item.image : '/app/img/favicon-black.png';
+                            item.src = item.image ? item.image : '/app/img/favicon/favicon-black.png';
 
                             //  Add effect button
                             $(container)
@@ -324,6 +344,7 @@ function DropDown() {
                             //  Add Handler
                             $('#' + item.id)
                                 .on('click', function () {
+                                    _this.panel.display.toggle(false, '.information-panel');
 
                                     trackNumber = parseInt($('main')
                                         .attr('data-effect-switch'));
@@ -338,7 +359,15 @@ function DropDown() {
                                     //  Update effect image on track
                                     $('#track-' + (1 + trackNumber))
                                         .find('.fx-box img')
-                                        .attr('src', item.src);
+                                        .attr('src', item.src)
+                                        .parent()
+                                        .pulse({
+                                            'background-color': '#149BDF',
+                                            'color': '#FAFAFA'
+                                        }, {
+                                            pulses: 1,
+                                            duration: 1300
+                                        });
 
                                     _this.show('BACK');
 
@@ -523,7 +552,7 @@ function DropDown() {
              *  @param  {Object}    obj     The selected item information object
              */
             information: function (obj) {
-                console.log('dropdown.panel.set.information', obj);
+                //console.log('dropdown.panel.set.information', obj);
 
                 $(_this.dropDownId)
                     .find('.information-panel')

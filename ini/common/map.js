@@ -12,29 +12,32 @@ var paths = require('./paths.js');
 //  URL to File path mappings
 var map = {
     static: [{
-        web: '/',
-        sys: paths.public
-    }, {
-        web: '/dep/angular',
+        web: '/dep/lib/angular',
         sys: paths.angular
     }, {
-        web: '/dep/trip-js',
+        web: '/dep/lib/trip-js',
         sys: paths.tripjs
     }, {
-        web: '/dep/bootstrap',
+        web: '/dep/lib/bootstrap',
         sys: paths.bootstrap
     }, {
-        web: '/dep/jquery',
-        sys: paths.jquery
+        web: '/dep/lib/js-cookie',
+        sys: paths.jscookie
     }, {
-        web: '/dep/jquery-ui',
+        web: '/dep/lib/jquery/jquery-ui',
         sys: paths.jqueryui
     }, {
-        web: '/dep/jquery-validation',
+        web: '/dep/lib/jquery/jquery-color',
+        sys: paths.jquerycolor
+    }, {
+        web: '/dep/lib/jquery/jquery-validation',
         sys: paths.jqueryvalidation
     }, {
-        web: '/dep/js-cookie',
-        sys: paths.jscookie
+        web: '/dep/lib/jquery',
+        sys: paths.jquery
+    }, {
+        web: '/',
+        sys: paths.public
     }],
     dynamic: [{
         web: '/',

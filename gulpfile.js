@@ -274,11 +274,12 @@ gulp.task('service.mongodb.create.dirs', false, [],
     function (cb) {
         var mpath = cfgMongoDB.systemLog.path.split('\\');
         mpath.pop();
-        mkdirp(cfgMongoDB.storage.dbPath);
-        mkdirp(mpath.join('\\'));
+        return gulp.src('./app.js')
+            .pipe(mkdirp(cfgMongoDB.storage.dbPath))
+            .pipe(mkdirp(mpath.join('\\')));
     });
 //  Create MongoDB service
-gulp.task('service.mongodb.create', false, ['service.mongodb.create.dirs'],
+gulp.task('service.mongodb.create', false, [],
     function (cb) {
         var cmdStr = 'mongod.exe --config ' + ini.path.projectFiles.mongodb.cfg + ' --install';
         return combiner.obj([

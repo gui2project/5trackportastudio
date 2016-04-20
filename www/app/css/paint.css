@@ -125,6 +125,7 @@ main > .container > .row-container .graph-clock .graph-clock-bar-label div {
 .icon-right.pass .fa-check,
 .icon-right.pass .fa-lock,
 .navbar-brand-label:hover,
+.navbar-brand:hover .navbar-brand-label,
 .navbar-right-links > a > span:hover,
 .panel .title .fa,
 .splash-label,
@@ -177,11 +178,6 @@ main > .container > .row-container .statistics {
     border-color: #181818;
 }
 
-.navbar-brand-label:hover,
-.navbar-right-links a span:hover {
-    border-color: #149BDF;
-}
-
 main > .container > .row-container .graph-clock .graph-clock-bar-wrapper {
     border-color: #1275A7;
 }
@@ -192,7 +188,7 @@ main > .container > .row-container .graph-clock .graph-clock-bar-wrapper {
 
 /*IMAGES*/
 main > .container > .row-container .graph-clock .graph-clock-needle {
-    background: url('/app/img/marker.png');
+    background-image: url('/app/img/marker.png');
 }
 
 main > .container > .row-container .graph-clock .graph-clock-bar {
@@ -203,16 +199,16 @@ main > .container > .row-container .graph-clock .graph-clock-bar {
     background-image: url('/app/img/Fader.png');
 }
 
-.navbar-brand-label:hover,
+.navbar-brand:hover .navbar-brand-label,
 .jade-error .link-tutorial:hover,
 .jade-error .icon-white:hover {
-    background-image: url('/app/img/favicon-blue.png');
+    background-image: url('/app/img/favicon/favicon-blue.png');
 }
 
 .icon-white,
 .navbar-brand-label,
 .splash-brand-label {
-    background-image: url('/app/img/favicon-white.png');
+    background-image: url('/app/img/favicon/favicon-white.png');
 }
 
 main > .container > .row-container ul.scale li {
@@ -229,15 +225,17 @@ main > .container > .row-container li.scale-zero {
     background-image: none !important;
 }
 
-.pointer.link-tutorial.display {
+a.link-tutorial {
     background-color: #FF007D !important;
     color: #FAFAFA !important;
 }
 
-.pointer.link-tutorial.display:hover,
-.pointer.link-tutorial.display span:hover {
+a.link-tutorial:hover,
+a.link-tutorial:hover span,
+a.link-tutorial span:hover {
     color: #FAFAFA !important;
     border-color: #fafafa !important;
+    background-color: #149bdf !important;
 }
 
 .glass {
@@ -267,3 +265,31 @@ main > .container > .row-container li.scale-zero {
 .recording {
     background-color: #FF007D;
 }
+
+.drop-arrow {
+    background-image: url('/app/img/drop-arrow.png');
+    width: 32px;
+    height: 8px;
+    background-size: 64px 32px;
+    float: left;
+    position: relative;
+    background-repeat: no-repeat;
+    left: 155px;
+    bottom: -7px;
+}
+
+.navbar-brand:hover .drop-arrow {
+    background-position-x: -32px;
+    bottom: -7px;
+}
+
+.drop-arrow.down {
+    background-position-y: -24px;
+    bottom: -7px;
+}
+
+.drop-arrow.up {
+    background-position-y: 0;
+    bottom: -7px;
+}
+

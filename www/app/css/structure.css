@@ -51,13 +51,12 @@ header .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-lab
 
 header .navbar > .container > .navbar-header > .navbar-brand > .navbar-brand-label:hover {
     border-style: solid;
-    border-width: 0 0 1px 0;
+    border-width: 0;
     text-decoration: none;
 }
 
 header .navbar > .container > .navbar-right-links {
     float: right;
-    text-align: right;
 }
 
 header .navbar > .container > .navbar-right-links > a {
@@ -74,20 +73,15 @@ header .navbar > .container > .navbar-right-links > a > span {
     line-height: 53px;
     margin: auto;
     padding: 0;
-    text-align: left;
+    text-align: center;
 }
 
-header .navbar > .container > .navbar-right-links > a.link-register > span,
-header .navbar > .container > .navbar-right-links > a.link-sign-out > span {
+header .navbar > .container > .navbar-right-links > a.link-register > span {
     text-align: right;
 }
 
 header .navbar > .container > .navbar-right-links > a.link-sign-in > span {
     text-align: left;
-}
-
-header .navbar > .container > .navbar-right-links > a.link-tutorial > span {
-    text-align: center;
 }
 
 header .navbar > .container > .navbar-right-links > a > span:hover {
@@ -889,4 +883,91 @@ canvas:hover {
 .text-center.sys-font {
     top: 2px;
     font-size: 12px;
+}
+
+/**/
+
+/*TRIP JS*/
+a.trip-next,
+.action-label {
+    font-weight: normal;
+    color: #212121;
+}
+
+.trip-next span,
+.trip-close span {
+    color: #fafafa !important;
+}
+
+.trip-next {
+    background-color: #149bdf;
+    border-bottom-right-radius: 3px !important;
+}
+
+.trip-close {
+    background-color: #FF007D;
+    border-bottom-left-radius: 3px !important;
+    padding: 5px 10px !important;
+    margin: 0 8px 0 0 !important;
+    float: left;
+    font-size: 12px !important;
+}
+
+.trip-next:hover,
+.trip-next:hover span {
+    color: #149bdf !important;
+    background-color: #fafafa !important;
+    text-decoration: underline;
+}
+
+.trip-close:hover,
+.trip-close:hover span {
+    color: #FF007D !important;
+    background-color: #fafafa !important;
+    text-decoration: underline;
+}
+
+.trip-block.yeti {
+    background-color: #fafafa;
+    color: #212121;
+}
+
+.trip-block.yeti.e:before {
+    border-right-color: #fafafa;
+    border-right-width: 20px;
+}
+
+.trip-block.yeti.e {
+    margin-left: 10px;
+}
+
+.trip-block.yeti.n:before {
+    border-top-color: #fafafa;
+    border-top-width: 20px;
+}
+
+.trip-block.yeti.n {
+    margin-bottom: 10px;
+}
+
+.trip-block.yeti.s:before {
+    border-bottom-color: #fafafa;
+    border-bottom-width: 20px;
+}
+
+.trip-block.yeti.s {
+    margin-top: 10px;
+}
+
+.trip-block.yeti.w:before {
+    border-left-color: #fafafa;
+    border-left-width: 20px;
+}
+
+.trip-block.yeti.w {
+    margin-right: 10px;
+}
+
+.max-width-100 {
+    max-width: 100em;
 }

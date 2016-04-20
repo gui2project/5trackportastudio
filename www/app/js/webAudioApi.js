@@ -36,9 +36,11 @@ function isGetUserMediaSupported() {
 
 //Grabs mic feed (called from capture audio)
 function initializeAudio() {
-    navigator.getUserMedia(opts, gotStream, function (e) {
-        console.log(e);
-    });
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia(opts, gotStream, function (e) {
+            console.log(e);
+        });
+    }
 }
 
 //assigns audioInput and recorder
@@ -141,12 +143,14 @@ function TrackTemplate() {
         this.pan.connect(audioContext.destination);
     };
 
-    this.playTrack = function (where=0) {
+    this.playTrack = function (where) {
+        where = dVar(where, 0);
+
         if (this.buffer !== null) {
             bufferSource = audioContext.createBufferSource(2, this.buffer, audioContext.sampleRate);
             bufferSource.buffer = this.buffer;
             bufferSource.connect(this.eqHigh);
-            bufferSource.start(0,where);
+            bufferSource.start(0, where);
 
             //Only user meter when playing because it's inefficent
             this.meter = createAudioMeter(audioContext);

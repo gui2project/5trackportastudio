@@ -4,50 +4,6 @@
  *  This file runs before any other scripts to initialize the system
  */
 
-//  CONTEXT DETERMINATIONS
-
-// Redirect user to https except when coming from a developement machine
-if (window.location.protocol === 'http:' &&
-    !window.location.host.toLowerCase()
-    .startsWith('localhost', 0) &&
-    !window.location.host.toLowerCase()
-    .startsWith('127.0.0.1', 0)) {
-    window.location.href = 'https:' +
-        window.location.href.substring(window.location.protocol.length);
-}
-
-//  Determine audio context
-window.AudioContext = window.AudioContext ||
-    window.webkitAudioContext;
-
-//  Determine navigator for microphone detection
-navigator.getUserMedia = (navigator.getUserMedia ||
-    navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia ||
-    navigator.msGetUserMedia);
-
-//  VARIABLE DECLARATIONS
-var trip = {
-    journey: [],
-    options: {
-        tripTheme: 'yeti',
-        finishLabel: 'Finish tutorial',
-        showCloseBox: true,
-        animation: 'none'
-    }
-};
-
-var ac = null; //  Audio Context
-var sw = null; //  Stop watch
-var dd = null; //  Drop Down
-var ts = { //  trackstudio cookies
-    user_id: null, //  user hash
-    user_session: null, //  session hash
-    session: false //  session state
-};
-
-var trackClear = [0, 0, 0, 0]; // Holds Clear interval functions for each track
-
 //  APPLICATION FUNCTIONS
 
 /**
@@ -215,7 +171,8 @@ var getMicrophone = function (micSuccess, micFailure, browserFailure) {
 };
 
 /**
- *  Determines which browser and version are being used, this was modified from the link.
+ *  Determines which browser and version are being used, this was modified from
+ *  the link.
  *
  *  Example
  *      userAgent = getBrowser();
@@ -303,7 +260,21 @@ var positionNeedle = function (time) {
 };
 
 /**
- *  Function to be used to extend jQuery to allow for grand parent searching by integer.
+ *  Resets mixer elements for the tutorial
+ *
+ *  @function resetMixer
+ */
+var resetMixer = function () {
+    $('.record button[data-armed="1"]')
+        .trigger('click');
+
+    $('.mute button[data-muted="1"]')
+        .trigger('click');
+};
+
+/**
+ *  Function to be used to extend jQuery to allow for grand parent searching by
+ *  integer.
  *
  *  Example:
  *      $.fn.genParent = genParent;
@@ -313,7 +284,7 @@ var positionNeedle = function (time) {
  *  @param  {Integer} genBack   How many parents to go back
  *  @return {Object.jQuery}     The selector
  */
-genParent = function (genBack) {
+var genParent = function (genBack) {
     var ret;
 
     if (genBack === 0) {
@@ -326,3 +297,125 @@ genParent = function (genBack) {
 
     return ret;
 };
+
+//  CONTEXT DETERMINATIONS
+
+// Redirect user to https except when coming from a developement machine
+if (window.location.protocol === 'http:' &&
+    !window.location.host.toLowerCase()
+    .startsWith('localhost', 0) &&
+    !window.location.host.toLowerCase()
+    .startsWith('127.0.0.1', 0)) {
+    window.location.href = 'https:' +
+        window.location.href.substring(window.location.protocol.length);
+}
+
+//  Determine audio context
+window.AudioContext = window.AudioContext ||
+    window.webkitAudioContext;
+
+//  Determine navigator for microphone detection
+navigator.getUserMedia = (navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia ||
+    navigator.msGetUserMedia);
+
+//  VARIABLE DECLARATIONS
+var trip = {
+
+    inTripSpeed: 0,
+    journey: [],
+    options: {
+        backToTopWhenEnded: true,
+        overlayHolder: 'body main .splashes',
+        overlayZindex: 99999,
+        enableKeyBinding: true,
+        enableAnimation: true,
+        skipUndefinedTrip: false,
+        delay: -1,
+        tripTheme: 'yeti', // this has been customized with css
+        animation: 'none',
+
+        // navigation
+        canGoNext: true,
+        canGoPrev: false,
+        showNavigation: true,
+
+        // labels
+        nextLabel: '<span class="action-label positive">Next</span>',
+        prevLabel: ' ',
+        closeBoxLabel: '<span class="action-label negative">Quit</span>',
+        finishLabel: '<span class="action-label positive">Finish</span>',
+        header: 'Step {{tripIndex}}',
+        showHeader: false,
+        showCloseBox: true,
+        // customizable HTML
+        tripBlockHTML: [
+            '<div class="trip-block">',
+            '<a href="#" class="trip-prev"></a>',
+            '<div class="trip-header"></div>',
+            '<div class="trip-content"></div>',
+            '<div class="trip-progress-wrapper">',
+            '<div class="trip-progress-bar"></div>',
+            '<a href="#" class="trip-close"></a>',
+            '<a href="#" class="trip-next"></a>',
+            '</div>',
+            '</div>'
+        ],
+
+        //  Callbacks
+        onTripStart: function () {
+            console.log('onTripStart');
+            //  Change jQuery speed to prevent overlay fadein
+            $.fx.speeds._default = trip.inTripSpeed;
+
+            //  Reset mixer
+            resetMixer();
+        },
+        onTripEnd: function () {
+            console.log('onTripEnd');
+        },
+        onTripStop: function () {
+            console.log('onTripStop');
+        },
+        onTripPause: function () {
+            console.log('onTripPause');
+        },
+        onTripResume: function () {
+            console.log('onTripResume');
+        },
+        onTripChange: function () {
+            console.log('onTripChange');
+        },
+        onTripClose: function () {
+            console.log('onTripClose');
+        },
+        onStart: function () {
+            console.log('onStart');
+        },
+        onEnd: function () {
+            //  Destroy bound click events so that the user can continue using
+            //  without finishing tutorial
+            trip.selector.forEach(function (element, index, array) {
+                console.log(trip.selector[index]);
+                $(trip.selector[index])
+                    .off('click.Trip');
+            });
+            //  Restore Jquery speed
+            jQuery.fx.speeds._default = trip.currentSpeed;
+            console.log('onEnd');
+        }
+    },
+    selector: []
+};
+
+var ac = null; //  Audio Context
+var sw = null; //  Stop watch
+var dd = null; //  Drop Down
+var ts = { //  trackstudio cookies
+    user_id: null, //  user hash
+    user_session: null, //  session hash
+    session: false //  session state
+};
+
+var trackClear = [0, 0, 0, 0]; // Holds Clear interval functions for each track

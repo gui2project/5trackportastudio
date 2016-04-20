@@ -24,6 +24,7 @@ var paths = {
     error: path.join(root, 'server', 'lib', 'ErrorHandler'),
     images: path.join(root, 'www', 'app', 'img'),
     jquery: path.join(root, 'node_modules', 'jquery', 'dist'),
+    jquerycolor: path.join(root, 'node_modules', 'jquery-color-animation'),
     jqueryui: path.join(root, 'node_modules', 'jquery-ui'),
     jqueryvalidation: path.join(root, 'node_modules', 'jquery-validation', 'dist'),
     jscookie: path.join(root, 'node_modules', 'js-cookie', 'src'),
