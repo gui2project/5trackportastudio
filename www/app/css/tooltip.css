@@ -1,0 +1,24 @@
+/* Skins */
+/* default (dark) */
+.tpd-skin-dark .tpd-content,
+.tpd-skin-dark .tpd-title,
+.tpd-skin-dark .tpd-close { color: #212121; }
+.tpd-skin-dark .tpd-background-content,
+.tpd-skin-dark .tpd-background-title {
+  background-color: #fafafa;
+}
+.tpd-skin-dark .tpd-background {
+  border-width: 2px;
+  border-color: #149BDF;
+  border-color: rgba(20,155,223,.1);
+}
+/* line below the title */
+.tpd-skin-dark .tpd-title-wrapper { border-bottom: 1px solid #404040; }
+/* spinner */
+.tpd-skin-dark .tpd-spinner-spin {
+  border-color: rgba(255,255,255,.2);
+  border-left-color: #fff;
+}
+/* links */
+.tpd-skin-dark a { color: #404040; }
+.tpd-skin-dark a:hover { color: #149BDF; }

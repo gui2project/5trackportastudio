@@ -659,5 +659,18 @@ $(document)
                 console.log('start trip run');
                 trip.journey.tutorial.start();
             });
-
+            
+        // Create tooltips
+        Tipped.create('.track-label', 'Track label', { position: 'top' });
+        Tipped.create('.mute', 'Mute button', { position: 'left' });
+        Tipped.create('.record', 'Record button', { position: 'right' });
+        Tipped.create('.fx-box', 'FX box', { position: 'right' });
+        Tipped.create('.eq[type=HIGH]', 'Treble EQ knob', { position: 'right' });
+        Tipped.create('.eq[type=LOW]', 'Bass EQ knob', { position: 'right' });
+        Tipped.create('.pan', 'Pan knob', { position: 'right' });
+        Tipped.create('.fader', 'Volume slider', { position: 'left' });
+        Tipped.create('.stop', 'Stop', { position: 'bottom' });
+        Tipped.create('.play', 'Play', { position: 'bottom' });
+        Tipped.create('.rewind', 'Rewind', { position: 'bottom' });
+        Tipped.create('.forward', 'Fast forward', { position: 'bottom' });
     });
