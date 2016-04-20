@@ -9,26 +9,19 @@
 $(document)
     .ready(function () {
 
-        //  INIT COMPONENTS
+        //  ENVIRONMENT
 
-        console.log('Init: DropDown');
-        dd = new DropDown();
-        dd.init({
-            dropDownId: '#partial',
-            navigationId: '#navigation',
-            speed: 800
-        });
+        var userAgent = getBrowser();
+        console.log('--- User Agent', userAgent);
 
-        console.log('Init: StopWatch');
-        sw = new StopWatch();
-        sw.run('INIT', '#stopWatch-1 div.timedisplay');
+        //  HARDWARE SUPPORT
 
-        console.log('Init: AudioContext');
-        ac = new AudioContext();
+        //  TUTORIAL - trip.js
 
         console.log('Init: TripJS');
         // Set speeds to force fadein used in trip.js to immediate
         trip.currentSpeed = jQuery.fx.speeds._default;
+
         //  Create Trips
         trip.journey.tutorial = new Trip(
             [{
@@ -38,7 +31,12 @@ $(document)
                     'this tutorial will show you everything you need to know to get ' +
                     'started. During the tutorial click the \'Next\' button to ' +
                     'continue and the \'Quit\' button to exit at anytime, otherwise ' +
-                    'click on the highlighted elements to proceed. </p>'
+                    'click on the highlighted elements to proceed. </p>',
+                onTripStart: function (tripIndex, tripObject) {
+                    // Move overlay to be within relative space of dropdown elements
+                    $('.trip-overlay')
+                        .appendTo('body main .splashes');
+                }
             }, {
                 expose: true,
                 position: 'screen-center',
@@ -114,14 +112,14 @@ $(document)
                     'you can manage the tracks effects.</p>',
             }, {
                 sel: (trip.selector[10] = '#partial .fx-catalog-panel'),
-                expose: trip.selector[10],
+                expose: trip.startpoint,
                 position: 's',
                 content: '<p class="text-left max-width-100">The effects catalog' +
                     'holds all the available effects and the special remove effect' +
                     'button.</p>',
             }, {
                 sel: (trip.selector[11] = '#partial .dropdown-left'),
-                expose: trip.selector[11],
+                expose: trip.startpoint,
                 position: 'e',
                 content: '<p class="text-left max-width-100">The information ' +
                     'panel allows you to cancel out of an effect manipulation ' +
@@ -158,101 +156,77 @@ $(document)
             //  global config options
             trip.options
         );
-
-        trip.journey.microphone = {};
-
-        var genericMicrophoneStartStep = {
-            position: 'screen-center',
-            content: '<p>Welcome to trackstudio</p>' +
-                '<p>There seems to be a problem with your browser\'s microphone permissions. ' +
-                'We use a browser\'s microphone to record audio into tracks, and therefore we require microphone access.</p>' +
-                '<p>To enable your browser\s microphone click \'Next\' and follow the instructions provided.</p>',
-            showNavigation: true,
-            nextLabel: 'Next',
-            delay: -1,
-        };
+        var microphoneOptions = jQuery.extend(true, {}, trip.options);
+        microphoneOptions.showCloseBox = false;
+        microphoneOptions.finishLabel = '';
 
         //  microphone - chrome
         trip.journey.microphone.chrome = new Trip(
-            [genericMicrophoneStartStep, {
-                sel: '.splash .top',
+            [trip.sharedTrips.genericMicrophoneStartStep, {
+                sel: (trip.selector[1] = '.splash .top'),
+                expose: true,
                 position: 's',
-                content: '<p>In your address bar, find the <image src="/app/img/browser-icons/chrome-microphone-disabled.png"/> icon and click on it.</p>' +
-                    '<p>In the browser\'s dialog box, select the \'Always allow ...\' radio button and make sure that the \'Microphone\' select, is set to \'Default\'. </p>' +
-                    '<p>Click \'Done\'.</p>',
-                delay: -1,
+                content: '<p class="text-left max-width-100">In your address bar, ' +
+                    'find the <image ' +
+                    'src="/app/img/browser-icons/chrome-microphone-disabled.png"/>' +
+                    'icon and click on it.</p><p class="text-left max-width-100">' +
+                    'In the browser\'s dialog box, select ' +
+                    'the \'Always allow ...\' radio button and make sure that the ' +
+                    '\'Microphone\' select, is set to \'Default\' and then click ' +
+                    '\'Done\'.</p>',
 
             }],
             //  global config options
-            trip.options
+            microphoneOptions
         );
-
         //  microphone - opera
         trip.journey.microphone.opera = new Trip(
-            [genericMicrophoneStartStep, {
-                sel: '.splash .top',
+            [trip.sharedTrips.genericMicrophoneStartStep, {
+                sel: (trip.selector[1] = '.splash .top'),
+                expose: true,
                 position: 's',
-                content: '<p>In your address bar, find the <image src="/app/img/browser-icons/opera-microphone-disabled.png"/> icon and click on it.</p>' +
-                    '<p> In the browser\'s dialog box, click the \'Clear this setting and reload\' button, and accept the requested permissions.</p>',
-                delay: -1,
+                content: '<p class="text-left max-width-100">In your address bar, ' +
+                    'find the <image ' +
+                    'src="/app/img/browser-icons/opera-microphone-disabled.png"/>' +
+                    'icon and click on it.</p><p class="text-left max-width-100">In ' +
+                    'the browser\'s dialog box, click the \'Clear this setting ' +
+                    'and reload\' button, and accept the requested permissions.</p>'
             }],
             //  global config options
-            trip.options
+            microphoneOptions
         );
-
         // microphone - firefox
         trip.journey.microphone.firefox = new Trip(
-            [genericMicrophoneStartStep, {
-                sel: '.splash .top',
+            [trip.sharedTrips.genericMicrophoneStartStep, {
+                sel: (trip.selector[1] = '.splash .top'),
+                expose: true,
                 position: 's',
-                content: '<p>In your address bar, find the <image src="/app/img/browser-icons/firefox-information.png"/> icon and click it.</p>' +
-                    '<p>In the browser\'s dialog box in \'Permissions\', set the select for \`Use the Microphone\' to \'Allow\'. </p>' +
-                    '<p>At this point you will need to refresh the page and click \'Share Selected Device\' in the next browser dialog.</p>',
-                delay: -1,
-
+                content: '<p class="text-left max-width-100">In your address bar, ' +
+                    'find the <image src="/app/img/browser-icons/firefox-information.png"/>' +
+                    'icon and click it.</p><p class="text-left max-width-100">In the ' +
+                    'browser\'s dialog box in \'Permissions\', set the select for \`Use ' +
+                    'the Microphone\' to \'Allow\'. </p><p class="text-left max-width-100">' +
+                    'At this point you will need to refresh the page and click \'Share ' +
+                    '\'Selected Device\' in the next browser dialog.</p>'
             }],
             //  global config options
-            trip.options
+            microphoneOptions
         );
-
-        // microphone - edge
-        trip.journey.microphone.edge = new Trip(
-            [genericMicrophoneStartStep, {
-                sel: '.splash .top',
-                position: 's',
-                content: '<p>In your address bar, find the __ icon and right click it.</p>' +
-                    '<p>In the browser\'s dialog box, select the \'Always allow ...\' radio button and make sure that the \'Microphone\' select, is set to \'Default\'.</p>' +
-                    '<p> Click \'Done\'.</p>',
-                delay: -1,
-
-            }],
-            //  global config options
-            trip.options
-        );
-
-        // microphone - safari
+        // microphone - safari TODO
         trip.journey.microphone.safari = new Trip(
-            [genericMicrophoneStartStep, {
-                sel: '.splash .top',
+            [trip.sharedTrips.genericMicrophoneStartStep, {
+                sel: (trip.selector[1] = '.splash .top'),
+                expose: true,
                 position: 's',
                 content: '<p>In your address bar, find the __ icon and right click it.</p>' +
                     '<p>In the browser\'s dialog box, select the \'Always allow ...\' radio button and make sure that the \'Microphone\' select, is set to \'Default\'.</p>' +
-                    '<p> Click \'Done\'.</p>',
-                delay: -1,
-
+                    '<p> Click \'Done\'.</p>'
             }],
             //  global config options
-            trip.options
+            microphoneOptions
         );
 
-        //  ENVIRONMENT
-
-        var userAgent = getBrowser();
-        console.log('--- User Agent', userAgent);
-
-        //  HARDWARE SUPPORT
-
-        var mic = getMicrophone(function (stream) { // Microphone Success
+        getMicrophone(function (stream) { // Microphone Success
             console.log('microphone-browser-compatible: success');
             console.log('microphone-enabled: success');
 
@@ -278,12 +252,12 @@ $(document)
 
             console.log(userAgent.browser.toLowerCase());
             //'ie', 'firefox', 'edge'
-            if (['chrome', 'opera', 'safari'].indexOf(userAgent.browser.toLowerCase()) !== -1) {
+            if (['chrome', 'opera', 'safari', 'firefox'].indexOf(userAgent.browser.toLowerCase()) !== -1) {
                 $('.splash.microphone')
                     .find('.instructions.' + userAgent.browser.toLowerCase())
                     .addClass('display');
 
-                console.log('Starting microphone trip');
+                console.log('Starting microphone trip', userAgent);
                 trip.journey.microphone[userAgent.browser.toLowerCase()].start();
 
                 var clearMicrophoneInterval = setInterval(
@@ -316,9 +290,26 @@ $(document)
                 .fadeOut(300);
         });
 
+        //  INIT COMPONENTS
+
+        console.log('Init: DropDown');
+        dd = new DropDown();
+        dd.init({
+            dropDownId: '#partial',
+            navigationId: '#navigation',
+            speed: 800
+        });
+
+        console.log('Init: StopWatch');
+        sw = new StopWatch();
+        sw.run('INIT', '#stopWatch-1 div.timedisplay');
+
+        console.log('Init: AudioContext');
+        ac = new AudioContext();
+
         //  VALIDATE SESSION
 
-        console.log('Validating Session');
+        console.log('Init: Validating Session');
         //  Determine if session is valid and prepare panels
         validateSession(function () {
             console.log('initial setup - session');
@@ -328,9 +319,101 @@ $(document)
             dd.show('INIT');
         });
 
+        //  TOOLTIPS - qTip
+        console.log('Init: Tooltips');
+        $('.link-sign-in span > span')
+            .qtip((qTipDefault)({
+                arrow: 'top center',
+                content: 'Sign in to trackstudio'
+            }));
+        $('.mixer-meter')
+            .qtip((qTipDefault)({
+                arrow: 'bottom center',
+                content: 'The volume meter'
+            }));
+        $('.scale')
+            .qtip((qTipDefault)({
+                arrow: 'bottom center',
+                content: 'The volume scale'
+            }));
+        $('.stopWatch.glass')
+            .qtip((qTipDefault)({
+                arrow: 'top center',
+                content: 'Holds recording and playback information, such as track length and current runtime'
+            }));
+        $('.link-sign-out span > span')
+            .qtip((qTipDefault)({
+                arrow: 'top center',
+                content: 'Sign out of trackstudio'
+            }));
+        $('.link-register span > span')
+            .qtip((qTipDefault)({
+                arrow: 'top center',
+                content: 'Register with trackstudio'
+            }));
+        $('.navbar-brand-label')
+            .qtip((qTipDefault)({
+                arrow: 'top center',
+                content: 'Toggle the dropdown menu'
+            }));
+        $('.link-tutorial span')
+            .qtip((qTipDefault)({
+                arrow: 'top center',
+                content: 'Begin the tutorial'
+            }));
+
+        $('.track-label')
+            .qtip((qTipDefault)({
+                content: 'Edit the track label'
+            }));
+        $('.mute')
+            .qtip((qTipDefault)({
+                content: 'Toggle track output'
+            }));
+        $('.record')
+            .qtip((qTipDefault)({
+                content: 'Record to track'
+            }));
+        $('.fx-box')
+            .qtip((qTipDefault)({
+                content: 'Add an effect'
+            }));
+        $('.eq[type=HIGH]')
+            .qtip((qTipDefault)({
+                content: 'Treble equalizer knob'
+            }));
+        $('.eq[type=LOW]')
+            .qtip((qTipDefault)({
+                content: 'Bass equalizer knob'
+            }));
+        $('.pan')
+            .qtip((qTipDefault)({
+                content: 'Shift sound left and right'
+            }));
+        $('.fader')
+            .qtip((qTipDefault)({
+                content: 'Volume slider'
+            }));
+        $('.stop')
+            .qtip((qTipDefault)({
+                content: 'Stop'
+            }));
+        $('.play')
+            .qtip((qTipDefault)({
+                content: 'Play'
+            }));
+        $('.rewind')
+            .qtip((qTipDefault)({
+                content: 'Rewind'
+            }));
+        $('.forward')
+            .qtip((qTipDefault)({
+                content: 'Fast forward'
+            }));
+
         //  FORM VALIDATION
 
-        console.log('Setting up forms');
+        console.log('Init: forms');
         // Setup form validation on the #register-form element
         var registerValidator = $('#register-form')
             .validate({
@@ -579,7 +662,7 @@ $(document)
             });
 
         //  CLICK CONTROLS
-
+        console.log('Init: links');
         // Setup logo
         $('.navbar-brand-label')
             .on('click', function () {
@@ -657,20 +740,8 @@ $(document)
         $('.link-tutorial')
             .on('click', function () {
                 console.log('start trip run');
+                dd.dropdown.close();
                 trip.journey.tutorial.start();
             });
-            
-        // Create tooltips
-        Tipped.create('.track-label', 'Track label', { position: 'top' });
-        Tipped.create('.mute', 'Mute button', { position: 'left' });
-        Tipped.create('.record', 'Record button', { position: 'right' });
-        Tipped.create('.fx-box', 'FX box', { position: 'right' });
-        Tipped.create('.eq[type=HIGH]', 'Treble EQ knob', { position: 'right' });
-        Tipped.create('.eq[type=LOW]', 'Bass EQ knob', { position: 'right' });
-        Tipped.create('.pan', 'Pan knob', { position: 'right' });
-        Tipped.create('.fader', 'Volume slider', { position: 'left' });
-        Tipped.create('.stop', 'Stop', { position: 'bottom' });
-        Tipped.create('.play', 'Play', { position: 'bottom' });
-        Tipped.create('.rewind', 'Rewind', { position: 'bottom' });
-        Tipped.create('.forward', 'Fast forward', { position: 'bottom' });
+
     });

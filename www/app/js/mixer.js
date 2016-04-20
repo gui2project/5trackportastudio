@@ -37,6 +37,7 @@ $(function () {
             if (!state) {
                 $(elem)
                     .prop('disabled', 1)
+                    .qtip('hide')
                     .addClass('disabledButton')
                     .removeClass('data-active');
 

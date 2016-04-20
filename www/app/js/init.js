@@ -139,6 +139,107 @@ var validateSession = function (callSession, callNoSession) {
 };
 
 /**
+ *  Generates a qTip object with default settings, we use this to reduce the
+ *  ammount of clutter during qtip definitions.
+ *
+ *  Example
+ *      $('.mixer-meter')
+ *          .qtip((qTipDefault)({
+ *              arrow: 'bottom center',
+ *              content: 'The volume meter'
+ *          }));
+ *
+ *  @function qTipDefault
+ *  @param  {Object}  Obj  Properties to be modified
+ *  @return {Object.qTipSettings}  The qTip Object.
+ */
+var qTipDefault = function (obj) {
+
+    //  References to corners
+    var corners = [
+        'bottom left', 'bottom right', 'bottom center',
+        'top right', 'top left', 'top center',
+        'left center', 'left top', 'left bottom',
+        'right center', 'right bottom', 'right top'
+    ];
+    var opposites = [
+        'top right', 'top left', 'top center',
+        'bottom left', 'bottom right', 'bottom center',
+        'right center', 'right bottom', 'right top',
+        'left center', 'left top', 'left bottom'
+    ];
+
+    var adjustedX, adjustedY;
+
+    //  Get object settings or default
+    var offsetX = dVar(obj.offsetX, 0);
+    var offsetY = dVar(obj.offsetY, 0);
+    var pixels = dVar(obj.pixels, 4);
+    var defarrow = 'bottom center';
+
+    var i = corners.indexOf(dVar(obj.arrow, defarrow));
+
+    //  Determine index positioning
+    if (i === -1) {
+        i = corners.indexOf(defarrow);
+    }
+
+    //  Determine positioning adjustment
+    if (i >= 0 && i <= 2) {
+        adjustedX = 0;
+        adjustedY = -1 * pixels;
+    } else if (i >= 3 && i <= 5) {
+        adjustedX = 0;
+        adjustedY = pixels;
+    } else if (i >= 6 && i <= 8) {
+        adjustedX = -1 * pixels;
+        adjustedY = 0;
+    } else if (i >= 9 && i <= 11) {
+        adjustedX = pixels;
+        adjustedY = 0;
+    }
+
+    //  Return qtip object
+    return {
+        content: dVar(obj.content, ''),
+        position: {
+            my: corners[i], // Use the corner...
+            at: opposites[i], // ...and opposite corner
+            adjust: {
+                x: (adjustedX + offsetX),
+                y: (adjustedY + offsetY)
+            }
+        },
+        show: {
+            event: 'mouseover',
+            solo: true // Only show one tooltip at a time
+        },
+        hide: {
+            event: 'mouseout',
+            delay: 200,
+            fixed: true,
+            effect: function () {
+                $(this)
+                    .fadeOut(250);
+            }
+        },
+        style: {
+            classes: 'jquery-tooltips',
+            tip: {
+                corner: corners[i],
+                height: pixels * 4,
+                width: pixels * 2
+            },
+            border: {
+                width: 2,
+                radius: 3,
+                color: '#212121'
+            }
+        }
+    };
+};
+
+/**
  *  @name   dVar
  *
  *  Gets the default parameter if one was not given
@@ -322,34 +423,43 @@ navigator.getUserMedia = (navigator.getUserMedia ||
 
 //  VARIABLE DECLARATIONS
 var trip = {
-
     inTripSpeed: 0,
-    journey: [],
+    startpoint: '.header link-tutorial',
+    sharedTrips: {
+        genericMicrophoneStartStep: {
+            expose: true,
+            position: 'screen-center',
+            content: '<p class="text-left max-width-100">Welcome to trackstudio</p>' +
+                '<p class="text-left max-width-100">There seems to be a problem ' +
+                'with your browser\'s microphone permissions. ' +
+                'We use a browser\'s microphone to record audio into tracks, and therefore we ' +
+                'require microphone access.</p><p class="text-left max-width-100">To ' +
+                'enable your browser\s microphone click \'Next\' and follow the ' +
+                'instructions provided.</p>'
+        }
+    },
+    journey: {
+        microphone: {}
+    },
     options: {
-        backToTopWhenEnded: true,
-        overlayHolder: 'body main .splashes',
-        overlayZindex: 99999,
-        enableKeyBinding: true,
-        enableAnimation: true,
-        skipUndefinedTrip: false,
-        delay: -1,
-        tripTheme: 'yeti', // this has been customized with css
         animation: 'none',
-
-        // navigation
+        backToTopWhenEnded: true,
         canGoNext: true,
         canGoPrev: false,
-        showNavigation: true,
-
-        // labels
-        nextLabel: '<span class="action-label positive">Next</span>',
-        prevLabel: ' ',
         closeBoxLabel: '<span class="action-label negative">Quit</span>',
+        delay: -1,
+        enableAnimation: true,
+        enableKeyBinding: true,
         finishLabel: '<span class="action-label positive">Finish</span>',
         header: 'Step {{tripIndex}}',
-        showHeader: false,
+        nextLabel: '<span class="action-label positive">Next</span>',
+        overlayHolder: 'body', // this can be moved around
+        overlayZindex: 99999,
+        prevLabel: ' ',
         showCloseBox: true,
-        // customizable HTML
+        showHeader: false,
+        showNavigation: true,
+        skipUndefinedTrip: false,
         tripBlockHTML: [
             '<div class="trip-block">',
             '<a href="#" class="trip-prev"></a>',
@@ -362,37 +472,7 @@ var trip = {
             '</div>',
             '</div>'
         ],
-
-        //  Callbacks
-        onTripStart: function () {
-            console.log('onTripStart');
-            //  Change jQuery speed to prevent overlay fadein
-            $.fx.speeds._default = trip.inTripSpeed;
-
-            //  Reset mixer
-            resetMixer();
-        },
-        onTripEnd: function () {
-            console.log('onTripEnd');
-        },
-        onTripStop: function () {
-            console.log('onTripStop');
-        },
-        onTripPause: function () {
-            console.log('onTripPause');
-        },
-        onTripResume: function () {
-            console.log('onTripResume');
-        },
-        onTripChange: function () {
-            console.log('onTripChange');
-        },
-        onTripClose: function () {
-            console.log('onTripClose');
-        },
-        onStart: function () {
-            console.log('onStart');
-        },
+        tripTheme: 'yeti', // this has been customized with css
         onEnd: function () {
             //  Destroy bound click events so that the user can continue using
             //  without finishing tutorial
@@ -401,9 +481,49 @@ var trip = {
                 $(trip.selector[index])
                     .off('click.Trip');
             });
+            //  Restore Overlay position
+            $('.trip-overlay')
+                .appendTo('body');
+            $('.cover')
+                .css({
+                    'position': ''
+                });
             //  Restore Jquery speed
             jQuery.fx.speeds._default = trip.currentSpeed;
             console.log('onEnd');
+        },
+        onStart: function () {
+            console.log('onStart');
+            //  Change jQuery speed to prevent overlay fadein
+            $.fx.speeds._default = trip.inTripSpeed;
+
+            $('.cover')
+                .css({
+                    'position': 'absolute'
+                });
+            //  Reset mixer
+            resetMixer();
+        },
+        onTripChange: function () {
+            console.log('onTripChange');
+        },
+        onTripClose: function () {
+            console.log('onTripClose');
+        },
+        onTripEnd: function () {
+            console.log('onTripEnd');
+        },
+        onTripPause: function () {
+            console.log('onTripPause');
+        },
+        onTripResume: function () {
+            console.log('onTripResume');
+        },
+        onTripStart: function () {
+            console.log('onTripStart');
+        },
+        onTripStop: function () {
+            console.log('onTripStop');
         }
     },
     selector: []

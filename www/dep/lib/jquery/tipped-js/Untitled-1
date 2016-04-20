@@ -1,0 +1,79 @@
+var tipped = {};
+        tipped.base = {
+            hideAfter: 999999,
+            //hideOthers: true,
+            //hideOnClickOutside: true,
+            skin: 'white',
+            showOn: 'mouseenter'
+        };
+
+        tipped.top = $.extend(true, {
+            position: 'top'
+        }, tipped.base);
+        tipped.left = $.extend(true, {
+            position:'left'
+        }, tipped.base);
+        tipped.right = $.extend(true, {
+            position: 'right'
+        }, tipped.base);
+        tipped.bottom = $.extend(true, {
+            position: 'bottom'
+        }, tipped.base);
+
+        console.log(tipped.top);
+        console.log(tipped.right);
+        console.log(tipped.bottom);
+        console.log(tipped.left);
+
+        Tipped.create('.link-sign-in',
+            'Sign in to trackstudio',
+            tipped.bottom);
+        Tipped.create('.link-sign-out',
+            'Sign out of trackstudio',
+            tipped.bottom);
+        Tipped.create('.link-register',
+            'Sign in to trackstudio',
+            tipped.bottom);
+        Tipped.create('.navbar-brand-label',
+            'Toggle the dropdown menu',
+            tipped.bottom);
+        Tipped.create('.link-tutorial',
+            'Begin the tutorial',
+            tipped.bottom);
+
+        Tipped.create('.track-label',
+            'Edit the track label',
+            tipped.top);
+        Tipped.create('.mute',
+            'Toggle track output',
+            tipped.left);
+        Tipped.create('.record',
+            'Record to track',
+            tipped.right);
+        Tipped.create('.fx-box',
+            'Add an effect',
+            tipped.right);
+        Tipped.create('.eq[type=HIGH]',
+            'Treble equalizer knob',
+            tipped.right);
+        Tipped.create('.eq[type=LOW]',
+            'Bass equalizer knob',
+            tipped.right);
+        Tipped.create('.pan',
+            'Shift sound left and right',
+            tipped.right);
+        Tipped.create('.fader',
+            'Volume slider',
+            tipped.left);
+        Tipped.create('.stop',
+            'Stop',
+            tipped.bottom);
+        Tipped.create('.play',
+            'Play',
+            tipped.bottom);
+        Tipped.create('.rewind',
+            'Rewind',
+            tipped.bottom);
+        Tipped.create('.forward',
+            'Fast forward',
+            tipped.bottom);

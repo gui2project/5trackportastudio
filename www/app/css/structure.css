@@ -902,12 +902,13 @@ a.trip-next,
 .trip-next {
     background-color: #149bdf;
     border-bottom-right-radius: 3px !important;
+    padding: 0 10px !important;
 }
 
 .trip-close {
     background-color: #FF007D;
     border-bottom-left-radius: 3px !important;
-    padding: 5px 10px !important;
+    padding: 0 10px !important;
     margin: 0 8px 0 0 !important;
     float: left;
     font-size: 12px !important;
@@ -925,6 +926,19 @@ a.trip-next,
     color: #FF007D !important;
     background-color: #fafafa !important;
     text-decoration: underline;
+}
+
+p img {
+    padding: 0 5px;
+}
+
+.cover {
+    z-index: 99999;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background: black;
+    opacity: .7;
 }
 
 .trip-block.yeti {
@@ -966,6 +980,11 @@ a.trip-next,
 
 .trip-block.yeti.w {
     margin-right: 10px;
+}
+
+.trip-content {
+    font-size: 14px !important;
+    line-height: 20px;
 }
 
 .max-width-100 {

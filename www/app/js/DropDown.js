@@ -49,23 +49,15 @@ function DropDown() {
             .mouseup(function (e) {
 
                 if ($(e.target)
-                    .is(['.trip-content',
-                        '.trip-content p',
+                    .find(['.trip-content',
                         '.trip-block',
                         '.trip-next',
                         '.trip-prev',
                         '.trip-close',
-                        '.trip-next a',
-                        '.trip-prev a',
-                        '.trip-close a',
-                        '.trip-next span',
-                        '.trip-prev span',
-                        '.trip-close span',
-                        'trip-header',
-                        'trip-progress-wrapper',
-                        'trip-overlay'
+                        '.trip-header',
+                        '.trip-progress-wrapper',
+                        '.trip-overlay'
                     ].join(', '))) {
-                    //console.log(e.target);
                     return;
                 }
 
@@ -555,11 +547,9 @@ function DropDown() {
                 //console.log('dropdown.panel.set.information', obj);
 
                 $(_this.dropDownId)
-                    .find('.information-panel')
                     .find('.information-title')
                     .html(obj.title)
                     .end()
-                    .find('.information-panel')
                     .find('.information-description')
                     .html(obj.desc);
             }

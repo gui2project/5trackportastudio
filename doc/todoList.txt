@@ -1,26 +1,8 @@
 Colors in signup validator.
     Change colors and size to a more visible option.
 
-Confused after allowing access to microphone (in allow access page).
-    Short tutorial that shows where allow access button is.
-
 Ping pong sounds like reverb.
     Change "time" parameter to give more space in between repetitions.
-
-Prevent accidental out of order controls usage.
-    Disable unavailable controls.
-
-Quit out of tutorial
-    Change x icon to ‘Quit’ button Tutorial in header. Move tutorial to header, close dropdown when clicked.
-
-
-
-
-
-
-Make tutorial responsive if a user makes a mistake.
-    Check if a click on another element was made than what was expected. OR
-    Place overlay over all other parts of screen to prevent accidental click outside of flow.
 
 Get started/login (fork at splash screen).
     No solution yet. M
