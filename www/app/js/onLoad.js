@@ -142,7 +142,7 @@ $(document)
             }, {
                 expose: true,
                 position: 'screen-center',
-                content: '<p class="text-left max-width-100">You have just added' +
+                content: '<p class="text-left max-width-100">You have just added ' +
                     'your first effect.<p>',
             }, {
                 sel: (trip.selector[14] = '#master-1 .play'),

@@ -58,10 +58,10 @@
     {
         "title": "Cabinet",
         "desc": "Makes your instrument sound like a rock guitar",
-        "image": "/app/img/effects/Cabinet-212121.png",
+        "image": "/app/img/effects/cabinet-212121.png",
         "objArray": "track",
         "func": "toggleEffect",
         "parameter": "CABINET"
     }
-    
+
 ]
