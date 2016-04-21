@@ -302,7 +302,7 @@ function DropDown() {
                         data.unshift({
                             title: 'Remove',
                             desc: 'Remove the effect applied to a track.',
-                            image: '/app/img/effects/system-delete-212121.png',
+                            image: '/app/img/effects/system-delete-fafafa.png',
                             objArray: 'track',
                             func: 'toggleEffect',
                             parameter: 'CLEAR'
@@ -315,6 +315,7 @@ function DropDown() {
                             item.id = ('effect-item-' + item.title)
                                 .toLowerCase()
                                 .replace(/\s/g, '');
+
 
                             item.src = item.image ? item.image : '/app/img/favicon/favicon-black.png';
 
@@ -332,6 +333,11 @@ function DropDown() {
                                         .append($('<span></span>')
                                             .addClass('fx-catalog-panel-item-title')
                                             .html(item.title))));
+
+                            if (item.title === 'Remove') {
+                                $('#'+item.id)
+                                    .addClass('negative');
+                            }
 
                             //  Add Handler
                             $('#' + item.id)
@@ -367,7 +373,20 @@ function DropDown() {
                                 .mouseover(function () {
                                     _this.panel.set.information(item);
                                     _this.panel.display.toggle(true, '.information-panel');
-                                });
+                                })
+                                .qtip((function (item) {
+                                    if (item.title === 'Remove') {
+                                        return (qTipDefault)({
+                                            arrow: 'top center',
+                                            content: 'Click to remove the tracks effect'
+                                        });
+                                    } else {
+                                        return (qTipDefault)({
+                                            arrow: 'top center',
+                                            content: 'Click to add ' + item.title
+                                        });
+                                    }
+                                })(item));
                         });
                     },
                     function () {

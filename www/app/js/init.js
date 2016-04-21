@@ -216,7 +216,7 @@ var qTipDefault = function (obj) {
         },
         hide: {
             event: 'mouseout',
-            delay: 200,
+            delay: 1,
             fixed: true,
             effect: function () {
                 $(this)

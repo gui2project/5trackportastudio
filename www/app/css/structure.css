@@ -895,7 +895,9 @@ a.trip-next,
 }
 
 .trip-next span,
-.trip-close span {
+.trip-close span,
+.positive,
+.negative {
     color: #fafafa !important;
 }
 
@@ -989,4 +991,11 @@ p img {
 
 .max-width-100 {
     max-width: 100em;
+}
+.slider.trip-exposed,
+.eq.trip-exposed,
+.pan.trip-exposed,
+.meter.trip-exposed,
+.eq.trip-exposed{
+    background-color:transparent !important;
 }

@@ -42,6 +42,7 @@ button,
 .track-fader-mute > button.armed,
 .mixer-meter .mixer-led-normal.on,
 main > .container > .row-container .statistics ,
+.positive,
 .panel button.accept {
     background-color: #149BDF;
 }
@@ -262,7 +263,8 @@ a.link-tutorial span:hover {
     background-color: #1275A7;
 }
 
-.recording {
+.recording,
+.negative {
     background-color: #FF007D;
 }
 

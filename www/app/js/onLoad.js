@@ -151,7 +151,42 @@ $(document)
                 nextLabel: ' ',
                 nextClickSelector: trip.selector[14],
                 content: '<p class="text-left max-width-100">Now click play to ' +
-                    'listen to your track with the added effect.</p>',
+                    'listen to your track with the added effect.</p>'
+            },
+             {
+                sel: (trip.selector[15] = '#track-1 .eq[type=HIGH]'),
+                expose: trip.selector[15],
+                position: 'e',
+                content: '<p class="text-left max-width-100">You can use the treble knob to raise or lower high tones.</p>'
+            }, {
+                sel: (trip.selector[16] = '#track-1 .eq[type=LOW]'),
+                expose: trip.selector[16],
+                position: 'e',
+                content: '<p class="text-left max-width-100">You can use the bass knob to raise or lower low tones.</p>'
+            },{
+                sel: (trip.selector[17] = '#track-1 .pan'),
+                expose: trip.selector[17],
+                position: 'e',
+                content: '<p class="text-left max-width-100">With pan you can shift the sound of a track to the left or right ear.</p>'
+            },{
+                sel: (trip.selector[18] = '#track-1 .slider:visible'),
+                expose: trip.selector[18],
+                position: 'e',
+                content: '<p class="text-left max-width-100">You can use the slider to raise and lower the volume of a particular track.</p>'
+            },{
+                sel: (trip.selector[18] = '#track-1 .meter:visible'),
+                expose: trip.selector[18],
+                position: 'e',
+                content: '<p class="text-left max-width-100">When a track is playing or recording with the volume on, the meter fills to show the current volume.</p>'
+            },{
+                sel: (trip.selector[19] = '#master-1 .glass'),
+                expose: trip.selector[19],
+                position: 's',
+                content: '<p class="text-left max-width-100">You can watch track lengths, and play runtime on the display. The recording track is highlighted in pink, while the longest track is shaded. We represent track lengths as a percentage of the longest track, and display their length in time next to their bar length.</p>'
+            },{
+                expose: true,
+                position: 'screen-center',
+                content: '<p class="text-left max-width-100">Hope you learned about trackstudio, and now it is time to make some music.<p>',
             }],
             //  global config options
             trip.options
@@ -212,15 +247,13 @@ $(document)
             //  global config options
             microphoneOptions
         );
-        // microphone - safari TODO
-        trip.journey.microphone.safari = new Trip(
-            [trip.sharedTrips.genericMicrophoneStartStep, {
-                sel: (trip.selector[1] = '.splash .top'),
+        // browser
+        trip.journey.browser = new Trip(
+            [{
+                sel: (trip.selector[0] = '.splash .top'),
                 expose: true,
-                position: 's',
-                content: '<p>In your address bar, find the __ icon and right click it.</p>' +
-                    '<p>In the browser\'s dialog box, select the \'Always allow ...\' radio button and make sure that the \'Microphone\' select, is set to \'Default\'.</p>' +
-                    '<p> Click \'Done\'.</p>'
+                position: 'screen-center',
+                content: '<p class="text-left max-width-100">Welcome to trackstudio!</p><p class="text-left max-width-100">There seems to be a problem with the browser you are using. Your browser is not compatible with our application, because we rely on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a> to record sounds. To use our application you will need to use a modern browser. We recomend using <a href="https://www.google.com/chrome/browser/desktop/index.html">Google Chrome</a>.</p>'
             }],
             //  global config options
             microphoneOptions
@@ -251,8 +284,8 @@ $(document)
                 .removeClass('display');
 
             console.log(userAgent.browser.toLowerCase());
-            //'ie', 'firefox', 'edge'
-            if (['chrome', 'opera', 'safari', 'firefox'].indexOf(userAgent.browser.toLowerCase()) !== -1) {
+            //'ie', 'firefox', 'edge', 'safari',
+            if (['chrome', 'opera', 'firefox'].indexOf(userAgent.browser.toLowerCase()) !== -1) {
                 $('.splash.microphone')
                     .find('.instructions.' + userAgent.browser.toLowerCase())
                     .addClass('display');
@@ -276,18 +309,24 @@ $(document)
             } else {
 
                 $('.splash.microphone')
-                    .find('.instructions.other')
-                    .addClass('display');
+                .toggleClass('hide');
+
+                $('.splash.cover')
+                    .hide();
+
+                trip.journey.browser.start();
             }
 
         }, function () { // Browser Support Error
             console.log('microphone-browser-compatible: failure');
 
-            $('.splash.browser')
+            $('.splash.microphone')
                 .toggleClass('hide');
 
             $('.splash.cover')
-                .fadeOut(300);
+                .hide();
+
+            trip.journey.browser.start();
         });
 
         //  INIT COMPONENTS
@@ -743,5 +782,4 @@ $(document)
                 dd.dropdown.close();
                 trip.journey.tutorial.start();
             });
-
     });
