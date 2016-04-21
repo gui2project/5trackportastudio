@@ -1006,3 +1006,8 @@ p img {
 .track-label.trip-exposed {
     background-color: transparent !important;
 }
+
+.bold {
+    color: #FF007D;
+    font-weight:bold;
+}

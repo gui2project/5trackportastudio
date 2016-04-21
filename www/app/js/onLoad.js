@@ -29,8 +29,8 @@ $(document)
                 position: 'screen-center',
                 content: '<p class="text-left max-width-100">Welcome to trackstudio, ' +
                     'this tutorial will show you everything you need to know to get ' +
-                    'started. During the tutorial click the \'Next\' button to ' +
-                    'continue and the \'Quit\' button to exit at anytime, otherwise ' +
+                    'started. During the tutorial click the <span class="bold">Next</span> button to ' +
+                    'continue and the <span class="bold">Quit</span> button to exit at anytime, otherwise ' +
                     'click on the highlighted elements to proceed. </p>',
                 onTripStart: function (tripIndex, tripObject) {
                     // Move overlay to be within relative space of dropdown elements
@@ -209,10 +209,10 @@ $(document)
                     'find the <image ' +
                     'src="/app/img/browser-icons/chrome-microphone-disabled.png"/>' +
                     'icon and click on it.</p><p class="text-left max-width-100">' +
-                    'In the browser\'s dialog box, select ' +
-                    'the \'Always allow ...\' radio button and make sure that the ' +
-                    '\'Microphone\' select, is set to \'Default\' and then click ' +
-                    '\'Done\'.</p>',
+                    'In the browser&#39s dialog box, select ' +
+                    'the <span class="bold">Always allow ...</span> radio button and make sure that the ' +
+                    '<span class="bold">Microphone</span> select, is set to <span class="bold">Default</span> and then click ' +
+                    '<span class="bold">Done</span>.</p>',
 
             }],
             //  global config options
@@ -228,8 +228,8 @@ $(document)
                     'find the <image ' +
                     'src="/app/img/browser-icons/opera-microphone-disabled.png"/>' +
                     'icon and click on it.</p><p class="text-left max-width-100">In ' +
-                    'the browser\'s dialog box, click the \'Clear this setting ' +
-                    'and reload\' button, and accept the requested permissions.</p>'
+                    'the browser&#39s dialog box, click the <span class="bold">Clear this setting ' +
+                    'and reload</span> button, and accept the requested permissions.</p>'
             }],
             //  global config options
             microphoneOptions
@@ -243,10 +243,9 @@ $(document)
                 content: '<p class="text-left max-width-100">In your address bar, ' +
                     'find the <image src="/app/img/browser-icons/firefox-information.png"/>' +
                     'icon and click it.</p><p class="text-left max-width-100">In the ' +
-                    'browser\'s dialog box in \'Permissions\', set the select for \`Use ' +
-                    'the Microphone\' to \'Allow\'. </p><p class="text-left max-width-100">' +
-                    'At this point you will need to refresh the page and click \'Share ' +
-                    '\'Selected Device\' in the next browser dialog.</p>'
+                    'browser&#39s dialog box in <span class="bold">Permissions</span>, set the select for <span class="bold">Use ' +
+                    'the Microphone</span> to <span class="bold">Allow</span>. </p><p class="text-left max-width-100">' +
+                    'At this point you will need to refresh the page and click <span class="bold">Share Selected Device</span> in the next browser dialog.</p>'
             }],
             //  global config options
             microphoneOptions

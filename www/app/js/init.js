@@ -431,10 +431,10 @@ var trip = {
             position: 'screen-center',
             content: '<p class="text-left max-width-100">Welcome to trackstudio</p>' +
                 '<p class="text-left max-width-100">There seems to be a problem ' +
-                'with your browser\'s microphone permissions. ' +
-                'We use a browser\'s microphone to record audio into tracks, and therefore we ' +
+                'with your browser&#39s microphone permissions. ' +
+                'We use a browser&#39s microphone to record audio into tracks, and therefore we ' +
                 'require microphone access.</p><p class="text-left max-width-100">To ' +
-                'enable your browser\s microphone click \'Next\' and follow the ' +
+                'enable your browser&#39s microphone click <span class="bold">Next</span> and follow the ' +
                 'instructions provided.</p>'
         }
     },
