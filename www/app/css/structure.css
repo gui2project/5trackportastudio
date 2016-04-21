@@ -997,11 +997,12 @@ p img {
 .max-width-100 {
     max-width: 100em;
 }
+
 .slider.trip-exposed,
 .eq.trip-exposed,
 .pan.trip-exposed,
 .meter.trip-exposed,
 .eq.trip-exposed,
-.track-label.trip-exposed{
-    background-color:transparent !important;
+.track-label.trip-exposed {
+    background-color: transparent !important;
 }

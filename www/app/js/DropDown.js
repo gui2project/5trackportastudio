@@ -316,7 +316,6 @@ function DropDown() {
                                 .toLowerCase()
                                 .replace(/\s/g, '');
 
-
                             item.src = item.image ? item.image : '/app/img/favicon/favicon-black.png';
 
                             //  Add effect button
@@ -335,7 +334,7 @@ function DropDown() {
                                             .html(item.title))));
 
                             if (item.title === 'Remove') {
-                                $('#'+item.id)
+                                $('#' + item.id)
                                     .addClass('negative');
                             }
 

@@ -152,8 +152,7 @@ $(document)
                 nextClickSelector: trip.selector[14],
                 content: '<p class="text-left max-width-100">Now click play to ' +
                     'listen to your track with the added effect.</p>'
-            },
-             {
+            }, {
                 sel: (trip.selector[15] = '#track-1 .eq[type=HIGH]'),
                 expose: trip.selector[15],
                 position: 'e',
@@ -163,32 +162,32 @@ $(document)
                 expose: trip.selector[16],
                 position: 'e',
                 content: '<p class="text-left max-width-100">You can use the bass knob to raise or lower low tones.</p>'
-            },{
+            }, {
                 sel: (trip.selector[17] = '#track-1 .pan'),
                 expose: trip.selector[17],
                 position: 'e',
                 content: '<p class="text-left max-width-100">With pan you can shift the sound of a track to the left or right ear.</p>'
-            },{
+            }, {
                 sel: (trip.selector[18] = '#track-1 .slider:visible'),
                 expose: trip.selector[18],
                 position: 'e',
                 content: '<p class="text-left max-width-100">You can use the slider to raise and lower the volume of a particular track.</p>'
-            },{
+            }, {
                 sel: (trip.selector[19] = '#track-1 .meter:visible'),
                 expose: trip.selector[19],
                 position: 'e',
                 content: '<p class="text-left max-width-100">When a track is playing or recording with the volume on, the meter fills to show the current volume.</p>'
-            },{
+            }, {
                 sel: (trip.selector[20] = '#track-1 .track-label'),
                 expose: trip.selector[20],
                 position: 'e',
                 content: '<p class="text-left max-width-100">The track label can also be edited by clicking on the current label. When saving your mixes this label will be used to help name them.</p>'
-            },{
+            }, {
                 sel: (trip.selector[21] = '#master-1 .glass'),
                 expose: trip.selector[21],
                 position: 's',
                 content: '<p class="text-left max-width-100">You can watch track lengths, and play runtime on the display. The recording track is highlighted in pink, while the longest track is shaded. We represent track lengths as a percentage of the longest track, and display their length in time next to their bar length.</p>'
-            },{
+            }, {
                 expose: true,
                 position: 'screen-center',
                 content: '<p class="text-left max-width-100">Hope you learned about trackstudio, and now it is time to make some music.<p>',
@@ -314,7 +313,7 @@ $(document)
             } else {
 
                 $('.splash.microphone')
-                .toggleClass('hide');
+                    .toggleClass('hide');
 
                 $('.splash.cover')
                     .hide();

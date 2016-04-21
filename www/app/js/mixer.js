@@ -311,7 +311,7 @@ $(function () {
     $('button.stop')
         .disableButton()
         .on('click', function () {
-            enableButton(['button.play',   '.record button']); //'button.forward', 'button.rewind',
+            enableButton(['button.play', '.record button']); //'button.forward', 'button.rewind',
             disableButton(['button.stop']);
             stop();
         });
@@ -381,7 +381,7 @@ $(function () {
 
                 clearInterval(trackClear[trackId]);
 
-                enableButton(['button.play',  '.record button']); //'button.forward', 'button.rewind',
+                enableButton(['button.play', '.record button']); //'button.forward', 'button.rewind',
                 disableButton(['button.forward', 'button.rewind']);
                 $(this)
                     .prop('disabled', 0);
