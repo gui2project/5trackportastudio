@@ -282,10 +282,12 @@ main > .container > .row-container .track-name > .track-label {
     margin: 0;
     padding: 0;
     text-align: left;
+    text-transform: lowercase;
 }
 
 main > .container > .row-container .track-name > .master-label {
     cursor: default;
+    text-transform: lowercase;
 }
 
 main > .container > .row-container .track-name > .track-label .editable-text {
@@ -357,6 +359,7 @@ main > .container > .row-container .track-knob-eq {
 }
 
 main > .container > .row-container .track-knob-eq > label {
+    text-transform: lowercase;
     bottom: 25px;
     height: 20px;
     left: 26px;
@@ -589,6 +592,7 @@ main > .container > .row-container .graph-clock {
     position: relative;
     top: -100px;
     padding: 0 10px;
+    text-transform: lowercase;
 }
 
 main > .container > .row-container .graph-clock div {
@@ -672,6 +676,7 @@ main > .container > .row-container .section-label {
 }
 
 main > .container > .row-container .section-label > .title {
+    text-transform: lowercase;
     left: 23px;
     position: absolute;
     text-align: right;

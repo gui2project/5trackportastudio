@@ -341,14 +341,27 @@ function DropDown() {
 
                             //  Add Handler
                             $('#' + item.id)
+                                //.attr('disabled', 0)
                                 .on('click', function () {
                                     _this.panel.display.toggle(false, '.information-panel');
 
                                     trackNumber = parseInt($('main')
                                         .attr('data-effect-switch'));
 
+                                    var pulse = {
+                                        'background-color': '#149BDF',
+                                        'color': '#FAFAFA'
+                                    };
+
+                                    //$('effect-item-remove').attr('disabled', 0);
+
                                     if (item.title === 'Remove') {
                                         item.src = '/app/img/effects/system-add-212121.png';
+                                        pulse = {
+                                            'background-color': '#FF007d',
+                                            'color': '#FAFAFA'
+                                        };
+                                        //$(this).attr('disabled', 1);
                                     }
 
                                     //Turn on effect
@@ -359,10 +372,7 @@ function DropDown() {
                                         .find('.fx-box img')
                                         .attr('src', item.src)
                                         .parent()
-                                        .pulse({
-                                            'background-color': '#149BDF',
-                                            'color': '#FAFAFA'
-                                        }, {
+                                        .pulse(pulse, {
                                             pulses: 1,
                                             duration: 1300
                                         });
