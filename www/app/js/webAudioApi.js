@@ -61,12 +61,13 @@ function TrackTemplate() {
 
     //bools to help control toggle of effects
     var effectOn = false;
-
+    
+    //Effects Declarations
     var pingPong = new tuna.PingPongDelay({
         wetLevel: 0.3, //0 to 1
         feedback: 0.3, //0 to 1
-        delayTimeLeft: 150, //1 to 10000 (milliseconds)
-        delayTimeRight: 200 //1 to 10000 (milliseconds)
+        delayTimeLeft: 200, //1 to 10000 (milliseconds)
+        delayTimeRight: 300 //1 to 10000 (milliseconds)
     });
     var chorus = new tuna.Chorus({
         rate: 1.5,
@@ -91,6 +92,39 @@ function TrackTemplate() {
         resonance: 10, //1 to 100
         sensitivity: 0.5, //-1 to 1
         bypass: 0
+    });
+    var phaser = new tuna.Phaser({
+        rate: 5.0,                     //0.01 to 8 is a decent range, but higher values are possible
+        depth: 0.8,                    //0 to 1
+        feedback: 0.2,                 //0 to 1+
+        stereoPhase: 30,               //0 to 180
+        baseModulationFrequency: 700,  //500 to 1500
+        bypass: 0
+    });
+    var cabinet = new tuna.Cabinet({
+        makeupGain: 20,                                 //0 to 20
+        impulsePath: "/app/audio/impulse_guitar.wav",    //path to your speaker impulse
+        bypass: 0
+    });
+    // var overdrive = new tuna.Overdrive({
+    //     outputGain: 0.01,         //0 to 1+
+    //     drive: 0.01,              //0 to 1
+    //     curveAmount: 1,          //0 to 1
+    //     algorithmIndex: 1,       //0 to 5, selects one of our drive algorithms
+    //     bypass: 0
+    // });
+    
+
+    var tremolo = new tuna.Tremolo({
+        intensity: 0.5,    //0 to 1
+        rate: 4,         //0.001 to 8
+        stereoPhase: 90,    //0 to 180
+        bypass: 0
+    });
+    var bitcrusher = new tuna.Bitcrusher({
+        bits: 4,          //1 to 16
+        normfreq: 0.1,    //0 to 1
+        bufferSize: 4096  //256 to 16384
     });
 
     this.buffer = null;
@@ -314,6 +348,22 @@ function TrackTemplate() {
             _this.effect.container = wahwah;
             _this.effect.name = 'WAHWAH';
             break;
+        case 'TREMELO':
+            _this.effect.container = tremolo;
+            _this.effect.name = 'TREMELO';
+            break;
+        case 'BITCRUSHER':
+            _this.effect.container = bitcrusher;
+            _this.effect.name = 'BITCRUSHER';
+        break;
+        case 'PHASER':
+            _this.effect.container = phaser;
+            _this.effect.name = 'PHASER';
+        break;
+        case 'CABINET':
+            _this.effect.container = cabinet;
+            _this.effect.name = 'CABINET';
+        break;
         }
     };
 }

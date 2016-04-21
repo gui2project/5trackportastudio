@@ -30,5 +30,38 @@
         "objArray": "track",
         "func": "toggleEffect",
         "parameter": "WAHWAH"
+    },
+    {
+        "title": "Tremelo",
+        "desc": "Raises and lowers the volume rapidly",
+        "image": "/app/img/effects/tremelo-212121.png",
+        "objArray": "track",
+        "func": "toggleEffect",
+        "parameter": "TREMELO"
+    },
+    {
+        "title": "Bit Crusher",
+        "desc": "A digital distortion effect",
+        "image": "/app/img/effects/bit_crusher-212121.png",
+        "objArray": "track",
+        "func": "toggleEffect",
+        "parameter": "BITCRUSHER"
+    },
+    {
+        "title": "Phaser",
+        "desc": "Create a sweeping effect",
+        "image": "/app/img/effects/phaser-212121.png",
+        "objArray": "track",
+        "func": "toggleEffect",
+        "parameter": "PHASER"
+    },
+    {
+        "title": "Cabinet",
+        "desc": "Makes your instrument sound like a rock guitar",
+        "image": "/app/img/effects/Cabinet-212121.png",
+        "objArray": "track",
+        "func": "toggleEffect",
+        "parameter": "CABINET"
     }
+    
 ]
