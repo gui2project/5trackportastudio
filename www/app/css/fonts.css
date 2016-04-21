@@ -20,13 +20,14 @@
 
 /*Font stylings*/
 body,
-.sys-font {
+.dropdown .sys-font {
     font-family: 'Open Sans', sans-serif;
 }
 
 main > .container > .row-container .statistics td:last-child,
 div.stopWatch > div.timedisplay,
-.graph-clock-length-label {
+.graph-clock-length-label,
+.sys-font {
     font-family: 'Segment7Standard';
 }
 

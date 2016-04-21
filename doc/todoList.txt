@@ -1,12 +1,5 @@
-Colors in signup validator.
-    Change colors and size to a more visible option.
-
 Ping pong sounds like reverb.
     Change "time" parameter to give more space in between repetitions.
 
 Get started/login (fork at splash screen).
     No solution yet. M
-
-User is confused after signup and how to close the screen
-    Close partial after successful login
-    done - add down and up arrows to dropdown toggle.

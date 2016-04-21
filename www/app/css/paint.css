@@ -14,7 +14,7 @@ button,
     background-color: #FAFAFA;
 }
 
-.error,
+
 .hover,
 .panel-entry,
 .splash,
@@ -141,7 +141,7 @@ main > .container > .row-container label.vu {
 .information-title,
 .icon-right.err .fa-times,
 .icon-right.err .fa-unlock,
-.error,
+
 .hover,
 .record button:not(.disabledButton),
 .warning {
@@ -226,7 +226,7 @@ main > .container > .row-container li.scale-zero {
     background-image: none !important;
 }
 
-a.link-tutorial {
+a.link-tutorial, .error {
     background-color: #FF007D !important;
     color: #FAFAFA !important;
 }

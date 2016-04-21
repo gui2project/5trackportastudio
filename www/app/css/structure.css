@@ -996,6 +996,7 @@ p img {
 .eq.trip-exposed,
 .pan.trip-exposed,
 .meter.trip-exposed,
-.eq.trip-exposed{
+.eq.trip-exposed,
+.track-label.trip-exposed{
     background-color:transparent !important;
 }

@@ -174,13 +174,18 @@ $(document)
                 position: 'e',
                 content: '<p class="text-left max-width-100">You can use the slider to raise and lower the volume of a particular track.</p>'
             },{
-                sel: (trip.selector[18] = '#track-1 .meter:visible'),
-                expose: trip.selector[18],
+                sel: (trip.selector[19] = '#track-1 .meter:visible'),
+                expose: trip.selector[19],
                 position: 'e',
                 content: '<p class="text-left max-width-100">When a track is playing or recording with the volume on, the meter fills to show the current volume.</p>'
             },{
-                sel: (trip.selector[19] = '#master-1 .glass'),
-                expose: trip.selector[19],
+                sel: (trip.selector[20] = '#track-1 .track-label'),
+                expose: trip.selector[20],
+                position: 'e',
+                content: '<p class="text-left max-width-100">The track label can also be edited by clicking on the current label. When saving your mixes this label will be used to help name them.</p>'
+            },{
+                sel: (trip.selector[21] = '#master-1 .glass'),
+                expose: trip.selector[21],
                 position: 's',
                 content: '<p class="text-left max-width-100">You can watch track lengths, and play runtime on the display. The recording track is highlighted in pink, while the longest track is shaded. We represent track lengths as a percentage of the longest track, and display their length in time next to their bar length.</p>'
             },{
@@ -450,6 +455,38 @@ $(document)
                 content: 'Fast forward'
             }));
 
+        $('#login-email')
+            .qtip((qTipDefault)({
+                content: 'Enter a registered email'
+            }));
+        $('#login-password')
+            .qtip((qTipDefault)({
+                content: 'Enter your password'
+            }));
+        $('#dropdown-button-login')
+            .qtip((qTipDefault)({
+                content: 'Click to sign in'
+            }));
+        $('#register-email')
+            .qtip((qTipDefault)({
+                content: 'Enter a valid email'
+            }));
+        $('#register-name')
+            .qtip((qTipDefault)({
+                content: 'Enter your name'
+            }));
+        $('#register-password-1')
+            .qtip((qTipDefault)({
+                content: 'Enter a password that is at least 8 characters'
+            }));
+        $('#register-password-2')
+            .qtip((qTipDefault)({
+                content: 'Confirm your password'
+            }));
+        $('#dropdown-button-register')
+            .qtip((qTipDefault)({
+                content: 'Click to register with trackstudio'
+            }));
         //  FORM VALIDATION
 
         console.log('Init: forms');
