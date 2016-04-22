@@ -131,6 +131,8 @@ $(function () {
         });
 
     $('.master')
+        .atrr('data-track-length', 0)
+        .atrr('data-needle-position', 0)
         .on('update', function () {
             sw.setTrack('master', $(this)
                 .attr('data-track-length'));
