@@ -335,7 +335,7 @@ var positionNeedle = function (time) {
         percent = 0,
         offset = -1,
         master = $('#master-1')
-        .attr('data-track-length'),
+            .attr('data-track-length'),
         needle = function (position) {
             $('.graph-clock')
                 .find('.graph-clock-needle')
@@ -343,6 +343,8 @@ var positionNeedle = function (time) {
                     'left': position + '%'
                 });
         };
+
+    $('#master-1').attr('data-needle-position', time);
 
     if (master === 0) {
         needle(offset);

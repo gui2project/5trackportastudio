@@ -17,10 +17,11 @@ var StopWatch = function () {
 
     this.startAt = 0; //  start time
     this.lapTime = 0; //  run time
+    this.maxRunTime = 0;
+
     this.id = ''; //   Id name
     this.clocktimer = null; //   setinterval holder
     this.clocktimerBool = false; // if the interval has been started
-    this.maxRunTime = 0;
 
     /**
      *  Gets current time
@@ -39,7 +40,6 @@ var StopWatch = function () {
      *  @method     StopWatch.start
      */
     this.start = function () {
-
         _this.startAt = _this.startAt ? _this.startAt : _this.now();
     };
 
@@ -199,15 +199,21 @@ var StopWatch = function () {
      *  @return {Integer}   The current laptime.
      */
     this.adjust = function (offset) {
-        _this.run('STOP');
+        offset = dVar(offset, 0);
 
-        if ((_this.laptime + offset) <= 0) {
-            _this.run('RESET');
-        } else {
-            _this.laptime += offset;
+        var currentTime = $('#master-1').attr('data-needle-position');
+        var seek = parseInt(offset) + parseInt(currentTime);
+
+        console.log(seek, ' ', currentTime, ' ', _this.maxRunTime);
+
+        if (seek <= 0 || seek >= _this.maxRunTime) {
+            return;
         }
 
-        return _this.laptime;
+        console.log('Adjusting time: ' + offset);
+
+        return _this.lapTime += parseInt(offset);
+
     };
     /**
      *  Sets track or masters individual play length.
