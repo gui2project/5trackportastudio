@@ -36,8 +36,11 @@ var middleWare = function () {
     var mdb = {
         models: {},
         schema: {},
-        mongoose: require('mongoose')
+        mongoose: require('mongoose'),
+        fs: require('fs'),
+        grid: require('gridfs-stream')
     };
+    mdb.blob = mdb.mongoose.mongo;
 
     //  Declaring URI
     global.app.console.log(msg, 'Using URI:', ini.db.url);
@@ -81,7 +84,25 @@ var middleWare = function () {
 
     //  Attempting connection
     global.app.console.log(msg, 'Attempting connection ...');
-    mdb.mongoose.connection.once('open', function () { /* Waiting for connection*/ });
+    mdb.mongoose.connection.once('open', function () {
+        /* Waiting for connection*/
+
+        /* console.log('open');
+         var gfs = mdb.grid(mdb.mongoose.connection.db);
+
+         // streaming to gridfs
+         //filename to store in mongodb
+         var writestream = gfs.createWriteStream({
+             filename: 'mongo_file.txt'
+         });
+
+         mdb.fs.createReadStream(path.join(ini.path.documents, 'todoList.txt')).pipe(writestream);
+
+         writestream.on('close', function (file) {
+             // do something with `file`
+             console.log(file.filename + 'Written To DB');
+         });*/
+    });
 
     return mdb;
 };

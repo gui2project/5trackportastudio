@@ -41,6 +41,15 @@ var cfgMongoDB = yaml.load(ini.path.projectFiles.mongodb.cfg);
 
 //  CODE FORMATTER TASKS
 
+var printErr = function (stdout, stderr) {
+    if (stdout) {
+        console.log(stdout);
+    }
+    if (stderr) {
+        console.log(stderr);
+    }
+};
+
 //  JavaScript
 gulp.task('code.format.js', 'Formats JS code.', [],
     function (cb) {
@@ -250,9 +259,10 @@ gulp.task('git.push.heroku', false, ['git.push.master'],
 gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
     function (cb) {
         var cmdStr = 'git config --global credential.helper store';
-        return combiner.obj([
-            exec(cmdStr, gulpError.exec)
-        ]);
+        return exec(cmdStr, function (err, stdout, stderr) {
+            printErr(stdout, stderr);
+            cb(err);
+        });
     });
 //  User commands
 gulp.task('git.master', 'Pushes code to master branch.', ['git.push.master'],
@@ -282,33 +292,37 @@ gulp.task('service.mongodb.create.dirs', false, [],
 gulp.task('service.mongodb.create', false, [],
     function (cb) {
         var cmdStr = 'mongod.exe --config ' + ini.path.projectFiles.mongodb.cfg + ' --install';
-        return combiner.obj([
-            exec(cmdStr, gulpError.exec)
-        ]);
+        return exec(cmdStr, function (err, stdout, stderr) {
+            printErr(stdout, stderr);
+            cb(err);
+        });
     });
 //  Stop MongoDB service
 gulp.task('service.mongodb.stop', false, [],
     function (cb) {
         var cmdStr = 'net stop ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        return combiner.obj([
-            exec(cmdStr, gulpError.exec)
-        ]);
+        return exec(cmdStr, function (err, stdout, stderr) {
+            printErr(stdout, stderr);
+            cb(err);
+        });
     });
 //  Start MongoDB service
 gulp.task('service.mongodb.start', false, [],
     function (cb) {
         var cmdStr = 'net start ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        return combiner.obj([
-            exec(cmdStr, gulpError.exec)
-        ]);
+        return exec(cmdStr, function (err, stdout, stderr) {
+            printErr(stdout, stderr);
+            cb(err);
+        });
     });
 //  Remove MongoDB service
 gulp.task('service.mongodb.remove', false, ['service.mongodb.stop'],
     function (cb) {
         var cmdStr = 'sc.exe delete ' + cfgMongoDB.processManagement.windowsService.serviceName;
-        return combiner.obj([
-            exec(cmdStr, gulpError.exec)
-        ]);
+        return exec(cmdStr, function (err, stdout, stderr) {
+            printErr(stdout, stderr);
+            cb(err);
+        });
     });
 //  User Commands
 gulp.task('mongodb.config', 'Shows the MongoDB config file in json.', ['service.mongodb.show.config']);

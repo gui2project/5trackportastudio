@@ -131,8 +131,8 @@ $(function () {
         });
 
     $('.master')
-        .atrr('data-track-length', 0)
-        .atrr('data-needle-position', 0)
+        .attr('data-track-length', 0)
+        .attr('data-needle-position', 0)
         .on('update', function () {
             sw.setTrack('master', $(this)
                 .attr('data-track-length'));
@@ -313,7 +313,7 @@ $(function () {
     $('button.stop')
         .disableButton()
         .on('click', function () {
-            enableButton(['button.play', '.record button']); //'button.forward', 'button.rewind',
+            enableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
             disableButton(['button.stop']);
             stop();
         });
@@ -383,8 +383,8 @@ $(function () {
 
                 clearInterval(trackClear[trackId]);
 
-                enableButton(['button.play', '.record button']); //'button.forward', 'button.rewind',
-                disableButton(['button.forward', 'button.rewind']);
+                enableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
+
                 $(this)
                     .prop('disabled', 0);
             } else {

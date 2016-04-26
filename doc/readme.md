@@ -590,6 +590,22 @@ The database driver wrapper. It processes schema into models and then set up
 
 Waiting for connection
 
+console.log('open');
+         var gfs = mdb.grid(mdb.mongoose.connection.db);
+
+         // streaming to gridfs
+         //filename to store in mongodb
+         var writestream = gfs.createWriteStream({
+             filename: 'mongo_file.txt'
+         });
+
+         mdb.fs.createReadStream(path.join(ini.path.documents, 'todoList.txt')).pipe(writestream);
+
+         writestream.on('close', function (file) {
+             // do something with `file`
+             console.log(file.filename + 'Written To DB');
+         });
+
 <!-- End server\lib\mongodb.js -->
 
 

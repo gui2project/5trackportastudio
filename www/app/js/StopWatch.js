@@ -201,7 +201,8 @@ var StopWatch = function () {
     this.adjust = function (offset) {
         offset = dVar(offset, 0);
 
-        var currentTime = $('#master-1').attr('data-needle-position');
+        var currentTime = $('#master-1')
+            .attr('data-needle-position');
         var seek = parseInt(offset) + parseInt(currentTime);
 
         console.log(seek, ' ', currentTime, ' ', _this.maxRunTime);

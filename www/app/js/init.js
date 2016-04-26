@@ -227,14 +227,9 @@ var qTipDefault = function (obj) {
             classes: 'jquery-tooltips',
             tip: {
                 corner: corners[i],
-                height: pixels * 4,
-                width: pixels * 2
+                height: pixels * 4, //  arrow size
+                width: pixels * 2 //  arrow size
             },
-            border: {
-                width: 2,
-                radius: 3,
-                color: '#212121'
-            }
         }
     };
 };
@@ -335,7 +330,7 @@ var positionNeedle = function (time) {
         percent = 0,
         offset = -1,
         master = $('#master-1')
-            .attr('data-track-length'),
+        .attr('data-track-length'),
         needle = function (position) {
             $('.graph-clock')
                 .find('.graph-clock-needle')
@@ -344,7 +339,8 @@ var positionNeedle = function (time) {
                 });
         };
 
-    $('#master-1').attr('data-needle-position', time);
+    $('#master-1')
+        .attr('data-needle-position', time);
 
     if (master === 0) {
         needle(offset);
@@ -368,10 +364,10 @@ var positionNeedle = function (time) {
  *  @function resetMixer
  */
 var resetMixer = function () {
-    $('.record button[data-armed="1"]')
-        .trigger('click');
-
-    $('.mute button[data-muted="1"]')
+    $(['.record button[data-armed="1"]',
+                '.mute button[data-muted="1"]'
+            ]
+            .join(', '))
         .trigger('click');
 };
 
@@ -505,27 +501,6 @@ var trip = {
                 });
             //  Reset mixer
             resetMixer();
-        },
-        onTripChange: function () {
-            console.log('onTripChange');
-        },
-        onTripClose: function () {
-            console.log('onTripClose');
-        },
-        onTripEnd: function () {
-            console.log('onTripEnd');
-        },
-        onTripPause: function () {
-            console.log('onTripPause');
-        },
-        onTripResume: function () {
-            console.log('onTripResume');
-        },
-        onTripStart: function () {
-            console.log('onTripStart');
-        },
-        onTripStop: function () {
-            console.log('onTripStop');
         }
     },
     selector: []
