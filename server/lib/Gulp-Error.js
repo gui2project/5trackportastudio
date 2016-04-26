@@ -30,15 +30,19 @@ var GulpError = function () {
      *
      *  @method   ErrorGulp.exec
      *
+     *  @param  {Function}  cb          Callback function
      *  @param  {Object}    err         The error being handled
      *  @param  {Stream}    stdout      stdout stream
      *  @param  {Stream}    stderr      stderr stream
      */
-    this.exec = function (err, stdout, stderr) {
-        console.log('GULP-EXEC-ERROR', stdout, stderr);
-        if (err) {
-            throw err;
+    this.exec = function (cb, err, stdout, stderr) {
+        if (stdout) {
+            console.log(stdout);
         }
+        if (stderr) {
+            console.log(stderr);
+        }
+        cb(err);
     };
 
 };

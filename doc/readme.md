@@ -421,12 +421,13 @@ Processes a gulp-git error
 
 ---
 
-#### Method: ErrorGulp.exec(err, stdout, stderr)
+#### Method: ErrorGulp.exec(cb, err, stdout, stderr)
 
 Handles errors for gulp-exec.
 
 ##### Params:
 
+* **Function** *cb* Callback function
 * **Object** *err* The error being handled
 * **Stream** *stdout* stdout stream
 * **Stream** *stderr* stderr stream

@@ -41,15 +41,6 @@ var cfgMongoDB = yaml.load(ini.path.projectFiles.mongodb.cfg);
 
 //  CODE FORMATTER TASKS
 
-var printErr = function (stdout, stderr) {
-    if (stdout) {
-        console.log(stdout);
-    }
-    if (stderr) {
-        console.log(stderr);
-    }
-};
-
 //  JavaScript
 gulp.task('code.format.js', 'Formats JS code.', [],
     function (cb) {
@@ -260,8 +251,7 @@ gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
     function (cb) {
         var cmdStr = 'git config --global credential.helper store';
         return exec(cmdStr, function (err, stdout, stderr) {
-            printErr(stdout, stderr);
-            cb(err);
+            gulpError.exec(cb, err, stdout, stderr);
         });
     });
 //  User commands
@@ -293,8 +283,7 @@ gulp.task('service.mongodb.create', false, [],
     function (cb) {
         var cmdStr = 'mongod.exe --config ' + ini.path.projectFiles.mongodb.cfg + ' --install';
         return exec(cmdStr, function (err, stdout, stderr) {
-            printErr(stdout, stderr);
-            cb(err);
+            gulpError.exec(cb, err, stdout, stderr);
         });
     });
 //  Stop MongoDB service
@@ -302,8 +291,7 @@ gulp.task('service.mongodb.stop', false, [],
     function (cb) {
         var cmdStr = 'net stop ' + cfgMongoDB.processManagement.windowsService.serviceName;
         return exec(cmdStr, function (err, stdout, stderr) {
-            printErr(stdout, stderr);
-            cb(err);
+            gulpError.exec(cb, err, stdout, stderr);
         });
     });
 //  Start MongoDB service
@@ -311,8 +299,7 @@ gulp.task('service.mongodb.start', false, [],
     function (cb) {
         var cmdStr = 'net start ' + cfgMongoDB.processManagement.windowsService.serviceName;
         return exec(cmdStr, function (err, stdout, stderr) {
-            printErr(stdout, stderr);
-            cb(err);
+            gulpError.exec(cb, err, stdout, stderr);
         });
     });
 //  Remove MongoDB service
@@ -320,8 +307,7 @@ gulp.task('service.mongodb.remove', false, ['service.mongodb.stop'],
     function (cb) {
         var cmdStr = 'sc.exe delete ' + cfgMongoDB.processManagement.windowsService.serviceName;
         return exec(cmdStr, function (err, stdout, stderr) {
-            printErr(stdout, stderr);
-            cb(err);
+            gulpError.exec(cb, err, stdout, stderr);
         });
     });
 //  User Commands
