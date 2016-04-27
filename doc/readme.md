@@ -29,7 +29,7 @@ This readme holds the documentation for the code in the project, it is dynamical
 	   --m="message"        Commit message to use.
 	  help                  Display this help text.
 	  mongodb.config        Shows the MongoDB config file in json.
-	  mongodb.create        Creates MongoDB service on windows.
+	  mongodb.create        Creates MongoDB service on windows and starts it.
 	  mongodb.delete        Removes MongoDB service on windows.
 	  mongodb.start         Starts MongoDB service on windows.
 	  mongodb.stop          Stops MongoDB service on windows.

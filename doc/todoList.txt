@@ -1,5 +1,0 @@
-Ping pong sounds like reverb.
-    Change "time" parameter to give more space in between repetitions.
-
-Get started/login (fork at splash screen).
-    No solution yet. M

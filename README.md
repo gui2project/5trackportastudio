@@ -1,13 +1,23 @@
 # trackstudio
-## About
-A University of Massachusetts: Lowell class project for Graphical User
-Interfaces II under proffer Jesse Heines during the Spring 2015 semester.
-### Members
+
+## About Project
+trakstudio is A University of Massachusetts: Lowell class capstone project for Graphical User Interfaces II under proffesor Jesse Heines during the Spring 2015 semester.
+
 - Glen Anderson
 - Dominic Cabral
 - Jose Flores
 - Ramon Meza
 
+Our goal is to create a simplified sound recording application that works in modern web browsers through the Web Audio API. We will differentiate our application by presenting the user with "creative constraints". This will help them focus on their music rather than the technicalities associated with other sound recording applications. We will achieve this by not including visual waveforms and limiting the amount of recordable tracks to four, reducing the interface and indirectly setting a goal for the artist.
+
+Our target audience consists of musicians and songwriters, of both genders ages 13 and older, who like to record demos or music without having to download software. The user must have access to a modern web browser and a microphone. Our target audience is able to navigate a website and is familiar with how knobs, buttons, and sliders function. Users do not necessarily have prior sound recording experience, as a tutorial is provided.
+
+### Reports
+- [Proposal](https://trackstudio.herokuapp.com/api/get/doc/report-proposal)
+- [Alpha Memo](https://trackstudio.herokuapp.com/api/get/doc/report-memo)
+- [Beta and Usability](https://trackstudio.herokuapp.com/api/get/doc/report-usability)
+
+## Application
 ### File structure
 ```
 trackstudio
@@ -26,7 +36,6 @@ trackstudio
 │   │   ├───controllers/    Output controllers.
 │   │   ├───models/         Data files
 │   │   └───views/          Jade layouts.
-│   │       ├───layout/     Full page layouts.
 │   │       ├───mixin/      Jade mixins.
 │   │       └───content/    page content.
 │   │
@@ -50,31 +59,40 @@ trackstudio
 └───README.md               Installation instructions.
 ```
 
-## Requirements
-### Dependencies
-#### Installation
-- `python 2.7` (for `mongoose`)
-- `Git`
-- `Node.js` and `npm`
-- `MongoDB`
-- Capability of running `.sh` files from `Terminal` or `Powershell`
+### Clientside Libraries
+- [bootstrap](http://getbootstrap.com)
+- [bootstrap-slider](https://github.com/seiyria/bootstrap-slider)
+- [jQuery](http://jquery.com)
+- [jQuery-color](https://github.com/jquery/jquery-color)
+- [jQuery-knob](https://github.com/aterrien/jQuery-Knob)
+- [jQuery-pulse](https://github.com/jsoverson/jquery.pulse.js)
+- [jQuery-qtip](http://qtip2.com/download)
+- [jQuery-validation](https://github.com/jzaefferer/jquery-validation)
+- [js-cookie](https://github.com/js-cookie/js-cookie)
+- [Recorder.js](https://github.com/mattdiamond/Recorderjs)
+- [Trip.js](https://github.com/EragonJ/Trip.js)
+- [Tuna.js](https://github.com/Theodeus/tuna)
+- [volume-meter](https://github.com/cwilso/volume-meter)
 
-#### Environment Variables
+## Requirements
+
+### Software
+- `Git`
+- `Node.js`
+- `npm`
+- `MongoDB`
+
+### Environment Variables
 - `MONGO_DB_USER` - Holds an administrator username to the `MongoDB`
 - `MONGO_DB_PASS` - Holds the password to the `MongoDB` for the administrator `MONGO_DB_USER`
-- `TS_COOKIE_SECRET` - Holds the cookie secret value (Security).
-- `TS_SSL_CERT` - Holds the SSL certificate (Future)
-- `TS_SSL_KEY` - Holds the SSL key (Future)
 - `TS_RUN_MODE` - development | production
 - `NODE_ENV` - development | production
 
-
-#### Runtime
+### Runtime
 - `Web Audio API` compatible browser, for a full list see
     https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
 
-## Install
-### Dependencies
+## Installation
 1. Install `Git` for your system.
     https://git-scm.com/downloads
 
@@ -84,69 +102,49 @@ trackstudio
 3. Install `MongoDB` on your database server.
     https://www.mongodb.org/downloads#production
 
-4. Install `Python 2.7`.
-    https://www.python.org/download/releases/2.7/
-
-### Source
-1. Open a bash capable `Terminal` or `Powershell`.
-
-2. Clone the repository.
+4. Clone the repository.
     ```
     git clone https://github.com/gui2project/5trackportastudio.git
     ```
 
-3. Run the install script.
+5. Run the install script.
     ```
     cd 5trackportastudio && npm install
     ```
 
-### Databse (Windows System)
-- To install
- - verify the contents of `ini\mongodb.cfg` and `ini\common\db.js` match your installation
- - run:
-        ```
-        gulp mongodb.create
-        ```
-
-- To Remove (leaves data and logs intact)
+## Configuration (Windows)
+1. Verify the contents of `ini\mongodb.cfg` match your installation by running
     ```
-    gulp mongodb.remove
+    gulp mongodb.config
     ```
 
-- To start the service run:
+2. To create and start a windows service with the configuration run:
     ```
-    gulp mongodb.start
+    gulp mongodb.create
     ```
-
-- To stop the service run:
-    ```
-    gulp mongodb.stop
-    ```
+3. You will then need to manually add a user that matches `MONGO_DB_USER`:`MONGO_DB_PASS`, with admin read write to a collection `trackstudio`.
 
 ## Deployment
-### Local
-- To start run:
+Deployments through `Gulp` will format, check syntax and extract documentation. For a full list of commands available run:
+```
+gulp help
+```
+
+### Development
+trackstudio by default uses [Nodemon](https://www.npmjs.com/package/nodemon) to run our application on port `3000`.
+We also use the master branch as a development branch, and to quickly save changes to the master branch we recomend to run :
+- Only the first time
     ```
-    nodemon
+    gulp git.cred.store
+    ```
+- Everytime
+    ```
+    gulp git.master --m="commit message"
     ```
 
-- To restart type:
-    ```
-    rs
-    ```
-
-- To stop type:
-    ```
-    ctrl-c
-    ```
-
-### Git
-- To push to the `master` branch run:
-    ```
-    gulp git.master
-    ```
-
-- To push to the `master` branch, and to the `heroku` branch; deploying to https://trackstudio.heroku.com run:
+### Production
+We have integrated Github with Heroku and to deploy directly to the production server at [https://trackstudio.heroku.com](https://trackstudio.heroku.com) through Gulp.
+- we use:
     ```
     gulp git.heroku
     ```

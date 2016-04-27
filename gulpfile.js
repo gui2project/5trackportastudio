@@ -22,6 +22,7 @@ var lintJs = require('gulp-jshint');
 var lintJson = require('gulp-jsonlint');
 var mkdirp = require('mkdirp');
 var path = require('path');
+var runSequence = require('run-sequence');
 var yaml = require('yamljs');
 
 //  Get application root directory and system mode
@@ -45,21 +46,27 @@ var cfgMongoDB = yaml.load(ini.path.projectFiles.mongodb.cfg);
 gulp.task('code.format.js', 'Formats JS code.', [],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeFormat(ini.path.projectFiles.js.loc, formatJs, require(ini.path.projectFiles.js.format))
+            gulpScripts.codeFormat(ini.path.projectFiles.js.loc,
+                formatJs,
+                require(ini.path.projectFiles.js.format))
         ]);
     });
 //  CSS
 gulp.task('code.format.css', 'Formats CSS code.', [],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeFormat(ini.path.projectFiles.css.loc, formatCss, require(ini.path.projectFiles.css.format))
+            gulpScripts.codeFormat(ini.path.projectFiles.css.loc,
+                formatCss,
+                require(ini.path.projectFiles.css.format))
         ]);
     });
 //  JSON
 gulp.task('code.format.json', 'Formats JSON code.', [],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeFormat(ini.path.projectFiles.json.loc, formatJson, 4)
+            gulpScripts.codeFormat(ini.path.projectFiles.json.loc,
+                formatJson,
+                4)
         ]);
     });
 
@@ -72,28 +79,40 @@ gulp.task('code.format', 'Formats code base', ['code.format.js', 'code.format.cs
 gulp.task('code.lint.js', 'Checks JS syntax.', ['code.format.js'],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeLint(ini.path.projectFiles.js.loc, lintJs, ini.path.projectFiles.js.linter, true)
+            gulpScripts.codeLint(ini.path.projectFiles.js.loc,
+                lintJs,
+                ini.path.projectFiles.js.linter,
+                true)
         ]);
     });
 //  Json
 gulp.task('code.lint.json', 'Checks json syntax.', ['code.format.json'],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeLint(ini.path.projectFiles.json.loc, lintJson, null, true)
+            gulpScripts.codeLint(ini.path.projectFiles.json.loc,
+                lintJson,
+                null,
+                true)
         ]);
     });
 //  CSS
 gulp.task('code.lint.css', 'Checks css syntax.', ['code.format.css'],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeLint(ini.path.projectFiles.css.loc, lintCss, ini.path.projectFiles.css.linter, true)
+            gulpScripts.codeLint(ini.path.projectFiles.css.loc,
+                lintCss,
+                ini.path.projectFiles.css.linter,
+                true)
         ]);
     });
 //  Jade/ Pug
 gulp.task('code.lint.jade', 'Checks jade/pug syntax.', [],
     function (cb) {
         return combiner.obj([
-            gulpScripts.codeLint(ini.path.projectFiles.jade.loc, lintJade, ini.path.projectFiles.jade.linter, false)
+            gulpScripts.codeLint(ini.path.projectFiles.jade.loc,
+                lintJade,
+                ini.path.projectFiles.jade.linter,
+                false)
         ]);
     });
 //  User Commands
@@ -281,15 +300,8 @@ gulp.task('service.mongodb.create.dirs', false, [],
 //  Create MongoDB service
 gulp.task('service.mongodb.create', false, [],
     function (cb) {
-        var cmdStr = 'mongod.exe --config ' + ini.path.projectFiles.mongodb.cfg + ' --install';
-        return exec(cmdStr, function (err, stdout, stderr) {
-            gulpError.exec(cb, err, stdout, stderr);
-        });
-    });
-//  Stop MongoDB service
-gulp.task('service.mongodb.stop', false, [],
-    function (cb) {
-        var cmdStr = 'net stop ' + cfgMongoDB.processManagement.windowsService.serviceName;
+        var cmdStr = ini.path.projectFiles.mongodb.cfg + ' --config \'' +
+            ini.path.projectFiles.mongodb.cfg + '\' --install';
         return exec(cmdStr, function (err, stdout, stderr) {
             gulpError.exec(cb, err, stdout, stderr);
         });
@@ -297,7 +309,17 @@ gulp.task('service.mongodb.stop', false, [],
 //  Start MongoDB service
 gulp.task('service.mongodb.start', false, [],
     function (cb) {
-        var cmdStr = 'net start ' + cfgMongoDB.processManagement.windowsService.serviceName;
+        var cmdStr = 'net start ' +
+            cfgMongoDB.processManagement.windowsService.serviceName;
+        return exec(cmdStr, function (err, stdout, stderr) {
+            gulpError.exec(cb, err, stdout, stderr);
+        });
+    });
+//  Stop MongoDB service
+gulp.task('service.mongodb.stop', false, [],
+    function (cb) {
+        var cmdStr = 'net stop ' +
+            cfgMongoDB.processManagement.windowsService.serviceName;
         return exec(cmdStr, function (err, stdout, stderr) {
             gulpError.exec(cb, err, stdout, stderr);
         });
@@ -305,14 +327,18 @@ gulp.task('service.mongodb.start', false, [],
 //  Remove MongoDB service
 gulp.task('service.mongodb.remove', false, ['service.mongodb.stop'],
     function (cb) {
-        var cmdStr = 'sc.exe delete ' + cfgMongoDB.processManagement.windowsService.serviceName;
+        var cmdStr = ini.path.projectFiles.mongodb.cfg + ' --config \'' +
+            ini.path.projectFiles.mongodb.cfg + '\' --remove';
         return exec(cmdStr, function (err, stdout, stderr) {
             gulpError.exec(cb, err, stdout, stderr);
         });
     });
 //  User Commands
 gulp.task('mongodb.config', 'Shows the MongoDB config file in json.', ['service.mongodb.show.config']);
-gulp.task('mongodb.create', 'Creates MongoDB service on windows.', ['service.mongodb.create']);
+gulp.task('mongodb.create', 'Creates MongoDB service on windows and starts it.', ['service.mongodb.create'],
+    function (cb) {
+        runSequence('service.mongodb.start');
+    });
 gulp.task('mongodb.start', 'Starts MongoDB service on windows.', ['service.mongodb.start']);
 gulp.task('mongodb.stop', 'Stops MongoDB service on windows.', ['service.mongodb.stop']);
 gulp.task('mongodb.delete', 'Removes MongoDB service on windows.', ['service.mongodb.remove']);

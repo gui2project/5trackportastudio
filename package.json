@@ -84,6 +84,7 @@
         "mkdir": "0.0.2",
         "mkdirp": "^0.5.1",
         "path": "^0.12.7",
+        "run-sequence": "^1.1.5",
         "stream-combiner": "^0.2.2",
         "stream-combiner2": "^1.1.1",
         "windows-service-controller": "^0.1.5",
