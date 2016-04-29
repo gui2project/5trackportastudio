@@ -52,7 +52,6 @@ var ErrorHandler = function () {
      */
     this.server = function (err, req, res, next) {
         res.status(err.status || 500);
-
         res.render(path.join(ini.path.views, 'page.error.jade'), {
             title: '500: Internal Server Error',
             message: 'There was an error in our system, sorry for the inconvenience.',

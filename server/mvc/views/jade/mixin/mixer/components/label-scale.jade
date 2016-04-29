@@ -1,0 +1,52 @@
+//- The volume scale
+//- @name label-scale
+
+//- Include components
+include ../../icon-header.jade
+//- Adds a volume scale
+//- @function label-scale
+mixin label-scale()
+    .col-md-6
+        ul.scale
+            li.scale-5L-top
+                //  Scale labels
+                label.vu
+                    +icon-header('percent', false, false, false)
+                label.db db
+            li.scale-5L-bottom
+            li.scale-5L-middle
+                label.db.alone 5
+            li.scale-5L-bottom
+            li.scale-5L-middle
+                label.vu 100
+                label.db 0
+            li.scale-5L-bottom
+            li.scale-5L-middle
+                label.db.alone 5
+            li.scale-5L-bottom
+            li.scale-5L-middle
+                label.vu 32
+                label.db 10
+            li.scale-5L-bottom
+            li.scale-5L-middle
+                label.db.alone 15
+            li.scale-5L-bottom
+            li.scale-5L-middle
+                label.vu 10
+                label.db 20
+            li.scale-5L-bottom
+            li.scale-5L-middle
+                label.db.alone 25
+            li.scale-5L-bottom
+            li.scale-5L-middle
+                label.vu 3
+                label.db 30
+            li.scale-5L-bottom
+            li.scale-5S
+                label.db.alone 35
+            li.scale-10
+                label.vu 1
+                label.db 40
+            li.scale-zero
+                label.vu 0
+                label.db 50

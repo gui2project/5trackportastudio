@@ -1,0 +1,20 @@
+//- This file is the master template for the application
+//- @name page.error.jade
+
+//- Extend components
+extends ./template/index-error.jade
+
+block content
+    //  Page Generation Error
+    main
+        .jade-error
+            .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                //  Link back to application
+                .col-md-12.col-sm-12.col-xs-12
+                    span.icon-white.link-tutorial.pointer(onclick='window.location ="/"') trackstudio
+            // Error report
+            .left
+                h1= title
+                p= message
+                h2= error.status
+                pre= error.stack

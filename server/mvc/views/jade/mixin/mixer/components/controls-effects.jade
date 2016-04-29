@@ -1,0 +1,19 @@
+//- Generates the effects box
+//- @name controls-effects.jade
+
+//- Include components
+include ./label-section.jade
+//- Adds the effects box to a track
+//- @function controls-effects
+//- @param {Integer} trknum The index fo the parent track
+mixin controls-effects(trknum)
+    .row
+        .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            +label-section('Effect')
+        .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+            // Effects Button
+            .fx-box
+                .col-md-12.col-sm-12.col-xs-12.square-wrapper
+                    button.link-fx-box.square-inner
+                        img(src='/app/img/effects/system-add-212121.png')
+

@@ -22,7 +22,7 @@ var ini = require(global.app.ini()); //  configuration object
 /**
  *  The GulpScripts class, holds all the common functions as methods.
  *
- * @class  GulpScripts
+ *  @class  GulpScripts
  */
 function GulpScripts() {
 
@@ -75,9 +75,7 @@ function GulpScripts() {
         ];
 
         if (srcOverride === false) {
-            {
-                tasks.unshift(gulp.src('./app.js'));
-            }
+            tasks.unshift(gulp.src('./app.js'));
         } else if (srcOverride !== null) {
             tasks.unshift(gulp.src(srcOverride));
         }
@@ -159,14 +157,14 @@ function GulpScripts() {
     };
 }
 /**
- *  @function   middleWare
- *
  *  GulpScripts middle ware intercept function
  *
+ *  @function   middleWare
  *  @return  {Obj.GulpScripts}    The GulpScripts object
  */
 var middleWare = function () {
     return new GulpScripts();
 };
+
 //  Export content
 module.exports = middleWare;

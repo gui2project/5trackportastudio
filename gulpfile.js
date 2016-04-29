@@ -43,7 +43,7 @@ var cfgMongoDB = yaml.load(ini.path.projectFiles.mongodb.cfg);
 //  CODE FORMATTER TASKS
 
 //  JavaScript
-gulp.task('code.format.js', 'Formats JS code.', [],
+gulp.task('code.format.js', 'Formats JavaScript code.', [],
     function (cb) {
         return combiner.obj([
             gulpScripts.codeFormat(ini.path.projectFiles.js.loc,
@@ -76,7 +76,7 @@ gulp.task('code.format', 'Formats code base', ['code.format.js', 'code.format.cs
 //  CODE LINTERS TASKS
 
 //  JavaScript
-gulp.task('code.lint.js', 'Checks JS syntax.', ['code.format.js'],
+gulp.task('code.lint.js', 'Checks JavaScript syntax.', ['code.format.js'],
     function (cb) {
         return combiner.obj([
             gulpScripts.codeLint(ini.path.projectFiles.js.loc,
@@ -85,8 +85,8 @@ gulp.task('code.lint.js', 'Checks JS syntax.', ['code.format.js'],
                 true)
         ]);
     });
-//  Json
-gulp.task('code.lint.json', 'Checks json syntax.', ['code.format.json'],
+//  JSON
+gulp.task('code.lint.json', 'Checks JSON syntax.', ['code.format.json'],
     function (cb) {
         return combiner.obj([
             gulpScripts.codeLint(ini.path.projectFiles.json.loc,
@@ -96,7 +96,7 @@ gulp.task('code.lint.json', 'Checks json syntax.', ['code.format.json'],
         ]);
     });
 //  CSS
-gulp.task('code.lint.css', 'Checks css syntax.', ['code.format.css'],
+gulp.task('code.lint.css', 'Checks CSS syntax.', ['code.format.css'],
     function (cb) {
         return combiner.obj([
             gulpScripts.codeLint(ini.path.projectFiles.css.loc,
@@ -128,11 +128,11 @@ gulp.task('code.doc.js', false, ['code.doc.clean.js', 'code.lint.js', 'code.form
             gulpIgnore.exclude('./gulpfile.js'),
             //  make ./doc/documentation-js.md
             gulpScripts.genSingleMarkdox({
-                template: path.join(ini.path.template, 'template.md.js.ejs')
+                template: path.join(ini.path.ejs, 'template.md.js.ejs')
             }, './doc/', 'documentation-js.md', null),
             //  make ./doc/documentation-js-head.md
             gulpScripts.genSingleMarkdox({
-                template: path.join(ini.path.template, 'template.md.js.head.ejs')
+                template: path.join(ini.path.ejs, 'template.md.js.head.ejs')
             }, './doc/', 'documentation-js-head.md', false)
         ]);
     });
@@ -144,7 +144,7 @@ gulp.task('code.doc.gulp', false, ['code.doc.clean.gulp', 'code.lint.js', 'code.
             gulp.src('./gulpfile.js'),
             //  make ./doc/documentation-gulp-head.md
             gulpScripts.genSingleMarkdox({
-                template: path.join(ini.path.template, 'template.md.gulp.head.ejs')
+                template: path.join(ini.path.ejs, 'template.md.gulp.head.ejs')
             }, './doc/', 'documentation-gulp-head.md', false),
             //  make ./doc/documentation-gulp-out.md
             gulpScripts.outputToExample('gulp', {
@@ -154,7 +154,7 @@ gulp.task('code.doc.gulp', false, ['code.doc.clean.gulp', 'code.lint.js', 'code.
             }, './doc/', 'documentation-gulp-out.md'),
             //  make ./doc/documentation-gulp.md
             gulpScripts.genSingleMarkdox({
-                template: path.join(ini.path.template, 'template.md.js.ejs')
+                template: path.join(ini.path.ejs, 'template.md.js.ejs')
             }, './doc/', 'documentation-gulp.md', null)
         ]);
     });
@@ -165,7 +165,7 @@ gulp.task('code.doc.readme', false, ['code.doc.clean.readme'],
             gulp.src('./gulpfile.js'),
             //  make ./doc/readme.md
             gulpScripts.genSingleMarkdox({
-                template: path.join(ini.path.template, 'template.md.readme.ejs')
+                template: path.join(ini.path.ejs, 'template.md.readme.ejs')
             }, './doc/', 'readme.md', false)
         ]);
     });
@@ -202,7 +202,7 @@ gulp.task('code.doc.clean.readme', false, [],
             ])
         ]);
     });
-//  Clean JS Readmes
+//  Clean JavaScript Readmes
 gulp.task('code.doc.clean.js', false, [],
     function (cb) {
         return combiner.obj([
@@ -277,13 +277,13 @@ gulp.task('git.cred.store', 'Tell git to store your credentials.', [],
 gulp.task('git.master', 'Pushes code to master branch.', ['git.push.master'],
     function () {},
     ini.opt.git.commit);
-gulp.task('git.heroku', 'Pushes code to master branch, heroku branch, and deploys to heroku.', ['git.push.heroku'],
+gulp.task('git.heroku', 'Pushes code to `master` branch, `heroku` branch, and deploys to Heroku.', ['git.push.heroku'],
     function () {},
     ini.opt.git.commit);
 
 //  WINDOWS SERVICES TASKS
 
-//  Show translated configuration file to json
+//  Show translated configuration file to JSON
 gulp.task('service.mongodb.show.config', false, [],
     function (cb) {
         console.log(cfgMongoDB);
@@ -334,7 +334,7 @@ gulp.task('service.mongodb.remove', false, ['service.mongodb.stop'],
         });
     });
 //  User Commands
-gulp.task('mongodb.config', 'Shows the MongoDB config file in json.', ['service.mongodb.show.config']);
+gulp.task('mongodb.config', 'Shows the MongoDB configuration file in JSON.', ['service.mongodb.show.config']);
 gulp.task('mongodb.create', 'Creates MongoDB service on windows and starts it.', ['service.mongodb.create'],
     function (cb) {
         runSequence('service.mongodb.start');

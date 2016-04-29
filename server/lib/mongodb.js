@@ -14,8 +14,6 @@ var ini = require(global.app.ini());
 var msg = '[ MongoDB ]';
 
 /**
- *  @function   middleWare
- *
  *  GlobalApplication middle ware intercept function
  *
  *  Examples:
@@ -26,6 +24,7 @@ var msg = '[ MongoDB ]';
  *          mongoose: require('mongoose')   //  The instance of mongoose to use
  *     };
  *
+ *  @function   middleWare
  *  @return  {Obj}    The Mongo DB connection object, see the example
  */
 var middleWare = function () {
@@ -87,7 +86,9 @@ var middleWare = function () {
     mdb.mongoose.connection.once('open', function () {
         /* Waiting for connection*/
 
-        /* console.log('open');
+        /* WORKING WITH BLOBS (FUTURE)
+
+        console.log('open');
          var gfs = mdb.grid(mdb.mongoose.connection.db);
 
          // streaming to gridfs

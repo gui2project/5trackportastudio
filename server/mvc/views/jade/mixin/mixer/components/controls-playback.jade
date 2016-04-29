@@ -1,0 +1,27 @@
+//- Generates playback controls
+//- @name controls-playback.jade
+
+//- Include compornents
+include ../../icon-header.jade
+include ./label-section.jade
+//- Adds playback controls
+//- @function controls-playback
+mixin controls-playback()
+    // Playback buttons
+    .row
+        .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            +label-section('Controls')
+        .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+            .playback.col-md-12.col-sm-12.col-xs-12
+                .col-md-3.col-sm-3.col-xs-3
+                    button.stop.data-not-active(value="Stop")
+                        +icon-header('stop', 'Stop', false, false)
+                .col-md-3.col-sm-3.col-xs-3
+                    button.play.data-not-active(value="Play")
+                        +icon-header('play', 'Play', false, false)
+                .col-md-3.col-sm-3.col-xs-3
+                    button.rewind.data-not-active(value="Rewind")
+                        +icon-header('rewind', 'Rewind', false, false)
+                .col-md-3.col-sm-3.col-xs-3
+                    button.forward.data-not-active(value="Fast Forward")
+                        +icon-header('forward', 'Fast Forward', false, false)

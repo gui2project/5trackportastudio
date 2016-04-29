@@ -20,7 +20,7 @@ var msg = '[ SECURITY ]';
 /**
  *  This is the Security object. It adds hashing and authentication to the application..
  *
- *  ### Examples:
+ *  Examples:
  *
  *      var security = new Security();
  *      var salt = security.salt();

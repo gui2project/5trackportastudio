@@ -94,7 +94,8 @@ var paths = {
     users: path.join(root, 'server', 'routes', 'users'),
     template: path.join(root, 'server', 'mvc', 'views', 'template'),
     tripjs: path.join(root, 'node_modules', 'trip.js', 'dist'),
-    views: path.join(root, 'server', 'mvc', 'views')
+    views: path.join(root, 'server', 'mvc', 'views', 'jade'),
+    ejs: path.join(root, 'server', 'mvc', 'views', 'ejs')
 };
 
 //  Export content

@@ -107,5 +107,5 @@
         "install": "npm install -g nodemon gulp",
         "start": "node ./bin/www"
     },
-    "version": "0.1.0"
+    "version": "0.3.0"
 }

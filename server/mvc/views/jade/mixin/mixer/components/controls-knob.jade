@@ -1,0 +1,19 @@
+//- Generates the knobs
+//- @name controls-knob.jade
+
+//- Add a knob to the track
+//- @function controls-knob
+//- @ param {Integer} trkNum
+//- @ param {String} label The knobs Label
+//- @ param {String} knobClasses Classes to add to knob
+//- @ param {String} lowLabel The label for the low value
+//- @ param {String} highLabel The label for the High value
+//- @ param {Enum} eqType The type of knob LOW, HIGH, PAN
+mixin controls-knob(trkNum, label, knobClasses, lowLabel, highLabel, eqType)
+    //  Knob
+    .row.row-knob
+        div(class=knobClasses + " track-knob-eq", value=trkNum type=eqType)
+            label.col-md-12=label
+            span=lowLabel
+            input(type='text')
+            span=highLabel

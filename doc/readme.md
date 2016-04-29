@@ -12,15 +12,15 @@ This readme holds the documentation for the code in the project, it is dynamical
 	  code.doc              Documents code base
 	  code.format           Formats code base
 	  code.format.css       Formats CSS code.
-	  code.format.js        Formats JS code.
+	  code.format.js        Formats JavaScript code.
 	  code.format.json      Formats JSON code.
 	  code.lint             Performs all syntax tests
-	  code.lint.css         Checks css syntax.
+	  code.lint.css         Checks CSS syntax.
 	  code.lint.jade        Checks jade/pug syntax.
-	  code.lint.js          Checks JS syntax.
-	  code.lint.json        Checks json syntax.
+	  code.lint.js          Checks JavaScript syntax.
+	  code.lint.json        Checks JSON syntax.
 	  git.cred.store        Tell git to store your credentials.
-	  git.heroku            Pushes code to master branch, heroku branch, and deploys to heroku. 
+	  git.heroku            Pushes code to `master` branch, `heroku` branch, and deploys to Heroku. 
 	   --m="message"        Commit message to use.
 	  git.master            Pushes code to master branch. 
 	   --m="message"        Commit message to use.
@@ -28,7 +28,7 @@ This readme holds the documentation for the code in the project, it is dynamical
 	  git.pull              Gets the latest code base from the repository. 
 	   --m="message"        Commit message to use.
 	  help                  Display this help text.
-	  mongodb.config        Shows the MongoDB config file in json.
+	  mongodb.config        Shows the MongoDB configuration file in JSON.
 	  mongodb.create        Creates MongoDB service on windows and starts it.
 	  mongodb.delete        Removes MongoDB service on windows.
 	  mongodb.start         Starts MongoDB service on windows.
@@ -554,8 +554,9 @@ Checks syntax of a filetype
 
 ---
 
-### Function: middleWare 
- GulpScripts middle ware intercept function()
+### Function: middleWare()
+
+GulpScripts middle ware intercept function
 
 #### Return:
 
@@ -574,8 +575,9 @@ The database driver wrapper. It processes schema into models and then set up
 
 ---
 
-### Function: middleWare 
- GlobalApplication middle ware intercept function
+### Function: middleWare()
+
+GlobalApplication middle ware intercept function
 
  Examples:
 
@@ -583,7 +585,7 @@ The database driver wrapper. It processes schema into models and then set up
          models: {}, //  All the MongoDB models
          schema: {}, //  All the MongoDB scemas
          mongoose: require('mongoose')   //  The instance of mongoose to use
-    };()
+    };
 
 #### Return:
 
@@ -591,7 +593,9 @@ The database driver wrapper. It processes schema into models and then set up
 
 Waiting for connection
 
-console.log('open');
+WORKING WITH BLOBS (FUTURE)
+
+        console.log('open');
          var gfs = mdb.grid(mdb.mongoose.connection.db);
 
          // streaming to gridfs
@@ -625,7 +629,7 @@ The Security handler for the application.
 
 This is the Security object. It adds hashing and authentication to the application..
 
- ### Examples:
+ Examples:
 
      var security = new Security();
      var salt = security.salt();

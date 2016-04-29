@@ -1,0 +1,21 @@
+//- Generates the master track
+//- @name master.jade
+
+//- Include components
+include ../components/label-track.jade
+include ../components/visualization-time.jade
+include ../components/controls-playback.jade
+//- Generates a master track
+//- @function master
+//- @param {Integer} masterNum The index of the master track
+mixin master(masterNum)
+    // Master Track
+    div.col-md-push-8.col-md-4.col-sm-12.col-xs-12.master(id="master-" + masterNum, data-track-length='0')
+        +label-track(-1, 'Master')
+        +controls-playback()
+        +visualization-time()
+        // Brand Label
+        .row.bottom
+            .col-xs-0.col-sm-12.col-md-12.col-lg-12
+                div.col-md-12.col-sm-12.col-xs-12
+                    span.icon-white trackstudio

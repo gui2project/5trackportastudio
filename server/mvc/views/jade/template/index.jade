@@ -1,0 +1,28 @@
+//- This file is the master template for the application
+//- @name   index.jade
+
+//- Include components
+include ../mixin/nav/header.jade
+include ../mixin/footer.jade
+include ../mixin/splash/splash.jade
+include ../mixin/head/scripts.jade
+include ../mixin/head/stylesheets.jade
+
+doctype html
+html(lang="en")
+    head
+        // Meta Information
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible'   content='IE=edge')
+        meta(name='viewport'                content='width=device-width, initial-scale=1')
+        meta(name='description',            content='trackstudio')
+        meta(name='keywords',               content='4,track,studio,recording,trackstudio')
+        //  Page Title
+        title=title
+        +stylesheet()
+        +scripts()
+    body
+        +header()
+        block content
+        //+footer()
+

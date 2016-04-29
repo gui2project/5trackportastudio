@@ -1,14 +1,14 @@
 # trackstudio
 
 ## About Project
-trakstudio is A University of Massachusetts: Lowell class capstone project for Graphical User Interfaces II under proffesor Jesse Heines during the Spring 2015 semester.
+trackstudio is A University of Massachusetts: Lowell class capstone project for Graphical User Interfaces II under professor Jesse Heines during the Spring 2015 semester.
 
 - Glen Anderson
 - Dominic Cabral
 - Jose Flores
 - Ramon Meza
 
-Our goal is to create a simplified sound recording application that works in modern web browsers through the Web Audio API. We will differentiate our application by presenting the user with "creative constraints". This will help them focus on their music rather than the technicalities associated with other sound recording applications. We will achieve this by not including visual waveforms and limiting the amount of recordable tracks to four, reducing the interface and indirectly setting a goal for the artist.
+Our goal is to create a simplified sound recording application that works in modern web browsers through the Web Audio API. We will differentiate our application by presenting the user with "creative constraints". This will help them focus on their music ans not the technicalities associated with other sound recording applications. We will achieve this by not including visual waveforms and limiting the amount of recordable tracks to four, reducing the interface and indirectly setting a goal for the artist.
 
 Our target audience consists of musicians and songwriters, of both genders ages 13 and older, who like to record demos or music without having to download software. The user must have access to a modern web browser and a microphone. Our target audience is able to navigate a website and is familiar with how knobs, buttons, and sliders function. Users do not necessarily have prior sound recording experience, as a tutorial is provided.
 
@@ -18,7 +18,7 @@ Our target audience consists of musicians and songwriters, of both genders ages 
 - [Beta and Usability](https://trackstudio.herokuapp.com/api/get/doc/report-usability)
 
 ## Application
-### File structure
+### File Structure
 ```
 trackstudio
 ├───bin/                    Executable files.
@@ -122,29 +122,31 @@ trackstudio
     ```
     gulp mongodb.create
     ```
-3. You will then need to manually add a user that matches `MONGO_DB_USER`:`MONGO_DB_PASS`, with admin read write to a collection `trackstudio`.
+3. You will then need to manually add a user that matches `MONGO_DB_USER`:`MONGO_DB_PASS`, with administrative read write to a collection `trackstudio`.
 
 ## Deployment
-Deployments through `Gulp` will format, check syntax and extract documentation. For a full list of commands available run:
-```
-gulp help
-```
+Deployments through `Gulp` will format, check syntax and extract documentation.
+- For a full list of commands available run:
+    ```
+    gulp help
+    ```
 
 ### Development
 trackstudio by default uses [Nodemon](https://www.npmjs.com/package/nodemon) to run our application on port `3000`.
-We also use the master branch as a development branch, and to quickly save changes to the master branch we recomend to run :
-- Only the first time
+We also use the `master` branch as a development branch, and to quickly save changes to the `master` branch we recommend to ...
+- run (Only the first time):
     ```
     gulp git.cred.store
+    gulp git.master --m="commit message"
     ```
-- Everytime
+- run (Everytime):
     ```
     gulp git.master --m="commit message"
     ```
 
 ### Production
-We have integrated Github with Heroku and to deploy directly to the production server at [https://trackstudio.heroku.com](https://trackstudio.heroku.com) through Gulp.
-- we use:
+We have integrated `Github` with `Heroku` and to deploy directly to the production server at [https://trackstudio.heroku.com](https://trackstudio.heroku.com) through `Gulp`.
+- run:
     ```
     gulp git.heroku
     ```

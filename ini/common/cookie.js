@@ -8,10 +8,10 @@
 var cookie = {
     options: {
         path: '/' //,
-            //domain: '',
-            //secure: false,
-            //httpOnly: '',
-            //firstPartyOnly: true
+            // domain: '',
+            // secure: false,
+            // httpOnly: '',
+            // firstPartyOnly: true
     },
     ts: {
         user: 'ts_user_id',

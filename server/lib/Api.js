@@ -102,6 +102,8 @@ var Api = function (app) {
             global.app.console.err(msg, 'Invalid API return methods for', obj.url);
             return false;
         }
+
+        //  Adding method to list
         global.app.console.log(msg, 'Valid method.', obj.url);
         this.methods.push(obj);
         this.app[obj['return'].toLowerCase()](obj.url,
@@ -109,6 +111,7 @@ var Api = function (app) {
                 func(req, res, httpRes.crud[obj['return']]);
             });
 
+        //  Console message
         if (this.first) {
             global.app.console.log(msg, 'Defining API methods.');
             this.first = false;
@@ -131,14 +134,17 @@ var Api = function (app) {
      */
     this.response = function (res, err, doc, obj) {
         if (err) {
+            // respond if there is an error
             global.app.console.err(msg, 'Error case', err, doc);
             res.status(obj.failure)
                 .send(httpRes.resp[obj.failure].msg);
         } else {
             if (obj.data) {
+                // respond for success and send data
                 res.status(obj.success)
                     .json(doc);
             } else {
+                // respond for success and send status
                 res.status(obj.success)
                     .send(httpRes.resp[obj.success].msg);
             }

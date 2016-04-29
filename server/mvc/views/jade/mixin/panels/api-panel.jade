@@ -1,0 +1,13 @@
+//- The api panel
+//- @name   api-panel.jade
+
+//- Include ocmponents
+include ../icon-header.jade
+//- The api panel
+//- @function api-panel
+mixin api-panel()
+    //  API Panel
+    .panel.api-panel.col-md-12.col-sm-12.col-xs-12
+        .row.form-group.title.col-md-12.col-sm-12.col-xs-12
+            +icon-header('api', 'api', true, false)
+        .row.form-group.content.col-md-12.col-sm-12.col-xs.12(id='api')

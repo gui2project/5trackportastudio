@@ -1,0 +1,11 @@
+//- This file is the masmixer page template for the application
+//- @file   page.mixer.jade
+
+//- Extend components
+extends ./template/index.jade
+//- Include components
+include ./mixin/mixer/mixer.jade
+
+block content
+    // Content
+    +mixer()

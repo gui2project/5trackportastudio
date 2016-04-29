@@ -1,0 +1,31 @@
+//- The information panel
+//- @name   information-panel.jade
+
+//- Include ocmponents
+include ../icon-header.jade
+//- The information panel
+//- @function information-panel
+mixin information-panel()
+    //  Information Panel
+    .clear
+        //  Information Controls
+        .panel.information-actions-panel.col-md-12.col-sm-12.col-xs-12
+            .row.title.col-md-12.col-sm-12.col-xs-12
+                +icon-header('tasks', 'actions', true, false)
+            .row.title.col-md-12.col-sm-12.col-xs-12
+                .row.col-md-12.col-sm-12.col-xs-12
+                    .information-exit
+                        .track-selector.col-xs-12.col-sm-12.col-md-12.col-lg-12
+                            button.exit.link-exit cancel
+                .row.col-md-12.col-sm-12.col-xs-12
+                    .information-actions
+         // Information Display
+        .panel.information-panel.col-md-12.col-sm-12.col-xs-12
+            .row.title.col-md-12.col-sm-12.col-xs-12
+                +icon-header('information', 'information', true, false)
+            .row.form-group.content.col-md-12.col-sm-12.col-xs-12
+                .row.col-md-12.col-sm-12.col-xs-12
+                    .information-title Information title display
+                .row.col-md-12.col-sm-12.col-xs-12
+                    .information-description Information desc display
+

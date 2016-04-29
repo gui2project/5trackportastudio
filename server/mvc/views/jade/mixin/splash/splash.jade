@@ -1,0 +1,13 @@
+//- The splash pages
+
+//- @name splash.jade
+//- Include components
+include ./splash-cover.jade
+include ./splash-microphone.jade
+//- Holds the splash screens / overlays
+//- @function splash
+mixin splash()
+    //Splash Section
+    .splashes
+        +splash-cover()
+        +splash-microphone()

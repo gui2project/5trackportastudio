@@ -1,0 +1,46 @@
+//- Generates a track
+//- @name track.jade
+
+//- Include components
+include ../components/controls-slider.jade
+include ../components/controls-track.jade
+include ../components/controls-effects.jade
+include ../components/controls-knob.jade
+include ../components/label-track.jade
+include ../components/label-section.jade
+//- Generates a track
+//- @function track
+//- @param {Integer} trknum The index of the track
+mixin track(trknum)
+    // Track
+    .col-md-pull-4.col-md-2.col-sm-3.col-xs-3.track(id='track-'+trknum)
+        // Label
+        +label-track(trknum, 'Track ' + trknum)
+        // Mute,Record
+        +controls-track(trknum)
+        // FX Box
+        +controls-effects(trknum)
+        // Volume
+        +controls-slider(trknum, true)
+        // Equalizer
+        .row
+            .col-xs-1.col-sm-1.col-md-1.col-lg-1
+                +label-section('Equalizer')
+            .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+                // EQ High
+                +controls-knob(trknum, 'Treble', 'eq','-','+','HIGH')
+                // EQ Low
+                +controls-knob(trknum, 'Bass', 'eq','-','+','LOW')
+        // Stereo
+        .row
+            .col-xs-1.col-sm-1.col-md-1.col-lg-1
+                +label-section('Stereo')
+            .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+                // Pan
+                +controls-knob(trknum, 'Pan','pan','L','R')
+        // Volume
+        +controls-slider(trknum, false)
+
+
+
+

@@ -1,0 +1,29 @@
+//- Generates the fader-slider section
+//- @name controls-slider.jade
+
+//- Include components
+include ./label-section.jade
+include ./label-scale.jade
+//- Adds the slider scale and volume-meter for xs and other views
+//- @function controls-slider
+//- @param {Integer} trknum The index of the track they belong to
+//- @param {Boolean} top If this is a top viewed on xs slider
+mixin controls-slider(trknum, top)
+    // Fader Slider
+    if (top == true)
+        // To Display Slider on top during xs views
+    else
+        // To Display Slider on bottom during > sm views
+
+    .row(class=(top == true ? 'top-sm-view' : 'top-bg-view'))
+        .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            +label-section('Volume')
+        .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+            // Slider
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4.fader.track-fader-slider(value=trknum)
+                input.slider(type='text')
+            // Scale
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4
+                +label-scale()
+            // Volume-meter
+            .col-xs-4.col-sm-4.col-md-4.col-lg-4.meter(data-vol=0)

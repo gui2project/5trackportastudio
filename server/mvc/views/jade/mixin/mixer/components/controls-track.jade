@@ -1,0 +1,26 @@
+//- Generates fader controls
+//- @name controls-track.jade
+
+//- Include components
+include ../../icon-header.jade
+include ./label-section.jade
+//- Generates track controls mute and record
+//- @function controls-track
+//- @param trknum {Integer} The index for the track controls
+mixin controls-track(trknum)
+    // Track Controls
+    .row
+        .col-xs-1.col-sm-1.col-md-1.col-lg-1
+            +label-section('Controls')
+        .content-box.col-xs-11.col-sm-11.col-md-11.col-lg-11
+            .track-fader
+                //  Mute
+                .mute.col-md-6.col-sm-6.col-xs-6.track-fader-mute(value=trknum)
+                    button
+                        +icon-header('mute', 'Playback on', false, true)
+                        +icon-header('sound', 'Mute', false, true)
+                //  Record
+                .record.col-md-6.col-sm-6.col-xs-6(class='track-fader-record', value=trknum)
+                    button
+                        +icon-header('record', 'Record', false, true)
+                        +icon-header('stop', 'Stop recording', false, true)

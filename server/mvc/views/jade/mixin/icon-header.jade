@@ -1,0 +1,73 @@
+//-  The template for an icon label
+//-
+//-  @function icon-header
+//-  @param {String} title          The icon to use
+//-  @param {String} label          The label for the icon
+//-  @param {Boolean} displayName   To display the label as text
+//-  @param {Boolean} hoverEnabled  Wether a  hover tooltip is eneabled, (Future)
+mixin icon-header(title, label, displayName, hoverEnabled)
+    //  Icons from http://fontawesome.io/
+    if (title == 'account-settings')
+        i.fa.fa-cog
+    else if (title == 'sign-in')
+        i.fa.fa-sign-in
+    else if (title == 'registration')
+        i.fa.fa-user-plus
+    else if (title == 'menu')
+        i.fa.fa-bars
+    else if (title == 'fx-catalog')
+        i.fa.fa-tags
+    else if (title == 'contact')
+        i.fa.fa-envelope-o
+    else if (title == 'about')
+        i.fa.fa-info-circle
+    else if (title == 'mix-catalog')
+        i.fa.fa-file-audio-o
+    else if (title == 'api')
+        i.fa.fa-terminal
+    else if (title == 'tutorial')
+        i.fa.fa-graduation-cap
+    else if (title == 'lock')
+        i.fa.fa-lock
+    else if (title == 'unlock')
+        i.fa.fa-unlock
+    else if (title == 'check')
+        i.fa.fa-check
+    else if (title == 'x')
+        i.fa.fa-times
+    else if (title == 'mic')
+        i.fa.fa-microphone
+    else if (title == 'warning')
+        i.fa.fa-warning.warning
+    else if (title == 'enable')
+        i.fa.fa-shield
+    else if (title == 'information')
+        i.fa.fa-info
+    else if (title == 'tasks')
+        i.fa.fa-tasks
+    else if (title == 'record')
+        i.fa.fa-circle
+    else if (title == 'mute')
+        i.fa.fa-volume-off
+    else if (title == 'sound')
+        i.fa.fa-volume-up
+    else if (title == 'stop')
+        i.fa.fa-stop
+    else if (title == 'play')
+        i.fa.fa-play
+    else if (title == 'rewind')
+        i.fa.fa-backward
+    else if (title == 'forward')
+        i.fa.fa-forward
+    else if (title == 'edit-text')
+        i.fa.fa-pencil-square-o
+    else if (title == 'percent')
+        i.fa.fa-percent
+    //- Determine name
+    if (displayName)
+        //  Icon label
+        span.sys-font=label
+    //- Determine tooltop
+    if (false && hoverEnabled)
+        //  Tooltip
+        span.hover=label

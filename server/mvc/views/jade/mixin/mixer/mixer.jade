@@ -1,0 +1,21 @@
+//- Generates the mixer
+//- @name mixer.jade
+
+//- Include components
+include ../icon-header.jade
+include ./sections/track.jade
+include ./sections/master.jade
+//- Generates the mixer and adds splash screens within its scope
+//- @function mixer
+mixin mixer()
+    // Mixer section
+    main
+        +splash()
+        div.container
+            div.row-container
+                // Master section
+                +master(1)
+                // Tracks section
+                each i in [1,2,3,4]
+                     +track(i)
+
