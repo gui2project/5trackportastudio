@@ -126,7 +126,9 @@ trackstudio
 
 ## Deployment
 Deployments through `Gulp` will format, check syntax and extract documentation.
+
 - For a full list of commands available run:
+
     ```
     gulp help
     ```
