@@ -134,12 +134,18 @@ Deployments through `Gulp` will format, check syntax and extract documentation.
 ### Development
 trackstudio by default uses [Nodemon](https://www.npmjs.com/package/nodemon) to run our application on port `3000`.
 We also use the `master` branch as a development branch, and to quickly save changes to the `master` branch we recommend to ...
+
 - run (Only the first time):
+
     ```
     gulp git.cred.store
+    ```
+    ```
     gulp git.master --m="commit message"
     ```
+    
 - run (Everytime):
+
     ```
     gulp git.master --m="commit message"
     ```
@@ -147,6 +153,7 @@ We also use the `master` branch as a development branch, and to quickly save cha
 ### Production
 We have integrated `Github` with `Heroku` and to deploy directly to the production server at [https://trackstudio.heroku.com](https://trackstudio.heroku.com) through `Gulp`.
 - run:
+
     ```
     gulp git.heroku
     ```
