@@ -384,7 +384,7 @@ $(function () {
                 clearInterval(trackClear[trackId]);
 
                 enableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
-
+                disableButton(['button.forward', 'button.rewind']);
                 $(this)
                     .prop('disabled', 0);
             } else {
