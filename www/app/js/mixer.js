@@ -314,7 +314,7 @@ $(function () {
         .disableButton()
         .on('click', function () {
             enableButton(['button.play', 'button.forward', 'button.rewind', '.record button']);
-            disableButton(['button.stop']);
+            disableButton(['button.stop', 'button.forward', 'button.rewind']);
             stop();
         });
     $('button.play')
