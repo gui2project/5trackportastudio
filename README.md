@@ -1,5 +1,10 @@
 # trackstudio
 
+## Demo
+A live Demo is running on our heroku server. It is best viewed in a modern browser such as Chrome on PC, Mac, or Linux. Though screen size scalable to offer a usable viewport to mobile devices, the Web Audio API is not fully compatible with them.
+
+[Live Demo: https://trackstudio.herokuapp.com/](https://trackstudio.herokuapp.com/)
+
 ## About Project
 trackstudio is A University of Massachusetts: Lowell class capstone project for Graphical User Interfaces II under professor Jesse Heines during the Spring 2015 semester.
 
